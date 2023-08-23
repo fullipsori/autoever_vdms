@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ControlStream">
+        <param name="gui:x" value="-381"/>
+        <param name="gui:y" value="180"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="-381"/>
+        <param name="gui:y" value="-174"/>
+    </component>
+    <component name="CANDBCParser">
+        <param name="gui:x" value="-269"/>
+        <param name="gui:y" value="-177"/>
+        <param name="gui:height" value="65"/>
+        <param name="gui:bends:1" value="-291,-144;-291,-145"/>
+        <param name="gui:bends:2" value="-294,-19;-284,-66"/>
+    </component>
+    <component name="DBCTable">
+        <param name="gui:x" value="-279"/>
+        <param name="gui:y" value="90"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="LatestValueTable">
+        <param name="gui:x" value="-279"/>
+        <param name="gui:y" value="-28"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DeleteAll">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="180"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-269"/>
+        <param name="gui:y" value="180"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="-256"/>
+        <param name="gui:bends:1" value="-154,-157;-138,-226"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="-68"/>
+        <param name="gui:bends:1" value="-183,-132;-161,-38"/>
+    </component>
+    <component name="OutputVarStream">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="-162"/>
+        <param name="gui:bends:1" value="-160,-145;-158,-132"/>
+    </component>
+</application-layout>

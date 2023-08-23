@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-472"/>
+        <param name="gui:y" value="-294"/>
+    </component>
+    <component name="DIAGParserModule">
+        <param name="gui:x" value="-240"/>
+        <param name="gui:y" value="-294"/>
+    </component>
+    <component name="DTCQueryTable">
+        <param name="gui:x" value="-250"/>
+        <param name="gui:y" value="-150"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DTCEmitOnClose">
+        <param name="gui:x" value="-142"/>
+        <param name="gui:y" value="54"/>
+        <param name="gui:bends:1" value="-180,44;-170,84"/>
+    </component>
+    <component name="Initialize">
+        <param name="gui:x" value="-472"/>
+        <param name="gui:y" value="7"/>
+    </component>
+    <component name="InsertDTC">
+        <param name="gui:x" value="-142"/>
+        <param name="gui:y" value="-40"/>
+        <param name="gui:bends:1" value="-178,25;-172,-5"/>
+    </component>
+    <component name="LoadDT">
+        <param name="gui:x" value="-257"/>
+        <param name="gui:y" value="2"/>
+    </component>
+    <component name="SetDT">
+        <param name="gui:x" value="-354"/>
+        <param name="gui:y" value="2"/>
+        <param name="gui:bends:1" value="-402,37;-402,34"/>
+    </component>
+    <component name="OutputDTCStream">
+        <param name="gui:x" value="-9"/>
+        <param name="gui:y" value="7"/>
+        <param name="gui:bends:1" value="-44,84;-34,37"/>
+    </component>
+    <component name="OutputErrorStream">
+        <param name="gui:x" value="-9"/>
+        <param name="gui:y" value="-204"/>
+        <param name="gui:bends:1" value="-106,-254;-86,-174"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="-9"/>
+        <param name="gui:y" value="-298"/>
+        <param name="gui:bends:1" value="-83,-274;-83,-268"/>
+    </component>
+    <component name="Group_LoadDT">
+        <param name="gui:x" value="-355"/>
+        <param name="gui:y" value="-60"/>
+        <param name="gui:width" value="290"/>
+        <param name="gui:height" value="194"/>
+    </component>
+    <gui.group color="255,255,128" name="Group_LoadDT" visual-state="open">
+        <member name="DTCEmitOnClose"/>
+        <member name="InsertDTC"/>
+        <member name="SetDT"/>
+        <member name="LoadDT"/>
+        <param name="gui:x" value="-355"/>
+        <param name="gui:y" value="-60"/>
+        <param name="gui:width" value="290"/>
+        <param name="gui:height" value="194"/>
+    </gui.group>
+</application-layout>

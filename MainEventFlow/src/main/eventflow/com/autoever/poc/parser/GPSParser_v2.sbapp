@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.parser.GPSParser_v2"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <implements module-reference="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
+        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <import alias="KafkaVDMSDataSchema" from="com.autoever.poc.maineventflow.kafkaSchemas" item="KafkaVDMSDataSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables>
+            <dynamic-variable initial-expression="4" name="modValue" setter-expression="newModValue" setter-stream="ControlStream"/>
+        </dynamic-variables>
+        <stream name="ControlStream">
+            <schema>
+                <field name="newModValue" type="int"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <box name="GenGPSs" type="java">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:GenGPSs_1"/>
+            <output port="2" stream="OutputRawDataStream"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.autoever.poc.adapters.VdmsRawParser"/>
+            <param name="parserType" value="GPS"/>
+        </box>
+        <output-stream name="OutputRawDataStream"/>
+        <box name="Map" type="map">
+            <input port="1" stream="out:GenGPSs_1"/>
+            <output port="1" stream="out:Map_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="PassThroughs"/>
+                </item>
+                <expressions>
+                    <include field="*">PassThroughs.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="FilterMarker" type="filter">
+            <input port="1" stream="out:Map_1"/>
+            <output port="1" stream="out:FilterMarker_1"/>
+            <output port="2" stream="out:FilterMarker_2"/>
+            <output port="3" stream="out:FilterMarker_3"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="IsStarted"/>
+            <param name="expression.1" value="IsEnded"/>
+            <param name="expression.2" value="true"/>
+        </box>
+        <box name="MarkerEnded" type="map">
+            <input port="1" stream="out:FilterMarker_2"/>
+            <output port="1" stream="out:MarkerEnded_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="perfData"/>
+                    <include field="IsEnded"/>
+                    <include field="IsStarted"/>
+                    <include field="MSGIdx"/>
+                </item>
+                <expressions>
+                    <replace field="perfData.t3_time">to_milliseconds(now())</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MarkerStarted" type="map">
+            <input port="1" stream="out:FilterMarker_1"/>
+            <output port="1" stream="out:MarkerStarted_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="perfData"/>
+                    <include field="IsEnded"/>
+                    <include field="IsStarted"/>
+                    <include field="MSGIdx"/>
+                </item>
+                <expressions>
+                    <replace field="perfData.t2_time">to_milliseconds(now())</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Sequence" type="seqnum">
+            <input port="1" stream="out:FilterMarker_3"/>
+            <output port="1" stream="out:Sequence_1"/>
+            <param name="output-field" value="sequenceId"/>
+            <param name="sequence-id" value="sequenceid"/>
+            <param name="update-expression" value="sequenceid + 1"/>
+        </box>
+        <box name="LVFilter" type="filter">
+            <input port="1" stream="out:Sequence_1"/>
+            <output port="1" stream="out:LVFilter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="modValue != 0 &amp;&amp; (sequenceId % modValue == 0)"/>
+        </box>
+        <box name="MarkerUnion" type="union">
+            <input port="1" stream="out:MarkerStarted_1"/>
+            <input port="2" stream="out:MarkerEnded_1"/>
+            <output port="1" stream="out:MarkerUnion_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="AGGToHCP" type="aggregate">
+            <input port="1" stream="out:MarkerUnion_1"/>
+            <output port="1" stream="out:AGGToHCP_1"/>
+            <param name="dimension-name.0" value="Dimension1"/>
+            <param name="dimension-type.0" value="Predicate"/>
+            <param name="dimension-partial.0" value="no"/>
+            <param name="dimension-open-predicate.0" value="IsStarted"/>
+            <param name="dimension-close-predicate.0" value="IsEnded"/>
+            <param name="dimension-emit-close-first.0" value="false"/>
+            <param name="output-group-by" value="true"/>
+            <target-list>
+                <expressions>
+                    <include field="*">lastval(*)</include>
+                    <replace field="perfData.t2_time">firstval(perfData.t2_time)</replace>
+                    <replace field="perfData.t3_time">lastval(perfData.t3_time)</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MapForGPSTable" type="map">
+            <input port="1" stream="out:LVFilter_1"/>
+            <output port="1" stream="out:MapForGPSTable_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="messageID"/>
+                    <include field="mgmtNO"/>
+                </item>
+                <expressions>
+                    <replace field="messageID">input1.messageID + '_' + string(input1.sequenceId)</replace>
+                    <include field="baseTime">kafkaMessage.BaseTime</include>
+                    <include field="deltaTime">RawHeader.DeltaTime</include>
+                    <include field="realTime">long(GetLocalTime(kafkaMessage.BaseTime + long(RawHeader.DeltaTime), ''))</include>
+                    <include field="rootCount">kafkaMessage.RootCount</include>
+                    <include field="terminalID">kafkaMessage.TerminalID</include>
+                    <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
+                    <include field="*">RawParsed.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="EndedCanProc" type="map">
+            <input port="1" stream="out:AGGToHCP_1"/>
+            <output port="1" stream="out:EndedCanProc_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="perfData">input1.perfData</include>
+                    <replace field="perfData.kafka_msg_id">input1.perfData.kafka_msg_id + "_GPS"</replace>
+                    <replace field="perfData.data_count">MSGIdx-2</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="PublishGPS" type="outputadapter">
+            <input port="1" stream="out:MapForGPSTable_1"/>
+            <output port="1" stream="out:PublishGPS_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="4096"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="250"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="AutoGPSDataTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <module-reference name="PublishPerf">
+            <input name="InputStream" port="1" stream="out:EndedCanProc_1"/>
+            <output name="OutputStream" port="1" stream="out:PublishPerf_1"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <param name="file" value="com.autoever.poc.maineventflow.PerfFlow"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="Union" type="union">
+            <input port="1" stream="out:PublishPerf_1"/>
+            <input port="2" stream="out:PublishGPS_1"/>
+            <output port="1" stream="OutputParserStream"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="OutputParserStream"/>
+    </add>
+</modify>

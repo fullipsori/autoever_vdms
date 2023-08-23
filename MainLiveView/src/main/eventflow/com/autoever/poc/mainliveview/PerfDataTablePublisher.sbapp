@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.mainliveview.PerfDataTablePublisher"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <implements module-reference="lvinterfaces.PerfDataTablePublisher"/>
+        <import from="lvinterfaces.PerfDataTablePublisher"/>
+        <import from="lvinterfaces.PerfDataTableSchemas"/>
+        <dynamic-variables/>
+        <stream name="InputStream" schema="PerfDataTableTableSchema"/>
+        <stream name="PublishSchemasIn" schema="PublishSchemasSchema"/>
+        <stream name="ServerStateIn" schema="ServerStateSchema"/>
+        <stream name="ServerStatusIn" schema="ServerStatusSchema"/>
+        <stream name="TheLastGoodRecordIn" schema="TheLastGoodRecordSchema"/>
+        <output-stream name="QueryTheLastGoodRecordOut" schema="QueryTheLastGoodRecordSchema"/>
+        <box name="AddControlFields" type="map">
+            <property name="description" value="Adds default values for all LiveView control fields.&#10;The app can use these fields to support udpate/delete rules,&#10;or table persistence."/>
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="PublishToPerfDataTableOut"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="*">PerfDataTableInputControlFields().*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MakeGood" type="map">
+            <property name="description" value="Adds default values for all LiveView control fields.&#10;The app can use these fields to support udpate/delete rules,&#10;or table persistence."/>
+            <input port="1" stream="ServerStateIn"/>
+            <output port="1" stream="PublisherStateOut"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="CurrentState">RECOVERY_COMPLETE</replace>
+                    <replace field="Name">"PerfDataTablePublisher"</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="PublisherStateOut" schema="ServerStateSchema"/>
+        <output-stream name="PublishToPerfDataTableOut" schema="PerfDataTableDataInSchema"/>
+        <gui.note name="ControlNote">
+            <property name="description" value="Adds default values for all LiveView control fields.&#10;The app can use these fields to support udpate/delete rules,&#10;or table persistence."/>
+            <note-target name="AddControlFields"/>
+        </gui.note>
+    </add>
+</modify>

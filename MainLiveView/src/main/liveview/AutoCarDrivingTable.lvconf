@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<liveview-configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.streambase.com/schemas/lvconf/">
+  <data-table id="AutoCarDrivingTable">
+    <fields>
+      <field name="EventArrivalTS" type="timestamp"/>
+    </fields>
+    <import-schema from="com.autoever.poc.mainliveview.LiveViewTable" schema="CarDrivingTableSchema"/>
+    <table-delete-rule>WHEN EventArrivalTS BETWEEN epoch() AND now()-days(1)</table-delete-rule>
+    <primary-key>
+      <field ref="messageID"/>
+    </primary-key>
+    <indices>
+      <index>
+        <field ref="vehicleKeyID"/>
+      </index>
+      <index>
+        <field ref="EventArrivalTS"/>
+      </index>
+    </indices>
+    <field-rules>
+      <rule description="Retention policy table delete rule">
+        <default>
+          <insert field="EventArrivalTS">now()</insert>
+          <update field="EventArrivalTS">now()</update>
+        </default>
+      </rule>
+    </field-rules>
+  </data-table>
+</liveview-configuration>

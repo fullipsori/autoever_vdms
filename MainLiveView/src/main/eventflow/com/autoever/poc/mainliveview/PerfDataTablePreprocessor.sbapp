@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.mainliveview.PerfDataTablePreprocessor"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <implements module-reference="lvinterfaces.PerfDataTableDataSource"/>
+        <import from="lvinterfaces.PerfDataTableDataSource"/>
+        <import alias="PerfDataTableDataInSchema" from="lvinterfaces.PerfDataTableSchemas" item="PerfDataTableDataInSchema"/>
+        <dynamic-variables/>
+        <stream name="DataIn" schema="PerfDataTableDataInSchema"/>
+        <box name="NullPrepocessorMap" type="map">
+            <property name="description" value="This map simply passes all tuples, unaltered, to the target table.&#13;&#10;A real preprocessor would compute its output based on the tuples received on the input stream."/>
+            <input port="1" stream="DataIn"/>
+            <output port="1" stream="DataOut"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="elapsed">to_milliseconds(now())-start_time</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="DataOut" schema="PerfDataTableDataInSchema" scope="public"/>
+        <gui.note name="PreProcNote">
+            <property name="description" value="This map simply passes all tuples, unaltered, to the target table.&#10;A real preprocessor would compute its output based on the tuples received on the input stream."/>
+            <note-target name="NullPrepocessorMap"/>
+        </gui.note>
+    </add>
+</modify>

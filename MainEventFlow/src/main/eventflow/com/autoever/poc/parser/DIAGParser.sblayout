@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-812"/>
+        <param name="gui:y" value="-54"/>
+    </component>
+    <component name="controlInstance">
+        <param name="gui:x" value="-812"/>
+        <param name="gui:y" value="-148"/>
+    </component>
+    <component name="DTCQueryTable">
+        <param name="gui:x" value="415"/>
+        <param name="gui:y" value="120"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DATAIterate">
+        <param name="gui:x" value="117"/>
+        <param name="gui:y" value="-291"/>
+    </component>
+    <component name="DTCIterate">
+        <param name="gui:x" value="117"/>
+        <param name="gui:y" value="-9"/>
+    </component>
+    <component name="DiagDTCTuple">
+        <param name="gui:x" value="-281"/>
+        <param name="gui:y" value="-105"/>
+        <param name="gui:bends:1" value="-310,-85;-308,-75"/>
+    </component>
+    <component name="DiagDataTuple">
+        <param name="gui:x" value="-281"/>
+        <param name="gui:y" value="-216"/>
+        <param name="gui:bends:1" value="-332,-105;-312,-186"/>
+    </component>
+    <component name="DiagParser">
+        <param name="gui:x" value="-598"/>
+        <param name="gui:y" value="-54"/>
+    </component>
+    <component name="EndedDiagDTCProc">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-103"/>
+        <param name="gui:bends:1" value="-31,-65;-29,-73"/>
+    </component>
+    <component name="EndedDiagDataProc">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-197"/>
+        <param name="gui:bends:1" value="-44,-176;-42,-167"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-291"/>
+        <param name="gui:bends:1" value="-64,-196;-48,-261"/>
+    </component>
+    <component name="Filter4">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-9"/>
+        <param name="gui:bends:1" value="-56,-85;-30,21"/>
+    </component>
+    <component name="FilterTxRx">
+        <param name="gui:x" value="425"/>
+        <param name="gui:y" value="-291"/>
+    </component>
+    <component name="ForMainStream">
+        <param name="gui:x" value="662"/>
+        <param name="gui:y" value="-137"/>
+        <param name="gui:bends:1" value="592,-261;623,-117"/>
+        <param name="gui:bends:2" value="479,-120;481,-107"/>
+        <param name="gui:bends:3" value="604,21;632,-97"/>
+    </component>
+    <component name="Init">
+        <param name="gui:x" value="-703"/>
+        <param name="gui:y" value="-259"/>
+    </component>
+    <component name="Initialize">
+        <param name="gui:x" value="-812"/>
+        <param name="gui:y" value="-259"/>
+    </component>
+    <component name="MapForDTCTable">
+        <param name="gui:x" value="316"/>
+        <param name="gui:y" value="-9"/>
+    </component>
+    <component name="MapForDiagDataTable">
+        <param name="gui:x" value="316"/>
+        <param name="gui:y" value="-291"/>
+    </component>
+    <component name="MapToPerfData">
+        <param name="gui:x" value="208"/>
+        <param name="gui:y" value="-150"/>
+    </component>
+    <component name="MatchDTCQuery">
+        <param name="gui:x" value="425"/>
+        <param name="gui:y" value="-9"/>
+    </component>
+    <component name="Pack">
+        <param name="gui:x" value="-703"/>
+        <param name="gui:y" value="-54"/>
+    </component>
+    <component name="PublishDiagDTC">
+        <param name="gui:x" value="522"/>
+        <param name="gui:y" value="-9"/>
+    </component>
+    <component name="PublishDiagData">
+        <param name="gui:x" value="522"/>
+        <param name="gui:y" value="-291"/>
+    </component>
+    <component name="PublishPerf">
+        <param name="gui:x" value="316"/>
+        <param name="gui:y" value="-150"/>
+    </component>
+    <component name="Sequence2">
+        <param name="gui:x" value="208"/>
+        <param name="gui:y" value="-291"/>
+    </component>
+    <component name="Sequence3">
+        <param name="gui:x" value="208"/>
+        <param name="gui:y" value="-9"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-143"/>
+        <param name="gui:y" value="-216"/>
+    </component>
+    <component name="Split3">
+        <param name="gui:x" value="-411"/>
+        <param name="gui:y" value="-125"/>
+    </component>
+    <component name="Split5">
+        <param name="gui:x" value="-143"/>
+        <param name="gui:y" value="-105"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="117"/>
+        <param name="gui:y" value="-159"/>
+        <param name="gui:height" value="78"/>
+        <param name="gui:bends:1" value="78,-167;84,-139"/>
+        <param name="gui:bends:2" value="63,-73;69,-101"/>
+    </component>
+    <component name="UnpackDiag">
+        <param name="gui:x" value="-493"/>
+        <param name="gui:y" value="-125"/>
+        <param name="gui:bends:1" value="-523,-34;-509,-95"/>
+    </component>
+    <component name="python_diag_instance">
+        <param name="gui:x" value="-703"/>
+        <param name="gui:y" value="-148"/>
+    </component>
+    <component name="ExecError">
+        <param name="gui:x" value="-493"/>
+        <param name="gui:y" value="-31"/>
+        <param name="gui:bends:1" value="-504,-14;-503,-1"/>
+    </component>
+    <component name="InitOut">
+        <param name="gui:x" value="-598"/>
+        <param name="gui:y" value="-259"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="752"/>
+        <param name="gui:y" value="-137"/>
+    </component>
+</application-layout>

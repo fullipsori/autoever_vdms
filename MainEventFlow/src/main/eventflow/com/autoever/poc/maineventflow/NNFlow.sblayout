@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-401"/>
+        <param name="gui:y" value="-214"/>
+    </component>
+    <component name="AggParamPerCar">
+        <param name="gui:x" value="22"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-296"/>
+        <param name="gui:y" value="-214"/>
+    </component>
+    <component name="GetVIDs">
+        <param name="gui:x" value="-191"/>
+        <param name="gui:y" value="-16"/>
+        <param name="gui:bends:1" value="-229,-23;-225,14"/>
+    </component>
+    <component name="Init">
+        <param name="gui:x" value="-401"/>
+        <param name="gui:y" value="-63"/>
+    </component>
+    <component name="InitModel">
+        <param name="gui:x" value="-191"/>
+        <param name="gui:y" value="-110"/>
+        <param name="gui:bends:1" value="-220,-43;-212,-80"/>
+    </component>
+    <component name="Iterate">
+        <param name="gui:x" value="567"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="LoadModel">
+        <param name="gui:x" value="-86"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="Predict">
+        <param name="gui:x" value="302"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-296"/>
+        <param name="gui:y" value="-63"/>
+    </component>
+    <component name="ToPredictTable">
+        <param name="gui:x" value="664"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="-86"/>
+        <param name="gui:y" value="-246"/>
+        <param name="gui:bends:1" value="-201,-194;-193,-226"/>
+        <param name="gui:bends:2" value="-114,-174;-106,-206"/>
+    </component>
+    <component name="addParam">
+        <param name="gui:x" value="-191"/>
+        <param name="gui:y" value="-204"/>
+    </component>
+    <component name="checkCount">
+        <param name="gui:x" value="115"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="checkNull">
+        <param name="gui:x" value="487"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="pack">
+        <param name="gui:x" value="197"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="unpack">
+        <param name="gui:x" value="407"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="ErrorOutputStream">
+        <param name="gui:x" value="22"/>
+        <param name="gui:y" value="-37"/>
+        <param name="gui:bends:1" value="-20,-70;-13,-7"/>
+    </component>
+    <component name="OutputLoadModelStream">
+        <param name="gui:x" value="22"/>
+        <param name="gui:y" value="-131"/>
+        <param name="gui:bends:1" value="-2,-90;0,-101"/>
+    </component>
+    <component name="OutputPublishStream">
+        <param name="gui:x" value="772"/>
+        <param name="gui:y" value="-246"/>
+    </component>
+    <component name="OutputVarStream">
+        <param name="gui:x" value="-86"/>
+        <param name="gui:y" value="-16"/>
+    </component>
+</application-layout>

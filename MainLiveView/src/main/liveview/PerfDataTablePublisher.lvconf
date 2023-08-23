@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<liveview-configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.streambase.com/schemas/lvconf/">
+  <publisher id="PerfDataTablePublisher" filename="com.autoever.poc.mainliveview.PerfDataTablePublisher">
+    <tables>
+      <table table-ref="PerfDataTable"/>
+    </tables>
+  </publisher>
+</liveview-configuration>

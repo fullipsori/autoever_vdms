@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EventList timeZone = "9"> <!-- 9: Korea Time-->
+	<!-- Key Option ID : 0x18FEF1EF, StartBit : 38, Length : 2, Signal Name : CF_VCU_IGOn -->
+	<PreCondition Key="ON">
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FEF1EF" type="E"/>
+			<!-- Channel : VDMS CAN channel, type: S/E -->
+			<Siganl Startbit="38" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<!-- endian: Little/Big, type:signed/unsigned -->
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+			<!-- compare: GT LT GE LE DIFF EQ NEQ, value: float, duration : sec -->
+		</Trigger>	
+	</PreCondition>
+	
+	<!-- CAN Event -->
+	<Event Priority='A' Category='FCEVFAULT' Name="CF_Hmu1_SvcLmpReq" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x519" type="S"/>
+			<Siganl Startbit="42" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='FCEVFAULT' Name="CF_Hmu2_SvcLmpReq" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x3C7" type="S"/>
+			<Siganl Startbit="42" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='FCEVFAULT' Name="CF_Hmu3_SvcLmpReq" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x3CB" type="S"/>
+			<Siganl Startbit="42" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='FCEVFAULT' Name="FCU1_SvcLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FF15D5" type="E"/>
+			<Siganl Startbit="1" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='FCEVFAULT' Name="FCU2_SvcLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FF25D6" type="E"/>
+			<Siganl Startbit="1" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='IRWARNING' Name="CF_BMS_GFD_FAULT" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FFF7F4" type="E"/>
+			<Siganl Startbit="30" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IRWARNING' Name="FCU1_GfdFltSoundOn" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF12D5" type="E"/>
+			<Siganl Startbit="16" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IRWARNING' Name="FCU1_GfdFltLampOn" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF12D5" type="E"/>
+			<Siganl Startbit="17" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IRWARNING' Name="FCU2_GfdFltSoundOn" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF22D6" type="E"/>
+			<Siganl Startbit="16" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IRWARNING' Name="FCU2_GfdFltLampOn" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF22D6" type="E"/>
+			<Siganl Startbit="17" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="FCU1_H2LkLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FF15D5" type="E"/>
+			<Siganl Startbit="2" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="FCU2_H2LkLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FF25D6" type="E"/>
+			<Siganl Startbit="2" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="CF_Hmu1_H2LkDtec" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x519" type="S"/>
+			<Siganl Startbit="41" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="CF_Hmu1_FcSdReq" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x519" type="S"/>
+			<Siganl Startbit="40" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="CF_Hmu2_H2LkDtec" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x3C7" type="S"/>
+			<Siganl Startbit="41" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='H2LEAK' Name="CF_Hmu2_FcSdReq" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x3C7" type="S"/>
+			<Siganl Startbit="40" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+            <Event Priority='A' Category='H2SENSOR' Name="FCU1_H2FltLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF12D5" type="E"/>
+			<Siganl Startbit="22" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+            <Event Priority='A' Category='H2SENSOR' Name="FCU2_H2FltLmp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0xCFF22D6" type="E"/>
+			<Siganl Startbit="22" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+            <Event Priority='A' Category='H2SENSOR' Name="CF_Hmu1_H2SnsTnkSysFlt" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x519" type="S"/>
+			<Siganl Startbit="35" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+            <Event Priority='A' Category='H2SENSOR' Name="CF_Hmu2_H2SnsTnkSysFlt" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x3C7" type="S"/>
+			<Siganl Startbit="35" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+            <Event Priority='A' Category='BATTERY' Name="CF_Bms_ServiceLamp" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FFF0F4" type="E"/>
+			<Siganl Startbit="33" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='Turtle' Name="CF_VCU_PowerLimit" BIT_WISE='OR' preData='60' postData='60'>
+		<!-- BIT_WISE: OR/AND, preData/postData : sec -->
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FF2AEF" type="E"/>
+			<!-- Channel : VDMS CAN channel, type: S/E -->
+			<Siganl Startbit="10" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<!-- endian: Little/Big, type:signed/unsigned -->
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+			<!-- compare: GT LT GE LE DIFF EQ NEQ, value: float, duration : sec -->
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FCEVFAULT' Name="CF_VCU_VCUFault" BIT_WISE='OR' preData='60' postData='60'>
+		<!-- BIT_WISE: OR/AND, preData/postData : sec -->
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FF2AEF" type="E"/>
+			<!-- Channel : VDMS CAN channel, type: S/E -->
+			<Siganl Startbit="18" Length="1" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<!-- endian: Little/Big, type:signed/unsigned -->
+			<condition compare="EQ" value="1.0" duration="0.0"/>			
+			<!-- compare: GT LT GE LE DIFF EQ NEQ, value: float, duration : sec -->
+		</Trigger>
+	</Event>
+
+
+	<!-- DM1 Lamp Event -->
+	<Event Priority='A' Category='FCEVFAULT' Name="AmberWarningLampStatus_FDC1" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<!-- Message : TPCM-->
+			<Message Channel="3" ID="0x18ECFFD2" type="E"/>
+			<!-- TPDT Lamp : False-DTC, AWL-Amber Warning Lamp, RSL-Red Stop Lamp -->
+			<TPDT Channel="3" ID="0x18EBFFD2" type="E" Lamp="AWL"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FCEVFAULT' Name="AmberWarningLampStatus_FDC2" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<!-- Message : TPCM-->
+			<Message Channel="3" ID="0x18ECFFD3" type="E"/>
+			<!-- TPDT Lamp : False-DTC, AWL-Amber Warning Lamp, RSL-Red Stop Lamp -->
+			<TPDT Channel="3" ID="0x18EBFFD3" type="E" Lamp="AWL"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FCEVFAULT' Name="AmberWarningLampStauts_BEQ" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<!-- Message : TPCM-->
+			<Message Channel="2" ID="0x18ECFF98" type="E"/>
+			<!-- TPDT Lamp : False-DTC, AWL-Amber Warning Lamp, RSL-Red Stop Lamp -->
+			<TPDT Channel="2" ID="0x18EBFF98" type="E" Lamp="AWL"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FCEVFAULT' Name="AmberWarningLampStauts_LDC_L_B" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<!-- Message : TPCM-->
+			<Message Channel="3" ID="0x18ECFF1A" type="E"/>
+			<!-- TPDT Lamp : False-DTC, AWL-Amber Warning Lamp, RSL-Red Stop Lamp -->
+			<TPDT Channel="3" ID="0x18EBFF1A" type="E" Lamp="AWL"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FCEVFAULT' Name="AmberWarningLampStauts_MCU" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<!-- Message : TPCM-->
+			<Message Channel="2" ID="0x1CECFFD1" type="E"/>
+			<!-- TPDT Lamp : False-DTC, AWL-Amber Warning Lamp, RSL-Red Stop Lamp -->
+			<TPDT Channel="2" ID="0x1CEBFFD1" type="E" Lamp="AWL"/>
+		</Trigger>
+	</Event>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<!-- DM1 Single Frame -->
+	<Event Priority='A' Category='DM1' Name="DM1_BEQ_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA98" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA98" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_MCU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAD1" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAD1" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_MFSM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA31" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA31" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_RAS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA38" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA38" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>	
+
+	<Event Priority='A' Category='DM1' Name="DM1_RetDriveline_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA10" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA10" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_TCU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA03" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA03" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_BMU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAF4" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAF4" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FDC1_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD2" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD2" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FDC2_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD3" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD3" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FCU1_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD5" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD5" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FCU2_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>		
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAD6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+	
+	<Event Priority='A' Category='DM1' Name="DM1_LDC_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ACC_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_AEBS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAA0" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAA0" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_AFLS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA37" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA37" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_Aux_Inv_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAF6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAF6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_EBS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA0B" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA0B" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ECAS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2F" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2F" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_EHPS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2E" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA2E" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_LDWS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x1CFECAE8" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAE8" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_LWS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAA1" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAA1" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_MAHS_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA13" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA13" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SWSM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA8C" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECA8C" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_VCU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAEF" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FECAEF" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='DM1' Name="DM1_ACU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA53" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>		
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA53" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>		
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ADM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAEC" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAEC" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>				
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CCM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA19" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA19" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAE6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAE6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>				
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CLUSTER_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA17" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA17" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_DDM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAE9" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAE9" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>		
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_DTG_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAEE" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECAEE" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>				
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_IPSM_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA34" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>		
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA34" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>				
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SJB_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1E" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1E" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SMK_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1D" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>	
+		<Trigger type="CAN">
+			<Message Channel="3" ID="0x18FECA1D" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>			
+		</Trigger>	
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CTU_SINGLE_FRAME" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="4" ID="0x18FECA4A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="4" ID="0x18FECA4A" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>		
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="RedStopLampStatus_AuxInv" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x1CECFFF6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>			
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x1CECFFF6" type="E"/>
+			<Siganl Startbit="16" Length="24" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="DIFF" value="1.0" duration="0.0"/>		
+		</Trigger>
+	</Event>
+
+
+	<!-- DM1 Multi Frame -->
+	<Event Priority='A' Category='DM1' Name="DM1_BEQ_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFF98" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFF98" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_MCU_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFFD1" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFFD1" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>	
+	
+	<Event Priority='A' Category='DM1' Name="DM1_MFSM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF31" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF31" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='DM1' Name="DM1_RAS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF38" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF38" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_RetDriveline_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFF10" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFF10" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_TCU_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFF03" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFF03" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_BMS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFF4" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFF4" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FDC1_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFD2" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFD2" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FDC2_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFD3" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFD3" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FCU1_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFD5" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFD5" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_FCU2_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFD6" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFD6" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_LDC_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFF1A" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFF1A" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ACC_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF2A" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF2A" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_AEBS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFFA0" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFFA0" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_AFLS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFF37" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFF37" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_Auxlnv_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFFF6" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFFF6" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_EBS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF0B" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF0B" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ECAS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF2F" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF2F" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_EHPS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF2E" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF2E" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_LDWS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFFE8" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFFE8" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_LWS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFFA1" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFFA1" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_MAHS_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFF13" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFF13" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SWSM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x1CECFF8C" type="E"/>
+			<TPDT Channel="2" ID="0x1CEBFF8C" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_VCU_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="2" ID="0x18ECFFEF" type="E"/>
+			<TPDT Channel="2" ID="0x18EBFFEF" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ACU_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF53" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF53" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_ADM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFFEC" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFFEC" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CCM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF19" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF19" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFFE6" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFFE6" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_Cluster_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF17" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF17" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_DDM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFFE9" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFFE9" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_DTG_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x18ECFFEE" type="E"/>
+			<TPDT Channel="3" ID="0x18EBFFEE" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_IPSM_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF34" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF34" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SJB_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF1E" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF1E" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_SMK_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="3" ID="0x1CECFF1D" type="E"/>
+			<TPDT Channel="3" ID="0x1CEBFF1D" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='DM1' Name="DM1_CTU_MULTI_FRAME" BIT_WISE='OR' preData='60' postData='60'>
+		<Trigger type="DM1">
+			<Message Channel="4" ID="0x18ECFF4A" type="E"/>
+			<TPDT Channel="4" ID="0x18EBFF4A" type="E" Lamp="False"/>
+		</Trigger>
+	</Event>
+
+</EventList>

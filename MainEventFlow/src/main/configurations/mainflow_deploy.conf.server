@@ -1,0 +1,91 @@
+// This is a sample of the com.tibco.ep.streambase.configuration.sbengine.EventFlowDeployment configuration containing
+// only required properties. The contents as presented are not valid; uncomment and replace sample values with valid
+// values as needed.
+
+name = "sample-EventFlowDeployment-document"
+type = "com.tibco.ep.streambase.configuration.sbengine"
+version = "1.0.0"
+configuration = {
+
+	// An EventFlow deployment configuration object contains modules and container connections that can be set
+	// independently of the rest of an EventFlow engine's configuration.
+	EventFlowDeployment = {
+		containers = {
+			mainflow = {
+				moduleName="com.autoever.poc.maineventflow.AutoVDMSFlow_v2"
+				moduleParameterSettings = {
+					parameters = {
+						OP_MODE = "user"
+						KAFKA_BROKER = "10.12.109.204:6667;10.12.109.157:6667;10.12.109.232:6667"
+						KAFKA_GROUP_ID = "autoever_vdms_server"
+						KAFKA_TOPIC = "AutoSubmitReq"
+						FILE_TEMP_FOLDER = "d:/Projects/vdms/temp"
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+                        LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+			canflow = {
+				moduleName="com.autoever.poc.maineventflow.CANFlow_v2"
+				moduleParameterSettings = {
+					parameters = {
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+			candbcflow = {
+				moduleName="com.autoever.poc.maineventflow.CANDBCFlow"
+				moduleParameterSettings = {
+					parameters = {
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+			diagflow = {
+				moduleName="com.autoever.poc.maineventflow.DIAGFlow"
+				moduleParameterSettings = {
+					parameters = {
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+			gpsflow = {
+				moduleName="com.autoever.poc.maineventflow.GPSFlow"
+				moduleParameterSettings = {
+					parameters = {
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+			ccpflow = {
+				moduleName="com.autoever.poc.maineventflow.CCPFlow_v2"
+				moduleParameterSettings = {
+					parameters = {
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+						THRESHOLD = "99.9"
+					}
+				}
+			}
+			nnflow = {
+				moduleName="com.autoever.poc.maineventflow.NNFlow"
+				moduleParameterSettings = {
+					parameters = {
+						PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+						RESOURCE_ROOT = "d:/Projects/vdms/resources"
+						LV_SERVER_URI = "lv://localhost:11080"
+					}
+				}
+			}
+		}
+	}
+}

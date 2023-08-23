@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-303"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="DBCTable">
+        <param name="gui:x" value="522"/>
+        <param name="gui:y" value="8"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="AssignFilePath">
+        <param name="gui:x" value="-222"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="Init">
+        <param name="gui:x" value="-303"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="InsertDBC">
+        <param name="gui:x" value="532"/>
+        <param name="gui:y" value="-121"/>
+    </component>
+    <component name="Iterate">
+        <param name="gui:x" value="435"/>
+        <param name="gui:y" value="-121"/>
+        <param name="gui:bends:1" value="412,-90;412,-91"/>
+    </component>
+    <component name="LoadDBCData">
+        <param name="gui:x" value="-24"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="LoadModule">
+        <param name="gui:x" value="-222"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="330"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="Unpack">
+        <param name="gui:x" value="88"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="jsonToTuple">
+        <param name="gui:x" value="192"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="pack">
+        <param name="gui:x" value="-122"/>
+        <param name="gui:y" value="-110"/>
+    </component>
+    <component name="python_dbc_instance">
+        <param name="gui:x" value="-303"/>
+        <param name="gui:y" value="1"/>
+    </component>
+    <component name="OutputInitStream">
+        <param name="gui:x" value="-122"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="ToCANDBCParser">
+        <param name="gui:x" value="435"/>
+        <param name="gui:y" value="-27"/>
+        <param name="gui:bends:1" value="416,-70;425,3"/>
+    </component>
+</application-layout>

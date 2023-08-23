@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.DIAGFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <implements module-reference="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <implements module-reference="com.autoever.poc.maineventflow.ResourceTable"/>
+        <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <import from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2"/>
+        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <import from="com.autoever.poc.maineventflow.ResourceTable"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="DTCQueryTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DTCTable"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <box name="Initialize" type="inputadapter">
+            <output port="1" stream="out:Initialize_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <module-reference name="DIAGParserModule">
+            <input dispatch="round_robin" name="InputStream" port="1" stream="InputStream"/>
+            <output name="OutputParserStream" port="1" stream="OutputParserStream"/>
+            <output name="ExecError" port="2" stream="OutputErrorStream"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <multiplicity number="2" type="concrete"/>
+            <param name="file" value="com.autoever.poc.parser.DIAGParser"/>
+            <input-dataref name="DTCQueryTable" table="DTCQueryTable"/>
+            <parameter-bindings>
+                <binding name="PYTHON_EXECUTABLE" value="${PYTHON_EXECUTABLE}"/>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="SetDT" type="map">
+            <input port="1" stream="out:Initialize_1"/>
+            <output port="1" stream="out:SetDT_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="FileName">"${RESOURCE_ROOT}/data/DTC_MASTER.dat"</include>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="OutputErrorStream"/>
+        <output-stream name="OutputParserStream"/>
+        <box name="LoadDT" type="inputadapter">
+            <input port="1" stream="out:SetDT_1"/>
+            <output port="1" stream="out:LoadDT_1"/>
+            <output port="2" stream="out:LoadDT_2"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.csvreader.CSVReader"/>
+            <param name="CaptureStrategy" value="FLATTEN"/>
+            <param name="Charset" value=""/>
+            <param name="Delimiter" value=","/>
+            <param name="DiscardEmptyRecords" value="true"/>
+            <param name="EmitTiming" value="Periodic"/>
+            <param name="FileName" value="${RESOURCE_ROOT}/data/DTC_MASTER.dat"/>
+            <param name="HeaderTypeOption" value="No header"/>
+            <param name="MapControlPort" value="false"/>
+            <param name="NullString" value="null"/>
+            <param name="Period" value="0"/>
+            <param name="PreserveWhitespace" value="false"/>
+            <param name="QuoteChar" value=""/>
+            <param name="Repeat" value="1"/>
+            <param name="Schema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;dtc_code&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;description&quot; type=&quot;string&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="StartControlPort" value="true"/>
+            <param name="StartEventPort" value="true"/>
+            <param name="TimeBasedEmitField" value=""/>
+            <param name="TimeBasedEmitMode" value="Emission times relative to the first record"/>
+            <param name="TimestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
+            <param name="UseDefaultCharset" value="true"/>
+            <param name="ignoreExistingRecords" value="true"/>
+            <param name="incompleteRecordsMode" value="Populate with nulls"/>
+            <param name="lenientTimestampParsing" value="true"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="logWarningForIncomplete" value="false"/>
+            <param name="readAsResource" value="true"/>
+            <param name="tailMode" value="false"/>
+            <param name="tailUpdateInterval" value="1000"/>
+        </box>
+        <box name="DTCEmitOnClose" type="aggregate">
+            <input port="1" stream="out:LoadDT_2"/>
+            <output port="1" stream="OutputDTCStream"/>
+            <param name="dimension-name.0" value="LoadDTCFile"/>
+            <param name="dimension-type.0" value="Predicate"/>
+            <param name="dimension-partial.0" value="no"/>
+            <param name="dimension-open-predicate.0" value="input1.Type=='Open'"/>
+            <param name="dimension-close-predicate.0" value="input1.Type=='Close'"/>
+            <param name="dimension-emit-close-first.0" value="false"/>
+            <param name="output-group-by" value="true"/>
+            <target-list>
+                <expressions>
+                    <include field="*">lastval(*)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="InsertDTC" type="query">
+            <input port="1" stream="out:LoadDT_1"/>
+            <dataref id="querytable" name="DTCQueryTable"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="dtc_code"/>
+            <param name="key-value.0" value="input1.dtc_code"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="description">input1.description</set>
+                </expressions>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <output-stream name="OutputDTCStream"/>
+    </add>
+</modify>

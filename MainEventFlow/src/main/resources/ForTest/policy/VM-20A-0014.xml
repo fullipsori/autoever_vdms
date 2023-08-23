@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EventList timeZone = "9"> <!-- 9: Korea Time-->
+	<!-- Key Option ID : 0x18FEF1EF, StartBit : 38, Length : 2, Signal Name : CF_VCU_IGOn -->
+	<PreCondition Key="ON">
+		<Trigger type="CAN">
+			<Message Channel="2" ID="0x18FEF1EF" type="E"/>
+			<!-- Channel : VDMS CAN channel, type: S/E -->
+			<Siganl Startbit="38" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<!-- endian: Little/Big, type:signed/unsigned -->
+			<condition compare="GE" value="0.0" duration="0.0"/>
+			<!-- compare: GT LT GE LE DIFF EQ NEQ, value: float, duration : sec -->
+		</Trigger>	
+	</PreCondition>
+	<Event Priority='A' Category='ABS' Name="EBD_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x06F" type="S"/>
+			<Siganl Startbit="32" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x100" type="S"/>
+			<Siganl Startbit="61" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="3.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+</EventList>

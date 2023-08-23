@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.ResourceTable"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <dynamic-variables/>
+    <table-schemas>
+        <table-schema name="DTCTable">
+            <schema>
+                <field name="dtc_code" type="string"/>
+                <field name="description" type="string"/>
+            </schema>
+            <primary-index type="btree">
+                <field name="dtc_code"/>
+            </primary-index>
+        </table-schema>
+        <table-schema name="MGMTTable">
+            <schema>
+                <field name="VEHICLE_NO" type="string"/>
+                <field name="VCLE_KEYID" type="long"/>
+                <field name="VIN" type="string"/>
+                <field name="TERMINAL_ID" type="string"/>
+            </schema>
+            <primary-index type="btree">
+                <field name="VCLE_KEYID"/>
+            </primary-index>
+        </table-schema>
+    </table-schemas>
+</application>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ConstrolStream">
+        <param name="gui:x" value="-360"/>
+        <param name="gui:y" value="20"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="-360"/>
+        <param name="gui:y" value="-74"/>
+    </component>
+    <component name="GPSParser">
+        <param name="gui:x" value="-221"/>
+        <param name="gui:y" value="-33"/>
+        <param name="gui:bends:1" value="-269,-44;-263,-13"/>
+        <param name="gui:bends:2" value="-258,50;-248,7"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="-62"/>
+        <param name="gui:y" value="-74"/>
+        <param name="gui:bends:1" value="-119,-13;-113,-44"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="-62"/>
+        <param name="gui:y" value="20"/>
+        <param name="gui:bends:1" value="-134,7;-124,50"/>
+    </component>
+</application-layout>

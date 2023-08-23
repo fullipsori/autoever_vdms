@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-1181"/>
+        <param name="gui:y" value="204"/>
+    </component>
+    <component name="InputVarStream">
+        <param name="gui:x" value="127"/>
+        <param name="gui:y" value="96"/>
+    </component>
+    <component name="PublishPerf">
+        <param name="gui:x" value="127"/>
+        <param name="gui:y" value="207"/>
+    </component>
+    <component name="CanParamsTable">
+        <param name="gui:x" value="-604"/>
+        <param name="gui:y" value="420"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="ADD_seq2id">
+        <param name="gui:x" value="454"/>
+        <param name="gui:y" value="489"/>
+    </component>
+    <component name="ADD_seqID_2">
+        <param name="gui:x" value="245"/>
+        <param name="gui:y" value="489"/>
+        <param name="gui:bends:1" value="210,445;228,519"/>
+    </component>
+    <component name="ADD_seqId">
+        <param name="gui:x" value="245"/>
+        <param name="gui:y" value="301"/>
+    </component>
+    <component name="AGGToHCP">
+        <param name="gui:x" value="-287"/>
+        <param name="gui:y" value="207"/>
+    </component>
+    <component name="CompUpdateUnion">
+        <param name="gui:x" value="454"/>
+        <param name="gui:y" value="86"/>
+        <param name="gui:bends:1" value="327,74;335,106"/>
+        <param name="gui:bends:2" value="387,425;444,116"/>
+    </component>
+    <component name="EndedCanProc">
+        <param name="gui:x" value="1"/>
+        <param name="gui:y" value="207"/>
+    </component>
+    <component name="FilterChangedEvent_disabled">
+        <param name="gui:x" value="1"/>
+        <param name="gui:y" value="405"/>
+        <param name="gui:bends:1" value="-32,366;-21,435"/>
+    </component>
+    <component name="FilterKeyFlag">
+        <param name="gui:x" value="-481"/>
+        <param name="gui:y" value="326"/>
+        <param name="gui:bends:1" value="-511,257;-491,356"/>
+    </component>
+    <component name="FilterMarker">
+        <param name="gui:x" value="-594"/>
+        <param name="gui:y" value="217"/>
+    </component>
+    <component name="FilterTrigData">
+        <param name="gui:x" value="-287"/>
+        <param name="gui:y" value="326"/>
+    </component>
+    <component name="Filter_NotTrig">
+        <param name="gui:x" value="1"/>
+        <param name="gui:y" value="301"/>
+        <param name="gui:bends:1" value="-17,346;-15,331"/>
+    </component>
+    <component name="GenCANs">
+        <param name="gui:x" value="-782"/>
+        <param name="gui:y" value="214"/>
+    </component>
+    <component name="GetParamsToSave">
+        <param name="gui:x" value="-199"/>
+        <param name="gui:y" value="207"/>
+    </component>
+    <component name="GetPrevData">
+        <param name="gui:x" value="-1101"/>
+        <param name="gui:y" value="204"/>
+    </component>
+    <component name="GetTrigData">
+        <param name="gui:x" value="-371"/>
+        <param name="gui:y" value="326"/>
+    </component>
+    <component name="InsertCur">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="207"/>
+    </component>
+    <component name="Iter_TrigData">
+        <param name="gui:x" value="-199"/>
+        <param name="gui:y" value="326"/>
+    </component>
+    <component name="LoadParams">
+        <param name="gui:x" value="-890"/>
+        <param name="gui:y" value="44"/>
+        <param name="gui:bends:1" value="-927,224;-900,74"/>
+    </component>
+    <component name="MapCompParams">
+        <param name="gui:x" value="245"/>
+        <param name="gui:y" value="395"/>
+    </component>
+    <component name="MapInputParam">
+        <param name="gui:x" value="245"/>
+        <param name="gui:y" value="96"/>
+    </component>
+    <component name="MarkerEnded">
+        <param name="gui:x" value="-481"/>
+        <param name="gui:y" value="217"/>
+    </component>
+    <component name="MarkerStarted">
+        <param name="gui:x" value="-481"/>
+        <param name="gui:y" value="123"/>
+        <param name="gui:bends:1" value="-522,237;-502,153"/>
+    </component>
+    <component name="MarkerUnion">
+        <param name="gui:x" value="-371"/>
+        <param name="gui:y" value="207"/>
+        <param name="gui:bends:1" value="-411,153;-397,227"/>
+    </component>
+    <component name="Organize">
+        <param name="gui:x" value="-673"/>
+        <param name="gui:y" value="217"/>
+        <param name="gui:bends:1" value="-700,234;-698,247"/>
+    </component>
+    <component name="PublishCan">
+        <param name="gui:x" value="454"/>
+        <param name="gui:y" value="301"/>
+    </component>
+    <component name="PublishRaw">
+        <param name="gui:x" value="562"/>
+        <param name="gui:y" value="489"/>
+    </component>
+    <component name="RemoveUnused">
+        <param name="gui:x" value="-890"/>
+        <param name="gui:y" value="214"/>
+    </component>
+    <component name="Sequence">
+        <param name="gui:x" value="127"/>
+        <param name="gui:y" value="301"/>
+    </component>
+    <component name="Split2">
+        <param name="gui:x" value="127"/>
+        <param name="gui:y" value="405"/>
+    </component>
+    <component name="Split4">
+        <param name="gui:x" value="-1018"/>
+        <param name="gui:y" value="204"/>
+    </component>
+    <component name="Split_status">
+        <param name="gui:x" value="-102"/>
+        <param name="gui:y" value="326"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="707"/>
+        <param name="gui:y" value="299"/>
+        <param name="gui:height" value="91"/>
+        <param name="gui:bends:1" value="546,237;566,319"/>
+        <param name="gui:bends:2" value="628,331;630,344"/>
+        <param name="gui:bends:3" value="632,519;665,370"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="804"/>
+        <param name="gui:y" value="315"/>
+        <param name="gui:bends:1" value="785,344;785,345"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="-673"/>
+        <param name="gui:y" value="311"/>
+        <param name="gui:bends:1" value="-696,254;-683,341"/>
+    </component>
+    <component name="UpdateVarStream">
+        <param name="gui:x" value="562"/>
+        <param name="gui:y" value="86"/>
+    </component>
+</application-layout>

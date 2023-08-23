@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.GPSFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <stream name="ConstrolStream">
+            <schema>
+                <field name="newModValue" type="int"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <module-reference name="GPSParser">
+            <input dispatch="round_robin" name="InputStream" port="1" stream="InputStream"/>
+            <input dispatch="broadcast" name="ControlStream" port="2" stream="ConstrolStream"/>
+            <output name="OutputParserStream" port="1" stream="OutputParserStream"/>
+            <output name="OutputRawDataStream" port="2" stream="OutputRawDataStream"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <multiplicity number="10" type="concrete"/>
+            <param name="file" value="com.autoever.poc.parser.GPSParser_v2"/>
+            <parameter-bindings>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+            </parameter-bindings>
+        </module-reference>
+        <output-stream name="OutputParserStream"/>
+        <output-stream name="OutputRawDataStream"/>
+    </add>
+</modify>

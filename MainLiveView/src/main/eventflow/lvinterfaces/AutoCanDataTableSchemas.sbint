@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.1">
+    <gui.metadata>
+        <property name="description" value="This is a generated file, do not edit. It defines the named schemas for the AutoCanDataTable LiveView table."/>
+    </gui.metadata>
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="lvinterfaces.AutoCanDataTableSchemas"/>
+    </type-metadata>
+    <import alias="CanDataTableSchema" from="com.autoever.poc.mainliveview.LiveViewTable" item="CanDataTableSchema"/>
+    <named-schemas>
+        <schema name="AutoCanDataTableDataInSchema">
+            <parent-schemas>
+                <parent-schema name="CanDataTableSchema"/>
+            </parent-schemas>
+            <field description="A unique identifier for each publisher" name="PublisherID" type="string"/>
+            <field description="A monotonically increasing sequence number wrt each PublisherID" name="PublisherSN" type="long"/>
+            <field description="An internal reference count. Zero means deleted." name="CQSReferredCount" type="long"/>
+            <field description="RFU. Should be null." name="CQSDataUpdatePredicate" type="string"/>
+            <field description="When set to true, means delete operation." name="CQSDelete" type="bool"/>
+            <field name="EventArrivalTS" type="timestamp"/>
+        </schema>
+        <schema name="AutoCanDataTableDataOutSchema">
+            <parent-schemas>
+                <parent-schema name="CanDataTableSchema"/>
+            </parent-schemas>
+            <field description="A unique identifier for each publisher" name="PublisherID" type="string"/>
+            <field description="A monotonically increasing sequence number wrt each PublisherID" name="PublisherSN" type="long"/>
+            <field description="An internal reference count. Zero means deleted." name="CQSReferredCount" type="long"/>
+            <field name="EventArrivalTS" type="timestamp"/>
+        </schema>
+        <schema name="AutoCanDataTableTableSchema">
+            <parent-schemas>
+                <parent-schema name="CanDataTableSchema"/>
+            </parent-schemas>
+            <field name="EventArrivalTS" type="timestamp"/>
+        </schema>
+        <schema name="AutoCanDataTableInputControlFields">
+            <field description="A unique identifier for each publisher" name="PublisherID" type="string"/>
+            <field description="A monotonically increasing sequence number wrt each PublisherID" name="PublisherSN" type="long"/>
+            <field description="An internal reference count. Zero means deleted." name="CQSReferredCount" type="long"/>
+            <field description="RFU. Should be null." name="CQSDataUpdatePredicate" type="string"/>
+            <field description="When set to true, means delete operation." name="CQSDelete" type="bool"/>
+        </schema>
+        <schema name="AutoCanDataTablePrimaryKeySchema">
+            <field name="messageID" type="string"/>
+        </schema>
+    </named-schemas>
+</application>

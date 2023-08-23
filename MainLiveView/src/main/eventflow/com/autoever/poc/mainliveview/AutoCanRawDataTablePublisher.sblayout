@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application-layout>
+    <component name="ServerStateIn">
+        <param name="gui:x" value="10.0"/>
+        <param name="gui:y" value="10.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="ServerStatusIn">
+        <param name="gui:x" value="10.0"/>
+        <param name="gui:y" value="110.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="PublishSchemasIn">
+        <param name="gui:x" value="10.0"/>
+        <param name="gui:y" value="210.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="TheLastGoodRecordIn">
+        <param name="gui:x" value="10.0"/>
+        <param name="gui:y" value="310.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="QueryTheLastGoodRecordOut">
+        <param name="gui:x" value="750.0"/>
+        <param name="gui:y" value="10.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="PublisherStateOut">
+        <param name="gui:x" value="750.0"/>
+        <param name="gui:y" value="110.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="PublishToAutoCanRawDataTableOut">
+        <param name="gui:x" value="750.0"/>
+        <param name="gui:y" value="210.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="ServerStateIn">
+        <param name="gui:x" value="300.0"/>
+        <param name="gui:y" value="-200.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="MakeGood">
+        <param name="gui:x" value="600.0"/>
+        <param name="gui:y" value="-200.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="PublisherStateOut">
+        <param name="gui:x" value="750.0"/>
+        <param name="gui:y" value="-200.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="280.0"/>
+        <param name="gui:y" value="90.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="AddControlFields">
+        <param name="gui:x" value="600.0"/>
+        <param name="gui:y" value="90.0"/>
+        <param name="gui:height" value="60.0"/>
+        <param name="gui:width" value="60.0"/>
+    </component>
+    <component name="ControlNote">
+        <param name="gui:x" value="450.0"/>
+        <param name="gui:y" value="-80.0"/>
+        <param name="gui:height" value="120.0"/>
+        <param name="gui:width" value="260.0"/>
+    </component>
+</application-layout>

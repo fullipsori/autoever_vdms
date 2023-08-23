@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.CCPFlow_v2"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2"/>
+        <import alias="CCPParamsSchema" from="com.autoever.poc.parser.CCPParser_v3" item="CCPParamsSchema"/>
+        <import alias="CCPRawParsedSchema" from="com.autoever.poc.parser.CCPParser_v3" item="CCPRawParsedSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+            <parameter default="0.0" name="THRESHOLD"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="CCPParamsTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="CCPParamsSchema"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+            <table-partitioning>
+                <param name="data-distribution-policy-name" value="vdms-dynamic-data-distribution-policy"/>
+                <param name="data-mapper-type" value="round-robin"/>
+            </table-partitioning>
+        </data>
+        <stream name="controlFeedSB">
+            <schema>
+                <field name="command" type="string"/>
+                <field name="value" type="double"/>
+            </schema>
+        </stream>
+        <stream name="ControlStream">
+            <schema>
+                <field name="command" type="string"/>
+                <field name="evtFolder" type="string"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <stream name="UpdateVarStream">
+            <schema>
+                <field name="i_SOC" type="double"/>
+                <field name="i_cellDiff" type="long"/>
+                <field name="i_deltaVol" type="long"/>
+                <field name="i_deltaTB" type="double"/>
+                <field name="i_ISOL" type="long"/>
+                <field name="i_maxTB" type="double"/>
+                <field name="i_maxCDiffVal" type="long"/>
+            </schema>
+        </stream>
+        <box name="Initialize" type="inputadapter">
+            <output port="1" stream="out:Initialize_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="InitMeta" type="map">
+            <input port="1" stream="out:Initialize_1"/>
+            <output port="1" stream="out:InitMeta_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="command">'Load'</include>
+                    <include field="evtFolder">"${RESOURCE_ROOT}/evt"</include>
+                    <include field="newThresholdValue">double(null)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="InputAdapter" type="inputadapter">
+            <input port="1" stream="controlFeedSB"/>
+            <output port="1" stream="FeedStatusStream"/>
+            <output port="2" stream="out:InputAdapter_2"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.sbfeedsim.SBFeedsim"/>
+            <param name="enableControlPort" value="true"/>
+            <param name="filenameFieldName" value=""/>
+            <param name="logLevel" value="INFO"/>
+            <param name="reportRateS" value="0"/>
+            <param name="sbfsFileName" value="CCP_Feed.sbfs"/>
+            <param name="waitForStartCommand" value="true"/>
+        </box>
+        <output-stream name="FeedStatusStream"/>
+        <box name="Union" type="union">
+            <input port="1" stream="ControlStream"/>
+            <input port="2" stream="out:InitMeta_1"/>
+            <output port="1" stream="out:Union_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="Union2" type="union">
+            <input port="1" stream="out:InputAdapter_2"/>
+            <input port="2" stream="InputStream"/>
+            <output port="1" stream="out:Union2_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <module-reference name="CCPParserModule">
+            <input dispatch="broadcast" name="ControlStream" port="1" stream="UpdateVarStream"/>
+            <input dispatch="numerical" key="int(kafkaMessage.VehicleKeyID)" name="InputStream" port="2" stream="out:Union2_1"/>
+            <output name="OutputParserStream" port="1" stream="OutputParserStream"/>
+            <output name="OutputRawDataStream" port="2" stream="OutputRawDataStream"/>
+            <output name="UpdateVarStream" port="3" stream="OutputVarStream"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <multiplicity number="4" type="concrete"/>
+            <param name="file" value="com.autoever.poc.parser.CCPParser_v3"/>
+            <input-dataref name="CCPParamsTable" table="CCPParamsTable"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="LoadEVT" type="map">
+            <input port="1" stream="out:Union_1"/>
+            <output port="1" stream="OutputEVTLoadStream"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="evtResult">if(!isempty(evtFolder)) then InitODTRepository(evtFolder) else InitODTRepository("${RESOURCE_ROOT}/evt")</include>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="OutputEVTLoadStream"/>
+        <output-stream name="OutputParserStream"/>
+        <output-stream name="OutputRawDataStream"/>
+        <output-stream name="OutputVarStream"/>
+    </add>
+</modify>

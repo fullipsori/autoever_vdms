@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.0_248f263d973a774f84731121e9d4527c932d77fd">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.HttpClientSchema"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="HttpClientAuthSchema">
+            <field name="authType" type="string"/>
+            <field name="user" type="string"/>
+            <field name="pass" type="string"/>
+        </schema>
+        <schema name="HttpClientControlSchema">
+            <field name="command" type="string"/>
+            <field name="url" type="string"/>
+            <field name="data" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="text" type="string"/>
+                        <field name="binary" type="blob"/>
+                        <field name="filePath" type="string"/>
+                        <field name="mediaType" type="string"/>
+                        <field name="name" type="string"/>
+                        <field name="urlEncode" type="bool"/>
+                        <field name="urlEncodeType" type="string"/>
+                    </schema>
+                </element-type>
+            </field>
+            <field name="headers" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="name" type="string"/>
+                        <field name="values" type="list">
+                            <element-type type="string"/>
+                        </field>
+                    </schema>
+                </element-type>
+            </field>
+            <field name="queryParameters" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="name" type="string"/>
+                        <field name="value" type="string"/>
+                        <field name="urlEncode" type="bool"/>
+                        <field name="urlEncodeType" type="string"/>
+                    </schema>
+                </element-type>
+            </field>
+            <field name="cookies" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="name" type="string"/>
+                        <field name="value" type="string"/>
+                    </schema>
+                </element-type>
+            </field>
+            <field name="settings" type="tuple">
+                <schema>
+                    <field name="requestMethod" type="string"/>
+                    <field name="requestType" type="string"/>
+                    <field name="downloadPath" type="string"/>
+                    <field name="asynchronous" type="bool"/>
+                    <field name="proxy" type="tuple">
+                        <schema>
+                            <field name="useProxy" type="bool"/>
+                            <field name="host" type="string"/>
+                            <field name="port" type="int"/>
+                            <field name="user" type="string"/>
+                            <field name="pass" type="string"/>
+                        </schema>
+                    </field>
+                    <field name="advanced" type="tuple">
+                        <schema>
+                            <field name="connectTimeout" type="int"/>
+                            <field name="readTimeout" type="int"/>
+                            <field name="reconnectTimeout" type="int"/>
+                            <field name="pollFrequency" type="int"/>
+                            <field name="ignoreCertificateErrors" type="bool"/>
+                        </schema>
+                    </field>
+                    <field name="auth" type="tuple">
+                        <schema>
+                            <field name="authType" type="string"/>
+                            <field name="user" type="string"/>
+                            <field name="pass" type="string"/>
+                        </schema>
+                    </field>
+                    <field name="output" type="tuple">
+                        <schema>
+                            <field name="outputTuplePerLine" type="bool"/>
+                            <field name="outputBlankLines" type="bool"/>
+                            <field name="outputNullTupleOnCompletion" type="bool"/>
+                            <field name="outputConnectingStatus" type="bool"/>
+                            <field name="useDefaultCharset" type="bool"/>
+                            <field name="charset" type="string"/>
+                            <field name="urlDecode" type="bool"/>
+                            <field name="urlDecodeType" type="string"/>
+                        </schema>
+                    </field>
+                </schema>
+            </field>
+        </schema>
+        <schema name="HttpClientDataSchema">
+            <field name="text" type="string"/>
+            <field name="binary" type="blob"/>
+            <field name="filePath" type="string"/>
+            <field name="mediaType" type="string"/>
+            <field name="name" type="string"/>
+            <field name="urlEncode" type="bool"/>
+            <field name="urlEncodeType" type="string"/>
+        </schema>
+        <schema name="HttpClientHeadersSchema">
+            <field name="name" type="string"/>
+            <field name="values" type="list">
+                <element-type type="string"/>
+            </field>
+        </schema>
+        <schema name="HttpClientQueryParametersSchema">
+            <field name="name" type="string"/>
+            <field name="value" type="string"/>
+            <field name="urlEncode" type="bool"/>
+            <field name="urlEncodeType" type="string"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+</application>

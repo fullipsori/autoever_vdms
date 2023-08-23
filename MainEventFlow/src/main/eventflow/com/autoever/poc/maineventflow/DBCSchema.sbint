@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.DBCSchema"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="DBCDataSchema">
+            <field name="vehicleKeyID" type="long"/>
+            <field name="msg_name" type="string"/>
+            <field name="msg_id" type="long"/>
+            <field name="msg_is_extended_frame" type="string"/>
+            <field name="msg_length" type="int"/>
+            <field name="msg_comment" type="string"/>
+            <field name="sig_name" type="string"/>
+            <field name="sig_start" type="int"/>
+            <field name="sig_length" type="int"/>
+            <field name="sig_byte_order" type="string"/>
+            <field name="sig_is_signed" type="string"/>
+            <field name="sig_initial" type="int"/>
+            <field name="sig_scale" type="double"/>
+            <field name="sig_offset" type="double"/>
+            <field name="sig_minimum" type="string"/>
+            <field name="sig_maximum" type="string"/>
+            <field name="sig_unit" type="string"/>
+            <field name="sig_is_multiplexer" type="string"/>
+            <field name="sig_multiplexer_ids" type="string"/>
+            <field name="sig_mtable" type="string"/>
+            <field name="sig_spn" type="string"/>
+            <field name="sig_comments" type="string"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+    <table-schemas>
+        <table-schema name="DBCTableSchema" schema="DBCDataSchema">
+            <primary-index type="btree">
+                <field name="vehicleKeyID"/>
+                <field name="sig_name"/>
+            </primary-index>
+            <index type="btree">
+                <field name="vehicleKeyID"/>
+            </index>
+            <index type="btree">
+                <field name="sig_name"/>
+            </index>
+        </table-schema>
+    </table-schemas>
+</application>

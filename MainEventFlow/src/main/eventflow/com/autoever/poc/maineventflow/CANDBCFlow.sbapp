@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.CANDBCFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
+        <import from="com.autoever.poc.maineventflow.DBCSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="DBCTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DBCTableSchema"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+            <table-partitioning>
+                <param name="data-distribution-policy-name" value="vdms-dynamic-data-distribution-policy"/>
+                <param name="data-mapper-type" value="round-robin"/>
+            </table-partitioning>
+        </data>
+        <data name="LatestValueTable" shared="true" source="concrete" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <table-schema>
+                <schema>
+                    <field name="vehicleKeyID" type="long"/>
+                    <field name="modTime" type="long"/>
+                    <field name="rootCount" type="long"/>
+                    <field name="realTime" type="long"/>
+                    <field name="fieldName" type="string"/>
+                    <field name="fieldValue" type="string"/>
+                </schema>
+                <primary-index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="fieldName"/>
+                    <field name="modTime"/>
+                </primary-index>
+                <index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="rootCount"/>
+                    <field name="realTime"/>
+                </index>
+                <index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="rootCount"/>
+                </index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+            <table-partitioning>
+                <param name="data-distribution-policy-name" value="vdms-dynamic-data-distribution-policy"/>
+                <param name="data-mapper-type" value="round-robin"/>
+            </table-partitioning>
+        </data>
+        <stream name="ControlStream">
+            <schema>
+                <field name="command" type="string"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <module-reference name="CANDBCParser">
+            <input dispatch="numerical" key="int(kafkaMessage.VehicleKeyID)" name="InputStream" port="1" stream="InputStream"/>
+            <output name="OutputParserStream" port="1" stream="OutputParserStream"/>
+            <output name="UpdateSignalVariable" port="2" stream="OutputVarStream"/>
+            <output name="OutputRawDataStream" port="3" stream="OutputRawDataStream"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-max-outstanding-tuples" value="5"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <multiplicity number="5" type="concrete"/>
+            <param name="file" value="com.autoever.poc.parser.CANDBCParser"/>
+            <input-dataref name="DBCTable" table="DBCTable"/>
+            <input-dataref name="LatestValueTable" table="LatestValueTable"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+                <binding name="PYTHON_EXECUTABLE" value="${PYTHON_EXECUTABLE}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="Filter" type="filter">
+            <input port="1" stream="ControlStream"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
+        </box>
+        <output-stream name="OutputParserStream"/>
+        <output-stream name="OutputRawDataStream"/>
+        <output-stream name="OutputVarStream"/>
+        <box name="DeleteAll" type="query">
+            <input port="1" stream="out:Filter_1"/>
+            <dataref id="querytable" name="DBCTable"/>
+            <param name="operation" value="delete"/>
+            <param name="where" value="all-rows"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-nothing"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+    </add>
+</modify>

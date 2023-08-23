@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.parser.CANDBCLoadSignals"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import from="com.autoever.poc.maineventflow.DBCSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="d:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="DBCTable" shared="false" source="input" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DBCTableSchema"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="InputStream">
+            <schema>
+                <field name="vehicleKeyID" type="long"/>
+                <field name="signals" type="list">
+                    <element-type type="string"/>
+                </field>
+            </schema>
+        </stream>
+        <box name="Init" type="inputadapter">
+            <output port="1" stream="out:Init_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="python_dbc_instance" type="java">
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonInstanceAdapter"/>
+            <param name="CaptureOutput" value="false"/>
+            <param name="EnableControlPort" value="false"/>
+            <param name="Executable" value="${PYTHON_EXECUTABLE}"/>
+            <param name="GlobalInstanceId" value=""/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="UseTempFile" value="false"/>
+            <param name="WorkingDir" value="."/>
+        </box>
+        <box name="AssignFilePath" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:AssignFilePath_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="filePath">"${RESOURCE_ROOT}/dbc/" + string(vehicleKeyID) + ".dbc"</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LoadModule" type="java">
+            <input port="1" stream="out:Init_1"/>
+            <output port="1" stream="OutputInitStream"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="false"/>
+            <param name="GlobalInstanceId" value="python_can_instance"/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LocalInstanceId" value="python_dbc_instance"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema/&gt;&#13;&#10;"/>
+            <param name="Script" value=""/>
+            <param name="ScriptFile" value="can_dbc_list.py"/>
+            <param name="ScriptSource" value="File"/>
+            <param name="amsRequiredOnStartup" value="false"/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <output-stream name="OutputInitStream"/>
+        <box name="pack" type="map">
+            <input port="1" stream="out:AssignFilePath_1"/>
+            <output port="1" stream="out:pack_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="inputVars.*">*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LoadDBCData" type="java">
+            <input port="1" stream="out:pack_1"/>
+            <output port="1" stream="out:LoadDBCData_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="false"/>
+            <param name="GlobalInstanceId" value="python_can_instance"/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LocalInstanceId" value="python_dbc_instance"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;dbc_json&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value="pd.set_option('mode.chained_assignment',  None)&#13;&#10;&#13;&#10;dbc_list = parsed_dbc(filePath)&#13;&#10;sig_data = dbc_list[dbc_list['sig_name'].isin(signals)]&#13;&#10;sig_data['vehicleKeyID'] = vehicleKeyID &#13;&#10;converted = sig_data.astype({'msg_id':'int', 'msg_is_extended_frame':'str', 'msg_length':'int', 'sig_start':'int', 'sig_length':'int', 'sig_is_signed':'str', 'sig_initial':'int', 'sig_scale':'float', 'sig_offset':'float', 'sig_is_multiplexer':'str'})&#13;&#10;&#13;&#10;dbc_json = f'{{&quot;dbcList&quot;: {converted.to_json(orient=&quot;records&quot;)}}}'"/>
+            <param name="ScriptFile" value="can_dbc_list.py"/>
+            <param name="ScriptSource" value="Script text"/>
+            <param name="amsRequiredOnStartup" value="false"/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <box name="Unpack" type="map">
+            <input port="1" stream="out:LoadDBCData_1"/>
+            <output port="1" stream="out:Unpack_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">outputVars.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="jsonToTuple" type="java">
+            <input port="1" stream="out:Unpack_1"/>
+            <output port="1" stream="out:jsonToTuple_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.operator.jsontuple.JSON2Tuple"/>
+            <param name="enableLooseParsing" value="true"/>
+            <param name="enablePassThroughFields" value="false"/>
+            <param name="enableStatusPort" value="false"/>
+            <param name="jsonFieldName" value="dbc_json"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="outputSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;dbcList&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;tuple&quot; value=&quot;DBCDataSchema&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="passThroughFieldsFieldName" value="PassThroughFields"/>
+            <param name="timestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
+        </box>
+        <box name="Split" type="split">
+            <input port="1" stream="out:jsonToTuple_1"/>
+            <output port="1" stream="out:Split_1"/>
+            <output port="2" stream="ToCANDBCParser"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <output-stream name="ToCANDBCParser"/>
+        <box name="Iterate" type="iterate">
+            <input port="1" stream="out:Split_1"/>
+            <output port="1" stream="out:Iterate_1"/>
+            <param name="iterate-expr" value="dbcList"/>
+            <param name="iterate-cond" value="!isempty(dbcList)"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">each.element.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="InsertDBC" type="query">
+            <input port="1" stream="out:Iterate_1"/>
+            <dataref id="querytable" name="DBCTable"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-value.0" value="input.vehicleKeyID"/>
+            <param name="key-field.1" value="sig_name"/>
+            <param name="key-value.1" value="input.sig_name"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="force"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+    </add>
+</modify>

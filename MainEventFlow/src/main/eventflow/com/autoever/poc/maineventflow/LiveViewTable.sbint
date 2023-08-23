@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.LiveViewTable"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="CCPDataTableSchema">
+            <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
+            <field description="kafka DeltaTime" name="deltaTime" type="double"/>
+            <field description="event 발생 시간" name="realTime" type="long"/>
+            <field description="최대(cell)-최소(cell)" name="deltaVol" type="long"/>
+            <field description="cell 데이터 값" name="cellData" type="string"/>
+            <field description="이전과 현재 cell 데이터 차이" name="cellDiffData" type="string"/>
+            <field description="각 셀 전압변화의 편차" name="dVol" type="string"/>
+            <field description="셀 전압 편차 최대인 셀" name="maxDVolCells" type="string"/>
+            <field description="셀 전압 편차 절대값 최대" name="maxDVolVal" type="double"/>
+            <field description="배터리팩내 개별 온도 센서" name="msrTBData" type="string"/>
+            <field description="최대-최소 온도" name="deltaTB" type="double"/>
+            <field description="최대 온도" name="maxTB" type="double"/>
+            <field description="배터리 SOC 상태" name="SOC" type="double"/>
+            <field description="배터리 전류값" name="IBM" type="double"/>
+            <field description="배터리 충전 상태" name="chargingNow" type="long"/>
+            <field description="절연 저항값" name="ISOL" type="long"/>
+            <field description="Cell 저항값(1초 변화량)" name="RESs" type="string"/>
+            <field description="CellDiff 최대 Cell 정보" name="maxCDiffCells" type="string"/>
+            <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
+            <field description="에러코드" name="faultCode" type="long"/>
+        </schema>
+        <schema name="CCPTrigDataSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="long"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="Trig 타입('cellDiff', 'deltaVol', 'deltaTB', 'ISOL', 'maxTB')" name="matchFlag" type="string"/>
+            <field description="cell 데이터들(90 개)을 하나의 문자열로 조인" name="cellData" type="string"/>
+            <field description="이전과 현재 cell 데이터의 차이값들(90개)를 하나의 문자열로 조인" name="cellDiffData" type="string"/>
+            <field description="충전중/주행중" name="chargingNow" type="long"/>
+            <field description="최대-최소 온도" name="deltaTB" type="double"/>
+            <field description="최대 전압 - 최소 전압" name="deltaVol" type="long"/>
+            <field description="각 셀 전압 변화의 편차" name="dVol" type="string"/>
+            <field description="배터리 전류값" name="IBM" type="double"/>
+            <field description="절연 저항값" name="ISOL" type="long"/>
+            <field description="최대 온도" name="maxTB" type="double"/>
+            <field description="배터리팩내 개별 온도 센서 정보들의 하나의 문자열로 조인" name="msrTBData" type="string"/>
+            <field description="배터리 SOC 상태" name="SOC" type="double"/>
+            <field description="CellDiff 최대 Cell 정보" name="maxCDiffCells" type="string"/>
+            <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
+        </schema>
+        <schema name="CP_DataTableSchema">
+            <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
+            <field description="kafka DeltaTime" name="deltaTime" type="double"/>
+            <field description="event 발생 시간" name="realTime" type="long"/>
+            <field description="최대(cell)-최소(cell)" name="deltaVol" type="long"/>
+            <field description="cell 데이터 값" name="cellData" type="string"/>
+            <field description="이전과 현재 cell 데이터 차이" name="cellDiffData" type="string"/>
+            <field description="각 셀 전압변화의 편차" name="dVol" type="string"/>
+            <field description="셀 전압 편차 최대인 셀들" name="maxDVolCells" type="string"/>
+            <field description="셀 전압 편차 절대값 최대" name="maxDVolVal" type="double"/>
+            <field description="배터리팩내 개별 온도 센서" name="msrTBData" type="string"/>
+            <field description="최대-최소 온도" name="deltaTB" type="double"/>
+            <field description="최대 온도" name="maxTB" type="double"/>
+            <field description="배터리 SOC 상태" name="SOC" type="double"/>
+            <field description="배터리 전류값" name="IBM" type="double"/>
+            <field description="배터리 충전 상태" name="chargingNow" type="long"/>
+            <field description="절연 저항값" name="ISOL" type="long"/>
+            <field description="Cell 저항값(1초 변화량)" name="RESs" type="string"/>
+            <field description="CellDiff 최대 Cell 들" name="maxCDiffCells" type="string"/>
+            <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
+            <field description="에러코드" name="faultCode" type="long"/>
+            <field description="주행거리" name="CF_Clu_Odometer" type="string"/>
+            <field description="기어포지션" name="CF_Vcu_GarSelDisp" type="string"/>
+            <field description="차속, 소수점" name="CR_Mcu_VehSpdDec_Kph" type="string"/>
+            <field description="차속, 소수점" name="CR_Mcu_VehSpd_Kph" type="string"/>
+            <field description="DC충전flag" name="CF_OBC_DCChargingStat" type="string"/>
+            <field description="충전상태" name="CF_Bms_ChgSts" type="string"/>
+        </schema>
+        <schema name="CanDataTableSchema">
+            <field description="sb 에서 생성한 message unique id (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호(KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량관리번호(연구소 제공 자료 기반)" name="mgmtNO" type="string"/>
+            <field description="주행번호(KafkaMessage)" name="rootCount" type="int"/>
+            <field description="차량 BaseTime(KafkaMessage)" name="baseTime" type="long"/>
+            <field description="이벤트 발생시간(baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="Policy preTime 필드" name="preTime" type="double"/>
+            <field description="Policy postTime 필드" name="postTime" type="double"/>
+            <field description="Message 의 deltaTime (HCP Message)" name="deltaTime" type="double"/>
+            <field description="Policy Event 필드" name="eventName" type="string"/>
+            <field description="python 파싱 코드(False(0) 값만 있슴)" name="value" type="string"/>
+            <field description="Policy Category" name="category" type="string"/>
+            <field description="python 파싱 코드" name="status" type="string"/>
+        </schema>
+        <schema name="CarDrivingTableSchema">
+            <field name="messageID" type="string"/>
+            <field name="mgmtNO" type="string"/>
+            <field name="terminalID" type="string"/>
+            <field name="vehicleKeyID" type="long"/>
+            <field name="rootCount" type="int"/>
+            <field name="baseTime" type="long"/>
+            <field name="messageType" type="int"/>
+            <field name="recordCount" type="int"/>
+            <field name="receivedTime" type="long"/>
+        </schema>
+        <schema name="DiagDTCOutputSchema">
+            <field description="sb 에서 생성한 메세지 Id (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기 번호 (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량관리번호 (연구소 제공자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="차량 BaseTime (Kafka Message)" name="baseTime" type="long"/>
+            <field description="이벤트 발생시간 (baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="메세지 deltaTime (HCP Message)" name="timestamp" type="double"/>
+            <field description="can id (python 파서)" name="can_id" type="string"/>
+            <field description="ecu name (python 파서)" name="ecu_name" type="string"/>
+            <field description="dtc code (python 파서)" name="dtc_code" type="string"/>
+            <field description="dtc time (python 파서)" name="dtc_time" type="string"/>
+            <field description="dtc code 를 DTC 상태 테이블 기준으로 변환 (연구소 제공)" name="description" type="string"/>
+        </schema>
+        <schema name="DiagDataOutputSchema">
+            <field description="sb 에서 생성한 메세지 unique id (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량관리번호 (연구소 제공자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="차량 BaseTime (KafkaMessage)" name="baseTime" type="long"/>
+            <field description="이벤트 발생시간(baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="메세지의 deltaTime (HCP Message)" name="timestamp" type="double"/>
+            <field description="채널번호 (python 파싱)" name="channel" type="int"/>
+            <field description="can id (python 파싱)" name="can_id" type="string"/>
+            <field description="ecu name (python 파싱)" name="ecu_name" type="string"/>
+            <field description="전송 타입 (python 파싱)" name="Tx_Rx" type="string"/>
+            <field description="DIAG RAW 데이터" name="data0" type="string"/>
+            <field description="DIAG RAW 데이터" name="data1" type="string"/>
+            <field description="DIAG RAW 데이터" name="data2" type="string"/>
+            <field description="DIAG RAW 데이터" name="data3" type="string"/>
+            <field description="DIAG RAW 데이터" name="data4" type="string"/>
+            <field description="DIAG RAW 데이터" name="data5" type="string"/>
+            <field description="DIAG RAW 데이터" name="data6" type="string"/>
+            <field description="DIAG RAW 데이터" name="data7" type="string"/>
+            <field description="DIAG  RAW 전체 데이터" name="raw" type="string"/>
+            <field description="DTC TYPE (python 파싱)" name="dtc_type" type="string"/>
+        </schema>
+        <schema name="GPSDataTableSchema">
+            <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
+            <field description="이벤트 발생 시간 (baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="위도" name="Latitude" type="double"/>
+            <field description="경도" name="Longitude" type="double"/>
+            <field description="고도" name="Altitude" type="double"/>
+            <field description="속도" name="Velocity" type="double"/>
+            <field description="남북" name="NS" type="string"/>
+            <field description="동서" name="EW" type="string"/>
+        </schema>
+        <schema name="PerfDataSchema">
+            <field description="vehicleKeyID + timestamp" name="kafka_msg_id" type="string"/>
+            <field description="카프카로부터 데이터 받은 시간" name="start_time" type="long"/>
+            <field description="HCP 메세지 받는데 소요 시간" name="t1_time" type="long"/>
+            <field description="데이터 파싱 소요 시간" name="t2_time" type="long"/>
+            <field name="t3_time" type="long"/>
+            <field name="t4_time" type="long"/>
+            <field name="t5_time" type="long"/>
+            <field description="SB 이벤트를 받아서 처리 완료할때까지 걸린 시간" name="end_time" type="long"/>
+            <field description="LIVEVIEW 에서 데이터를 받았을때의 전체 소요시간" name="elapsed" type="long"/>
+            <field description="파서로 부터 생성한 데이터의 양" name="data_count" type="int"/>
+            <field description="HCP Message 내의 message 갯수" name="msg_count" type="long"/>
+        </schema>
+        <schema name="PredictDataTableSchema">
+            <field name="messageID" type="string"/>
+            <field name="terminalID" type="string"/>
+            <field name="vehicleKeyID" type="long"/>
+            <field name="mgmtNO" type="string"/>
+            <field name="rootCount" type="int"/>
+            <field name="realTime" type="long"/>
+            <field name="cellData" type="string"/>
+            <field name="ibm" type="double"/>
+            <field name="isol" type="double"/>
+            <field name="vbMax" type="double"/>
+            <field name="vbMin" type="double"/>
+            <field name="tbMax" type="double"/>
+            <field name="tbMin" type="double"/>
+            <field name="soc" type="double"/>
+            <field name="deltaVoltage" type="double"/>
+            <field name="deltaTemp" type="double"/>
+            <field name="predict" type="long"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+</application>

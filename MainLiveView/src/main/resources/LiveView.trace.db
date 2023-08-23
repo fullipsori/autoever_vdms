@@ -1,0 +1,414 @@
+05-09 16:34:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-09 16:34:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-09 16:34:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-10 13:39:05 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-10 13:39:05 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-10 13:39:05 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-10 13:43:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-10 13:43:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-10 13:43:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-11 14:06:49 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-11 14:06:49 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-11 14:06:49 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-11 15:56:01 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-11 15:56:01 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-11 15:56:01 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-11 16:07:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-11 16:07:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-11 16:07:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-12 15:49:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-12 15:49:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-12 15:49:54 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-15 09:47:26 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-15 09:47:26 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-15 09:47:26 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-15 14:34:04 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-15 14:34:04 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-15 14:34:04 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-16 16:48:25 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-16 16:48:25 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-16 16:48:25 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-17 15:20:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-17 15:20:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-17 15:20:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-18 11:03:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-18 11:03:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-18 11:03:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-19 12:46:16 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-19 12:46:16 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-19 12:46:16 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-22 08:57:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-22 08:57:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-22 08:57:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-23 16:17:22 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-23 16:17:23 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-23 16:17:23 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-23 17:24:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-23 17:24:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-23 17:24:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-24 14:03:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-24 14:03:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-24 14:03:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-30 15:24:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-30 15:24:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-30 15:24:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-31 10:35:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-31 10:35:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-31 10:35:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-31 19:24:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-31 19:24:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-31 19:24:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-31 19:26:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-31 19:26:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-31 19:26:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+05-31 20:11:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+05-31 20:11:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+05-31 20:11:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 08:38:33 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 08:38:33 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 08:38:33 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 09:06:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 09:06:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 09:06:41 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 10:45:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 10:45:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 10:45:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 17:53:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 17:53:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 17:53:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 18:02:24 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 18:02:24 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 18:02:24 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 18:12:22 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 18:12:22 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 18:12:22 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 18:33:17 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 18:33:17 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 18:33:17 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 18:37:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 18:37:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 18:37:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-01 18:50:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-01 18:50:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-01 18:50:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-02 18:50:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-02 18:50:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-02 18:50:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-05 09:24:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-05 09:24:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-05 09:24:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-05 15:14:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-05 15:14:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-05 15:14:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-09 15:57:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-09 15:57:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-09 15:57:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-12 13:54:56 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-12 13:54:56 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-12 13:54:56 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-13 10:24:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-13 10:24:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-13 10:24:39 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-13 10:28:48 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-13 10:28:48 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-13 10:28:48 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-15 09:58:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-15 09:58:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-15 09:58:06 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-15 11:03:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-15 11:03:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-15 11:03:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-15 14:29:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-15 14:29:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-15 14:29:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-15 16:19:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-15 16:19:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-15 16:19:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-15 17:14:15 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-15 17:14:15 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-15 17:14:15 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-16 10:21:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-16 10:21:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-16 10:21:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-21 15:01:03 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-21 15:01:03 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-21 15:01:03 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]
+06-21 15:31:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SYSTEMINFO" already exists; SQL statement:
+CREATE TABLE SystemInfo (Key VARCHAR(256) PRIMARY KEY, Value VARCHAR(1000)) [42101-166]
+06-21 15:31:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALERTS" already exists; SQL statement:
+CREATE TABLE Alerts (GUID VARCHAR(256) PRIMARY KEY, Id BIGINT, User VARCHAR(256), Alert CLOB) [42101-166]
+06-21 15:31:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WORKSPACE" already exists; SQL statement:
+CREATE TABLE Workspace (GUID VARCHAR(256) PRIMARY KEY,Id BIGINT, User VARCHAR(256), Metadata CLOB, Workspace BLOB) [42101-166]

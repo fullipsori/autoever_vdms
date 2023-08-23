@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="DataIn">
+        <param name="gui:x" value="-200"/>
+        <param name="gui:y" value="10"/>
+    </component>
+    <component name="NullPrepocessorMap">
+        <param name="gui:x" value="-50"/>
+        <param name="gui:y" value="10"/>
+    </component>
+    <component name="DataOut">
+        <param name="gui:x" value="150"/>
+        <param name="gui:y" value="10"/>
+    </component>
+    <component name="PreProcNote">
+        <param name="gui:x" value="-150"/>
+        <param name="gui:y" value="-150"/>
+        <param name="gui:width" value="260"/>
+        <param name="gui:height" value="120"/>
+    </component>
+</application-layout>

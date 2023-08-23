@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EventList timeZone = "9">
+	<PreCondition Key="ON">
+
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="60.0"/>
+		</Trigger>	
+	</PreCondition>
+
+	<Event Priority='A' Category='ABS' Name="EBD_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x06F" type="S"/>
+			<Siganl Startbit="32" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ACU' Name="ACU_SysWrngLmpDis" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x20A" type="S"/>
+			<Siganl Startbit="24" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+
+	</Event>
+
+	<Event Priority='A' Category='AWD' Name="AWD_ErrCodeVal" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x1A5" type="S"/>
+			<Siganl Startbit="32" Length="8" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='BMS' Name="Bms_48V_MILReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x3C5" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='CGW_A' Name="VCU_PwrDnModeSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2B5" type="S"/>
+			<Siganl Startbit="26" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='CGW_A' Name="VCU_ServiceLampReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2B5" type="S"/>
+			<Siganl Startbit="56" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='CGW_B' Name="VCU_LowSocAlertSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2B5" type="S"/>
+			<Siganl Startbit="34" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+	
+	<Event Priority='A' Category='DATC' Name="DATC_SrvLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x145" type="S"/>
+			<Siganl Startbit="52" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+
+	<Event Priority='A' Category='EMS' Name="ENG_IsgSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x0B5" type="S"/>
+			<Siganl Startbit="123" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="4.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="ENG_OilLvlSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x0B5" type="S"/>
+			<Siganl Startbit="126" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+
+	<Event Priority='A' Category='EMS' Name="ENG_DpfWrngSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x100" type="S"/>
+			<Siganl Startbit="232" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="ENG_BattWrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x100" type="S"/>
+			<Siganl Startbit="234" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger> 
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="ENG_OilPrsrWrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x100" type="S"/>
+			<Siganl Startbit="236" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="ENG_MilSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x260" type="S"/>
+			<Siganl Startbit="26" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="SCR_LvlWrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x260" type="S"/>
+			<Siganl Startbit="128" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="HEV_MilReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x265" type="S"/>
+			<Siganl Startbit="52" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="HEV_EhrsTempSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x265" type="S"/>
+			<Siganl Startbit="162" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EMS' Name="HEV_OPSFail" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x265" type="S"/>
+			<Siganl Startbit="166" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+
+	<Event Priority='A' Category='EMS' Name="HEV_GPF_WrnLamp" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x1C5" type="S"/>
+			<Siganl Startbit="144" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EPB' Name="EPB_FlrLmpStaDis" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x1F0" type="S"/>
+			<Siganl Startbit="28" Length="4" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ESC' Name="ABS_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x06F" type="S"/>
+			<Siganl Startbit="24" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ESC' Name="DBC_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x060" type="S"/>
+			<Siganl Startbit="48" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ESC' Name="AVH_LmpDis" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x060" type="S"/>
+			<Siganl Startbit="220" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ESC' Name="IEB_WrngLmpDis" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x065" type="S"/>
+			<Siganl Startbit="32" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='ESC' Name="IEB_RbsWrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x065" type="S"/>
+			<Siganl Startbit="68" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="00.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='EVSCU_FF' Name="EVSCU_FF_SrvLampOnReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x15A" type="S"/>
+			<Siganl Startbit="31" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FR_CMR' Name="FCA_SysFlrSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x160" type="S"/>
+			<Siganl Startbit="27" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="3.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='FR_CMR' Name="LKA_SysIndReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x12A" type="S"/>
+			<Siganl Startbit="38" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="4.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='F_MCU' Name="MCU_Mg2SrvLmpOnReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x120" type="S"/>
+			<Siganl Startbit="170" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='HCU' Name="HCU_SrvLmpDis" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x230" type="S"/>
+			<Siganl Startbit="226" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IBU' Name="TPMS_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x3A0" type="S"/>
+			<Siganl Startbit="67" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='IBU' Name="TPMS_TreadWrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x3A0" type="S"/>
+			<Siganl Startbit="69" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='LDC' Name="LDC48V_AuxBattWrnLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2F5" type="S"/>
+			<Siganl Startbit="24" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='LDC' Name="LDC_AuxBattWrnLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x255" type="S"/>
+			<Siganl Startbit="32" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='LDC' Name="LDC_SrvLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x255" type="S"/>
+			<Siganl Startbit="40" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='MCU' Name="MCU_Mg1SrvLmpOnReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x10A" type="S"/>
+			<Siganl Startbit="170" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='MDPS' Name="MDPS_WrngLmpSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x0EA" type="S"/>
+			<Siganl Startbit="24" Length="3" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="2.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='OBC' Name="OBC_SvrLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2E5" type="S"/>
+			<Siganl Startbit="42" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='OBC' Name="OBC_MilReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2E5" type="S"/>
+			<Siganl Startbit="44" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='TCU' Name="HTCU_SrvLmpReq" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x3FA" type="S"/>
+			<Siganl Startbit="32" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+
+	<Event Priority='A' Category='TCU' Name="TCU_WrngMsgSta" BIT_WISE='AND' preData='60' postData='60'>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x2D0" type="S"/>
+			<Siganl Startbit="24" Length="8" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="NEQ" value="0.0" duration="0.0"/>
+		</Trigger>
+		<Trigger type="CAN">
+			<Message Channel="5" ID="0x035" type="S"/>
+			<Siganl Startbit="28" Length="2" endian="Little" type="unsigned" factor="1" offset="0"/>
+			<condition compare="EQ" value="1.0" duration="0.0"/>
+		</Trigger>
+	</Event>
+		
+</EventList>

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.parser.DIAGParser"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <implements module-reference="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
+        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <import alias="KafkaVDMSDataSchema" from="com.autoever.poc.maineventflow.kafkaSchemas" item="KafkaVDMSDataSchema"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="d:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <table-schemas>
+            <table-schema name="DTCTable">
+                <schema>
+                    <field name="dtc_code" type="string"/>
+                    <field name="description" type="string"/>
+                </schema>
+                <primary-index type="btree">
+                    <field name="dtc_code"/>
+                </primary-index>
+            </table-schema>
+        </table-schemas>
+        <data name="DTCQueryTable" shared="false" source="input" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DTCTable"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="controlInstance">
+            <schema>
+                <field name="command" type="string"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <box name="Initialize" type="inputadapter">
+            <output port="1" stream="out:Initialize_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="Init" type="java">
+            <input port="1" stream="out:Initialize_1"/>
+            <output port="1" stream="InitOut"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="false"/>
+            <param name="GlobalInstanceId" value=""/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LocalInstanceId" value="python_diag_instance"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema/&gt;&#13;&#10;"/>
+            <param name="Script" value=""/>
+            <param name="ScriptFile" value="dtc_parser.py"/>
+            <param name="ScriptSource" value="File"/>
+            <param name="amsRequiredOnStartup" value="false"/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <box name="Pack" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Pack_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="inputVars.*">*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="python_diag_instance" type="java">
+            <input port="1" stream="controlInstance"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonInstanceAdapter"/>
+            <param name="CaptureOutput" value="false"/>
+            <param name="EnableControlPort" value="true"/>
+            <param name="Executable" value="${PYTHON_EXECUTABLE}"/>
+            <param name="GlobalInstanceId" value=""/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="UseTempFile" value="false"/>
+            <param name="WorkingDir" value="."/>
+        </box>
+        <output-stream name="InitOut"/>
+        <box name="DiagParser" type="java">
+            <input port="1" stream="out:Pack_1"/>
+            <output port="1" stream="out:DiagParser_1"/>
+            <error stream="ExecError"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="true"/>
+            <param name="GlobalInstanceId" value="diag_parser_instance"/>
+            <param name="InstanceType" value="Local"/>
+            <param name="LocalInstanceId" value="python_diag_instance"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;diag_dtc&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;diag_data&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;messageID&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;kafkaMessage&quot; type=&quot;tuple&quot; value=&quot;KafkaVDMSDataSchema&quot;/&gt;&#13;&#10;    &lt;field name=&quot;mgmtNO&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;perfData&quot; type=&quot;tuple&quot; value=&quot;PerfDataSchema&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value="import sys, os&#13;&#10;import numpy as np&#13;&#10;import pandas as pd&#13;&#10;import json&#13;&#10;&#13;&#10;DIAG_FILE_PATH = filePath&#13;&#10;BIN_DATA = binaryData&#13;&#10;&#13;&#10;DIAG = VDMS_DTC(DIAG_FILE_PATH, BIN_DATA)&#13;&#10;DTCs = DIAG.extractDtcCodes()&#13;&#10;DIAG.close()&#13;&#10;if DIAG_FILE_PATH and os.path.isfile(DIAG_FILE_PATH):&#13;&#10;    os.remove(DIAG_FILE_PATH)&#13;&#10;&#13;&#10;diag_dtc = None&#13;&#10;dtc_np = np.array(DTCs)&#13;&#10;dtc_df = pd.DataFrame(dtc_np)&#13;&#10;&#13;&#10;if not dtc_df.empty:&#13;&#10;    dtc_df.columns = ['timestamp', 'can_id', 'ecu_name', 'dtc_code', 'dtc_time']&#13;&#10;    diag_dtc = f'{{&quot;diag_dtc&quot; : {dtc_df.to_json(orient=&quot;records&quot;)}}}'&#13;&#10;&#13;&#10;data_np = np.array(DIAG.DataList, dtype=object)&#13;&#10;data_df = pd.DataFrame(data_np)&#13;&#10;&#13;&#10;diag_data = None&#13;&#10;if not data_df.empty:&#13;&#10;    data_df.columns = ['timestamp', 'channel', 'can_id', 'ecu_name', 'Tx_Rx', 'raw', 'dtc_type']&#13;&#10;    data_df['data0'] = data_df['raw'].apply(lambda x:x[:1].hex().upper())&#13;&#10;    data_df['data1'] = data_df['raw'].apply(lambda x:x[1:2].hex().upper())&#13;&#10;    data_df['data2'] = data_df['raw'].apply(lambda x:x[2:3].hex().upper())&#13;&#10;    data_df['data3'] = data_df['raw'].apply(lambda x:x[3:4].hex().upper())&#13;&#10;    data_df['data4'] = data_df['raw'].apply(lambda x:x[4:5].hex().upper())&#13;&#10;    data_df['data5'] = data_df['raw'].apply(lambda x:x[5:6].hex().upper())&#13;&#10;    data_df['data6'] = data_df['raw'].apply(lambda x:x[6:7].hex().upper())&#13;&#10;    data_df['data7'] = data_df['raw'].apply(lambda x:x[7:].hex().upper())&#13;&#10;    data_df['raw'] = data_df['raw'].apply(lambda x:x.hex().upper()) &#13;&#10;&#13;&#10;    diag_data = f'{{&quot;diag_data&quot;: {data_df.to_json(orient=&quot;records&quot;)}}}'&#13;&#10;"/>
+            <param name="ScriptFile" value="dtc_parser.py"/>
+            <param name="ScriptSource" value="Script text"/>
+            <param name="amsRequiredOnStartup" value=""/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <output-stream name="ExecError"/>
+        <box name="UnpackDiag" type="map">
+            <input port="1" stream="out:DiagParser_1"/>
+            <output port="1" stream="out:UnpackDiag_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">outputVars.*</include>
+                    <replace field="perfData.t2_time">to_milliseconds(now())</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split3" type="split">
+            <input port="1" stream="out:UnpackDiag_1"/>
+            <output port="1" stream="out:Split3_1"/>
+            <output port="2" stream="out:Split3_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="DiagDataTuple" type="java">
+            <input port="1" stream="out:Split3_1"/>
+            <output port="1" stream="out:DiagDataTuple_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.operator.jsontuple.JSON2Tuple"/>
+            <param name="enableLooseParsing" value="true"/>
+            <param name="enablePassThroughFields" value="true"/>
+            <param name="enableStatusPort" value="false"/>
+            <param name="jsonFieldName" value="diag_data"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="outputSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;diag_data&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;tuple&quot; value=&quot;DiagDataOutputSchema&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="passThroughFieldsFieldName" value="PassThroughFields"/>
+            <param name="timestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
+        </box>
+        <box name="DiagDTCTuple" type="java">
+            <input port="1" stream="out:Split3_2"/>
+            <output port="1" stream="out:DiagDTCTuple_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.operator.jsontuple.JSON2Tuple"/>
+            <param name="enableLooseParsing" value="true"/>
+            <param name="enablePassThroughFields" value="true"/>
+            <param name="enableStatusPort" value="false"/>
+            <param name="jsonFieldName" value="diag_dtc"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="outputSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;diag_dtc&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;tuple&quot; value=&quot;DiagDTCOutputSchema&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="passThroughFieldsFieldName" value="PassThroughFields"/>
+            <param name="timestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
+        </box>
+        <box name="Split" type="split">
+            <input port="1" stream="out:DiagDataTuple_1"/>
+            <output port="1" stream="out:Split_1"/>
+            <output port="2" stream="out:Split_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="Split5" type="split">
+            <input port="1" stream="out:DiagDTCTuple_1"/>
+            <output port="1" stream="out:Split5_1"/>
+            <output port="2" stream="out:Split5_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="EndedDiagDataProc" type="map">
+            <input port="1" stream="out:Split_2"/>
+            <output port="1" stream="out:EndedDiagDataProc_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <declare field="t1_time">input1.PassThroughFields.perfData.t1_time-input1.PassThroughFields.perfData.start_time</declare>
+                    <declare field="t2_time">input1.PassThroughFields.perfData.t2_time-input1.PassThroughFields.perfData.start_time</declare>
+                    <declare field="end_time">to_milliseconds(now())-input1.PassThroughFields.perfData.start_time</declare>
+                </item>
+                <expressions>
+                    <include field="perfData">input1.PassThroughFields.perfData</include>
+                    <replace field="perfData.kafka_msg_id">input1.PassThroughFields.perfData.kafka_msg_id + "_DATA"</replace>
+                    <replace field="perfData.data_count">if isnull(input1.diag_data) then 0 else length(input1.diag_data)</replace>
+                    <replace field="perfData.t1_time">t1_time</replace>
+                    <replace field="perfData.t2_time">t2_time-t1_time</replace>
+                    <replace field="perfData.end_time">end_time</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="EndedDiagDTCProc" type="map">
+            <input port="1" stream="out:Split5_2"/>
+            <output port="1" stream="out:EndedDiagDTCProc_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <declare field="t1_time">input1.PassThroughFields.perfData.t1_time-input1.PassThroughFields.perfData.start_time</declare>
+                    <declare field="t2_time">input1.PassThroughFields.perfData.t2_time-input1.PassThroughFields.perfData.start_time</declare>
+                    <declare field="end_time">to_milliseconds(now())-input1.PassThroughFields.perfData.start_time</declare>
+                </item>
+                <expressions>
+                    <include field="perfData">input1.PassThroughFields.perfData</include>
+                    <replace field="perfData.kafka_msg_id">input1.PassThroughFields.perfData.kafka_msg_id + "_DTC"</replace>
+                    <replace field="perfData.data_count">if isnull(input1.diag_dtc) then 0 else length(input1.diag_dtc)</replace>
+                    <replace field="perfData.t1_time">t1_time</replace>
+                    <replace field="perfData.t2_time">t2_time-t1_time</replace>
+                    <replace field="perfData.end_time">end_time</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:Split_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isnull(input1.diag_data)"/>
+        </box>
+        <box name="Filter4" type="filter">
+            <input port="1" stream="out:Split5_1"/>
+            <output port="1" stream="out:Filter4_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isnull(input1.diag_dtc)"/>
+        </box>
+        <box name="DATAIterate" type="iterate">
+            <input port="1" stream="out:Filter_1"/>
+            <output port="1" stream="out:DATAIterate_1"/>
+            <param name="iterate-expr" value="diag_data"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">each.element.*</include>
+                    <replace field="messageID">input1.PassThroughFields.messageID</replace>
+                    <replace field="terminalID">input1.PassThroughFields.kafkaMessage.TerminalID</replace>
+                    <replace field="vehicleKeyID">input1.PassThroughFields.kafkaMessage.VehicleKeyID</replace>
+                    <replace field="rootCount">input1.PassThroughFields.kafkaMessage.RootCount</replace>
+                    <replace field="baseTime">input1.PassThroughFields.kafkaMessage.BaseTime</replace>
+                    <replace field="realTime">long(GetLocalTime(PassThroughFields.kafkaMessage.BaseTime + long(each.element.timestamp), ''))</replace>
+                    <replace field="mgmtNO">input1.PassThroughFields.mgmtNO</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="DTCIterate" type="iterate">
+            <input port="1" stream="out:Filter4_1"/>
+            <output port="1" stream="out:DTCIterate_1"/>
+            <param name="iterate-expr" value="diag_dtc"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">each.element.*</include>
+                    <replace field="terminalID">input1.PassThroughFields.kafkaMessage.TerminalID</replace>
+                    <replace field="messageID">input1.PassThroughFields.messageID</replace>
+                    <replace field="vehicleKeyID">input1.PassThroughFields.kafkaMessage.VehicleKeyID</replace>
+                    <replace field="rootCount">input1.PassThroughFields.kafkaMessage.RootCount</replace>
+                    <replace field="baseTime">input1.PassThroughFields.kafkaMessage.BaseTime</replace>
+                    <replace field="realTime">long(GetLocalTime(PassThroughFields.kafkaMessage.BaseTime + long(each.element.timestamp), ''))</replace>
+                    <replace field="dtc_code">upper(each.element.dtc_code)</replace>
+                    <replace field="mgmtNO">input1.PassThroughFields.mgmtNO</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Union" type="union">
+            <input port="1" stream="out:EndedDiagDataProc_1"/>
+            <input port="2" stream="out:EndedDiagDTCProc_1"/>
+            <output port="1" stream="out:Union_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="MapToPerfData" type="map">
+            <input port="1" stream="out:Union_1"/>
+            <output port="1" stream="out:MapToPerfData_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">input1.perfData.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Sequence2" type="seqnum">
+            <input port="1" stream="out:DATAIterate_1"/>
+            <output port="1" stream="out:Sequence2_1"/>
+            <param name="output-field" value="sequence2_id"/>
+            <param name="sequence-id" value="sequence2id"/>
+            <param name="update-expression" value="sequence2id + 1"/>
+        </box>
+        <box name="Sequence3" type="seqnum">
+            <input port="1" stream="out:DTCIterate_1"/>
+            <output port="1" stream="out:Sequence3_1"/>
+            <param name="output-field" value="sequence3_id"/>
+            <param name="sequence-id" value="sequence3id"/>
+            <param name="update-expression" value="sequence3id + 1"/>
+        </box>
+        <box name="MapForDiagDataTable" type="map">
+            <input port="1" stream="out:Sequence2_1"/>
+            <output port="1" stream="out:MapForDiagDataTable_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="baseTime"/>
+                    <include field="can_id"/>
+                    <include field="channel"/>
+                    <include field="data0"/>
+                    <include field="data1"/>
+                    <include field="data2"/>
+                    <include field="data3"/>
+                    <include field="data4"/>
+                    <include field="data5"/>
+                    <include field="data6"/>
+                    <include field="data7"/>
+                    <include field="dtc_type"/>
+                    <include field="ecu_name"/>
+                    <include field="messageID"/>
+                    <include field="raw"/>
+                    <include field="realTime"/>
+                    <include field="rootCount"/>
+                    <include field="terminalID"/>
+                    <include field="timestamp"/>
+                    <include field="Tx_Rx"/>
+                    <include field="vehicleKeyID"/>
+                    <include field="mgmtNO"/>
+                </item>
+                <expressions>
+                    <replace field="messageID">input1.messageID + '_' + string(sequence2_id)</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MapForDTCTable" type="map">
+            <input port="1" stream="out:Sequence3_1"/>
+            <output port="1" stream="out:MapForDTCTable_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="baseTime"/>
+                    <include field="can_id"/>
+                    <include field="description"/>
+                    <include field="dtc_code"/>
+                    <include field="dtc_time"/>
+                    <include field="ecu_name"/>
+                    <include field="messageID"/>
+                    <include field="realTime"/>
+                    <include field="rootCount"/>
+                    <include field="terminalID"/>
+                    <include field="timestamp"/>
+                    <include field="vehicleKeyID"/>
+                    <include field="mgmtNO"/>
+                </item>
+                <expressions>
+                    <replace field="messageID">input1.messageID + '_' + string(sequence3_id)</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="PublishPerf" type="outputadapter">
+            <input port="1" stream="out:MapToPerfData_1"/>
+            <output port="1" stream="out:PublishPerf_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="100"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="25"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="PerfDataTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <box name="FilterTxRx" type="filter">
+            <input port="1" stream="out:MapForDiagDataTable_1"/>
+            <output port="1" stream="out:FilterTxRx_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="input1.Tx_Rx=='Rx'"/>
+        </box>
+        <box name="MatchDTCQuery" type="query">
+            <input port="1" stream="out:MapForDTCTable_1"/>
+            <output port="1" stream="out:MatchDTCQuery_1"/>
+            <dataref id="querytable" name="DTCQueryTable"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="primary-key"/>
+            <param name="limit" value="1"/>
+            <param name="key-field.0" value="dtc_code"/>
+            <param name="key-lowerbound-value.0" value="input1.dtc_code"/>
+            <param name="key-lowerbound-operation.0" value="eq"/>
+            <param name="key-upperbound-operation.0" value="none"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <replace field="description">current.description</replace>
+                </item>
+                <item name="current" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="PublishDiagData" type="outputadapter">
+            <input port="1" stream="out:FilterTxRx_1"/>
+            <output port="1" stream="out:PublishDiagData_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="2048"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="25"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="AutoDiagDataTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <box name="PublishDiagDTC" type="outputadapter">
+            <input port="1" stream="out:MatchDTCQuery_1"/>
+            <output port="1" stream="out:PublishDiagDTC_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="1024"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="25"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="AutoDiagDTCTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <box name="ForMainStream" type="union">
+            <input port="1" stream="out:PublishDiagData_1"/>
+            <input port="2" stream="out:PublishPerf_1"/>
+            <input port="3" stream="out:PublishDiagDTC_1"/>
+            <output port="1" stream="OutputParserStream"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="OutputParserStream"/>
+    </add>
+</modify>

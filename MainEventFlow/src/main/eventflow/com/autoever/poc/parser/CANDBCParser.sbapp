@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.parser.CANDBCParser"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2"/>
+        <import alias="DBCDataSchema" from="com.autoever.poc.maineventflow.DBCSchema" item="DBCDataSchema"/>
+        <import alias="DBCTableSchema" from="com.autoever.poc.maineventflow.DBCSchema" item="DBCTableSchema"/>
+        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
+        <import from="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <constant expr="['CF_Clu_Odometer', 'CF_Vcu_GarSelDisp', 'CR_Mcu_VehSpdDec_Kph', 'CR_Mcu_VehSpd_Kph', 'CF_OBC_DCChargingStat', 'CF_Bms_ChgSts']" name="MATCH_SIGNALS"/>
+        <parameter-definitions>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="d:/projects/vdms/tools/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+        </parameter-definitions>
+        <dynamic-variables>
+            <dynamic-variable initial-expression="emptylist(DBCDataSchema())" name="matchSignals" setter-expression="matchDBCs" setter-stream="UpdateSignalVariable"/>
+        </dynamic-variables>
+        <data name="DBCTable" shared="false" source="input" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DBCTableSchema"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <data name="LatestValueTable" shared="false" source="input" type="querytable">
+            <param name="storage-method" value="transactional_memory"/>
+            <param name="replicated" value="false"/>
+            <table-schema>
+                <schema>
+                    <field name="vehicleKeyID" type="long"/>
+                    <field name="modTime" type="long"/>
+                    <field name="rootCount" type="long"/>
+                    <field name="realTime" type="long"/>
+                    <field name="fieldName" type="string"/>
+                    <field name="fieldValue" type="string"/>
+                </schema>
+                <primary-index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="fieldName"/>
+                    <field name="modTime"/>
+                </primary-index>
+                <index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="rootCount"/>
+                    <field name="realTime"/>
+                </index>
+                <index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="rootCount"/>
+                </index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="InputStream" schema="MainOutputSchema"/>
+        <box name="Split4" type="split">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Split4_1"/>
+            <output port="2" stream="out:Split4_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="CheckDBCLoad" type="filter">
+            <input port="1" stream="out:Split4_2"/>
+            <output port="1" stream="out:CheckDBCLoad_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isempty(matchSignals)"/>
+        </box>
+        <box name="ReadDBCData" type="query">
+            <input port="1" stream="out:Split4_1"/>
+            <output port="1" stream="out:ReadDBCData_1"/>
+            <dataref id="querytable" name="DBCTable"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="secondary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-lowerbound-value.0" value="kafkaMessage.VehicleKeyID"/>
+            <param name="key-lowerbound-operation.0" value="eq"/>
+            <param name="key-upperbound-operation.0" value="none"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <item name="current" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <expressions>
+                    <include field="matchDBCs">aggregatelist(current as DBCDataSchema)</include>
+                </expressions>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="CheckDBC" type="filter">
+            <input port="1" stream="out:ReadDBCData_1"/>
+            <output port="1" stream="out:CheckDBC_1"/>
+            <output port="2" stream="out:CheckDBC_2"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="!isnull(matchDBCs) &amp;&amp; !isempty(matchDBCs) &amp;&amp; !isnull(matchDBCs[0].vehicleKeyID)"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="Get_DBCIDs" type="map">
+            <input port="1" stream="out:CheckDBCLoad_1"/>
+            <output port="1" stream="out:Get_DBCIDs_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="dbcIDs">unique(maplist(function(d DBCDataSchema) {d.msg_id}, matchSignals))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="GenCanDBCs" type="java">
+            <input port="1" stream="out:Get_DBCIDs_1"/>
+            <output port="1" stream="out:GenCanDBCs_1"/>
+            <output port="2" stream="OutputRawDataStream"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.autoever.poc.adapters.VdmsRawParser"/>
+            <param name="parserType" value="CAN_DBC"/>
+        </box>
+        <box name="LoadDBC" type="map">
+            <input port="1" stream="out:CheckDBC_1"/>
+            <output port="1" stream="out:LoadDBC_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="matchDBCs"/>
+                </item>
+            </target-list>
+        </box>
+        <box name="MapDBC" type="map">
+            <input port="1" stream="out:CheckDBC_2"/>
+            <output port="1" stream="out:MapDBC_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
+                    <include field="signals">MATCH_SIGNALS</include>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="OutputRawDataStream"/>
+        <module-reference name="LoadDBCList">
+            <input name="InputStream" port="1" stream="out:MapDBC_1"/>
+            <output name="ToCANDBCParser" port="1" stream="out:LoadDBCList_1"/>
+            <param name="file" value="com.autoever.poc.parser.CANDBCLoadSignals"/>
+            <input-dataref name="DBCTable" table="DBCTable"/>
+            <parameter-bindings>
+                <binding name="PYTHON_EXECUTABLE" value="${PYTHON_EXECUTABLE}"/>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="Organize" type="map">
+            <input port="1" stream="out:GenCanDBCs_1"/>
+            <output port="1" stream="out:Organize_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="PassThroughs"/>
+                </item>
+                <expressions>
+                    <include field="*">PassThroughs.*</include>
+                    <remove field="filePath"/>
+                    <remove field="binaryData"/>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="FilterMarker" type="filter">
+            <input port="1" stream="out:Organize_1"/>
+            <output port="1" stream="out:FilterMarker_1"/>
+            <output port="2" stream="out:FilterMarker_2"/>
+            <output port="3" stream="out:FilterMarker_3"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="IsStarted"/>
+            <param name="expression.1" value="IsEnded"/>
+            <param name="expression.2" value="true"/>
+        </box>
+        <box name="InitLoadDBC" type="map">
+            <input port="1" stream="out:LoadDBCList_1"/>
+            <output port="1" stream="out:InitLoadDBC_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="matchDBCs">if !isnull(dbcList) &amp;&amp; !isempty(dbcList) &amp;&amp; !isnull(dbcList[0].vehicleKeyID) then dbcList else emptylist(DBCDataSchema())</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MarkerEnded" type="map">
+            <input port="1" stream="out:FilterMarker_2"/>
+            <output port="1" stream="out:MarkerEnded_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="perfData"/>
+                    <include field="IsEnded"/>
+                    <include field="IsStarted"/>
+                    <include field="MSGIdx"/>
+                    <include field="kafkaMessage"/>
+                </item>
+                <expressions>
+                    <replace field="perfData.t3_time">to_milliseconds(now())</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MarkerStarted" type="map">
+            <input port="1" stream="out:FilterMarker_1"/>
+            <output port="1" stream="out:MarkerStarted_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="perfData"/>
+                    <include field="IsEnded"/>
+                    <include field="IsStarted"/>
+                    <include field="MSGIdx"/>
+                </item>
+                <expressions>
+                    <replace field="perfData.t2_time">to_milliseconds(now())</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MatchSignal" type="map">
+            <input port="1" stream="out:FilterMarker_3"/>
+            <output port="1" stream="out:MatchSignal_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <declare field="maskedMsgID">if(bitand(RawHeader.MSGInfo, 0x1)==0x1) then bitand(RawHeader.DataID, 0x00FFFFFF) else bitand(RawHeader.DataID, 0x7FF)</declare>
+                </item>
+                <expressions>
+                    <include field="matched">filterlist(matchSignals, function(dbc DBCDataSchema) { dbc.msg_id == maskedMsgID})</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Union2" type="union">
+            <input port="1" stream="out:LoadDBC_1"/>
+            <input port="2" stream="out:InitLoadDBC_1"/>
+            <output port="1" stream="UpdateSignalVariable"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="UpdateSignalVariable"/>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:MatchSignal_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isempty(matched)"/>
+        </box>
+        <box name="MarkerUnion" type="union">
+            <input port="1" stream="out:MarkerStarted_1"/>
+            <input port="2" stream="out:MarkerEnded_1"/>
+            <output port="1" stream="out:MarkerUnion_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="AGGToHCP" type="aggregate">
+            <input port="1" stream="out:MarkerUnion_1"/>
+            <output port="1" stream="out:AGGToHCP_1"/>
+            <param name="dimension-name.0" value="Dimension1"/>
+            <param name="dimension-type.0" value="Predicate"/>
+            <param name="dimension-partial.0" value="no"/>
+            <param name="dimension-open-predicate.0" value="IsStarted"/>
+            <param name="dimension-close-predicate.0" value="IsEnded &amp;&amp; firstval(perfData.kafka_msg_id) == perfData.kafka_msg_id"/>
+            <param name="dimension-emit-close-first.0" value="false"/>
+            <param name="output-group-by" value="true"/>
+            <target-list>
+                <expressions>
+                    <include field="*">lastval(*)</include>
+                    <replace field="perfData.t2_time">firstval(perfData.t2_time)</replace>
+                    <replace field="perfData.t3_time">lastval(perfData.t3_time)</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="GetMatchedData" type="map">
+            <input port="1" stream="out:Filter_1"/>
+            <output port="1" stream="out:GetMatchedData_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="matchedDatas">GetMatchedSignal(RawHeader, matched)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="EndedCanProc" type="map">
+            <input port="1" stream="out:AGGToHCP_1"/>
+            <output port="1" stream="out:EndedCanProc_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="perfData">input1.perfData</include>
+                    <replace field="perfData.kafka_msg_id">input1.perfData.kafka_msg_id + "_CAN_DBC"</replace>
+                    <replace field="perfData.data_count">MSGIdx-2</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Filter3" type="filter">
+            <input port="1" stream="out:GetMatchedData_1"/>
+            <output port="1" stream="out:Filter3_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isempty(matchedDatas)"/>
+        </box>
+        <box name="Iter_MatchedDatas" type="iterate">
+            <input port="1" stream="out:Filter3_1"/>
+            <output port="1" stream="out:Iter_MatchedDatas_1"/>
+            <param name="iterate-expr" value="matchedDatas"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">each.element.*</include>
+                    <include field="baseTime">kafkaMessage.BaseTime</include>
+                    <include field="messageID">messageID</include>
+                    <include field="realTime">long(GetLocalTime(kafkaMessage.BaseTime + long(each.element.deltaTime), ''))</include>
+                    <include field="rootCount">kafkaMessage.RootCount</include>
+                    <include field="terminalID">kafkaMessage.TerminalID</include>
+                    <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
+                    <include field="mgmtNO">mgmtNO</include>
+                </expressions>
+            </target-list>
+        </box>
+        <module-reference name="PublishPerf">
+            <input name="InputStream" port="1" stream="out:EndedCanProc_1"/>
+            <output name="OutputStream" port="1" stream="out:PublishPerf_1"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <param name="file" value="com.autoever.poc.maineventflow.PerfFlow"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="Sequence" type="seqnum">
+            <input port="1" stream="out:Iter_MatchedDatas_1"/>
+            <output port="1" stream="out:Sequence_1"/>
+            <param name="output-field" value="sequence3_id"/>
+            <param name="sequence-id" value="sequence3id"/>
+            <param name="update-expression" value="sequence3id + 1"/>
+        </box>
+        <box name="add_seq" type="map">
+            <input port="1" stream="out:Sequence_1"/>
+            <output port="1" stream="out:add_seq_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="sequence3_id"/>
+                </item>
+                <expressions>
+                    <replace field="messageID">messageID + '_' + sequence3_id</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split2" type="split">
+            <input port="1" stream="out:add_seq_1"/>
+            <output port="1" stream="out:Split2_1"/>
+            <output port="2" stream="out:Split2_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="InsertCanRaw" type="query">
+            <input port="1" stream="out:Split2_1"/>
+            <dataref id="querytable" name="LatestValueTable"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-value.0" value="vehicleKeyID"/>
+            <param name="key-field.1" value="fieldName"/>
+            <param name="key-value.1" value="eventName"/>
+            <param name="key-field.2" value="modTime"/>
+            <param name="key-value.2" value="realTime %1000"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="force"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+                <expressions>
+                    <set field="fieldValue">value</set>
+                </expressions>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="PublishRaw" type="outputadapter">
+            <input port="1" stream="out:Split2_2"/>
+            <output port="1" stream="out:PublishRaw_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="1024"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="250"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="AutoCanRawDataTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <box name="Union" type="union">
+            <input port="1" stream="out:PublishPerf_1"/>
+            <input port="2" stream="out:PublishRaw_1"/>
+            <output port="1" stream="OutputParserStream"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="OutputParserStream"/>
+    </add>
+</modify>

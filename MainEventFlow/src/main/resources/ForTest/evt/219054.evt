@@ -1,0 +1,2739 @@
+<Event>
+  <Header>
+    <Version>2</Version>
+    <PCToolVersion>2.14.8454.29032 Beta(2023-02-23)</PCToolVersion>
+    <FileName>20230612182331.evt</FileName>
+    <System>PU_cupang_sop_sw_update_sop_none</System>
+    <Symptom>bms</Symptom>
+    <Module>VDMS</Module>
+    <VIN>
+    </VIN>
+  </Header>
+  <ChannelSetting count="1">
+    <Channel physicalChannel="2" baudrate="500000" nodeIndex="0" channelCanLoad="11.7899992503226">
+      <Protocols type="CCP" count="1" nodeIndex="0" displayType="identName" dimsID="0" version="bms" setupID="0" ecuType="bms" RomID="" protocolID="5">
+        <CCP fileName="hrev-R6060_crc_5000h.a2l">
+          <MOD_COMM>
+            <Comment>Common definitions</Comment>
+            <ALIGNMENT_BYTE>1</ALIGNMENT_BYTE>
+            <ALIGNMENT_LONG>1</ALIGNMENT_LONG>
+            <ALIGNMENT_FLOAT32_IEEE>4</ALIGNMENT_FLOAT32_IEEE>
+            <ALIGNMENT_FLOAT64_IEEE>8</ALIGNMENT_FLOAT64_IEEE>
+            <ALIGNMENT_INT64>
+            </ALIGNMENT_INT64>
+            <ALIGNMENT_WORD>1</ALIGNMENT_WORD>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <DATA_SIZE>
+            </DATA_SIZE>
+            <DEPOSIT>
+            </DEPOSIT>
+            <S_REC_LAYOUT>
+            </S_REC_LAYOUT>
+          </MOD_COMM>
+          <Source>
+            <identName>100ms</identName>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>100</Rate>
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <DAQlist>0x01</DAQlist>
+            <LENGTH>0x32</LENGTH>
+            <CAN_ID_FIXED>0x0635</CAN_ID_FIXED>
+            <RASTER>0x01</RASTER>
+            <FIRST_PID>
+            </FIRST_PID>
+            <A2LType>
+            </A2LType>
+            <SearchKey>B</SearchKey>
+            <Description>
+            </Description>
+          </Source>
+          <Source>
+            <identName>10ms</identName>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>10</Rate>
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <DAQlist>0x00</DAQlist>
+            <LENGTH>0x0A</LENGTH>
+            <CAN_ID_FIXED>0x0635</CAN_ID_FIXED>
+            <RASTER>0x00</RASTER>
+            <FIRST_PID>
+            </FIRST_PID>
+            <A2LType>
+            </A2LType>
+            <SearchKey>A</SearchKey>
+            <Description>
+            </Description>
+          </Source>
+          <Source>
+            <identName>1ms</identName>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>1</Rate>
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <DAQlist>0x02</DAQlist>
+            <LENGTH>0x01</LENGTH>
+            <CAN_ID_FIXED>0x0635</CAN_ID_FIXED>
+            <RASTER>0x02</RASTER>
+            <FIRST_PID>
+            </FIRST_PID>
+            <A2LType>
+            </A2LType>
+            <SearchKey>C</SearchKey>
+            <Description>
+            </Description>
+          </Source>
+          <Raster>
+            <RasterName>10ms Event</RasterName>
+            <ShortName>10ms</ShortName>
+            <RasterID>0x00</RasterID>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>10</Rate>
+            <SearchKey>A</SearchKey>
+            <Description>
+            </Description>
+          </Raster>
+          <Raster>
+            <RasterName>100ms Event</RasterName>
+            <ShortName>100ms</ShortName>
+            <RasterID>0x01</RasterID>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>100</Rate>
+            <SearchKey>B</SearchKey>
+            <Description>
+            </Description>
+          </Raster>
+          <Raster>
+            <RasterName>1ms Event</RasterName>
+            <ShortName>1ms</ShortName>
+            <RasterID>0x02</RasterID>
+            <ScalingUnit>3</ScalingUnit>
+            <Rate>1</Rate>
+            <SearchKey>C</SearchKey>
+            <Description>
+            </Description>
+          </Raster>
+          <SEED_KEY>
+            <CAL>
+            </CAL>
+            <DAQ>
+            </DAQ>
+            <PGM>
+            </PGM>
+          </SEED_KEY>
+          <TP_BLOB>
+            <CCP_version>0x0201</CCP_version>
+            <Blob_version>0x0204</Blob_version>
+            <CAN_msgID_send>0x0634</CAN_msgID_send>
+            <CAN_msgID_recv>0x0635</CAN_msgID_recv>
+            <Station_Address>0x1111</Station_Address>
+            <ByteOrder>2</ByteOrder>
+            <BAUDRATE>500000</BAUDRATE>
+            <BYTES_ONLY>1</BYTES_ONLY>
+            <PollingCycleTime>0</PollingCycleTime>
+          </TP_BLOB>
+          <COMMAND />
+          <Measurement>
+            <identName>SOC</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>SOC.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>"soc_r in[0.1%]"</LongIdentifier>
+            <UpperLimit>120</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001F0E</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>SOC.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>cell_01</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>cell_01.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001BF4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>cell_01.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>"mV"</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>cell_02</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001BF8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_03</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001BFC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_04</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C00</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_05</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C04</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_06</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C08</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_07</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C0C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_08</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C10</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_09</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C14</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_10</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C18</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_11</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C1C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_12</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C20</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_13</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C24</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_14</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C28</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_15</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C2C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_16</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C30</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_17</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C34</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_18</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C38</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_19</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C3C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_20</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C40</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_21</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C44</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_22</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C48</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_23</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C4C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_24</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C50</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_25</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C54</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_26</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C58</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_27</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C5C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_28</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C60</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_29</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C64</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_30</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C68</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_31</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C6C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_32</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C70</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_33</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C74</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_34</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C78</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_35</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C7C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_36</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C80</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_37</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C84</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_38</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C88</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_39</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C8C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_40</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C90</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_41</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C94</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_42</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C98</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_43</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001C9C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_44</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CA0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_45</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CA4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_46</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CA8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_47</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CAC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_48</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CB0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_49</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CB4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_50</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CB8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_51</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CBC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_52</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CC0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_53</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CC4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_54</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CC8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_55</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CCC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_56</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CD0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_57</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CD4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_58</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CD8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_59</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CDC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_60</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CE0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_61</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CE4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_62</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CE8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_63</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CEC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_64</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CF0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_65</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CF4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_66</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CF8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_67</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001CFC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_68</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D00</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_69</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D04</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_70</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D08</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_71</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D0C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_72</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D10</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_73</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D14</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_74</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D18</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_75</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D1C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_76</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D20</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_77</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D24</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_78</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D28</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_79</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D2C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_80</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D30</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_81</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D34</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_82</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D38</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_83</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D3C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_84</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D40</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_85</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D44</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_86</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D48</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_87</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D4C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_88</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D50</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_89</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D54</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>cell_90</identName>
+            <Datatype>UWORD</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70001D58</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>chg_charging_now</identName>
+            <Datatype>UBYTE</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70002803</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>fault_code</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>fault_code.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>255</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x700016A8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>fault_code.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_data.ibm</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x700005BC</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_data.r_isol</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x700005D4</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_data.vb_max</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x700005B4</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_data.vb_min</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x700005B0</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_isol_min</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x70001BC8</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_tb_1</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_1.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BD4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_1.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_2</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_2.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BD8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_2.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_3</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_3.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BDC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_3.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_4</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_4.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BE0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_4.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_5</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_5.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BE4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_5.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_6</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_6.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BE8</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_6.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_7</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_7.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BEC</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_7.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_8</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_8.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BF0</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_8.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tb_9</identName>
+            <Datatype>SWORD</Datatype>
+            <Conversion>msr_tb_9.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>32767</UpperLimit>
+            <LowerLimit>-32768</LowerLimit>
+            <ECU_ADDRESS>0x70001BF4</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>msr_tb_9.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>msr_tbmax_raw</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x70001BE8</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>msr_tbmin_raw</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x70001BEC</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>nvm_acc_cha_ah</identName>
+            <Datatype>ULONG</Datatype>
+            <Conversion>nvm_acc_cha_ah.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70102A18</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_acc_cha_ah.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_acc_cha_kwh</identName>
+            <Datatype>ULONG</Datatype>
+            <Conversion>nvm_acc_cha_kwh.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70102A1C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_acc_cha_kwh.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_acc_dch_ah</identName>
+            <Datatype>ULONG</Datatype>
+            <Conversion>nvm_acc_dch_ah.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70102A20</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_acc_dch_ah.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_acc_dch_kwh</identName>
+            <Datatype>ULONG</Datatype>
+            <Conversion>nvm_acc_dch_kwh.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70102A24</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_acc_dch_kwh.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_soh_avg_max</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>nvm_soh_avg_max.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x7010325C</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_soh_avg_max.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_soh_avg_min</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x70103264</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Measurement>
+            <identName>nvm_sw_version</identName>
+            <Datatype>ULONG</Datatype>
+            <Conversion>nvm_sw_version.CONVERSION</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>65535</UpperLimit>
+            <LowerLimit>0</LowerLimit>
+            <ECU_ADDRESS>0x70103436</ECU_ADDRESS>
+            <BYTE_ORDER>MSB_LAST</BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>nvm_sw_version.CONVERSION</identName>
+            <LongIdentifier>"@@@@RuleName created by CANape"</LongIdentifier>
+            <ConversionType>IDENTICAL</ConversionType>
+            <Format>"%3.1"</Format>
+            <Unit>""</Unit>
+            <OptionalParam>
+            </OptionalParam>
+            <OptionalValue>
+            </OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+          <Measurement>
+            <identName>nvm_soh_calc_cnt</identName>
+            <Datatype>SLONG</Datatype>
+            <Conversion>NO_COMPU_METHOD</Conversion>
+            <Resolution>0</Resolution>
+            <Accuracy>0</Accuracy>
+            <LongIdentifier>""</LongIdentifier>
+            <UpperLimit>2147483647</UpperLimit>
+            <LowerLimit>-2147483648</LowerLimit>
+            <ECU_ADDRESS>0x70103268</ECU_ADDRESS>
+            <BYTE_ORDER>
+            </BYTE_ORDER>
+            <ARRAY_SIZE />
+            <DISPLAY_IDENTIFIER>
+            </DISPLAY_IDENTIFIER>
+            <BIT_MASK />
+            <BIT_OPERATION_BOUND />
+            <BIT_OPERATION_BIT />
+            <Source_IdentName>100ms</Source_IdentName>
+            <Description />
+          </Measurement>
+          <Compu_Method>
+            <identName>NO_COMPU_METHOD</identName>
+            <LongIdentifier>
+            </LongIdentifier>
+            <ConversionType>RAT_FUNC</ConversionType>
+            <Format>
+            </Format>
+            <Unit>
+            </Unit>
+            <OptionalParam>COEFFS</OptionalParam>
+            <OptionalValue>0 1 0 0 0 1</OptionalValue>
+            <Description>
+            </Description>
+          </Compu_Method>
+        </CCP>
+      </Protocols>
+    </Channel>
+  </ChannelSetting>
+</Event>

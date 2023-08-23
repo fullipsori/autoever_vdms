@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table:Table xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Table="http:///com/tibco/cep/decision/table/model/DecisionTable.ecore" name="MessageControl.sbdt" folder="src/main/resources" version="1.0">
+  <md>
+    <prop name="Priority" value="5"/>
+    <prop name="SingleRowExecution" type="Boolean" value="true"/>
+  </md>
+  <decisionTable>
+    <rule id="1">
+      <cond id="1_1" colId="1" expr="message.MessageType==1"/>
+      <act id="1_6" colId="6" expr="true"/>
+    </rule>
+    <rule id="2">
+      <cond id="2_1" colId="1" expr="message.MessageType==4"/>
+      <act id="2_6" colId="6" expr="true"/>
+    </rule>
+    <rule id="3">
+      <cond id="3_1" colId="1" expr="message.MessageType==6"/>
+      <act id="3_6" colId="6" expr="true"/>
+    </rule>
+    <rule id="4">
+      <cond id="4_1" colId="1" expr="message.MessageType==2"/>
+      <act id="4_6" colId="6" expr="true"/>
+    </rule>
+    <columns>
+      <column id="1" name="Custom Condition 0" propertyPath="" columnType="CUSTOM_CONDITION"/>
+      <column id="6" name="acceptMessage" propertyPath="acceptMessage" propertyType="4" columnType="ACTION"/>
+    </columns>
+  </decisionTable>
+</Table:Table>

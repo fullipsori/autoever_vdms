@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.PerfFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import alias="PerfDataSchema" from="com.autoever.poc.maineventflow.LiveViewTable" item="PerfDataSchema"/>
+        <parameter-definitions>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="perfData" type="tuple" value="PerfDataSchema"/>
+            </schema>
+        </stream>
+        <box name="EndedProc" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:EndedProc_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <declare field="t1_time">perfData.t1_time-perfData.start_time</declare>
+                    <declare field="t2_time">perfData.t2_time-perfData.t1_time</declare>
+                    <declare field="t3_time">perfData.t3_time-perfData.t2_time</declare>
+                    <declare field="t4_time">perfData.t4_time-perfData.t3_time</declare>
+                    <declare field="end_time">to_milliseconds(now())-perfData.start_time</declare>
+                </item>
+                <expressions>
+                    <include field="perfData">input1.perfData</include>
+                    <replace field="perfData.t1_time">t1_time</replace>
+                    <replace field="perfData.t2_time">t2_time</replace>
+                    <replace field="perfData.t3_time">t3_time</replace>
+                    <replace field="perfData.t4_time">if (t4_time &gt; 0) then t4_time else 0</replace>
+                    <replace field="perfData.end_time">end_time</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MapToPerfData" type="map">
+            <input port="1" stream="out:EndedProc_1"/>
+            <output port="1" stream="out:MapToPerfData_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="*">input1.perfData.*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="PublishPerf" type="outputadapter">
+            <input port="1" stream="out:MapToPerfData_1"/>
+            <output port="1" stream="OutputStream"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="100"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="25"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="PerfDataTable"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

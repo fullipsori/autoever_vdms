@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<liveview-configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.streambase.com/schemas/lvconf/">
+  <data-table id="AutoCanDataTable">
+    <fields>
+      <field name="EventArrivalTS" type="timestamp"/>
+    </fields>
+    <import-schema from="com.autoever.poc.mainliveview.LiveViewTable" schema="CanDataTableSchema"/>
+    <table-delete-rule>WHEN EventArrivalTS BETWEEN epoch() AND now()-hours(1440)</table-delete-rule>
+    <primary-key>
+      <field ref="messageID"/>
+    </primary-key>
+    <indices>
+      <index>
+        <field ref="EventArrivalTS"/>
+      </index>
+      <index>
+        <field ref="terminalID"/>
+      </index>
+      <index>
+        <field ref="vehicleKeyID"/>
+      </index>
+      <index>
+        <field ref="realTime"/>
+      </index>
+    </indices>
+    <field-rules>
+      <rule description="Retention policy table delete rule">
+        <default>
+          <insert field="EventArrivalTS">now()</insert>
+          <update field="EventArrivalTS">now()</update>
+        </default>
+      </rule>
+    </field-rules>
+  </data-table>
+</liveview-configuration>

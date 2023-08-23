@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="KafkaVDMSDataSchema">
+    <ProcessingOptions DataGenerationMethod="Custom"/>
+    <Schema>
+      <Fields Name="TerminalID" DataTypeName="string" Description="단말기 시리얼 번호">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="11" BlobMinSize="11"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="SequenceNo" DataTypeName="long" Description="">
+        <Distribution GenerationMethod="Incremented" MaxValue="1.0E7"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="BodyLength" DataTypeName="long" Description="Body 크기">
+        <Distribution GenerationMethod="Constant" ConstantValue="100">
+          <ConditionalCases>
+            <FieldDependedOn>CIN</FieldDependedOn>
+            <Cases>
+              <NamesAndValues Name="CIN" Value="" MatchAnyValue="true"/>
+              <Distribution GenerationMethod="Constant" ConstantValue=""/>
+            </Cases>
+          </ConditionalCases>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="CIN" DataTypeName="string" Description="차종">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="8" BlobMinSize="8"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="VIN" DataTypeName="string" Description="차량식별번호">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="30" BlobMinSize="30"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="VehicleKeyID" DataTypeName="long" Description="차량 키 아이디">
+        <Distribution GenerationMethod="Random" MaxValue="1.0E7"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="PolicyVersion" DataTypeName="int" Description="데이터 수집 정책 버전">
+        <Distribution GenerationMethod="Constant" ConstantValue="0"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="RecordCount" DataTypeName="long" Description="데이터 건수">
+        <Distribution GenerationMethod="Random" MaxValue="30.0"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="RootCount" DataTypeName="int" Description="트립 번호">
+        <Distribution GenerationMethod="Random" MaxValue="32767.0" ConstantValue=""/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="SubmitSequenceNo" DataTypeName="long" Description="트립 안에서의 데이터 순서">
+        <Distribution GenerationMethod="Random"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="SerialNo" DataTypeName="string" Description="단말기 시리얼 번호">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="11" BlobMinSize="11"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="BaseTime" DataTypeName="long" Description="데이터 수집 시작 시간">
+        <Distribution GenerationMethod="Random" ConstantValue=""/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="MessageType" DataTypeName="int" Description="수집 데이터의 종류">
+        <Distribution GenerationMethod="Enumerated" NumRandomEnumValues="1" EnumeratedDistMethod="SpecifiedValues">
+          <EnumeratedDist weight="1.0" value="1"/>
+          <EnumeratedDist weight="1.0" value="6"/>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="FirstPID" DataTypeName="string" Description="ccp 메시지">
+        <Distribution GenerationMethod="RandomString" ConstantValue="" UseRandomSize="true" BlobSize="128" BlobMinSize="128"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="MsgSrcKeyID" DataTypeName="string" Description="메시지파일 ID">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="128" BlobMinSize="128"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="SyncSerID" DataTypeName="string" Description="동기서버 생성">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="20" BlobMinSize="20"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="LoadDTM" DataTypeName="string" Description="메시지 수집 일시">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="14" BlobMinSize="14"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="XctRedisInpDTM" DataTypeName="long" Description="Sequence Num 으로 사용">
+        <Distribution GenerationMethod="Random"/>
+        <DataSourceMapping/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.0_248f263d973a774f84731121e9d4527c932d77fd">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.kafkaSchemas"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="KafkaAdminCommandSchema">
+            <field description="Commands: createTopic, deleteTopic, brokers, writeValue, readValue, or topics" name="command" type="string"/>
+            <field name="topic" type="string"/>
+            <field name="partition" type="int"/>
+            <field name="replication" type="int"/>
+            <field name="properties" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="key" type="string"/>
+                        <field name="value" type="string"/>
+                    </schema>
+                </element-type>
+            </field>
+        </schema>
+        <schema name="KafkaAdminFullCommandSchema">
+            <field description="Commands: createTopic, deleteTopic, brokers, writeValue, readValue, or topics" name="command" type="string"/>
+            <field name="topic" type="string"/>
+            <field name="partition" type="int"/>
+            <field name="replication" type="int"/>
+            <field name="properties" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="key" type="string"/>
+                        <field name="value" type="string"/>
+                    </schema>
+                </element-type>
+            </field>
+        </schema>
+        <schema name="KafkaConsumerControlSchema">
+            <field description="Commands: subscribe, unsubscribe, updateBrokers, pause, or resume" name="command" type="string"/>
+            <field name="topic" type="string"/>
+            <field name="partition" type="int"/>
+            <field name="time" type="long"/>
+        </schema>
+        <schema name="KafkaConsumerFullControlSchema">
+            <field description="Commands: subscribe, unsubscribe, updateBrokers, pause, or resume" name="command" type="string"/>
+            <field name="topic" type="string"/>
+            <field name="partition" type="int"/>
+            <field name="brokers" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="host" type="string"/>
+                        <field name="port" type="int"/>
+                    </schema>
+                </element-type>
+            </field>
+            <field name="time" type="long"/>
+            <field name="offset" type="long"/>
+            <field name="timeout" type="int"/>
+            <field name="clientId" type="string"/>
+            <field name="bufferSize" type="int"/>
+            <field name="fetchSize" type="int"/>
+            <field name="groupId" type="string"/>
+        </schema>
+        <schema name="KafkaProducerCommandSchema">
+            <field description="Commands: connect, disconnect, updateBrokers, or metrics" name="command" type="string"/>
+            <field name="brokers" type="list">
+                <element-type type="tuple">
+                    <schema>
+                        <field name="host" type="string"/>
+                        <field name="port" type="int"/>
+                    </schema>
+                </element-type>
+            </field>
+        </schema>
+        <schema name="KafkaProducerDataSchema">
+            <field name="topic" type="string"/>
+            <field name="message" type="string"/>
+            <field name="myKey" type="string"/>
+            <field name="partition" type="int"/>
+        </schema>
+        <schema name="KafkaVDMSDataSchema">
+            <field description="단말기 시리얼 번호" name="TerminalID" type="string"/>
+            <field name="SequenceNo" type="long"/>
+            <field description="Body 크기" name="BodyLength" type="long"/>
+            <field description="차종" name="CIN" type="string"/>
+            <field description="차량식별번호" name="VIN" type="string"/>
+            <field description="차량 키 아이디" name="VehicleKeyID" type="long"/>
+            <field description="데이터 수집 정책 버전" name="PolicyVersion" type="int"/>
+            <field description="데이터 건수" name="RecordCount" type="long"/>
+            <field description="트립 번호" name="RootCount" type="int"/>
+            <field description="트립 안에서의 데이터 순서" name="SubmitSequenceNo" type="long"/>
+            <field description="단말기 시리얼 번호" name="SerialNo" type="string"/>
+            <field description="데이터 수집 시작 시간" name="BaseTime" type="long"/>
+            <field description="수집 데이터의 종류" name="MessageType" type="int"/>
+            <field description="CCP 메세지인 경우" name="FirstPID" type="string"/>
+            <field description="메시지파일ID" name="MsgSrcKeyID" type="string"/>
+            <field description="동기서버 생성 ID" name="SyncSerID" type="string"/>
+            <field description="Message Collect Time" name="LoadDTM" type="string"/>
+            <field description="예외 Redis 입력일시" name="XctRedisInpDTM" type="long"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+</application>
