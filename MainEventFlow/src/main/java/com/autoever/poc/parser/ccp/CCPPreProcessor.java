@@ -32,6 +32,8 @@ public class CCPPreProcessor implements PreProcessable {
 		private Long rawChargingNow = null;
 		private Long rawISOL = null;
 		private Long rawFaultCode = null;
+		private Long rawNvmAccChaAh = null;
+		private Long rawNvmAccDhaAh = null;
 		
 		private boolean validate() {
 			if(rawCellData.size() != sizeCellData) return false;
@@ -41,6 +43,8 @@ public class CCPPreProcessor implements PreProcessable {
 			if(rawChargingNow == null) return false;
 			if(rawISOL == null) return false;
 			if(rawFaultCode == null) return false;
+			if(rawNvmAccChaAh == null) return false;
+			if(rawNvmAccDhaAh == null) return false;
 			return true;
 		}
 		
@@ -66,6 +70,10 @@ public class CCPPreProcessor implements PreProcessable {
 					rawISOL =  data.second;
 				}else if("fault_code".equals(data.first)) {
 					rawFaultCode = data.second;
+				}else if("nvm_acc_cha_ah".equals(data.first)) {
+					rawNvmAccChaAh = data.second;
+				}else if("nvm_acc_dch_ah".equals(data.first)) {
+					rawNvmAccDhaAh = data.second;
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -83,6 +91,8 @@ public class CCPPreProcessor implements PreProcessable {
 					ccpTuple.setLong("rawChargingNow", rawChargingNow);
 					ccpTuple.setLong("rawISOL", rawISOL);
 					ccpTuple.setLong("rawFaultCode", rawFaultCode);
+					ccpTuple.setLong("rawNvmAccChaAh", rawNvmAccChaAh);
+					ccpTuple.setLong("rawNvmAccDhaAh", rawNvmAccDhaAh);
 					return ccpTuple;
 				}
 				return null;
@@ -104,7 +114,9 @@ public class CCPPreProcessor implements PreProcessable {
 			new Schema.Field("rawIBM", CompleteDataType.forDouble()),
 			new Schema.Field("rawChargingNow", CompleteDataType.forLong()),
 			new Schema.Field("rawISOL", CompleteDataType.forLong()),
-			new Schema.Field("rawFaultCode", CompleteDataType.forLong())
+			new Schema.Field("rawFaultCode", CompleteDataType.forLong()),
+			new Schema.Field("rawNvmAccChaAh", CompleteDataType.forLong()),
+			new Schema.Field("rawNvmAccDhaAh", CompleteDataType.forLong())
 		));
 	
 	public static void addSchemaField(List<Schema.Field> outputSchemaField) {
@@ -178,19 +190,37 @@ public class CCPPreProcessor implements PreProcessable {
 				case 'L' :
 					resultList.add(new Pair<String,Long>(
 							(String)((List<String>)odt[0]).get(i), 
-							NumUtils.getLongFromLittle(rawdata, index, 4)));
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 4, false)));
+					index += 4;
+					break;
+				case 'l' :
+					resultList.add(new Pair<String,Long>(
+							(String)((List<String>)odt[0]).get(i), 
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 4, true)));
 					index += 4;
 					break;
 				case 'H' :
 					resultList.add(new Pair<String,Long>(
 							(String)((List<String>)odt[0]).get(i), 
-							NumUtils.getLongFromLittle(rawdata, index, 2)));
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 2, false)));
+					index += 2;
+					break;
+				case 'h' :
+					resultList.add(new Pair<String,Long>(
+							(String)((List<String>)odt[0]).get(i), 
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 2, true)));
 					index += 2;
 					break;
 				case 'B' :
 					resultList.add(new Pair<String,Long>(
 							(String)((List<String>)odt[0]).get(i), 
-							NumUtils.getLongFromLittle(rawdata, index, 1)));
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 1, false)));
+					index += 1;
+					break;
+				case 'b' :
+					resultList.add(new Pair<String,Long>(
+							(String)((List<String>)odt[0]).get(i), 
+							NumUtils.getLongFromLittleWithSigned(rawdata, index, 1, true)));
 					index += 1;
 					break;
 			}

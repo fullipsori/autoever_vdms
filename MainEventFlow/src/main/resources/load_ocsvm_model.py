@@ -28,6 +28,6 @@ def predict(cellData, ccpData):
 
     xinputs_data = np.concatenate((latent_vector, xinputs_ccp_scaled), axis=1)
     pred= ocsvm_model.predict(xinputs_data)
-    return pred
+    return xinputs_cell_scaled[0], xinputs_ccp_scaled[0], pred
 
 output="success"

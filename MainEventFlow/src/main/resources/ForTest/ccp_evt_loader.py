@@ -14,7 +14,10 @@ def generate_odt_map(measurement_list):
                 if odt_map[i][1] >= 4:
                     odt_map[i][0].append(m[0])
                     odt_map[i][1] -= 4
-                    odt_map[i][2]+='L'
+                    if m[1] == 'SLONG':
+                        odt_map[i][2]+='l'
+                    else:
+                        odt_map[i][2]+='L'
                     break
                 else:
                     pass
@@ -25,7 +28,10 @@ def generate_odt_map(measurement_list):
                 if odt_map[i][1] >= 2:
                     odt_map[i][0].append(m[0])
                     odt_map[i][1] -= 2
-                    odt_map[i][2]+='H'
+                    if m[1] == 'SWORD':
+                        odt_map[i][2]+='h'
+                    else:
+                        odt_map[i][2]+='H'
                     break
                 else:
                     pass

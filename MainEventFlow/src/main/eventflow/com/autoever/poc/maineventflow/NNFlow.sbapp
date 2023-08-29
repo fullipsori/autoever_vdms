@@ -21,15 +21,11 @@
         </dynamic-variables>
         <stream name="InputStream">
             <schema>
-                <field name="cellDiffs" type="list">
-                    <element-type type="long"/>
-                </field>
-                <field name="deltaTB" type="double"/>
-                <field name="deltaVol" type="long"/>
-                <field name="dVols" type="list">
-                    <element-type type="double"/>
-                </field>
-                <field name="maxTB" type="double"/>
+                <field name="baseTime" type="long"/>
+                <field name="cellData" type="string"/>
+                <field name="CF_OBC_DCChargingStat" type="string"/>
+                <field name="chargingNow" type="long"/>
+                <field name="deltaTime" type="double"/>
                 <field name="messageID" type="string"/>
                 <field name="mgmtNO" type="string"/>
                 <field name="RawParsed" type="tuple">
@@ -55,34 +51,14 @@
                         <field name="rawChargingNow" type="long"/>
                         <field name="rawISOL" type="long"/>
                         <field name="rawFaultCode" type="long"/>
+                        <field name="rawNvmAccChaAh" type="long"/>
+                        <field name="rawNvmAccDhaAh" type="long"/>
                     </schema>
                 </field>
-                <field name="RESs" type="string"/>
-                <field name="terminalID" type="string"/>
-                <field name="vehicleKeyID" type="long"/>
-                <field name="baseTime" type="long"/>
-                <field name="deltaTime" type="double"/>
                 <field name="realTime" type="long"/>
                 <field name="rootCount" type="int"/>
-                <field name="cellData" type="string"/>
-                <field name="cellDiffData" type="string"/>
-                <field name="msrTBData" type="string"/>
-                <field name="dVol" type="string"/>
-                <field name="maxDVolVal" type="double"/>
-                <field name="maxDVolCells" type="string"/>
-                <field name="SOC" type="double"/>
-                <field name="IBM" type="double"/>
-                <field name="chargingNow" type="long"/>
-                <field name="ISOL" type="long"/>
-                <field name="maxCDiffVal" type="long"/>
-                <field name="maxCDiffCells" type="string"/>
-                <field name="faultCode" type="long"/>
-                <field name="CF_Clu_Odometer" type="string"/>
-                <field name="CF_Vcu_GarSelDisp" type="string"/>
-                <field name="CR_Mcu_VehSpdDec_Kph" type="string"/>
-                <field name="CR_Mcu_VehSpd_Kph" type="string"/>
-                <field name="CF_OBC_DCChargingStat" type="string"/>
-                <field name="CF_Bms_ChgSts" type="string"/>
+                <field name="terminalID" type="string"/>
+                <field name="vehicleKeyID" type="long"/>
                 <field name="IsEnded" type="bool"/>
                 <field name="IsStarted" type="bool"/>
             </schema>
@@ -235,8 +211,8 @@
             <param name="InstanceType" value="Global"/>
             <param name="LocalInstanceId" value="nn_instance"/>
             <param name="LogLevel" value="INFO"/>
-            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;y_predict&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;count&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;    &lt;field name=&quot;terminalID&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;mgmtNO&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;rootCount&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;cells&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;ccps&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;list&quot;&gt;&#13;&#10;            &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;        &lt;/element-type&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;realTimes&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
-            <param name="Script" value="y_predict=predict(inputCell, inputCcp)&#13;&#10;y_predict=list(y_predict)&#13;&#10;&#13;&#10;&#13;&#10;        "/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;y_predict&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;cellScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;otherScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;count&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;    &lt;field name=&quot;terminalID&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;mgmtNO&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;rootCount&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;cells&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;ccps&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;list&quot;&gt;&#13;&#10;            &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;        &lt;/element-type&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;realTimes&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value="cellScale, otherScale, y_predict=predict(inputCell, inputCcp)&#13;&#10;cellScale=list(cellScale)&#13;&#10;otherScale=list(otherScale)&#13;&#10;y_predict=list(y_predict)&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;        "/>
             <param name="ScriptFile" value=""/>
             <param name="ScriptSource" value="Script text"/>
             <param name="amsRequiredOnStartup" value="false"/>
@@ -284,6 +260,8 @@
                     <include field="soc">ccps[each.index][6]</include>
                     <include field="deltaVoltage">ccps[each.index][7]</include>
                     <include field="deltaTemp">ccps[each.index][8]</include>
+                    <include field="cellScale">joinCCPNumberList(cellScale)</include>
+                    <include field="otherScale">joinCCPNumberList(otherScale)</include>
                     <include field="predict">each.element</include>
                 </expressions>
             </target-list>

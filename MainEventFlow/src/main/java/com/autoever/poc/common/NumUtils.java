@@ -19,13 +19,33 @@ public class NumUtils {
 		}
 		return byteBuffer.rewind().getInt();
 	}
+
+	public static int getIntFromBigWithSigned(byte[] data, int sIndex, int size, boolean signed) {
+		ByteBuffer byteBuffer = ByteBuffer.allocate(INT_SIZE).order(ByteOrder.BIG_ENDIAN);
+		byteBuffer.clear();
+		int start = INT_SIZE - size;
+		if(signed && (data[0]&0x80)==0x80) {
+			for(int i=0;i<size; i++) {
+				byteBuffer.put(i, (byte)0xff);
+			}
+		}
+		for(int i=0;i<size; i++) {
+			byteBuffer.put(start+i, data[sIndex+i]);
+		}
+		return byteBuffer.rewind().getInt();
+	}
 	
-	public static int getIntFromLittle(byte[] data, int sIndex, int size) {
+	public static int getIntFromLittleWithSigned(byte[] data, int sIndex, int size, boolean signed) {
 
 		ByteBuffer byteBuffer = ByteBuffer.allocate(INT_SIZE).order(ByteOrder.LITTLE_ENDIAN);
 		byteBuffer.clear();
 		for(int i=0;i<size; i++) {
 			byteBuffer.put(i, data[sIndex+i]);
+		}
+		if(signed && (data[sIndex+size-1]&0x80)==0x80) {
+			for(int i=size; i<INT_SIZE-size;i++) {
+				byteBuffer.put(i, (byte)0xff);
+			}
 		}
 		return byteBuffer.rewind().getInt();
 	}
@@ -39,11 +59,31 @@ public class NumUtils {
 		}
 		return byteBuffer.rewind().getLong();
 	}
+
+	public static long getLongFromBigWithSigned(byte[] data, int sIndex, int size, boolean signed) {
+		ByteBuffer byteBuffer = ByteBuffer.allocate(LONG_SIZE).order(ByteOrder.BIG_ENDIAN);
+		byteBuffer.clear();
+		int start = LONG_SIZE - size;
+		if(signed && (data[0]&0x80)==0x80) {
+			for(int i=0; i < start; i++) {
+				byteBuffer.put(i, (byte)0xff);
+			}
+		}
+		for(int i=0;i<size; i++) {
+			byteBuffer.put(start+i, data[sIndex+i]);
+		}
+		return byteBuffer.rewind().getLong();
+	}
 	
-	public static long getLongFromLittle(byte[] data, int sIndex, int size) {
+	public static long getLongFromLittleWithSigned(byte[] data, int sIndex, int size, boolean signed) {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(LONG_SIZE).order(ByteOrder.LITTLE_ENDIAN);
 		for(int i=0;i<size; i++) {
 			byteBuffer.put(i, data[sIndex+i]);
+		}
+		if(signed && (data[sIndex+size-1]&0x80)==0x80) {
+			for(int i=size; i<LONG_SIZE;i++) {
+				byteBuffer.put(i, (byte)0xff);
+			}
 		}
 		return byteBuffer.rewind().getLong();
 	}
@@ -73,7 +113,7 @@ public class NumUtils {
 	}
 	
 	public static byte[] getLittleByteArrayFromLong(long data, int size) {
-		byte[] byteBuffer = ByteBuffer.allocate(LONG_SIZE).order(ByteOrder.BIG_ENDIAN).putLong(data).array();
+		byte[] byteBuffer = ByteBuffer.allocate(LONG_SIZE).order(ByteOrder.LITTLE_ENDIAN).putLong(data).array();
 		if(LONG_SIZE == size)
 			return byteBuffer;
 		else

@@ -264,7 +264,7 @@
                 <expressions>
                     <replace field="command">coalesce(input1.command, 'subscribe')</replace>
                     <replace field="topic">coalesce(input.topic, 'AutoSubmitReq')</replace>
-                    <include field="time">to_milliseconds(now()) - 60*1000*60*18</include>
+                    <include field="time">to_milliseconds(now()) - 60*1000*60*12</include>
                 </expressions>
             </target-list>
         </box>

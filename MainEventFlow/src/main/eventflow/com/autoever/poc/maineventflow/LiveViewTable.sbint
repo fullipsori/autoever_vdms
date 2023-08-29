@@ -84,12 +84,15 @@
             <field description="CellDiff 최대 Cell 들" name="maxCDiffCells" type="string"/>
             <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
             <field description="에러코드" name="faultCode" type="long"/>
+            <field description="누적충전량" name="nvmAccChaAh" type="long"/>
+            <field description="누적방전량" name="nvmAccDhaAh" type="long"/>
             <field description="주행거리" name="CF_Clu_Odometer" type="string"/>
             <field description="기어포지션" name="CF_Vcu_GarSelDisp" type="string"/>
             <field description="차속, 소수점" name="CR_Mcu_VehSpdDec_Kph" type="string"/>
             <field description="차속, 소수점" name="CR_Mcu_VehSpd_Kph" type="string"/>
             <field description="DC충전flag" name="CF_OBC_DCChargingStat" type="string"/>
             <field description="충전상태" name="CF_Bms_ChgSts" type="string"/>
+            <field description="외기온도" name="CR_Datc_OutTempC" type="string"/>
         </schema>
         <schema name="CanDataTableSchema">
             <field description="sb 에서 생성한 message unique id (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
@@ -193,6 +196,8 @@
             <field name="rootCount" type="int"/>
             <field name="realTime" type="long"/>
             <field name="cellData" type="string"/>
+            <field name="cellScale" type="string"/>
+            <field name="otherScale" type="string"/>
             <field name="ibm" type="double"/>
             <field name="isol" type="double"/>
             <field name="vbMax" type="double"/>

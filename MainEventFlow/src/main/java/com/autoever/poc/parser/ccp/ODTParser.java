@@ -1,6 +1,7 @@
 package com.autoever.poc.parser.ccp;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -121,7 +123,14 @@ public class ODTParser implements Parseable, DataSavable {
 		odt_map.stream().filter(d -> ((Integer)d[1]) >= needCount).findFirst().ifPresent(a -> {
 			((ArrayList<String>)a[0]).add((String)el.getFirst());
 			a[1] = (Integer)a[1] - needCount;
-			a[2] = ((String)a[2]).concat(type);
+			String typeValue = (String)el.getSecond();
+			switch (typeValue) {
+				case "SLONG": a[2] = ((String)a[2]).concat("l"); break;
+				case "ULONG": a[2] = ((String)a[2]).concat("L"); break;
+				case "SWORD": a[2] = ((String)a[2]).concat("h"); break;
+				case "UWORD": a[2] = ((String)a[2]).concat("H"); break;
+				default : a[2] = ((String)a[2]).concat("B"); break;
+			}
 		});
 	};
 	
@@ -134,8 +143,9 @@ public class ODTParser implements Parseable, DataSavable {
 		
 		Map<String, List<Pair<?,?>>> groups = dataList.stream()
 			.collect(Collectors.groupingBy(pair -> {
-				if(longStrSet.contains(pair.getSecond())) return "L";
-				else if(wordStrSet.contains(pair.getSecond())) return "H";
+				String typeValue = (String) pair.getSecond();
+				if(longStrSet.contains(typeValue)) return "L";
+				else if(wordStrSet.contains(typeValue)) return "H";
 				else return "B";
 			}));
 				
@@ -159,6 +169,12 @@ public class ODTParser implements Parseable, DataSavable {
 		// last Element Index (start: 0x0a + (first_7 -1) -1)
 		ccpRawEndCmd = CCPPreProcessor.ccpStartCmd - 1 +  IntStream.range(0, odt_map.size()).filter(d -> ((Integer)((Object[])odt_map.get(d))[1]) == 7).findFirst().orElse(odt_map.size());
 		if(ccpRawEndCmd > CCPPreProcessor.ccpEndCmd) ccpRawEndCmd = CCPPreProcessor.ccpEndCmd;
+	}
+	
+	public void printODTMap() {
+		odt_map.stream().forEach(e -> {
+			System.out.printf("%s,%d,%s\n", String.join(",", (ArrayList<String>)e[0]), e[1], e[2]);
+		});
 	}
 	
 	private static Schema prevTupleSchema = new Schema("", List.of(
@@ -226,5 +242,17 @@ public class ODTParser implements Parseable, DataSavable {
 	@Override
 	public Schema getSaveSchema() {
 		return saveSchema;
+	}
+	
+	public static void main(String[] args) {
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder;
+
+		try {
+			documentBuilder = factory.newDocumentBuilder();
+			new ODTParser(Paths.get("d://projects/vdms/resources/evt/219054.evt"), documentBuilder).printODTMap();
+			
+		}catch(Exception e) {}
 	}
 }

@@ -29,6 +29,8 @@
                 <field name="rawChargingNow" type="long"/>
                 <field name="rawISOL" type="long"/>
                 <field name="rawFaultCode" type="long"/>
+                <field name="rawNvmAccChaAh" type="long"/>
+                <field name="rawNvmAccDhaAh" type="long"/>
             </schema>
         </named-schemas>
         <parameter-definitions>
@@ -393,6 +395,8 @@
                     <include field="maxCDiffVal">tMaxCDiffVal</include>
                     <include field="maxCDiffCells">getCCPMaxCDiffCells(cellDiffs, tMaxCDiffVal)</include>
                     <include field="faultCode">RawParsed.rawFaultCode</include>
+                    <include field="nvmAccChaAh">RawParsed.rawNvmAccChaAh</include>
+                    <include field="nvmAccDhaAh">RawParsed.rawNvmAccDhaAh</include>
                 </expressions>
             </target-list>
         </box>
@@ -531,6 +535,7 @@
                     <include field="CR_Mcu_VehSpd_Kph">GetValueInFieldList(fieldDatas, 'CR_Mcu_VehSpd_Kph')</include>
                     <include field="CF_OBC_DCChargingStat">GetValueInFieldList(fieldDatas, 'CF_OBC_DCChargingStat')</include>
                     <include field="CF_Bms_ChgSts">GetValueInFieldList(fieldDatas, 'CF_Bms_ChgSts')</include>
+                    <include field="CR_Datc_OutTempC">GetValueInFieldList(fieldDatas, 'CR_Datc_OutTempC')</include>
                 </expressions>
             </target-list>
         </box>
@@ -646,6 +651,9 @@
                     <include field="CR_Mcu_VehSpd_Kph"/>
                     <include field="CR_Mcu_VehSpdDec_Kph"/>
                     <include field="faultCode"/>
+                    <include field="CR_Datc_OutTempC"/>
+                    <include field="nvmAccChaAh"/>
+                    <include field="nvmAccDhaAh"/>
                 </item>
             </target-list>
         </box>
@@ -680,12 +688,9 @@
         <box name="Union3" type="union">
             <input port="1" stream="out:Split3_2"/>
             <input port="2" stream="out:RemoveUnused_1"/>
-            <output port="1" stream="ToNNFlow"/>
+            <output port="1" stream="out:Union3_1"/>
             <param name="strict" value="false"/>
         </box>
-        <output-stream name="ToNNFlow">
-            <param name="connection" value="'nnflow.InputStream'"/>
-        </output-stream>
         <box name="PublishCCPTrig" type="outputadapter">
             <input port="1" stream="out:MapToCCPTrig_1"/>
             <output port="1" stream="out:PublishCCPTrig_1"/>
@@ -738,6 +743,31 @@
             <param name="uri" value="${LV_SERVER_URI}"/>
             <param name="useRuntimeURI" value="false"/>
         </box>
+        <box name="RemoveFields" type="map">
+            <input port="1" stream="out:Union3_1"/>
+            <output port="1" stream="ToNNFlow"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="baseTime"/>
+                    <include field="cellData"/>
+                    <include field="CF_OBC_DCChargingStat"/>
+                    <include field="chargingNow"/>
+                    <include field="deltaTime"/>
+                    <include field="messageID"/>
+                    <include field="mgmtNO"/>
+                    <include field="RawParsed"/>
+                    <include field="realTime"/>
+                    <include field="rootCount"/>
+                    <include field="terminalID"/>
+                    <include field="vehicleKeyID"/>
+                    <include field="IsEnded"/>
+                    <include field="IsStarted"/>
+                </item>
+            </target-list>
+        </box>
+        <output-stream name="ToNNFlow">
+            <param name="connection" value="'nnflow.InputStream'"/>
+        </output-stream>
         <box name="Union" type="union">
             <input port="1" stream="out:PublishPerf_1"/>
             <input port="2" stream="out:PublishCP_1"/>

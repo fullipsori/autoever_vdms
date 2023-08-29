@@ -14,7 +14,7 @@
         <import alias="DBCTableSchema" from="com.autoever.poc.maineventflow.DBCSchema" item="DBCTableSchema"/>
         <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
         <import from="com.autoever.poc.maineventflow.kafkaSchemas"/>
-        <constant expr="['CF_Clu_Odometer', 'CF_Vcu_GarSelDisp', 'CR_Mcu_VehSpdDec_Kph', 'CR_Mcu_VehSpd_Kph', 'CF_OBC_DCChargingStat', 'CF_Bms_ChgSts']" name="MATCH_SIGNALS"/>
+        <constant expr="['CF_Clu_Odometer', 'CF_Vcu_GarSelDisp', 'CR_Mcu_VehSpdDec_Kph', 'CR_Mcu_VehSpd_Kph', 'CF_OBC_DCChargingStat', 'CF_Bms_ChgSts', 'CR_Datc_OutTempC']" name="MATCH_SIGNALS"/>
         <parameter-definitions>
             <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
             <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
