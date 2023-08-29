@@ -9,6 +9,7 @@
             <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.NNFlow"/>
         </type-metadata>
         <memory-model-settings/>
+        <import alias="CCPRawParsedSchema" from="com.autoever.poc.parser.CCPParser_v3" item="CCPRawParsedSchema"/>
         <import alias="FieldType" from="com.autoever.poc.parser.CCPParser_v3" item="FieldType"/>
         <parameter-definitions>
             <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
@@ -28,33 +29,7 @@
                 <field name="deltaTime" type="double"/>
                 <field name="messageID" type="string"/>
                 <field name="mgmtNO" type="string"/>
-                <field name="RawParsed" type="tuple">
-                    <schema>
-                        <field name="rawCellData" type="list">
-                            <element-type type="tuple">
-                                <schema>
-                                    <field name="fieldName" type="string"/>
-                                    <field name="fieldValue" type="long"/>
-                                </schema>
-                            </element-type>
-                        </field>
-                        <field name="rawMsrTBData" type="list">
-                            <element-type type="tuple">
-                                <schema>
-                                    <field name="fieldName" type="string"/>
-                                    <field name="fieldValue" type="long"/>
-                                </schema>
-                            </element-type>
-                        </field>
-                        <field name="rawSOC" type="double"/>
-                        <field name="rawIBM" type="double"/>
-                        <field name="rawChargingNow" type="long"/>
-                        <field name="rawISOL" type="long"/>
-                        <field name="rawFaultCode" type="long"/>
-                        <field name="rawNvmAccChaAh" type="long"/>
-                        <field name="rawNvmAccDhaAh" type="long"/>
-                    </schema>
-                </field>
+                <field name="RawParsed" type="tuple" value="CCPRawParsedSchema"/>
                 <field name="realTime" type="long"/>
                 <field name="rootCount" type="int"/>
                 <field name="terminalID" type="string"/>
