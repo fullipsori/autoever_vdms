@@ -20,6 +20,11 @@
         <dynamic-variables>
             <dynamic-variable initial-expression="emptylist(long(null))" name="VIDs" setter-expression="CCPVIDs" setter-stream="OutputVarStream"/>
         </dynamic-variables>
+        <stream name="ControlStream">
+            <schema>
+                <field name="command" type="string"/>
+            </schema>
+        </stream>
         <stream name="InputStream">
             <schema>
                 <field name="baseTime" type="long"/>
@@ -51,6 +56,12 @@
             <param name="autogen-nomatch-port" value="false"/>
             <param name="expression.0" value="IsEnded || IsStarted"/>
             <param name="expression.1" value="chargingNow==1 &amp;&amp; getDoubleFromStr(CF_OBC_DCChargingStat, 0.0)==1.0"/>
+        </box>
+        <box name="Filter2" type="filter">
+            <input port="1" stream="ControlStream"/>
+            <output port="1" stream="out:Filter2_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
         </box>
         <box name="Split" type="split">
             <input port="1" stream="out:Init_1"/>
@@ -84,16 +95,6 @@
                 </expressions>
             </target-list>
         </box>
-        <box name="GetVIDs" type="map">
-            <input port="1" stream="out:Split_2"/>
-            <output port="1" stream="OutputVarStream"/>
-            <target-list>
-                <item name="input" selection="all"/>
-                <expressions>
-                    <include field="CCPVIDs">maplist(function(e string) {long(e)}, GetFilenameListInPath("${RESOURCE_ROOT}/evt", 'evt'))</include>
-                </expressions>
-            </target-list>
-        </box>
         <box name="InitModel" type="map">
             <input port="1" stream="out:Split_1"/>
             <output port="1" stream="out:InitModel_1"/>
@@ -104,7 +105,22 @@
                 </expressions>
             </target-list>
         </box>
-        <output-stream name="OutputVarStream"/>
+        <box name="Union2" type="union">
+            <input port="1" stream="out:Split_2"/>
+            <input port="2" stream="out:Filter2_1"/>
+            <output port="1" stream="out:Union2_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="GetVIDs" type="map">
+            <input port="1" stream="out:Union2_1"/>
+            <output port="1" stream="OutputVarStream"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="CCPVIDs">maplist(function(e string) {long(e)}, GetFilenameListInPath("${RESOURCE_ROOT}/evt", 'evt'))</include>
+                </expressions>
+            </target-list>
+        </box>
         <box name="LoadModel" type="java">
             <input port="1" stream="out:InitModel_1"/>
             <output port="1" stream="OutputLoadModelStream"/>
@@ -133,6 +149,7 @@
         </box>
         <error-output-stream name="ErrorOutputStream"/>
         <output-stream name="OutputLoadModelStream"/>
+        <output-stream name="OutputVarStream"/>
         <box name="AggParamPerCar" type="aggregate">
             <input dispatch="numerical" key="routingIndex" port="1" stream="out:Union_1"/>
             <output port="1" stream="out:AggParamPerCar_1"/>
@@ -173,6 +190,7 @@
                 <item name="input" selection="none"/>
                 <expressions>
                     <include field="inputVars.*">*</include>
+                    <include field="inputVars.startTime">to_milliseconds(now())</include>
                 </expressions>
             </target-list>
         </box>
@@ -186,7 +204,7 @@
             <param name="InstanceType" value="Global"/>
             <param name="LocalInstanceId" value="nn_instance"/>
             <param name="LogLevel" value="INFO"/>
-            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;y_predict&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;cellScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;otherScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;count&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;    &lt;field name=&quot;terminalID&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;mgmtNO&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;rootCount&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;cells&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;ccps&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;list&quot;&gt;&#13;&#10;            &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;        &lt;/element-type&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;realTimes&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;y_predict&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;cellScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;otherScale&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;count&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;    &lt;field name=&quot;terminalID&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;mgmtNO&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;rootCount&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;cells&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;ccps&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;list&quot;&gt;&#13;&#10;            &lt;element-type type=&quot;double&quot;/&gt;&#13;&#10;        &lt;/element-type&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;realTimes&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;long&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;startTime&quot; type=&quot;long&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
             <param name="Script" value="cellScale, otherScale, y_predict=predict(inputCell, inputCcp)&#13;&#10;cellScale=list(cellScale)&#13;&#10;otherScale=list(otherScale)&#13;&#10;y_predict=list(y_predict)&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;        "/>
             <param name="ScriptFile" value=""/>
             <param name="ScriptSource" value="Script text"/>

@@ -264,7 +264,7 @@
                 <expressions>
                     <replace field="command">coalesce(input1.command, 'subscribe')</replace>
                     <replace field="topic">coalesce(input.topic, 'AutoSubmitReq')</replace>
-                    <include field="time">to_milliseconds(now()) - 60*1000*60*12</include>
+                    <include field="time">to_milliseconds(now()) - 60*1000*60*2</include>
                 </expressions>
             </target-list>
         </box>
@@ -541,7 +541,7 @@
         </output-stream>
         <box name="Map3" type="map">
             <input port="1" stream="out:Split5_2"/>
-            <output port="1" stream="ToCanDBCControlStream"/>
+            <output port="1" stream="out:Map3_1"/>
             <target-list>
                 <item name="input" selection="all"/>
                 <expressions>
@@ -556,9 +556,6 @@
             <output port="1" stream="out:Union5_1"/>
             <param name="strict" value="false"/>
         </box>
-        <output-stream name="ToCanDBCControlStream">
-            <param name="connection" value="'candbcflow.ControlStream'"/>
-        </output-stream>
         <box name="Query2Mgmt" type="query">
             <input port="1" stream="out:Union5_1"/>
             <output port="1" stream="out:Query2Mgmt_1"/>
@@ -593,6 +590,18 @@
                 <item name="input" selection="all"/>
             </target-list>
         </box>
+        <box name="Split6" type="split">
+            <input port="1" stream="out:Map3_1"/>
+            <output port="1" stream="ToCanDBCControlStream"/>
+            <output port="2" stream="ToNNControlStream"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <output-stream name="ToCanDBCControlStream">
+            <param name="connection" value="'candbcflow.ControlStream'"/>
+        </output-stream>
+        <output-stream name="ToNNControlStream">
+            <param name="connection" value="'nnflow.ControlStream'"/>
+        </output-stream>
         <box name="CheckMgmtNO" type="filter">
             <input port="1" stream="out:Query2Mgmt_1"/>
             <output port="1" stream="out:CheckMgmtNO_1"/>
