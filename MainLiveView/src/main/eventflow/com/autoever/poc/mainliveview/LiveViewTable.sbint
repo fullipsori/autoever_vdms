@@ -60,12 +60,9 @@
         </schema>
         <schema name="CP_DataTableSchema">
             <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
-            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
             <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
             <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
             <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
-            <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
-            <field description="kafka DeltaTime" name="deltaTime" type="double"/>
             <field description="event 발생 시간" name="realTime" type="long"/>
             <field description="최대(cell)-최소(cell)" name="deltaVol" type="long"/>
             <field description="cell 데이터 값" name="cellData" type="string"/>
@@ -80,7 +77,6 @@
             <field description="배터리 전류값" name="IBM" type="double"/>
             <field description="배터리 충전 상태" name="chargingNow" type="long"/>
             <field description="절연 저항값" name="ISOL" type="long"/>
-            <field description="Cell 저항값(1초 변화량)" name="RESs" type="string"/>
             <field description="CellDiff 최대 Cell 들" name="maxCDiffCells" type="string"/>
             <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
             <field description="에러코드" name="faultCode" type="long"/>
@@ -93,6 +89,33 @@
             <field description="DC충전flag" name="CF_OBC_DCChargingStat" type="string"/>
             <field description="충전상태" name="CF_Bms_ChgSts" type="string"/>
             <field description="외기온도" name="CR_Datc_OutTempC" type="string"/>
+        </schema>
+        <schema name="CP_DataTableSchema2">
+            <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="event 발생 시간" name="realTime" type="long"/>
+            <field description="배터리팩내 개별 온도 센서" name="msrTBData" type="string"/>
+            <field description="최대-최소 온도" name="deltaTB" type="double"/>
+            <field description="최대 온도" name="maxTB" type="double"/>
+            <field description="외기온도" name="CR_Datc_OutTempC" type="string"/>
+        </schema>
+        <schema name="CP_DataTableSchema3">
+            <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="event 발생 시간" name="realTime" type="long"/>
+            <field description="최대(cell)-최소(cell)" name="deltaVol" type="long"/>
+            <field description="셀 전압 편차 절대값 최대" name="maxDVolVal" type="double"/>
+            <field description="배터리 SOC 상태" name="SOC" type="double"/>
+            <field description="배터리 충전 상태" name="chargingNow" type="long"/>
+            <field description="절연 저항값" name="ISOL" type="long"/>
+            <field description="누적충전량" name="nvmAccChaAh" type="long"/>
+            <field description="누적방전량" name="nvmAccDhaAh" type="long"/>
+            <field description="주행거리" name="CF_Clu_Odometer" type="string"/>
+            <field description="차속, 소수점" name="CR_Mcu_VehSpdDec_Kph" type="string"/>
         </schema>
         <schema name="CanDataTableSchema">
             <field description="sb 에서 생성한 message unique id (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
@@ -160,6 +183,39 @@
             <field description="DIAG  RAW 전체 데이터" name="raw" type="string"/>
             <field description="DTC TYPE (python 파싱)" name="dtc_type" type="string"/>
         </schema>
+        <schema name="EVChargePVTableSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="timestamp"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field name="eventName" type="string"/>
+            <field name="value" type="double"/>
+            <field name="xEV_SocDis" type="double"/>
+            <field name="VCMS_PlugConnect" type="double"/>
+            <field name="VCMS_ChgInletTmpMax" type="double"/>
+            <field name="CCM_EvseTargetActivePwr" type="double"/>
+            <field name="VCMS_TrgtPowerProfile" type="double"/>
+            <field name="OBC_AcL1CurrVal" type="double"/>
+            <field name="OBC_AcVoltVal" type="double"/>
+            <field name="OBC_AC_OUT_KW" type="double"/>
+            <field name="OBC_OpModeSta" type="double"/>
+            <field name="CR_HU_DepartSet1_Hour" type="double"/>
+            <field name="CR_HU_DepartSet1_Min" type="double"/>
+            <field name="CHRG_ScChgTargetSOCSync" type="double"/>
+            <field name="VCMS_ChgTransferType" type="double"/>
+        </schema>
+        <schema name="EVChargeTableSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="timestamp"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="event 이름" name="eventName" type="string"/>
+            <field description="event 값" name="value" type="double"/>
+        </schema>
         <schema name="GPSDataTableSchema">
             <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
             <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
@@ -167,13 +223,28 @@
             <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
             <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
             <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
-            <field description="이벤트 발생 시간 (baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="이벤트 발생 시간 (baseTime + deltaTime)" name="realTime" type="timestamp"/>
             <field description="위도" name="Latitude" type="double"/>
             <field description="경도" name="Longitude" type="double"/>
-            <field description="고도" name="Altitude" type="double"/>
+            <field name="Heading" type="int"/>
             <field description="속도" name="Velocity" type="double"/>
+            <field description="고도" name="Altitude" type="double"/>
             <field description="남북" name="NS" type="string"/>
             <field description="동서" name="EW" type="string"/>
+            <field description="시도" name="addrDo" type="string"/>
+            <field description="구" name="addrGu" type="string"/>
+            <field description="동" name="addrDong" type="string"/>
+            <field description="도로" name="addrRoad" type="string"/>
+        </schema>
+        <schema name="NotificationTableSchema">
+            <field name="messageID" type="string"/>
+            <field name="vehicleKeyID" type="long"/>
+            <field name="rootCount" type="int"/>
+            <field name="mgmtNO" type="string"/>
+            <field name="messageType" type="int"/>
+            <field name="notiCode" type="string"/>
+            <field name="realTime" type="timestamp"/>
+            <field name="sendTime" type="timestamp"/>
         </schema>
         <schema name="PerfDataSchema">
             <field description="vehicleKeyID + timestamp" name="kafka_msg_id" type="string"/>
@@ -208,6 +279,81 @@
             <field name="deltaVoltage" type="double"/>
             <field name="deltaTemp" type="double"/>
             <field name="predict" type="long"/>
+        </schema>
+        <schema name="SBWCPVTableSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="timestamp"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="event의 카테고리" name="category" type="string"/>
+            <field description="event 이름" name="eventName" type="string"/>
+            <field description="event 값" name="value" type="double"/>
+            <field description="LDC(메인전원)고장여부" name="LDC_SysFltSta" type="int"/>
+            <field description="ALDC (리던던시전원) 고장 여부" name="ALDC_SysFltSta" type="int"/>
+            <field description="SFA1 Ignition Status" name="SFA_IgnitionStatus" type="int"/>
+            <field description="RWA1 Ignition Status" name="RWA_IgnitionStatus" type="int"/>
+            <field description="SFA2 Ignition Status" name="SFA_R2_IgnitionStatus" type="int"/>
+            <field description="RWA2 Ignition Status" name="RWA_R2_IgnitionStatus" type="int"/>
+            <field description="클러스터 Warning Lamp 점등 상태" name="SFA_CluWarningLamp" type="int"/>
+            <field description="클러스터 Warning Lamp 점등 상태" name="SFA_R2_CluWarningLamp" type="int"/>
+            <field description="SFA1 Warning Lamp Flag" name="SFA_WarningLamp" type="int"/>
+            <field description="RWA1 Warning Lamp Flag" name="RWA_WarningLamp" type="int"/>
+            <field description="SFA2 Warning Lamp Flag" name="SFA_R2_WarningLamp" type="int"/>
+            <field description="RWA2 Warning Lamp Flag" name="RWA_R2_WarningLamp" type="int"/>
+            <field description="SFA1 컨트롤 모드" name="SFA_ControlMode" type="int"/>
+            <field description="RWA1 컨트롤 모드" name="RWA_ControlMode" type="int"/>
+            <field description="SFA2 컨트롤 모드" name="SFA_R2_ControlMode" type="int"/>
+            <field description="RWA2 컨트롤 모드" name="RWA_R2_ControlMode" type="int"/>
+            <field description="SFA1 Ecu Role" name="SFA_EcuRole" type="int"/>
+            <field description="RWA1 Ecu Role" name="RWA_EcuRole" type="int"/>
+            <field description="SFA2 Ecu Role" name="SFA_R2_EcuRole" type="int"/>
+            <field description="RWA2 Ecu Role" name="RWA_R2_EcuRole" type="int"/>
+            <field description="SFA1에서 송출하는 SFA1 ECU Status (본인)" name="SFA_SFA1EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 SFA2 ECU Status" name="SFA_SFA2EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 RWA1 ECU Status" name="SFA_RWA1EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 RWA2 ECU Status" name="SFA_RWA2EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 SFA1 ECU Status" name="RWA_SFA1EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 SFA2 ECU Status" name="RWA_SFA2EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 RWA1 ECU Status (본인)" name="RWA_RWA1EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 RWA2 ECU Status" name="RWA_RWA2EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 SFA1 ECU Status" name="SFA_R2_SFA1EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 SFA2 ECU Status (본인)" name="SFA_R2_SFA2EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 RWA1 ECU Status" name="SFA_R2_RWA1EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 RWA2 ECU Status" name="SFA_R2_RWA2EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 SFA1 ECU Status" name="RWA_R2_SFA1EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 SFA2 ECU Status" name="RWA_R2_SFA2EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 RWA1 ECU Status" name="RWA_R2_RWA1EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 RWA2 ECU Status (본인)" name="RWA_R2_RWA2EcuStatus" type="int"/>
+            <field description="SbW Centering Status" name="SbW_CenteringStatus" type="int"/>
+            <field description="SbW Centering Status" name="SbW_R2_CenteringStatus" type="int"/>
+            <field description="SFA1 Centering Status" name="SFA_CenteringStatus" type="int"/>
+            <field description="RWA1 Centering and Alignment Status" name="RWA_CenteringStatus" type="int"/>
+            <field description="SFA2 Centering Status" name="SFA_R2_CenteringStatus" type="int"/>
+            <field description="RWA2 Centering and Alignment Status" name="RWA_R2_CenteringStatus" type="int"/>
+            <field description="SFA1 Vehicle Speed Limit Control Request Signal" name="SFA_CreepReqActSta" type="int"/>
+            <field description="RWA1 Vehicle Speed Limit Control Request Signal" name="RWA_CreepReqActSta" type="int"/>
+            <field description="SFA2 Vehicle Speed Limit Control Request Signal" name="SFA_R2_CreepReqActSta" type="int"/>
+            <field description="RWA2 Vehicle Speed Limit Control Request Signal" name="RWA_R2_CreepReqActSta" type="int"/>
+            <field description="SFA1 Failover Active Status" name="SFA_FailoverActvSta" type="int"/>
+            <field description="SFA2 Failover Active Status" name="SFA_R2_FailoverActvSta" type="int"/>
+            <field description="SFA1 OHP Status" name="SFA_OHP_Status" type="int"/>
+            <field description="RWA1 OHP Status" name="RWA_OHP_Status" type="int"/>
+            <field description="SFA2 OHP Status" name="SFA_R2_OHP_Status" type="int"/>
+            <field description="RWA2 OHP Status" name="RWA_R2_OHP_Status" type="int"/>
+            <field description="RWA1 OLP Status" name="RWA_OLP" type="int"/>
+            <field description="RWA2 OLP Status" name="RWA_R2_OLP" type="int"/>
+            <field description="SFA1 Battery Voltage" name="SFA1_BatteryVoltage" type="double"/>
+            <field description="RWA1 Battery Voltage" name="RWA1_BatteryVoltage" type="double"/>
+            <field description="SFA2 Battery Voltage" name="SFA2_BatteryVoltage" type="double"/>
+            <field description="RWA2 Battery Voltage" name="RWA2_BatteryVoltage" type="double"/>
+            <field description="EV READY Status" name="VCU_EvDrvRdySta" type="int"/>
+            <field description="Gear Position Status" name="VCU_GearPosSta" type="int"/>
+            <field description="WHL Speed Front Left" name="WHL_SpdFLVal" type="double"/>
+            <field description="WHL Speed Front Right" name="WHL_SpdFRVal" type="double"/>
+            <field description="WHL Speed Rear Left" name="WHL_SpdRLVal" type="double"/>
+            <field description="WHL Speed Rear Right" name="WHL_SpdRRVal" type="double"/>
         </schema>
     </named-schemas>
     <dynamic-variables/>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ControlEmail">
+        <param name="gui:x" value="-447"/>
+        <param name="gui:y" value="116"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="-962"/>
+        <param name="gui:y" value="126"/>
+    </component>
+    <component name="TestInputStream">
+        <param name="gui:x" value="-1072"/>
+        <param name="gui:y" value="220"/>
+    </component>
+    <component name="LatestSendedTable">
+        <param name="gui:x" value="-706"/>
+        <param name="gui:y" value="319"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="sendInfo">
+        <param name="gui:x" value="-706"/>
+        <param name="gui:y" value="440"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-612"/>
+        <param name="gui:y" value="210"/>
+    </component>
+    <component name="GetMessage">
+        <param name="gui:x" value="-447"/>
+        <param name="gui:y" value="210"/>
+    </component>
+    <component name="InputAdapter">
+        <param name="gui:x" value="-1072"/>
+        <param name="gui:y" value="331"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="-962"/>
+        <param name="gui:y" value="331"/>
+    </component>
+    <component name="Map4">
+        <param name="gui:x" value="-962"/>
+        <param name="gui:y" value="220"/>
+    </component>
+    <component name="SendMail">
+        <param name="gui:x" value="-241"/>
+        <param name="gui:y" value="164"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="-338"/>
+        <param name="gui:y" value="164"/>
+        <param name="gui:bends:1" value="-377,146;-372,184"/>
+        <param name="gui:bends:2" value="-367,240;-359,204"/>
+    </component>
+    <component name="Union2">
+        <param name="gui:x" value="-852"/>
+        <param name="gui:y" value="210"/>
+        <param name="gui:bends:1" value="-892,156;-883,230"/>
+    </component>
+    <component name="initialInsert">
+        <param name="gui:x" value="-852"/>
+        <param name="gui:y" value="331"/>
+    </component>
+    <component name="readSended">
+        <param name="gui:x" value="-773"/>
+        <param name="gui:y" value="210"/>
+    </component>
+    <component name="setSendTime">
+        <param name="gui:x" value="-696"/>
+        <param name="gui:y" value="210"/>
+    </component>
+    <component name="updateSended">
+        <param name="gui:x" value="-533"/>
+        <param name="gui:y" value="210"/>
+    </component>
+</application-layout>

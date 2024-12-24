@@ -234,7 +234,7 @@
                     <replace field="vehicleKeyID">input1.PassThroughFields.kafkaMessage.VehicleKeyID</replace>
                     <replace field="rootCount">input1.PassThroughFields.kafkaMessage.RootCount</replace>
                     <replace field="baseTime">input1.PassThroughFields.kafkaMessage.BaseTime</replace>
-                    <replace field="realTime">long(GetLocalTime(PassThroughFields.kafkaMessage.BaseTime + long(each.element.timestamp), ''))</replace>
+                    <replace field="realTime">long(GetLocalTimeString(long((PassThroughFields.kafkaMessage.BaseTime + each.element.timestamp)*1000), ''))</replace>
                     <replace field="mgmtNO">input1.PassThroughFields.mgmtNO</replace>
                 </expressions>
             </target-list>
@@ -252,7 +252,7 @@
                     <replace field="vehicleKeyID">input1.PassThroughFields.kafkaMessage.VehicleKeyID</replace>
                     <replace field="rootCount">input1.PassThroughFields.kafkaMessage.RootCount</replace>
                     <replace field="baseTime">input1.PassThroughFields.kafkaMessage.BaseTime</replace>
-                    <replace field="realTime">long(GetLocalTime(PassThroughFields.kafkaMessage.BaseTime + long(each.element.timestamp), ''))</replace>
+                    <replace field="realTime">long(GetLocalTimeString(long((PassThroughFields.kafkaMessage.BaseTime + each.element.timestamp)*1000), ''))</replace>
                     <replace field="dtc_code">upper(each.element.dtc_code)</replace>
                     <replace field="mgmtNO">input1.PassThroughFields.mgmtNO</replace>
                 </expressions>
@@ -279,14 +279,14 @@
             <output port="1" stream="out:Sequence2_1"/>
             <param name="output-field" value="sequence2_id"/>
             <param name="sequence-id" value="sequence2id"/>
-            <param name="update-expression" value="sequence2id + 1"/>
+            <param name="update-expression" value="if(sequence2id&lt;100000000) then sequence2id + 1 else 0"/>
         </box>
         <box name="Sequence3" type="seqnum">
             <input port="1" stream="out:DTCIterate_1"/>
             <output port="1" stream="out:Sequence3_1"/>
             <param name="output-field" value="sequence3_id"/>
             <param name="sequence-id" value="sequence3id"/>
-            <param name="update-expression" value="sequence3id + 1"/>
+            <param name="update-expression" value="if(sequence3id&lt;100000000) then sequence3id + 1 else 0"/>
         </box>
         <box name="MapForDiagDataTable" type="map">
             <input port="1" stream="out:Sequence2_1"/>

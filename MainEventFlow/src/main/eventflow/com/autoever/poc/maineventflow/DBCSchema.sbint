@@ -21,7 +21,6 @@
             <field name="sig_length" type="int"/>
             <field name="sig_byte_order" type="string"/>
             <field name="sig_is_signed" type="string"/>
-            <field name="sig_initial" type="int"/>
             <field name="sig_scale" type="double"/>
             <field name="sig_offset" type="double"/>
             <field name="sig_minimum" type="string"/>
@@ -32,6 +31,7 @@
             <field name="sig_mtable" type="string"/>
             <field name="sig_spn" type="string"/>
             <field name="sig_comments" type="string"/>
+            <field name="sig_channel" type="int"/>
         </schema>
     </named-schemas>
     <dynamic-variables/>
@@ -40,6 +40,7 @@
             <primary-index type="btree">
                 <field name="vehicleKeyID"/>
                 <field name="sig_name"/>
+                <field name="sig_channel"/>
             </primary-index>
             <index type="btree">
                 <field name="vehicleKeyID"/>

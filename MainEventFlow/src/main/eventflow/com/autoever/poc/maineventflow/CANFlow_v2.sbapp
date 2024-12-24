@@ -12,7 +12,6 @@
         <implements module-reference="com.autoever.poc.maineventflow.LiveViewTable"/>
         <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
         <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
-        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
         <import alias="CanParamsSchema" from="com.autoever.poc.parser.CANParser_v3" item="CanParamsSchema"/>
         <import alias="ControlCANSchema" from="com.autoever.poc.parser.CANParser_v3" item="ControlCANSchema"/>
         <parameter-definitions>
@@ -22,7 +21,7 @@
         </parameter-definitions>
         <dynamic-variables/>
         <data name="CanParamsTable" shared="false" source="concrete" type="querytable">
-            <param name="storage-method" value="transactional_memory"/>
+            <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
             <param name="table-schema" value="CanParamsSchema"/>
             <param name="truncate" value="false"/>
@@ -39,7 +38,9 @@
             </schema>
         </stream>
         <stream name="InputStream" schema="MainOutputSchema"/>
-        <stream name="UpdateVarStream" schema="ControlCANSchema"/>
+        <stream name="UpdateVarStream">
+            <schema/>
+        </stream>
         <box name="Initialize" type="inputadapter">
             <output port="1" stream="out:Initialize_1"/>
             <param name="start:state" value="true"/>
@@ -55,7 +56,7 @@
                     <include field="command">'Load'</include>
                     <include field="policyFolder">"${RESOURCE_ROOT}/policy"</include>
                     <include field="nameFilter">'DM1_CM_SINGLE_FRAME'</include>
-                    <include field="baseValue">string(null)</include>
+                    <include field="baseValue">double(null)</include>
                 </expressions>
             </target-list>
         </box>
@@ -113,7 +114,7 @@
             <param name="parallel" value="true"/>
             <param name="parallel-region-queue-max-outstanding-tuples" value="5"/>
             <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
-            <multiplicity number="3" type="concrete"/>
+            <multiplicity number="10" type="concrete"/>
             <param name="file" value="com.autoever.poc.parser.CANParser_v3"/>
             <input-dataref name="CanParamsTable" table="CanParamsTable"/>
             <parameter-bindings>

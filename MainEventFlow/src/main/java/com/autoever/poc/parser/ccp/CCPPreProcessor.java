@@ -18,8 +18,8 @@ public class CCPPreProcessor implements PreProcessable {
 	public static final int ccpStartCmd = 0x0a;
 	public static final int ccpEndCmd = 0x3b;
 	private RawParsedData rawParsedData = null;
-	private final int sizeCellData = 90;
-	private final int sizeMsrTBData = 9;
+//	private final int sizeCellData = 90;
+//	private final int sizeMsrTBData = 9;
 
 	public CCPPreProcessor() {
 	}
@@ -36,8 +36,8 @@ public class CCPPreProcessor implements PreProcessable {
 		private Long rawNvmAccDhaAh = null;
 		
 		private boolean validate() {
-			if(rawCellData.size() != sizeCellData) return false;
-			if(rawMsrTBData.size() != sizeMsrTBData) return false;
+			if(rawCellData.size() <= 0) return false;
+			if(rawMsrTBData.size() <= 0) return false;
 			if(rawSOC == null) return false;
 			if(rawIBM == null) return false;
 			if(rawChargingNow == null) return false;

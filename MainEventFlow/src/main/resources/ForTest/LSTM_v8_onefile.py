@@ -10,12 +10,12 @@ import json
 import csv
 
 # KERAS_MODEL 
-import tensorflow as tf
+from tensorflow import keras
 
 MODEL_PATH = 'd:/projects/vdms/resources/NE_LSTM_AE_V8'
 KERAS_MODEL = None
 
-imported_model = tf.keras.models.load_model(MODEL_PATH)
+imported_model = keras.models.load_model(MODEL_PATH)
 KERAS_MODEL = imported_model
 # KERAS_MODEL.summary()
 

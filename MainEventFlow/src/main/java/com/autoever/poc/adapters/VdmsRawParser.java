@@ -170,14 +170,9 @@ public class VdmsRawParser extends Operator implements Parameterizable {
 			return;
 		}
 
-		String filePath = tuple.getString("filePath");
-		Tuple kafkaMessage = tuple.getTuple("kafkaMessage");
-		ByteArrayView binData = null;
-		try{
-			binData = tuple.getBlobBuffer("binaryData");
-		}catch(Exception e) {
-			binData = null;
-		}
+		String filePath = tuple.isNull("filePath")? null : tuple.getString("filePath");
+		Tuple kafkaMessage = tuple.isNull("kafkaMessage")? null: tuple.getTuple("kafkaMessage");
+		ByteArrayView binData = tuple.isNull("binaryData")? null : tuple.getBlobBuffer("binaryData");
 
 		try {
 			byte[] allBytes = null;
@@ -193,8 +188,14 @@ public class VdmsRawParser extends Operator implements Parameterizable {
 
 			if(allBytes != null && allBytes.length > 0) {
 				List<Tuple> tuples = GetTuples(tuple, allBytes);
+
 				if(tuples != null && !tuples.isEmpty()) {
-					sendOutput(0, tuples);
+					try {
+						sendOutput(0, tuples);
+					} catch (StreamBaseException e) {
+						System.out.println("length: " + tuples.size());
+						tuples.forEach(t -> System.out.println(t.toString(',', '"', true)));
+					}
 					
 					Tuple stuple = StatusSchema.createTuple();
 					stuple.setField(0, kafkaMessage.getString("TerminalID"));

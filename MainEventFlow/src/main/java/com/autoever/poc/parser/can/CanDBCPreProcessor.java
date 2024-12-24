@@ -21,7 +21,8 @@ public class CanDBCPreProcessor implements PreProcessable {
 		try {
 			List<Long> dbcIDs = (List<Long>)inputTuple.getList("dbcIDs");
 			if(dbcIDs == null || dbcIDs.isEmpty()) return false;
-			long maskedID = ((msgInfo & 0x1)==0x1)? (id & 0x00FFFFFF) : (id & 0x7FF);
+			long maskedID = ((msgInfo & 0x1)==0x1)? (id & 0x1FFFFFFF) : (id & 0x7FF);
+			
 			return dbcIDs.contains(maskedID);
 		}catch(Exception e) {
 			e.printStackTrace();

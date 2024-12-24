@@ -1,22 +1,19 @@
 name = "MainLiveView"
 version = "0.0.1-SNAPSHOT"
 type = "com.tibco.ep.ldm.configuration.ldmengine"
-
 configuration = {
-    LDMEngine = {
-        // Recommended JVM flags for LiveView
-        //
-        // See also tuning section in the documentation
-        //
-        jvmArgs =
-        [
-            "-Xmx48g"
-            "-Xms32g"
-            "-XX:+UseG1GC"
-            "-XX:MaxGCPauseMillis=500"
-            "-XX:ConcGCThreads=1"
-        ]
-        ldm = {
-        }
+  LDMEngine = {
+	systemProperties = {"file.encoding" = "UTF-8", "sun.jnu.encoding"="UTF-8",  "streambase.tuple-charset" = "UTF-8" }
+    jvmArgs =
+      [ 
+      	"-Xmx64g"
+        "-Xms64g"
+        "-XX:+UseG1GC"
+        "-XX:MaxGCPauseMillis=500"
+        "-XX:ConcGCThreads=1"
+      ]
+    systemProperties = {
+
     }
+  }
 }

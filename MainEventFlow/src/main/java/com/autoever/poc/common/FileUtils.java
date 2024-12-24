@@ -1,5 +1,6 @@
 package com.autoever.poc.common;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,10 +32,11 @@ public class FileUtils {
 	* by an assigned alias. It can then be called directly 
 	* using the alias name instead of using calljava().
 	*/
-	@CustomFunctionResolver("GetFilesInPathCustomFunctionResolver0")
-	public static List<?> GetFilesInPath(String dirPath, String ext){
+	@CustomFunctionResolver("GetFilePathsInPathCustomFunctionResolver0")
+	public static List<?> GetFilePathsInPath(String dirPath, String ext){
 		try {
 			List<String> files = Files.list(Paths.get(dirPath)).sorted()
+					.filter(file -> file.toFile().isFile())
 					.filter(file -> file.toString().endsWith(ext))
 					.map(file-> file.toAbsolutePath().toString()).collect(Collectors.toList());
 			return files;
@@ -44,14 +46,32 @@ public class FileUtils {
 		}
 	}
 
-	public static CompleteDataType GetFilesInPathCustomFunctionResolver0(CompleteDataType dirPath, CompleteDataType ext) {
+	public static CompleteDataType GetFilePathsInPathCustomFunctionResolver0(CompleteDataType dirPath, CompleteDataType ext) {
 		return CompleteDataType.forList(CompleteDataType.forString());
 	}
 	
+	@CustomFunctionResolver("GetDirPathsInPathCustomFunctionResolver0")
+	public static List<?> GetDirPathsInPath(String dirPath){
+		try {
+			List<String> files = Files.list(Paths.get(dirPath)).sorted()
+					.filter(file -> file.toFile().isDirectory())
+					.map(file-> file.toAbsolutePath().toString()).collect(Collectors.toList());
+			return files;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static CompleteDataType GetDirPathsInPathCustomFunctionResolver0(CompleteDataType dirPath) {
+		return CompleteDataType.forList(CompleteDataType.forString());
+	}
+
 	@CustomFunctionResolver("GetFilenameListInPathCustomFunctionResolver0")
 	public static List<String> GetFilenameListInPath(String dirPath, String ext) {
 		try {
 			return Files.list(Paths.get(dirPath)).sorted()
+					.filter(file-> file.toFile().isFile())
 					.filter(file -> file.toString().endsWith(ext))
 					.map(file -> file.getFileName().toString())
 					.map(filename -> filename.substring(0, filename.lastIndexOf('.')))
@@ -65,7 +85,36 @@ public class FileUtils {
 		return CompleteDataType.forList(CompleteDataType.forString());
 	}
 	
+	@CustomFunctionResolver("GetDirnameListInPathCustomFunctionResolver0")
+	public static List<String> GetDirnameListInPath(String dirPath) {
+		try {
+			return Files.list(Paths.get(dirPath)).sorted()
+					.filter(file -> file.toFile().isDirectory())
+					.map(file -> file.getFileName().toString())
+					.collect(Collectors.toList());
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	public static CompleteDataType GetDirnameListInPathCustomFunctionResolver0(CompleteDataType dirPath) {
+		return CompleteDataType.forList(CompleteDataType.forString());
+	}
+
+	public static String GetFilenameInPath(String dirPath) {
+		try {
+			return new File(dirPath).getName();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public static void main(String[] args) {
+//		List<String>  res = (List<String>) GetFilePathsInPath("d:/projects/vdms/resources/dbc/222775", "dbc");
+//		List<String>  res2 = (List<String>) GetDirPathsInPath("d:/projects/vdms/resources/dbc/222775");
+//		res.forEach(System.out::println);
+//		res2.forEach(System.out::println);
+//		String  res = GetFilenameInPath("d:/projects/vdms/resources/dbc/222775");
+//		System.out.println(res);
 	}
 }

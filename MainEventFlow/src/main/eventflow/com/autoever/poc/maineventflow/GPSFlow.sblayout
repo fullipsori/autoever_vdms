@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?><application-layout>
-    <component name="ConstrolStream">
-        <param name="gui:x" value="-360"/>
-        <param name="gui:y" value="20"/>
-    </component>
     <component name="InputStream">
-        <param name="gui:x" value="-360"/>
-        <param name="gui:y" value="-74"/>
+        <param name="gui:x" value="-78"/>
+        <param name="gui:y" value="-21"/>
     </component>
     <component name="GPSParser">
-        <param name="gui:x" value="-221"/>
-        <param name="gui:y" value="-33"/>
-        <param name="gui:bends:1" value="-269,-44;-263,-13"/>
-        <param name="gui:bends:2" value="-258,50;-248,7"/>
+        <param name="gui:x" value="67"/>
+        <param name="gui:y" value="67"/>
+        <param name="gui:bends:1" value="2,9;20,87"/>
+        <param name="gui:bends:2" value="24,197;46,107"/>
+    </component>
+    <component name="CheckInitialTime">
+        <param name="gui:x" value="-305"/>
+        <param name="gui:y" value="120"/>
+    </component>
+    <component name="InputAdapter">
+        <param name="gui:x" value="-617"/>
+        <param name="gui:y" value="120"/>
+    </component>
+    <component name="LoadSHP">
+        <param name="gui:x" value="-402"/>
+        <param name="gui:y" value="120"/>
+    </component>
+    <component name="SetLoaded">
+        <param name="gui:x" value="-78"/>
+        <param name="gui:y" value="167"/>
+        <param name="gui:bends:1" value="-124,160;-116,197"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-211"/>
+        <param name="gui:y" value="120"/>
+    </component>
+    <component name="addFolder">
+        <param name="gui:x" value="-507"/>
+        <param name="gui:y" value="120"/>
+    </component>
+    <component name="OutputInitialLoadStream">
+        <param name="gui:x" value="-78"/>
+        <param name="gui:y" value="73"/>
+        <param name="gui:bends:1" value="-137,140;-129,103"/>
     </component>
     <component name="OutputParserStream">
-        <param name="gui:x" value="-62"/>
-        <param name="gui:y" value="-74"/>
-        <param name="gui:bends:1" value="-119,-13;-113,-44"/>
+        <param name="gui:x" value="226"/>
+        <param name="gui:y" value="26"/>
+        <param name="gui:bends:1" value="169,87;175,56"/>
     </component>
     <component name="OutputRawDataStream">
-        <param name="gui:x" value="-62"/>
-        <param name="gui:y" value="20"/>
-        <param name="gui:bends:1" value="-134,7;-124,50"/>
+        <param name="gui:x" value="226"/>
+        <param name="gui:y" value="120"/>
+        <param name="gui:bends:1" value="154,107;164,150"/>
     </component>
 </application-layout>

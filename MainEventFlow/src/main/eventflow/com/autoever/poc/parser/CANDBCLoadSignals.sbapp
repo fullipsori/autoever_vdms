@@ -11,12 +11,12 @@
         <memory-model-settings/>
         <import from="com.autoever.poc.maineventflow.DBCSchema"/>
         <parameter-definitions>
-            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
-            <parameter default="d:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="c:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="c:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
         </parameter-definitions>
         <dynamic-variables/>
         <data name="DBCTable" shared="false" source="input" type="querytable">
-            <param name="storage-method" value="transactional_memory"/>
+            <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
             <param name="table-schema" value="DBCTableSchema"/>
             <param name="truncate" value="false"/>
@@ -28,6 +28,22 @@
                 <field name="signals" type="list">
                     <element-type type="string"/>
                 </field>
+                <field name="dirPaths" type="list">
+                    <element-type type="string"/>
+                </field>
+            </schema>
+        </stream>
+        <stream name="out:incIndex_1">
+            <schema>
+                <field name="vehicleKeyID" type="long"/>
+                <field name="signals" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="dirPaths" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="length" type="int"/>
+                <field name="index" type="int"/>
             </schema>
         </stream>
         <box name="Init" type="inputadapter">
@@ -48,13 +64,14 @@
             <param name="UseTempFile" value="false"/>
             <param name="WorkingDir" value="."/>
         </box>
-        <box name="AssignFilePath" type="map">
+        <box name="initLoop" type="map">
             <input port="1" stream="InputStream"/>
-            <output port="1" stream="out:AssignFilePath_1"/>
+            <output port="1" stream="out:initLoop_1"/>
             <target-list>
                 <item name="input" selection="all"/>
                 <expressions>
-                    <include field="filePath">"${RESOURCE_ROOT}/dbc/" + string(vehicleKeyID) + ".dbc"</include>
+                    <include field="length">length(dirPaths)</include>
+                    <include field="index">0</include>
                 </expressions>
             </target-list>
         </box>
@@ -78,16 +95,64 @@
             <param name="enableControlPort" value="false"/>
         </box>
         <output-stream name="OutputInitStream"/>
+        <box name="Union" type="union">
+            <input port="1" stream="out:initLoop_1"/>
+            <input port="2" stream="out:incIndex_1"/>
+            <output port="1" stream="out:Union_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="checkLoop" type="filter">
+            <input port="1" stream="out:Union_1"/>
+            <output port="1" stream="out:checkLoop_1"/>
+            <output port="2" stream="out:checkLoop_2"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="index&lt;length"/>
+            <param name="expression.1" value="true"/>
+        </box>
         <box name="pack" type="map">
-            <input port="1" stream="out:AssignFilePath_1"/>
+            <input port="1" stream="out:checkLoop_1"/>
             <output port="1" stream="out:pack_1"/>
             <target-list>
                 <item name="input" selection="none"/>
                 <expressions>
                     <include field="inputVars.*">*</include>
+                    <include field="inputVars.filePath">dirPaths[index]</include>
+                    <include field="inputVars.channel">int(GetFilenameInPath(dirPaths[index]))</include>
                 </expressions>
             </target-list>
         </box>
+        <box name="readDBC" type="query">
+            <input port="1" stream="out:checkLoop_2"/>
+            <output port="1" stream="ToCANDBCParser"/>
+            <dataref id="querytable" name="DBCTable"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="secondary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-lowerbound-value.0" value="vehicleKeyID"/>
+            <param name="key-lowerbound-operation.0" value="eq"/>
+            <param name="key-upperbound-operation.0" value="none"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="current" selection="none"/>
+                <expressions>
+                    <include field="matchDBCs">aggregatelist(current as DBCDataSchema)</include>
+                </expressions>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <output-stream name="ToCANDBCParser"/>
         <box name="LoadDBCData" type="java">
             <input port="1" stream="out:pack_1"/>
             <output port="1" stream="out:LoadDBCData_1"/>
@@ -98,8 +163,8 @@
             <param name="InstanceType" value="Local"/>
             <param name="LocalInstanceId" value="python_dbc_instance"/>
             <param name="LogLevel" value="INFO"/>
-            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;dbc_json&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
-            <param name="Script" value="pd.set_option('mode.chained_assignment',  None)&#13;&#10;&#13;&#10;dbc_list = parsed_dbc(filePath)&#13;&#10;sig_data = dbc_list[dbc_list['sig_name'].isin(signals)]&#13;&#10;sig_data['vehicleKeyID'] = vehicleKeyID &#13;&#10;converted = sig_data.astype({'msg_id':'int', 'msg_is_extended_frame':'str', 'msg_length':'int', 'sig_start':'int', 'sig_length':'int', 'sig_is_signed':'str', 'sig_initial':'int', 'sig_scale':'float', 'sig_offset':'float', 'sig_is_multiplexer':'str'})&#13;&#10;&#13;&#10;dbc_json = f'{{&quot;dbcList&quot;: {converted.to_json(orient=&quot;records&quot;)}}}'"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;dbc_json&quot; type=&quot;string&quot;/&gt;&#13;&#10;    &lt;field name=&quot;vehicleKeyID&quot; type=&quot;long&quot;/&gt;&#13;&#10;    &lt;field name=&quot;signals&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;dirPaths&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;length&quot; type=&quot;int&quot;/&gt;&#13;&#10;    &lt;field name=&quot;index&quot; type=&quot;int&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value="pd.set_option('mode.chained_assignment',  None)&#13;&#10;&#13;&#10;dbc_list = parsed_dbc(filePath)&#13;&#10;sig_data = dbc_list[dbc_list['sig_name'].isin(signals)]&#13;&#10;sig_data['vehicleKeyID'] = vehicleKeyID &#13;&#10;sig_data['sig_channel']= channel&#13;&#10;converted = sig_data.astype({'msg_id':'int', 'msg_is_extended_frame':'str', 'msg_length':'int', 'sig_start':'int', 'sig_length':'int', 'sig_is_signed':'str', 'sig_scale':'float', 'sig_offset':'float', 'sig_is_multiplexer':'str'})&#13;&#10;&#13;&#10;dbc_json = f'{{&quot;dbcList&quot;: {converted.to_json(orient=&quot;records&quot;)}}}'"/>
             <param name="ScriptFile" value="can_dbc_list.py"/>
             <param name="ScriptSource" value="Script text"/>
             <param name="amsRequiredOnStartup" value="false"/>
@@ -123,7 +188,7 @@
             <param name="start:state" value="true"/>
             <param name="javaclass" value="com.streambase.sb.operator.jsontuple.JSON2Tuple"/>
             <param name="enableLooseParsing" value="true"/>
-            <param name="enablePassThroughFields" value="false"/>
+            <param name="enablePassThroughFields" value="true"/>
             <param name="enableStatusPort" value="false"/>
             <param name="jsonFieldName" value="dbc_json"/>
             <param name="logLevel" value="INFO"/>
@@ -131,13 +196,40 @@
             <param name="passThroughFieldsFieldName" value="PassThroughFields"/>
             <param name="timestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
         </box>
-        <box name="Split" type="split">
+        <box name="Map2" type="map">
             <input port="1" stream="out:jsonToTuple_1"/>
+            <output port="1" stream="out:Map2_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="dbcList"/>
+                </item>
+                <expressions>
+                    <include field="vehicleKeyID">PassThroughFields.vehicleKeyID</include>
+                    <include field="signals">PassThroughFields.signals</include>
+                    <include field="dirPaths">PassThroughFields.dirPaths</include>
+                    <include field="length">PassThroughFields.length</include>
+                    <include field="index">PassThroughFields.index</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split" type="split">
+            <input port="1" stream="out:Map2_1"/>
             <output port="1" stream="out:Split_1"/>
-            <output port="2" stream="ToCANDBCParser"/>
+            <output port="2" stream="out:Split_2"/>
             <param name="output-count" value="2"/>
         </box>
-        <output-stream name="ToCANDBCParser"/>
+        <box name="incIndex" type="map">
+            <input port="1" stream="out:Split_2"/>
+            <output port="1" stream="out:incIndex_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="dbcList"/>
+                </item>
+                <expressions>
+                    <replace field="index">index+1</replace>
+                </expressions>
+            </target-list>
+        </box>
         <box name="Iterate" type="iterate">
             <input port="1" stream="out:Split_1"/>
             <output port="1" stream="out:Iterate_1"/>
@@ -159,6 +251,8 @@
             <param name="key-value.0" value="input.vehicleKeyID"/>
             <param name="key-field.1" value="sig_name"/>
             <param name="key-value.1" value="input.sig_name"/>
+            <param name="key-field.2" value="sig_channel"/>
+            <param name="key-value.2" value="input.sig_channel"/>
             <param name="write-type" value="insert"/>
             <param name="if-write-fails" value="force"/>
             <param name="no-match-mode" value="output-no-match-null"/>

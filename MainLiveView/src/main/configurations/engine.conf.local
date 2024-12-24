@@ -8,10 +8,11 @@ configuration = {
         //
         // See also tuning section in the documentation
         //
+       	systemProperties = {"file.encoding" = "UTF-8", "sun.jnu.encoding"="UTF-8",  "streambase.tuple-charset" = "UTF-8" }
         jvmArgs =
         [
             "-Xmx8g"
-            "-Xms4g"
+            "-Xms8g"
             "-XX:+UseG1GC"
             "-XX:MaxGCPauseMillis=500"
             "-XX:ConcGCThreads=1"

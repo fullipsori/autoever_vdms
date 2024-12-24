@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS">
+  <SimStreams Name="DataOut">
+    <ProcessingOptions DataRatePerSecond="100.0" DataGenerationMethod="Custom" LogToInput="false"/>
+    <Schema>
+      <Fields Name="messageID" DataTypeName="string" Description="">
+        <Distribution GenerationMethod="RandomString" UseRandomSize="true" BlobSize="8" BlobMinSize="8"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="terminalID" DataTypeName="string" Description="">
+        <Distribution GenerationMethod="RandomString"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="vehicleKeyID" DataTypeName="long" Description="">
+        <Distribution GenerationMethod="Enumerated" ConstantValue="" NumRandomEnumValues="1" EnumeratedDistMethod="SpecifiedValues">
+          <EnumeratedDist weight="1.0" value="100"/>
+          <EnumeratedDist weight="1.0" value="200"/>
+          <EnumeratedDist weight="1.0" value="300"/>
+          <EnumeratedDist weight="1.0" value="400"/>
+          <EnumeratedDist weight="1.0" value="500"/>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="mgmtNO" DataTypeName="string" Description="">
+        <Distribution GenerationMethod="Conditional" UseRandomSize="true" NumRandomEnumValues="1" EnumeratedDistMethod="SpecifiedValues" BlobMinSize="4">
+          <EnumeratedDist weight="1.0" value="mgmt_a"/>
+          <EnumeratedDist weight="1.0" value="mgmt_b"/>
+          <EnumeratedDist weight="1.0" value="mgmt_c"/>
+          <EnumeratedDist weight="1.0" value="mgmt_d"/>
+          <EnumeratedDist weight="1.0" value="mgmt_e"/>
+          <ConditionalCases>
+            <FieldDependedOn>vehicleKeyID</FieldDependedOn>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="100"/>
+              <Distribution GenerationMethod="Constant" ConstantValue="mgmt_a"/>
+            </Cases>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="200"/>
+              <Distribution GenerationMethod="Constant" ConstantValue="mgmt_b"/>
+            </Cases>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="300"/>
+              <Distribution GenerationMethod="Constant" ConstantValue="mgmt_c"/>
+            </Cases>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="400"/>
+              <Distribution GenerationMethod="Constant" ConstantValue="mgmt_d"/>
+            </Cases>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="500"/>
+              <Distribution GenerationMethod="Constant" ConstantValue="mgmt_e"/>
+            </Cases>
+            <Cases>
+              <NamesAndValues Name="vehicleKeyID" Value="" MatchAnyValue="true"/>
+              <Distribution GenerationMethod="Constant" ConstantValue=""/>
+            </Cases>
+          </ConditionalCases>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="rootCount" DataTypeName="int" Description="">
+        <Distribution GenerationMethod="Constant" ConstantValue="1000"/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="realTime" DataTypeName="timestamp" Description="">
+        <Distribution GenerationMethod="Random" ConstantValue=""/>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="eventName" DataTypeName="string" Description="">
+        <Distribution GenerationMethod="Enumerated" UseRandomSize="true" NumRandomEnumValues="1" EnumeratedDistMethod="SpecifiedValues" BlobMinSize="4">
+          <EnumeratedDist weight="1.0" value="LDC_SysFltSta"/>
+          <EnumeratedDist weight="1.0" value="ALDC_SysFltSta"/>
+          <EnumeratedDist weight="1.0" value="SFA_IgnitionStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_IgnitionStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_IgnitionStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_IgnitionStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_CluWarningLamp"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_CluWarningLamp"/>
+          <EnumeratedDist weight="1.0" value="SFA_WarningLamp"/>
+          <EnumeratedDist weight="1.0" value="RWA_WarningLamp"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_WarningLamp"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_WarningLamp"/>
+          <EnumeratedDist weight="1.0" value="SFA_ControlMode"/>
+          <EnumeratedDist weight="1.0" value="RWA_ControlMode"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_ControlMode"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_ControlMode"/>
+          <EnumeratedDist weight="1.0" value="SFA_EcuRole"/>
+          <EnumeratedDist weight="1.0" value="RWA_EcuRole"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_EcuRole"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_EcuRole"/>
+          <EnumeratedDist weight="1.0" value="SFA_SFA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_SFA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_RWA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_RWA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_SFA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_SFA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_RWA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_RWA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_SFA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_SFA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_RWA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_RWA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_SFA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_SFA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_RWA1EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_RWA2EcuStatus"/>
+          <EnumeratedDist weight="1.0" value="SbW_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="SbW_R2_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_CenteringStatus"/>
+          <EnumeratedDist weight="1.0" value="SFA_CreepReqActSta"/>
+          <EnumeratedDist weight="1.0" value="RWA_CreepReqActSta"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_CreepReqActSta"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_CreepReqActSta"/>
+          <EnumeratedDist weight="1.0" value="SFA_FailoverActvSta"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_FailoverActvSta"/>
+          <EnumeratedDist weight="1.0" value="SFA_OHP_Status"/>
+          <EnumeratedDist weight="1.0" value="RWA_OHP_Status"/>
+          <EnumeratedDist weight="1.0" value="SFA_R2_OHP_Status"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_OHP_Status"/>
+          <EnumeratedDist weight="1.0" value="RWA_OLP"/>
+          <EnumeratedDist weight="1.0" value="RWA_R2_OLP"/>
+          <EnumeratedDist weight="1.0" value="SFA1_BatteryVoltage"/>
+          <EnumeratedDist weight="1.0" value="RWA1_BatteryVoltage"/>
+          <EnumeratedDist weight="1.0" value="SFA2_BatteryVoltage"/>
+          <EnumeratedDist weight="1.0" value="RWA2_BatteryVoltage"/>
+          <EnumeratedDist weight="1.0" value="VCU_EvDrvRdySta"/>
+          <EnumeratedDist weight="1.0" value="VCU_GearPosSta"/>
+          <EnumeratedDist weight="1.0" value="WHL_SpdFLVal"/>
+          <EnumeratedDist weight="1.0" value="WHL_SpdFRVal"/>
+          <EnumeratedDist weight="1.0" value="WHL_SpdRLVal"/>
+          <EnumeratedDist weight="1.0" value="WHL_SpdRRVal"/>
+          <ConditionalCases>
+            <FieldDependedOn>eventCategory</FieldDependedOn>
+            <Cases>
+              <NamesAndValues Name="eventCategory" Value="" MatchAnyValue="true"/>
+              <Distribution GenerationMethod="Enumerated" ConstantValue="" NumRandomEnumValues="1"/>
+            </Cases>
+          </ConditionalCases>
+        </Distribution>
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="value" DataTypeName="double" Description="">
+        <Distribution GenerationMethod="Random" MaxValue="9.0"/>
+        <DataSourceMapping/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

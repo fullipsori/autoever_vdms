@@ -28,11 +28,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-        	<groupId>com.tibco.ep.sb.adapter</groupId>
-        	<artifactId>ldm</artifactId>
-        	<version>11.0.1</version>
-        </dependency>
     </dependencies>
 
     <build>

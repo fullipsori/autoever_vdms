@@ -1,7 +1,13 @@
 package com.autoever.poc.common;
 
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.streambase.sb.CompleteDataType;
+import com.streambase.sb.Timestamp;
+import com.streambase.sb.Tuple;
+import com.streambase.sb.client.CustomFunctionResolver;
 import com.streambase.sb.util.Base64;
 
 public class StringUtils {
@@ -68,4 +74,43 @@ public class StringUtils {
 		return combined;
 	}
 
+	public static Pattern notiMessagePattern = null;
+
+	@CustomFunctionResolver("GetNotiMessageCustomFunctionResolver0")
+	public static String GetNotiMessage(String messageFormat, Tuple tuple) {
+		if(notiMessagePattern==null) notiMessagePattern = Pattern.compile("\\{([_a-zA-Z0-9]+)\\}");
+		Matcher matcher = notiMessagePattern.matcher(messageFormat);
+		
+		StringBuilder sb = new StringBuilder();
+		while(matcher.find()) {
+			try {
+				String matchKey = matcher.group().replaceAll("[{}]", "");
+				String value = "";
+				Object oValue = tuple.getField(matchKey);
+				/* List 타입은 현재는 고려하지 않는다. */
+				if(oValue!=null) {
+					if(oValue instanceof String) {
+						value = (String)oValue;
+					}else if(oValue instanceof Timestamp) {
+						value = TimeUtils.GetLocalTimeString(((Timestamp)oValue).toMsecs(), null);
+					}else {
+						value = String.valueOf(oValue);
+					}
+				}
+				matcher.appendReplacement(sb, value);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		matcher.appendTail(sb);
+		
+		return sb.toString();
+	}
+	
+	public static CompleteDataType GetNotiMessageCustomFunctionResolver0(CompleteDataType messageFormat, CompleteDataType tuple) {
+		return CompleteDataType.forString();
+	}
+
+	public static void main(String[] args) {
+	}
 }

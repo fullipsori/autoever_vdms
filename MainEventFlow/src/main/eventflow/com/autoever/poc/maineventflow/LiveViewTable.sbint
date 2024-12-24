@@ -60,12 +60,9 @@
         </schema>
         <schema name="CP_DataTableSchema">
             <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
-            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
             <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
             <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
             <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
-            <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
-            <field description="kafka DeltaTime" name="deltaTime" type="double"/>
             <field description="event 발생 시간" name="realTime" type="long"/>
             <field description="최대(cell)-최소(cell)" name="deltaVol" type="long"/>
             <field description="cell 데이터 값" name="cellData" type="string"/>
@@ -80,7 +77,6 @@
             <field description="배터리 전류값" name="IBM" type="double"/>
             <field description="배터리 충전 상태" name="chargingNow" type="long"/>
             <field description="절연 저항값" name="ISOL" type="long"/>
-            <field description="Cell 저항값(1초 변화량)" name="RESs" type="string"/>
             <field description="CellDiff 최대 Cell 들" name="maxCDiffCells" type="string"/>
             <field description="CellDiff 절대값 최대" name="maxCDiffVal" type="long"/>
             <field description="에러코드" name="faultCode" type="long"/>
@@ -160,6 +156,39 @@
             <field description="DIAG  RAW 전체 데이터" name="raw" type="string"/>
             <field description="DTC TYPE (python 파싱)" name="dtc_type" type="string"/>
         </schema>
+        <schema name="EVChargePVTableSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="timestamp"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field name="eventName" type="string"/>
+            <field name="value" type="double"/>
+            <field name="xEV_SocDis" type="double"/>
+            <field name="VCMS_PlugConnect" type="double"/>
+            <field name="VCMS_ChgInletTmpMax" type="double"/>
+            <field name="CCM_EvseTargetActivePwr" type="double"/>
+            <field name="VCMS_TrgtPowerProfile" type="double"/>
+            <field name="OBC_AcL1CurrVal" type="double"/>
+            <field name="OBC_AcVoltVal" type="double"/>
+            <field name="OBC_AC_OUT_KW" type="double"/>
+            <field name="OBC_OpModeSta" type="double"/>
+            <field name="CR_HU_DepartSet1_Hour" type="double"/>
+            <field name="CR_HU_DepartSet1_Min" type="double"/>
+            <field name="CHRG_ScChgTargetSOCSync" type="double"/>
+            <field name="VCMS_ChgTransferType" type="double"/>
+        </schema>
+        <schema name="EVChargeTableSchema">
+            <field description="sb 에서 생성한 메시지 ID(CCP table 과 동일한 ID)" name="messageID" type="string"/>
+            <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
+            <field description="차량번호 (KafkaMessage)" name="vehicleKeyID" type="long"/>
+            <field description="차량 관리 번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
+            <field description="event 발생 시간" name="realTime" type="timestamp"/>
+            <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
+            <field description="event 이름" name="eventName" type="string"/>
+            <field description="event 값" name="value" type="double"/>
+        </schema>
         <schema name="GPSDataTableSchema">
             <field description="sb 에서 생성한 메세지 ID (vehicleKeyID + timestamp + seq_num)" name="messageID" type="string"/>
             <field description="단말기 ID (KafkaMessage)" name="terminalID" type="string"/>
@@ -167,13 +196,28 @@
             <field description="차량 관리번호 (연구소 제공 자료)" name="mgmtNO" type="string"/>
             <field description="주행번호 (KafkaMessage)" name="rootCount" type="int"/>
             <field description="운행 baseTime (KafkaMessage)" name="baseTime" type="long"/>
-            <field description="이벤트 발생 시간 (baseTime + deltaTime)" name="realTime" type="long"/>
+            <field description="이벤트 발생 시간 (baseTime + deltaTime)" name="realTime" type="timestamp"/>
             <field description="위도" name="Latitude" type="double"/>
             <field description="경도" name="Longitude" type="double"/>
-            <field description="고도" name="Altitude" type="double"/>
+            <field name="Heading" type="int"/>
             <field description="속도" name="Velocity" type="double"/>
+            <field description="고도" name="Altitude" type="double"/>
             <field description="남북" name="NS" type="string"/>
             <field description="동서" name="EW" type="string"/>
+            <field description="시도" name="addrDo" type="string"/>
+            <field description="구" name="addrGu" type="string"/>
+            <field description="동" name="addrDong" type="string"/>
+            <field description="도로" name="addrRoad" type="string"/>
+        </schema>
+        <schema name="NotificationTableSchema">
+            <field name="messageID" type="string"/>
+            <field name="vehicleKeyID" type="long"/>
+            <field name="rootCount" type="int"/>
+            <field name="mgmtNO" type="string"/>
+            <field name="messageType" type="int"/>
+            <field name="notiCode" type="string"/>
+            <field name="realTime" type="timestamp"/>
+            <field name="sendTime" type="timestamp"/>
         </schema>
         <schema name="PerfDataSchema">
             <field description="vehicleKeyID + timestamp" name="kafka_msg_id" type="string"/>

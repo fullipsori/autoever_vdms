@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.NotificationFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import alias="NotificationTableSchema" from="com.autoever.poc.maineventflow.LiveViewTable" item="NotificationTableSchema"/>
+        <named-schemas>
+            <schema name="NotiEmailSchema">
+                <field name="senderEmail" type="string"/>
+                <field name="senderName" type="string"/>
+                <field name="receiverList" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="referenceList" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="hiddenReferenceList" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="notiCode" type="string"/>
+                <field name="subject" type="string"/>
+                <field name="message" type="string"/>
+                <field name="attachFilePaths" type="list">
+                    <element-type type="string"/>
+                </field>
+                <field name="attachViewNames" type="list">
+                    <element-type type="string"/>
+                </field>
+            </schema>
+            <schema name="NotificationSchema">
+                <field description="차량번호" name="vehicleKeyID" type="long"/>
+                <field description="주행번호" name="rootCount" type="int"/>
+                <field description="관리정보" name="mgmtNO" type="string"/>
+                <field description="메세지타입" name="messageType" type="int"/>
+                <field description="발송코드" name="notiCode" type="string"/>
+                <field description="발생시간" name="realTime" type="timestamp"/>
+            </schema>
+        </named-schemas>
+        <parameter-definitions>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="LatestSendedTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <table-schema schema="NotificationTableSchema">
+                <primary-index type="btree">
+                    <field name="vehicleKeyID"/>
+                    <field name="notiCode"/>
+                </primary-index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <data name="sendInfo" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <table-schema>
+                <schema>
+                    <field description="발송 코드" name="notiCode" type="string"/>
+                    <field description="제목" name="subject" type="string"/>
+                    <field description="발송자주소" name="senderEmail" type="string"/>
+                    <field description="발송자이름" name="senderName" type="string"/>
+                    <field description="수신자리스트" name="receiverList" type="list">
+                        <element-type type="string"/>
+                    </field>
+                    <field description="참조자리스트" name="referenceList" type="list">
+                        <element-type type="string"/>
+                    </field>
+                    <field description="숨겨진 참조자리스트" name="hiddenReferenceList" type="list">
+                        <element-type type="string"/>
+                    </field>
+                    <field description="발송 메세지 내용" name="messageFormat" type="string"/>
+                </schema>
+                <primary-index type="btree">
+                    <field name="notiCode"/>
+                </primary-index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+        </data>
+        <stream name="ControlEmail" schema="NotiEmailSchema"/>
+        <stream name="InputStream" schema="NotificationSchema"/>
+        <stream name="TestInputStream">
+            <schema>
+                <field name="control" type="string"/>
+            </schema>
+        </stream>
+        <box name="InputAdapter" type="inputadapter">
+            <output port="1" stream="out:InputAdapter_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="Map3" type="map">
+            <input port="1" stream="out:InputAdapter_1"/>
+            <output port="1" stream="out:Map3_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="notiCode">'000001'</include>
+                    <include field="subject">'테스트입니다'</include>
+                    <include field="receiverList">['fullipsori@naver.com']</include>
+                    <include field="messageFormat">'{mgmtNO} 차량에서 {realTime} 시간에 {notiCode} 알림이 발생하였습니다.'</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Map4" type="map">
+            <input port="1" stream="TestInputStream"/>
+            <output port="1" stream="out:Map4_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="vehicleKeyID">123456</include>
+                    <include field="rootCount">2345</include>
+                    <include field="mgmtNO">'veh-test'</include>
+                    <include field="messageType">5</include>
+                    <include field="notiCode">'000001'</include>
+                    <include field="realTime">now()</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="initialInsert" type="query">
+            <input port="1" stream="out:Map3_1"/>
+            <dataref id="querytable" name="sendInfo"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="notiCode"/>
+            <param name="key-value.0" value="notiCode"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="force"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="Union2" type="union">
+            <input port="1" stream="InputStream"/>
+            <input port="2" stream="out:Map4_1"/>
+            <output port="1" stream="out:Union2_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="readSended" type="query">
+            <input port="1" stream="out:Union2_1"/>
+            <output port="1" stream="out:readSended_1"/>
+            <dataref id="querytable" name="LatestSendedTable"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-lowerbound-value.0" value="vehicleKeyID"/>
+            <param name="key-lowerbound-operation.0" value="eq"/>
+            <param name="key-upperbound-operation.0" value="none"/>
+            <param name="key-field.1" value="notiCode"/>
+            <param name="key-lowerbound-value.1" value="notiCode"/>
+            <param name="key-lowerbound-operation.1" value="eq"/>
+            <param name="key-upperbound-operation.1" value="none"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <item name="current" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <expressions>
+                    <include field="needSend">if(isnull(sendTime) || sendTime &lt; (now()-minutes(30))) then true else false</include>
+                </expressions>
+            </target-list>
+            <target-list goal-schema="NotificationTableSchema" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="NotificationTableSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="NotificationTableSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="setSendTime" type="map">
+            <input port="1" stream="out:readSended_1"/>
+            <output port="1" stream="out:setSendTime_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="sendTime">if(needSend) then now() else timestamp(null)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:setSendTime_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="needSend"/>
+        </box>
+        <box name="updateSended" type="query">
+            <input port="1" stream="out:Filter_1"/>
+            <output port="1" stream="out:updateSended_1"/>
+            <dataref id="querytable" name="LatestSendedTable"/>
+            <param name="operation" value="write"/>
+            <param name="where" value="primary-key"/>
+            <param name="key-field.0" value="vehicleKeyID"/>
+            <param name="key-value.0" value="vehicleKeyID"/>
+            <param name="key-field.1" value="notiCode"/>
+            <param name="key-value.1" value="notiCode"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="force"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="NotificationTableSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="NotificationTableSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="GetMessage" type="query">
+            <input port="1" stream="out:updateSended_1"/>
+            <output port="1" stream="out:GetMessage_1"/>
+            <dataref id="querytable" name="sendInfo"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="primary-key"/>
+            <param name="limit" value="1"/>
+            <param name="key-field.0" value="notiCode"/>
+            <param name="key-lowerbound-value.0" value="notiCode"/>
+            <param name="key-lowerbound-operation.0" value="eq"/>
+            <param name="key-upperbound-operation.0" value="none"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="current" selection="all"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <expressions>
+                    <include field="message">GetNotiMessage(messageFormat, input)</include>
+                </expressions>
+            </target-list>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="Union" type="union">
+            <input port="1" stream="ControlEmail"/>
+            <input port="2" stream="out:GetMessage_1"/>
+            <output port="1" stream="out:Union_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="SendMail" type="outputadapter">
+            <input port="1" stream="out:Union_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.autoever.poc.adapters.OutputEmailAdapter"/>
+            <param name="SMTP_ADDR" value="ZD00785@hyundai.com"/>
+            <param name="SMTP_HOST" value="10.7.20.48"/>
+            <param name="SMTP_ID" value="ZD00785"/>
+            <param name="SMTP_PASS" value="vdmsapp!02"/>
+        </box>
+    </add>
+</modify>

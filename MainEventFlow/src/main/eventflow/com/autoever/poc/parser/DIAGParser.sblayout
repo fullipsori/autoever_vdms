@@ -35,16 +35,6 @@
         <param name="gui:x" value="-598"/>
         <param name="gui:y" value="-54"/>
     </component>
-    <component name="EndedDiagDTCProc">
-        <param name="gui:x" value="-11"/>
-        <param name="gui:y" value="-103"/>
-        <param name="gui:bends:1" value="-31,-65;-29,-73"/>
-    </component>
-    <component name="EndedDiagDataProc">
-        <param name="gui:x" value="-11"/>
-        <param name="gui:y" value="-197"/>
-        <param name="gui:bends:1" value="-44,-176;-42,-167"/>
-    </component>
     <component name="Filter">
         <param name="gui:x" value="-11"/>
         <param name="gui:y" value="-291"/>
@@ -82,10 +72,6 @@
         <param name="gui:x" value="316"/>
         <param name="gui:y" value="-291"/>
     </component>
-    <component name="MapToPerfData">
-        <param name="gui:x" value="208"/>
-        <param name="gui:y" value="-150"/>
-    </component>
     <component name="MatchDTCQuery">
         <param name="gui:x" value="425"/>
         <param name="gui:y" value="-9"/>
@@ -102,10 +88,6 @@
         <param name="gui:x" value="522"/>
         <param name="gui:y" value="-291"/>
     </component>
-    <component name="PublishPerf">
-        <param name="gui:x" value="316"/>
-        <param name="gui:y" value="-150"/>
-    </component>
     <component name="Sequence2">
         <param name="gui:x" value="208"/>
         <param name="gui:y" value="-291"/>
@@ -114,24 +96,9 @@
         <param name="gui:x" value="208"/>
         <param name="gui:y" value="-9"/>
     </component>
-    <component name="Split">
-        <param name="gui:x" value="-143"/>
-        <param name="gui:y" value="-216"/>
-    </component>
     <component name="Split3">
         <param name="gui:x" value="-411"/>
         <param name="gui:y" value="-125"/>
-    </component>
-    <component name="Split5">
-        <param name="gui:x" value="-143"/>
-        <param name="gui:y" value="-105"/>
-    </component>
-    <component name="Union">
-        <param name="gui:x" value="117"/>
-        <param name="gui:y" value="-159"/>
-        <param name="gui:height" value="78"/>
-        <param name="gui:bends:1" value="78,-167;84,-139"/>
-        <param name="gui:bends:2" value="63,-73;69,-101"/>
     </component>
     <component name="UnpackDiag">
         <param name="gui:x" value="-493"/>
@@ -141,6 +108,39 @@
     <component name="python_diag_instance">
         <param name="gui:x" value="-703"/>
         <param name="gui:y" value="-148"/>
+    </component>
+    <component name="Split5">
+        <param name="gui:x" value="-143"/>
+        <param name="gui:y" value="-105"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-143"/>
+        <param name="gui:y" value="-216"/>
+    </component>
+    <component name="EndedDiagDataProc">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-197"/>
+        <param name="gui:bends:1" value="-44,-176;-42,-167"/>
+    </component>
+    <component name="EndedDiagDTCProc">
+        <param name="gui:x" value="-11"/>
+        <param name="gui:y" value="-103"/>
+        <param name="gui:bends:1" value="-31,-65;-29,-73"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="117"/>
+        <param name="gui:y" value="-159"/>
+        <param name="gui:height" value="78"/>
+        <param name="gui:bends:1" value="78,-167;84,-139"/>
+        <param name="gui:bends:2" value="63,-73;69,-101"/>
+    </component>
+    <component name="MapToPerfData">
+        <param name="gui:x" value="208"/>
+        <param name="gui:y" value="-150"/>
+    </component>
+    <component name="PublishPerf">
+        <param name="gui:x" value="316"/>
+        <param name="gui:y" value="-150"/>
     </component>
     <component name="ExecError">
         <param name="gui:x" value="-493"/>

@@ -1,7 +1,6 @@
 package com.autoever.poc.parser.can;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +9,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -147,14 +145,18 @@ public class PolicyParser implements Parseable, DataSavable {
 					.filter(e -> e != null)
 					.map(e -> {
 						try {
-							Tuple tuple = PolicyRepository.trigDataSchema.createTuple();
+							Tuple tuple = TrigData.trigDataSchema.createTuple();
 							tuple.setDouble(0, (double)(deltaTime-Double.parseDouble(e.get(1))));
 							tuple.setDouble(1, (double)(deltaTime+Double.parseDouble(e.get(2))));
 							tuple.setDouble(2, (double)deltaTime);
 							tuple.setString(3, e.get(0));
 							tuple.setString(4, e.get(3));
 							tuple.setString(5, e.get(4));
-							tuple.setString(6, e.get(5));
+							String sValue = e.get(5);
+							Double dValue = (sValue==null || sValue.isEmpty())? null : Double.parseDouble(sValue);
+							if(dValue!=null) tuple.setDouble(6,  dValue);
+							else tuple.setField(6, null);
+							
 							return tuple;
 						}catch (Exception x){
 							System.out.println("PolicyParser Tuple Gen Excep:" + x.getMessage());
@@ -209,19 +211,20 @@ public class PolicyParser implements Parseable, DataSavable {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// new PolicyParser("d:/projects/vdms/resources/policy/BM-15C-0003.xml").parse();
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder;
-		try {
-			documentBuilder = factory.newDocumentBuilder();
-			
-			Path policyPath = Paths.get("d:/projects/vdms/resources/policy/BM-16L-0030.xml");
-			PolicyParser policyParser =  new PolicyParser(policyPath, documentBuilder);
-			System.out.println("result:" + policyParser.msgFilter.size());
-			policyParser.InitParams(0);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+//		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//		DocumentBuilder documentBuilder;
+//		try {
+//			documentBuilder = factory.newDocumentBuilder();
+//			
+//			Path policyPath = Paths.get("d:/projects/vdms/resources/policy/BM-16L-0030.xml");
+//			PolicyParser policyParser =  new PolicyParser(policyPath, documentBuilder);
+//			System.out.println("result:" + policyParser.msgFilter.size());
+//			policyParser.InitParams(0);
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		
 	}
 
 	/**

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InitialStream">
+        <param name="gui:x" value="-525"/>
+        <param name="gui:y" value="134"/>
+    </component>
+    <component name="controlFeed">
+        <param name="gui:x" value="-525"/>
+        <param name="gui:y" value="40"/>
+    </component>
+    <component name="InputAdapter">
+        <param name="gui:x" value="-427"/>
+        <param name="gui:y" value="40"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-37"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="-231"/>
+        <param name="gui:y" value="34"/>
+        <param name="gui:bends:1" value="-269,83;-267,64"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="-231"/>
+        <param name="gui:y" value="128"/>
+        <param name="gui:bends:1" value="-262,103;-250,158"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-336"/>
+        <param name="gui:y" value="63"/>
+        <param name="gui:bends:1" value="-350,80;-348,93"/>
+    </component>
+    <component name="ToPVSignal">
+        <param name="gui:x" value="88"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="ToSBWCDataTable">
+        <param name="gui:x" value="389"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="Union5">
+        <param name="gui:x" value="-151"/>
+        <param name="gui:y" value="34"/>
+    </component>
+    <component name="Union6">
+        <param name="gui:x" value="-151"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="addSequence2">
+        <param name="gui:x" value="195"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="addTableDatas">
+        <param name="gui:x" value="283"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="505"/>
+        <param name="gui:y" value="128"/>
+    </component>
+    <component name="UpdateVehicleStatusStream">
+        <param name="gui:x" value="-37"/>
+        <param name="gui:y" value="34"/>
+    </component>
+</application-layout>

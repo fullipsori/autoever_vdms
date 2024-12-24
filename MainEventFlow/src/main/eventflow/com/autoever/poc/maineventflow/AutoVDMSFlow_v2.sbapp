@@ -13,7 +13,6 @@
         <implements module-reference="com.autoever.poc.maineventflow.LiveViewTable"/>
         <implements module-reference="com.autoever.poc.maineventflow.ResourceTable"/>
         <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
-        <import from="com.autoever.poc.maineventflow.HttpClientSchema"/>
         <import alias="PerfDataSchema" from="com.autoever.poc.maineventflow.LiveViewTable" item="PerfDataSchema"/>
         <import from="com.autoever.poc.maineventflow.ResourceTable"/>
         <import from="com.autoever.poc.maineventflow.kafkaSchemas"/>
@@ -41,21 +40,7 @@
                         <field description="예외 Redis 입력일시" name="XctRedisInpDTM" type="long"/>
                     </schema>
                 </field>
-                <field name="perfData" type="tuple">
-                    <schema>
-                        <field name="kafka_msg_id" type="string"/>
-                        <field name="start_time" type="long"/>
-                        <field name="t1_time" type="long"/>
-                        <field name="t2_time" type="long"/>
-                        <field name="t3_time" type="long"/>
-                        <field name="t4_time" type="long"/>
-                        <field name="t5_time" type="long"/>
-                        <field name="end_time" type="long"/>
-                        <field name="elapsed" type="long"/>
-                        <field name="data_count" type="int"/>
-                        <field name="msg_count" type="long"/>
-                    </schema>
-                </field>
+                <field name="perfData" type="tuple" value="PerfDataSchema"/>
                 <field name="messageID" type="string"/>
                 <field name="mgmtNO" type="string"/>
                 <field name="url" type="string"/>
@@ -77,6 +62,39 @@
                     </schema>
                 </field>
                 <field name="retryCount" type="int"/>
+            </schema>
+            <schema name="MGMTSchema">
+                <field name="vehicleKeyID" type="long"/>
+                <field name="mgmtNO" type="string"/>
+            </schema>
+            <schema name="MainOutputDBCSchema">
+                <field name="kafkaMessage" type="tuple">
+                    <schema>
+                        <field description="단말기 시리얼 번호" name="TerminalID" type="string"/>
+                        <field name="SequenceNo" type="long"/>
+                        <field description="Body 크기" name="BodyLength" type="long"/>
+                        <field description="차종" name="CIN" type="string"/>
+                        <field description="차량식별번호" name="VIN" type="string"/>
+                        <field description="차량 키 아이디" name="VehicleKeyID" type="long"/>
+                        <field description="데이터 수집 정책 버전" name="PolicyVersion" type="int"/>
+                        <field description="데이터 건수" name="RecordCount" type="long"/>
+                        <field description="트립 번호" name="RootCount" type="int"/>
+                        <field description="트립 안에서의 데이터 순서" name="SubmitSequenceNo" type="long"/>
+                        <field description="단말기 시리얼 번호" name="SerialNo" type="string"/>
+                        <field description="데이터 수집 시작 시간" name="BaseTime" type="long"/>
+                        <field description="수집 데이터의 종류" name="MessageType" type="int"/>
+                        <field description="CCP 메세지인 경우" name="FirstPID" type="string"/>
+                        <field description="메시지파일ID" name="MsgSrcKeyID" type="string"/>
+                        <field description="동기서버 생성 ID" name="SyncSerID" type="string"/>
+                        <field description="Message Collect Time" name="LoadDTM" type="string"/>
+                        <field description="예외 Redis 입력일시" name="XctRedisInpDTM" type="long"/>
+                    </schema>
+                </field>
+                <field name="filePath" type="string"/>
+                <field name="binaryData" type="blob"/>
+                <field name="perfData" type="tuple" value="PerfDataSchema"/>
+                <field name="messageID" type="string"/>
+                <field name="mgmtNO" type="string"/>
             </schema>
             <schema name="MainOutputSchema">
                 <field name="kafkaMessage" type="tuple">
@@ -103,27 +121,9 @@
                 </field>
                 <field name="filePath" type="string"/>
                 <field name="binaryData" type="blob"/>
-                <field name="perfData" type="tuple">
-                    <schema>
-                        <field name="kafka_msg_id" type="string"/>
-                        <field name="start_time" type="long"/>
-                        <field name="t1_time" type="long"/>
-                        <field name="t2_time" type="long"/>
-                        <field name="t3_time" type="long"/>
-                        <field name="t4_time" type="long"/>
-                        <field name="t5_time" type="long"/>
-                        <field name="end_time" type="long"/>
-                        <field name="elapsed" type="long"/>
-                        <field name="data_count" type="int"/>
-                        <field name="msg_count" type="long"/>
-                    </schema>
-                </field>
+                <field name="perfData" type="tuple" value="PerfDataSchema"/>
                 <field name="messageID" type="string"/>
                 <field name="mgmtNO" type="string"/>
-            </schema>
-            <schema name="TestSchema">
-                <field name="data_1" type="string"/>
-                <field name="data_2" type="string"/>
             </schema>
         </named-schemas>
         <parameter-definitions>
@@ -131,9 +131,9 @@
             <parameter default="10.12.109.204:6667;10.12.109.157:6667;10.12.109.232:6667" name="KAFKA_BROKER"/>
             <parameter default="AutoSubmitReq" name="KAFKA_TOPIC"/>
             <parameter default="autoever_vdms_local_dev" name="KAFKA_GROUP_ID"/>
-            <parameter default="d:/projects/vdms/temp" name="FILE_TEMP_FOLDER"/>
-            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
-            <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="D:/Projects/vdms/temp" name="FILE_TEMP_FOLDER"/>
+            <parameter default="D:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="D:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
             <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
             <parameter default="memory" name="downloadMode"/>
         </parameter-definitions>
@@ -141,10 +141,17 @@
             <dynamic-variable initial-expression="emptylist(string())" name="CCPVIDs" setter-expression="coalesce(input.CCPVIDs, CCPVIDs)" setter-stream="UpdateKeyStream"/>
             <dynamic-variable initial-expression="true" name="allowCan" setter-expression="coalesce(input.allowCan, allowCan)" setter-stream="UpdateFilterStream"/>
             <dynamic-variable initial-expression="true" name="allowCcp" setter-expression="coalesce(input.allowCcp, allowCcp)" setter-stream="UpdateFilterStream"/>
-            <dynamic-variable initial-expression="false" name="allowDiag" setter-expression="coalesce(input.allowDiag, allowDiag)" setter-stream="UpdateFilterStream"/>
-            <dynamic-variable initial-expression="false" name="allowGps" setter-expression="coalesce(input.allowGps, allowGps)" setter-stream="UpdateFilterStream"/>
+            <dynamic-variable initial-expression="true" name="allowDiag" setter-expression="coalesce(input.allowDiag, allowDiag)" setter-stream="UpdateFilterStream"/>
+            <dynamic-variable initial-expression="true" name="allowGps" setter-expression="coalesce(input.allowGps, allowGps)" setter-stream="UpdateFilterStream"/>
+            <dynamic-variable initial-expression="emptylist(string())" name="cpDBCFiles" setter-expression="coalesce(input.cpDBCFiles, cpDBCFiles)" setter-stream="UpdateKeyStream"/>
+            <dynamic-variable initial-expression="emptylist(string())" name="evDBCFiles" setter-expression="coalesce(input.evDBCFiles, evDBCFiles)" setter-stream="UpdateKeyStream"/>
+            <dynamic-variable initial-expression="emptylist(MGMTSchema())" name="mgmtStatus" setter-expression="UpdateVehicleSignalStatus(mgmtStatus, input)" setter-stream="UpdateMgmtStream"/>
             <dynamic-variable initial-expression="emptylist(string())" name="policyFiles" setter-expression="coalesce(input.policyFiles, policyFiles)" setter-stream="UpdateKeyStream"/>
+            <dynamic-variable initial-expression="emptylist(string())" name="sbwcDBCFiles" setter-expression="coalesce(input.sbwcDBCFiles, sbwcDBCFiles)" setter-stream="UpdateKeyStream"/>
         </dynamic-variables>
+        <data name="mgmtJDBCTable" type="jdbctable">
+            <param name="connection" value="oracle"/>
+        </data>
         <data name="MGMTQueryTable" shared="false" source="concrete" type="querytable">
             <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
@@ -194,9 +201,11 @@
             <input port="1" stream="UpdateVarStream"/>
             <output port="1" stream="out:Filter_1"/>
             <output port="2" stream="out:Filter_2"/>
+            <output port="3" stream="out:Filter_3"/>
             <param name="autogen-nomatch-port" value="false"/>
             <param name="expression.0" value="upper(command) == 'UPDATE_POLICY'"/>
             <param name="expression.1" value="upper(command) == 'UPDATE_EVT'"/>
+            <param name="expression.2" value="upper(command) == 'UPDATE_DBC'"/>
         </box>
         <box name="StartSplit" type="split">
             <input port="1" stream="out:Start_1"/>
@@ -212,6 +221,16 @@
                 <item name="input" selection="none"/>
                 <expressions>
                     <include field="command">'Load'</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="ReloadDBC" type="map">
+            <input port="1" stream="out:Filter_3"/>
+            <output port="1" stream="out:ReloadDBC_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="command">'RELOAD'</include>
                 </expressions>
             </target-list>
         </box>
@@ -264,7 +283,7 @@
                 <expressions>
                     <replace field="command">coalesce(input1.command, 'subscribe')</replace>
                     <replace field="topic">coalesce(input.topic, 'AutoSubmitReq')</replace>
-                    <include field="time">to_milliseconds(now()) - 60*1000*60*2</include>
+                    <include field="time">to_milliseconds(now()) - 60*1000*3</include>
                 </expressions>
             </target-list>
         </box>
@@ -306,7 +325,8 @@
             <input port="1" stream="out:InitLoad_1"/>
             <output port="1" stream="out:Split2_1"/>
             <output port="2" stream="out:Split2_2"/>
-            <param name="output-count" value="2"/>
+            <output port="3" stream="out:Split2_3"/>
+            <param name="output-count" value="3"/>
         </box>
         <box name="InsertMGMT" type="query">
             <input port="1" stream="out:LoadMGMT_1"/>
@@ -354,6 +374,12 @@
             <input port="1" stream="out:Split2_2"/>
             <input port="2" stream="out:ReloadEVT_1"/>
             <output port="1" stream="out:Union4_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="UnionDBC" type="union">
+            <input port="1" stream="out:Split2_3"/>
+            <input port="2" stream="out:ReloadDBC_1"/>
+            <output port="1" stream="out:UnionDBC_1"/>
             <param name="strict" value="false"/>
         </box>
         <box name="KafkaConsumer" type="inputadapter">
@@ -407,6 +433,13 @@
                 </expressions>
             </target-list>
         </box>
+        <box name="Split6" type="split">
+            <input port="1" stream="out:UnionDBC_1"/>
+            <output port="1" stream="out:Split6_1"/>
+            <output port="2" stream="out:Split6_2"/>
+            <output port="3" stream="out:Split6_3"/>
+            <param name="output-count" value="3"/>
+        </box>
         <output-stream name="KafkaStatus"/>
         <box name="GenEVTKeys" type="map">
             <input port="1" stream="out:LoadEVT_1"/>
@@ -428,6 +461,36 @@
                 </expressions>
             </target-list>
         </box>
+        <box name="LoadCPDBC" type="map">
+            <input port="1" stream="out:Split6_1"/>
+            <output port="1" stream="out:LoadCPDBC_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="cpDBCFolder">"${RESOURCE_ROOT}/dbc/CP"</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LoadEVDBC" type="map">
+            <input port="1" stream="out:Split6_2"/>
+            <output port="1" stream="out:LoadEVDBC_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="evDBCFolder">"${RESOURCE_ROOT}/dbc/EV"</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LoadSBWCDBC" type="map">
+            <input port="1" stream="out:Split6_3"/>
+            <output port="1" stream="out:LoadSBWCDBC_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="sbwcDBCFolder">"${RESOURCE_ROOT}/dbc/SBWC"</include>
+                </expressions>
+            </target-list>
+        </box>
         <box name="NotNull" type="filter">
             <input port="1" stream="out:KafkaConsumer_1"/>
             <output port="1" stream="out:NotNull_1"/>
@@ -445,6 +508,36 @@
             <param name="expression.1" value="allowDiag &amp;&amp; message.MessageType==4"/>
             <param name="expression.2" value="allowGps &amp;&amp; message.MessageType==6"/>
             <param name="expression.3" value="allowCcp &amp;&amp; message.MessageType==2"/>
+        </box>
+        <box name="GenCPDBCKeys" type="map">
+            <input port="1" stream="out:LoadCPDBC_1"/>
+            <output port="1" stream="out:GenCPDBCKeys_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="cpDBCFiles">GetDirnameListInPath(cpDBCFolder)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="GenEVDBCKeys" type="map">
+            <input port="1" stream="out:LoadEVDBC_1"/>
+            <output port="1" stream="out:GenEVDBCKeys_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="evDBCFiles">GetDirnameListInPath(evDBCFolder)</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="GenSBWCDBCKeys" type="map">
+            <input port="1" stream="out:LoadSBWCDBC_1"/>
+            <output port="1" stream="out:GenSBWCDBCKeys_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="sbwcDBCFiles">GetDirnameListInPath(sbwcDBCFolder)</include>
+                </expressions>
+            </target-list>
         </box>
         <box name="Split" type="split">
             <input port="1" stream="out:GenPolicyKeys_1"/>
@@ -470,11 +563,23 @@
             <param name="autogen-nomatch-port" value="false"/>
             <param name="expression.0" value="command=='RELOAD'"/>
         </box>
-        <box name="Union6" type="union">
-            <input port="1" stream="out:Split_1"/>
-            <input port="2" stream="out:Split3_1"/>
-            <output port="1" stream="UpdateKeyStream"/>
-            <param name="strict" value="false"/>
+        <box name="SplitCPDBC" type="split">
+            <input port="1" stream="out:GenCPDBCKeys_1"/>
+            <output port="1" stream="out:SplitCPDBC_1"/>
+            <output port="2" stream="out:SplitCPDBC_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="SplitEVDBC" type="split">
+            <input port="1" stream="out:GenEVDBCKeys_1"/>
+            <output port="1" stream="out:SplitEVDBC_1"/>
+            <output port="2" stream="out:SplitEVDBC_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="SplitSBWCDBC" type="split">
+            <input port="1" stream="out:GenSBWCDBCKeys_1"/>
+            <output port="1" stream="out:SplitSBWCDBC_1"/>
+            <output port="2" stream="out:SplitSBWCDBC_2"/>
+            <param name="output-count" value="2"/>
         </box>
         <box name="UnionFilter" type="union">
             <input port="1" stream="out:FilterMessage_1"/>
@@ -484,14 +589,31 @@
             <output port="1" stream="out:UnionFilter_1"/>
             <param name="strict" value="false"/>
         </box>
-        <output-stream name="UpdateKeyStream"/>
+        <box name="FilterCPReload" type="filter">
+            <input port="1" stream="out:SplitCPDBC_2"/>
+            <output port="1" stream="out:FilterCPReload_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
+        </box>
+        <box name="FilterEVReload" type="filter">
+            <input port="1" stream="out:SplitEVDBC_2"/>
+            <output port="1" stream="out:FilterEVReload_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
+        </box>
+        <box name="FilterSBWCReload" type="filter">
+            <input port="1" stream="out:SplitSBWCDBC_2"/>
+            <output port="1" stream="out:FilterSBWCReload_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
+        </box>
         <box name="InitializeData" type="map">
             <input port="1" stream="out:UnionFilter_1"/>
             <output port="1" stream="out:InitializeData_1"/>
             <target-list>
                 <item name="input" selection="none">
                     <include field="message"/>
-                    <declare field="messageID">message.VehicleKeyID + '_' + strftime("%Y%m%d%H%M%S%f", now())</declare>
+                    <declare field="messageID">message.VehicleKeyID + '_' + strftime("%m%d%H%M%S%f", now())</declare>
                 </item>
                 <expressions>
                     <include field="perfData">PerfDataSchema(messageID, to_milliseconds(now()), 0, 0, 0, 0, 0, 0, 0, 0, message.RecordCount)</include>
@@ -517,18 +639,66 @@
                 </item>
             </target-list>
         </box>
+        <box name="Union6" type="union">
+            <input port="1" stream="out:Split_1"/>
+            <input port="2" stream="out:Split3_1"/>
+            <input port="3" stream="out:SplitCPDBC_1"/>
+            <input port="4" stream="out:SplitEVDBC_1"/>
+            <input port="5" stream="out:SplitSBWCDBC_1"/>
+            <output port="1" stream="UpdateKeyStream"/>
+            <param name="strict" value="false"/>
+        </box>
         <output-stream name="ToCanControlStream">
             <param name="connection" value="'canflow.ControlStream'"/>
         </output-stream>
+        <output-stream name="UpdateKeyStream"/>
         <box name="FilterFromFiles" type="filter">
             <input port="1" stream="out:InitializeData_1"/>
             <output port="1" stream="out:FilterFromFiles_1"/>
             <output port="2" stream="out:FilterFromFiles_2"/>
             <output port="3" stream="out:FilterFromFiles_3"/>
+            <output port="4" stream="out:FilterFromFiles_4"/>
+            <output port="5" stream="out:FilterFromFiles_5"/>
+            <output port="6" stream="out:FilterFromFiles_6"/>
+            <output port="7" stream="out:FilterFromFiles_7"/>
             <param name="autogen-nomatch-port" value="false"/>
-            <param name="expression.0" value="message.MessageType==1 &amp;&amp; (contains(CCPVIDs, string(message.VehicleKeyID)) || contains(policyFiles, message.TerminalID))"/>
-            <param name="expression.1" value="message.MessageType==4 || message.MessageType==6"/>
-            <param name="expression.2" value="message.MessageType==2 &amp;&amp; contains(CCPVIDs, string(message.VehicleKeyID))"/>
+            <param name="expression.0" value="message.MessageType==1 &amp;&amp; contains(policyFiles, message.TerminalID)"/>
+            <param name="expression.1" value="message.MessageType==1 &amp;&amp; contains(cpDBCFiles, string(message.VehicleKeyID))"/>
+            <param name="expression.2" value="message.MessageType==1 &amp;&amp; contains(evDBCFiles, string(message.VehicleKeyID))"/>
+            <param name="expression.3" value="message.MessageType==1 &amp;&amp; contains(sbwcDBCFiles, string(message.VehicleKeyID))"/>
+            <param name="expression.4" value="message.MessageType==2 &amp;&amp; contains(CCPVIDs, string(message.VehicleKeyID))"/>
+            <param name="expression.5" value="message.MessageType==6"/>
+            <param name="expression.6" value="message.MessageType==4"/>
+        </box>
+        <box name="MapDBControl" type="map">
+            <input port="1" stream="out:FilterCPReload_1"/>
+            <output port="1" stream="ToCanDBCControlStream"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="cpDBCFolder"/>
+                    <remove field="cpDBCFiles"/>
+                </item>
+            </target-list>
+        </box>
+        <box name="MapEVDBControl" type="map">
+            <input port="1" stream="out:FilterEVReload_1"/>
+            <output port="1" stream="ToEVDBCControlStream"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="evDBCFolder"/>
+                    <remove field="evDBCFiles"/>
+                </item>
+            </target-list>
+        </box>
+        <box name="MapSBWCDBControl" type="map">
+            <input port="1" stream="out:FilterSBWCReload_1"/>
+            <output port="1" stream="ToSBWCDBCControlStream"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="sbwcDBCFolder"/>
+                    <remove field="sbwcDBCFiles"/>
+                </item>
+            </target-list>
         </box>
         <box name="Split5" type="split">
             <input port="1" stream="out:Map2_1"/>
@@ -536,29 +706,21 @@
             <output port="2" stream="out:Split5_2"/>
             <param name="output-count" value="2"/>
         </box>
+        <output-stream name="ToCanDBCControlStream">
+            <param name="connection" value="'cpvdmsflow.ControlStream'"/>
+        </output-stream>
         <output-stream name="ToCCPControlStream">
             <param name="connection" value="'ccpflow.ControlStream'"/>
         </output-stream>
-        <box name="Map3" type="map">
-            <input port="1" stream="out:Split5_2"/>
-            <output port="1" stream="out:Map3_1"/>
-            <target-list>
-                <item name="input" selection="all"/>
-                <expressions>
-                    <remove field="evtFolder"/>
-                </expressions>
-            </target-list>
-        </box>
-        <box name="Union5" type="union">
-            <input port="1" stream="out:FilterFromFiles_1"/>
-            <input port="2" stream="out:FilterFromFiles_2"/>
-            <input port="3" stream="out:FilterFromFiles_3"/>
-            <output port="1" stream="out:Union5_1"/>
-            <param name="strict" value="false"/>
-        </box>
-        <box name="Query2Mgmt" type="query">
-            <input port="1" stream="out:Union5_1"/>
-            <output port="1" stream="out:Query2Mgmt_1"/>
+        <output-stream name="ToEVDBCControlStream">
+            <param name="connection" value="'evvdmsflow.ControlStream'"/>
+        </output-stream>
+        <output-stream name="ToSBWCDBCControlStream">
+            <param name="connection" value="'sbwcvdmsflow.ControlStream'"/>
+        </output-stream>
+        <box name="addMgmtForDiag" type="query">
+            <input port="1" stream="out:FilterFromFiles_7"/>
+            <output port="1" stream="out:addMgmtForDiag_1"/>
             <dataref id="querytable" name="MGMTQueryTable"/>
             <param name="operation" value="read"/>
             <param name="where" value="primary-key"/>
@@ -590,26 +752,104 @@
                 <item name="input" selection="all"/>
             </target-list>
         </box>
-        <box name="Split6" type="split">
-            <input port="1" stream="out:Map3_1"/>
-            <output port="1" stream="ToCanDBCControlStream"/>
-            <output port="2" stream="ToNNControlStream"/>
-            <param name="output-count" value="2"/>
+        <box name="Map3" type="map">
+            <input port="1" stream="out:Split5_2"/>
+            <output port="1" stream="ToNNControlStream"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <remove field="evtFolder"/>
+                </expressions>
+            </target-list>
         </box>
-        <output-stream name="ToCanDBCControlStream">
-            <param name="connection" value="'candbcflow.ControlStream'"/>
-        </output-stream>
+        <box name="Union5" type="union">
+            <input port="1" stream="out:FilterFromFiles_1"/>
+            <input port="2" stream="out:FilterFromFiles_2"/>
+            <input port="3" stream="out:FilterFromFiles_3"/>
+            <input port="4" stream="out:FilterFromFiles_4"/>
+            <input port="5" stream="out:FilterFromFiles_5"/>
+            <input port="6" stream="out:FilterFromFiles_6"/>
+            <output port="1" stream="out:Union5_1"/>
+            <param name="strict" value="false"/>
+        </box>
         <output-stream name="ToNNControlStream">
             <param name="connection" value="'nnflow.ControlStream'"/>
         </output-stream>
-        <box name="CheckMgmtNO" type="filter">
-            <input port="1" stream="out:Query2Mgmt_1"/>
-            <output port="1" stream="out:CheckMgmtNO_1"/>
+        <box name="addMgmt" type="map">
+            <input port="1" stream="out:Union5_1"/>
+            <output port="1" stream="out:addMgmt_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="mgmtNO">GetVehicleSignalStatus(mgmtStatus, message.VehicleKeyID).mgmtNO</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="CheckMgmtNull" type="filter">
+            <input port="1" stream="out:addMgmtForDiag_1"/>
+            <output port="1" stream="out:CheckMgmtNull_1"/>
             <param name="autogen-nomatch-port" value="false"/>
             <param name="expression.0" value="mgmtNO != &quot;unknown&quot;"/>
         </box>
+        <box name="checkMgmt" type="filter">
+            <input port="1" stream="out:addMgmt_1"/>
+            <output port="1" stream="out:checkMgmt_1"/>
+            <output port="2" stream="out:checkMgmt_2"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="!isempty(mgmtNO)"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="loadmgmtNO" type="query">
+            <input port="1" stream="out:checkMgmt_2"/>
+            <output port="1" stream="out:loadmgmtNO_1"/>
+            <dataref id="jdbctable" name="mgmtJDBCTable"/>
+            <param name="sql" value="SELECT MNGR_NO FROM PVMAVCLE WHERE VCLE_KEYID={message.VehicleKeyID}"/>
+            <param name="use-callable-statements" value="false"/>
+            <param name="send-null-tuple" value="true"/>
+            <param name="jdbc-output-column" value="0"/>
+            <target-list>
+                <item name="table" selection="none"/>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="mgmtNO">MNGR_NO</replace>
+                </expressions>
+            </target-list>
+            <param name="result-set" value="query"/>
+            <param name="query-timeout-ms" value="100"/>
+        </box>
+        <box name="FilterMgmt" type="filter">
+            <input port="1" stream="out:loadmgmtNO_1"/>
+            <output port="1" stream="out:FilterMgmt_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="!isempty(mgmtNO)"/>
+        </box>
+        <box name="Split7" type="split">
+            <input port="1" stream="out:FilterMgmt_1"/>
+            <output port="1" stream="out:Split7_1"/>
+            <output port="2" stream="out:Split7_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="MapFormVar" type="map">
+            <input port="1" stream="out:Split7_1"/>
+            <output port="1" stream="UpdateMgmtStream"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="vehicleKeyID">message.VehicleKeyID</include>
+                    <include field="mgmtNO">mgmtNO</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Union7" type="union">
+            <input port="1" stream="out:checkMgmt_1"/>
+            <input port="2" stream="out:Split7_2"/>
+            <input port="3" stream="out:CheckMgmtNull_1"/>
+            <output port="1" stream="out:Union7_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="UpdateMgmtStream"/>
         <box name="KafkaSplit" type="split">
-            <input port="1" stream="out:CheckMgmtNO_1"/>
+            <input port="1" stream="out:Union7_1"/>
             <output port="1" stream="out:KafkaSplit_1"/>
             <output port="2" stream="out:KafkaSplit_2"/>
             <param name="output-count" value="2"/>
@@ -643,10 +883,10 @@
                     <include field="terminalID">message.TerminalID</include>
                     <include field="vehicleKeyID">message.VehicleKeyID</include>
                     <include field="rootCount">message.RootCount</include>
-                    <include field="baseTime">long(GetLocalTime(message.BaseTime, ''))</include>
+                    <include field="baseTime">long(GetLocalTimeString(message.BaseTime*1000, ''))</include>
                     <include field="messageType">message.MessageType</include>
                     <include field="recordCount">int(message.RecordCount)</include>
-                    <include field="receivedTime">long(GetLocalTime(round(perfData.start_time/1000), ''))</include>
+                    <include field="receivedTime">long(GetLocalTimeString(perfData.start_time, ''))</include>
                 </expressions>
             </target-list>
         </box>
@@ -746,14 +986,14 @@
         <box name="Distribute" type="filter">
             <input port="1" stream="out:InitDataField_1"/>
             <output port="1" stream="out:Distribute_1"/>
-            <output port="2" stream="DIAGStream"/>
-            <output port="3" stream="GPSStream"/>
-            <output port="4" stream="CCPStream"/>
+            <output port="2" stream="out:Distribute_2"/>
+            <output port="3" stream="out:Distribute_3"/>
+            <output port="4" stream="out:Distribute_4"/>
             <param name="autogen-nomatch-port" value="false"/>
             <param name="expression.0" value="kafkaMessage.MessageType==1"/>
-            <param name="expression.1" value="kafkaMessage.MessageType==4"/>
-            <param name="expression.2" value="kafkaMessage.MessageType==6"/>
-            <param name="expression.3" value="kafkaMessage.MessageType==2"/>
+            <param name="expression.1" value="kafkaMessage.MessageType==6"/>
+            <param name="expression.2" value="kafkaMessage.MessageType==2"/>
+            <param name="expression.3" value="kafkaMessage.MessageType==4"/>
         </box>
         <box name="ParseInputTuple" type="map">
             <input port="1" stream="out:Filter_ResError_1"/>
@@ -767,15 +1007,12 @@
                 </expressions>
             </target-list>
         </box>
-        <output-stream name="CCPStream">
-            <param name="connection" value="'ccpflow.InputStream'"/>
-        </output-stream>
-        <output-stream name="DIAGStream">
-            <param name="connection" value="'diagflow.InputStream'"/>
-        </output-stream>
-        <output-stream name="GPSStream">
-            <param name="connection" value="'gpsflow.InputStream'"/>
-        </output-stream>
+        <box name="Can_Filter" type="filter">
+            <input port="1" stream="out:Distribute_1"/>
+            <output port="1" stream="out:Can_Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="allowCan"/>
+        </box>
         <box name="Check_RetryCount" type="filter">
             <input port="1" stream="out:ParseInputTuple_1"/>
             <output port="1" stream="out:Check_RetryCount_1"/>
@@ -784,12 +1021,33 @@
             <param name="expression.0" value="retryCount &lt; 3"/>
             <param name="expression.1" value="true"/>
         </box>
-        <box name="Split4" type="split">
-            <input port="1" stream="out:Distribute_1"/>
-            <output port="1" stream="out:Split4_1"/>
-            <output port="2" stream="out:Split4_2"/>
-            <param name="output-count" value="2"/>
+        <box name="CP_Filter" type="filter">
+            <input port="1" stream="out:Distribute_3"/>
+            <output port="1" stream="CCPStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="allowCcp"/>
         </box>
+        <box name="Filter4" type="filter">
+            <input port="1" stream="out:Distribute_4"/>
+            <output port="1" stream="OutputStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="allowDiag"/>
+        </box>
+        <box name="GPS_Filter" type="filter">
+            <input port="1" stream="out:Distribute_2"/>
+            <output port="1" stream="GPSStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="allowGps"/>
+        </box>
+        <output-stream name="CCPStream">
+            <param name="connection" value="'ccpflow.InputStream'"/>
+        </output-stream>
+        <output-stream name="GPSStream">
+            <param name="connection" value="'gpsflow.InputStream'"/>
+        </output-stream>
+        <output-stream name="OutputStream">
+            <param name="connection" value="'diagflow.InputStream'"/>
+        </output-stream>
         <box name="ErrorDownloadHCP" type="outputadapter">
             <input port="1" stream="out:Check_RetryCount_2"/>
             <output port="1" stream="OutputHCPRetryOverStream"/>
@@ -819,18 +1077,6 @@
             <param name="timestampFormat" value="yyyy-MM-dd HH:mm:ss.SSSZ"/>
             <param name="verbose" value="false"/>
         </box>
-        <box name="Filter_CCPList" type="filter">
-            <input port="1" stream="out:Split4_2"/>
-            <output port="1" stream="CANDBCStream"/>
-            <param name="autogen-nomatch-port" value="false"/>
-            <param name="expression.0" value="contains(CCPVIDs, string(kafkaMessage.VehicleKeyID))"/>
-        </box>
-        <box name="Filter_PolicyList" type="filter">
-            <input port="1" stream="out:Split4_1"/>
-            <output port="1" stream="CANStream"/>
-            <param name="autogen-nomatch-port" value="false"/>
-            <param name="expression.0" value="contains(policyFiles, kafkaMessage.TerminalID)"/>
-        </box>
         <box name="IncRetryCount" type="map">
             <input port="1" stream="out:Check_RetryCount_1"/>
             <output port="1" stream="out:IncRetryCount_1"/>
@@ -841,12 +1087,50 @@
                 </expressions>
             </target-list>
         </box>
-        <output-stream name="CANDBCStream">
-            <param name="connection" value="'candbcflow.InputStream'"/>
-        </output-stream>
+        <box name="Split4" type="split">
+            <input port="1" stream="out:Can_Filter_1"/>
+            <output port="1" stream="out:Split4_1"/>
+            <output port="2" stream="out:Split4_2"/>
+            <output port="3" stream="out:Split4_3"/>
+            <output port="4" stream="out:Split4_4"/>
+            <param name="output-count" value="4"/>
+        </box>
+        <output-stream name="OutputHCPRetryOverStream"/>
+        <box name="DBC_CP" type="filter">
+            <input port="1" stream="out:Split4_2"/>
+            <output port="1" stream="CPDBCStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="contains(cpDBCFiles, string(kafkaMessage.VehicleKeyID))"/>
+        </box>
+        <box name="DBC_EV" type="filter">
+            <input port="1" stream="out:Split4_3"/>
+            <output port="1" stream="EVDBCStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="contains(evDBCFiles, string(kafkaMessage.VehicleKeyID))"/>
+        </box>
+        <box name="DBC_SBWC" type="filter">
+            <input port="1" stream="out:Split4_4"/>
+            <output port="1" stream="SBWCDBCStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="contains(sbwcDBCFiles, string(kafkaMessage.VehicleKeyID))"/>
+        </box>
+        <box name="Filter_PolicyList" type="filter">
+            <input port="1" stream="out:Split4_1"/>
+            <output port="1" stream="CANStream"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="contains(policyFiles, kafkaMessage.TerminalID)"/>
+        </box>
         <output-stream name="CANStream">
             <param name="connection" value="'canflow.InputStream'"/>
         </output-stream>
-        <output-stream name="OutputHCPRetryOverStream"/>
+        <output-stream name="CPDBCStream" schema="MainOutputDBCSchema" strict-input-schemas="false">
+            <param name="connection" value="'cpvdmsflow.InputStream'"/>
+        </output-stream>
+        <output-stream name="EVDBCStream" schema="MainOutputDBCSchema">
+            <param name="connection" value="'evvdmsflow.InputStream'"/>
+        </output-stream>
+        <output-stream name="SBWCDBCStream" schema="MainOutputDBCSchema">
+            <param name="connection" value="'sbwcvdmsflow.InputStream'"/>
+        </output-stream>
     </add>
 </modify>

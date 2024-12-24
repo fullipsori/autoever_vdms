@@ -3,7 +3,6 @@ package com.autoever.poc.parser.gps;
 import java.util.List;
 
 import com.autoever.poc.common.NumUtils;
-import com.autoever.poc.common.TimeUtils;
 import com.autoever.poc.parser.AutoGPSField;
 import com.autoever.poc.parser.PreProcessable;
 import com.streambase.sb.CompleteDataType;
@@ -50,11 +49,6 @@ public class GPSPreProcessor implements PreProcessable {
 		return (longitude & 0x01000000) == 0x01000000;
 	}
 	
-	public static String getGPSTime(long baseTime, long deltaTime) {
-		/* deltaTime 가 gps 에서는 sec 인지 확인 필요함. */
-		return TimeUtils.GetLocalTime(baseTime + deltaTime, null);
-	}
-	
 	@Override
 	public boolean preProcess(Tuple inputTuple, Tuple dataTuple, int msgInfo, int channel, int id, byte[] rawData) {
 		// TODO Auto-generated method stub
@@ -66,11 +60,15 @@ public class GPSPreProcessor implements PreProcessable {
 			int curIndex = 0;
 			int size = AutoGPSField.Latitude.getsize();
 			int latitude = NumUtils.getIntFromBig(rawData,curIndex,size);
-			rawParsed.setDouble("Latitude", getGPSY(latitude));
+			double dLatitude = getGPSY(latitude);
+			if(dLatitude<-90 || dLatitude>90) return false; 
+			rawParsed.setDouble("Latitude", dLatitude);
 			curIndex += size;
 			size = AutoGPSField.Longitude.getsize();
 			int longitude = NumUtils.getIntFromBig(rawData,curIndex,size);
-			rawParsed.setDouble("Longitude", getGPSX(longitude));
+			double dLongitude = getGPSX(longitude);
+			if(dLongitude<-180||dLongitude>180) return false;
+			rawParsed.setDouble("Longitude", dLongitude);
 			curIndex += size;
 			size = AutoGPSField.Heading.getsize();
 			rawParsed.setInt("Heading", NumUtils.getIntFromBig(rawData,curIndex,size));

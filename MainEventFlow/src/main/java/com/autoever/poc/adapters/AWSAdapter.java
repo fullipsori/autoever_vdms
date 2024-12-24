@@ -96,7 +96,7 @@ public class AWSAdapter {
 
 	public static String GetAuthorization(){
 	    // TODO Implement function here
-		String dateStamp = TimeUtils.getUTCTime(Instant.now().getEpochSecond(), "yyyyMMdd");
+		String dateStamp = TimeUtils.getUTCTimeString(Instant.now().toEpochMilli(), "yyyyMMdd");
 		
 		String signature = GetSignature(secretKey, dateStamp, regionName, serviceName);
 		String authHeader = String.format("AWS4-HMAC-SHA256 Credential=%s/%s/%s/%s/aws4_request,SignedHeaders=host;x-amz-date, Signature=%s",

@@ -13,7 +13,6 @@
         <implements module-reference="com.autoever.poc.maineventflow.ResourceTable"/>
         <implements module-reference="com.autoever.poc.maineventflow.kafkaSchemas"/>
         <import from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2"/>
-        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
         <import from="com.autoever.poc.maineventflow.ResourceTable"/>
         <parameter-definitions>
             <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>

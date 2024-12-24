@@ -26,8 +26,8 @@ configuration = {
 					// On Mac, set the path to something like /usr/loca/bin/python3. See the README for details on 
 					// supported Python versions.
 					settings = {
-					  executable = "d:/Projects/vdms/tools/Python/Python311/python.exe"
-					  instance = "python_nn_instance"
+					  executable = "D:/Dev/Python311/python.exe"
+					  instance = "python_global_instance"
 					  useTempFile = "false"
 					  workingDir = "."
 					}

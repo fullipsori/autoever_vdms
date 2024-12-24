@@ -27,7 +27,7 @@ configuration = {
 					// supported Python versions.
 					settings = {
 					  executable = "d:/Projects/vdms/tools/Python/Python311/python.exe"
-					  instance = "python_nn_instance"
+					  instance = "python_global_instance"
 					  useTempFile = "false"
 					  workingDir = "."
 					}

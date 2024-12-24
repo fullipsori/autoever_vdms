@@ -1,0 +1,912 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: VDMS GST SVM CSP CBV ACV APC CTV BPCU FCU_LHRH INCA
+VAL_TABLE_ VT_DtlHscSte 4 "Hsc Fault" 3 "Hsc Warning" 2 "Hsc Operation" 1 "Hsc Rdy" 0 "Hsc Stop" ;
+VAL_TABLE_ VT_DtlBmsSte 4 "Bms Fault" 3 "Bms Warning" 2 "Bms Rly On" 1 "Bms Rdy" ;
+VAL_TABLE_ VT_DtlLdcSte 4 "Ldc Critical Fault" 3 "Ldc Fault" 2 "Ldc Run" 1 "Ldc Rdy" 0 "Ldc Stop" ;
+VAL_TABLE_ VT_DtlHdcSte 4 "Hdc Critical Fault" 3 "Hdc Fault" 2 "Hdc Run" 1 "Hdc Rdy" 0 "Hdc Stop" ;
+VAL_TABLE_ VT_EtsMotErr 4 "Open Load" 2 "Shut Down" 1 "Over Temperature" 0 "Normal Operation" ;
+VAL_TABLE_ VT_CtSts 2 "Over Voltage(16V)" 1 "Under Voltage(9V)" 0 "Normal Voltage" ;
+VAL_TABLE_ VT_BpcPmpCtrlSte 13 "Sd Complete" 12 "Log Bpc Pump" 11 "P3S disable" 10 "Pwm Disable" 5 "Normal" 4 "Pwm On" 3 "Fcu Rdy" 2 "AutoCal" 1 "Chk Bpc Pump" 0 "Init Bpc Pump" ;
+VAL_TABLE_ VT_BpcBlrCtrlSte 13 "Sd Complete" 12 "Log Bpc Blower" 11 "P3S disable" 10 "Pwm Disable" 5 "Normal" 4 "Pwm On" 3 "Fcu Rdy" 2 "AutoCal" 1 "Chk Bpc Blower" 0 "Init Bpc Blower" ;
+VAL_TABLE_ VT_McuCtrlMde 2 "Position Control Mode" 1 "Rpm Control Mode" 0 "Torque Control Mode" ;
+VAL_TABLE_ VT_McuSte 13 "Sd Complete" 12 "Log Mcu" 11 "P3S disable" 10 "Pwm Disable" 5 "Normal" 4 "Pwm On" 3 "Fcu Rdy" 2 "AutoCal" 1 "Chk Mcu" 0 "Init Mcu" ;
+VAL_TABLE_ VT_LdcMde 6 "General Error" 5 "BkMde_OtLim" 4 "BkMde_HsCurLim" 3 "BkMde_LsCurLim" 2 "BkMde_HsVltLim" 1 "BkMde_LsVltCtrl" 0 "Ldc Ready to Operating" ;
+
+
+BO_ 1199 DeFcuV7: 8 FCU_LHRH
+ SG_ WtrContents : 56|8@1+ (0.01,0) [0|2] "" Vector__XXX
+ SG_ AnCncH2 : 48|8@1+ (0.01,0) [0|1] "%/100" Vector__XXX
+ SG_ LdCtly : 40|8@1+ (0.01,0) [0|0.5] "mg/cm2" Vector__XXX
+ SG_ FcStStpSte : 32|8@1+ (1,0) [0|50] "" Vector__XXX
+ SG_ VehLdHr : 16|16@1+ (1,0) [0|65535] "hr" Vector__XXX
+
+BO_ 1198 DeFcuV6: 8 FCU_LHRH
+ SG_ FcOutClntTmp : 56|8@1- (1,0) [-40|125] "˚C" Vector__XXX
+ SG_ UpStckDvVlt : 48|8@1+ (0.01,-1.2) [-1.2|1.35] "V" Vector__XXX
+ SG_ AirSrRat : 32|8@1+ (0.02,0) [0|5.1] "" Vector__XXX
+ SG_ FcCurReq : 24|8@1+ (1.6,0) [0|400] "A" Vector__XXX
+ SG_ FcMxCurLim : 16|8@1+ (2,0) [0|500] "A" Vector__XXX
+ SG_ VehRecCde2 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VehRecCde1 : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1197 DeFcuV5: 8 FCU_LHRH
+ SG_ VehRecCde0 : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CanRecCde3 : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CanRecCde2 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CanRecCde1 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CanRecCde0 : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ StckRecCde2 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ StckRecCde1 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ StckRecCde0 : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1196 DeFcuV4: 8 FCU_LHRH
+ SG_ TmsRecCde2 : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ TmsRecCde1 : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ TmsRecCde0 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ FpsRecCde2 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ FpsRecCde1 : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ FpsRecCde0 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ApsRecCde2 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ApsRecCde1 : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1195 DeFcuV3: 8 FCU_LHRH
+ SG_ ApsRecCde0 : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ H2SnsStack : 48|8@1+ (0.02,0) [0|4] "%" Vector__XXX
+ SG_ AmbAirPrs : 40|8@1+ (1,0) [40|115] "kPa_a" Vector__XXX
+ SG_ AP10PrsEst : 32|8@1+ (1,60) [60|280] "kPa_a" Vector__XXX
+ SG_ H2SnsFPS : 24|8@1+ (0.02,0) [0|4] "%" Vector__XXX
+ SG_ FL20Lvl : 16|8@1+ (0.5,0) [0|70] "mm" Vector__XXX
+ SG_ FdvPos : 8|8@1+ (0.02,0) [0|5] "V" Vector__XXX
+ SG_ FpvPos : 0|8@1+ (0.02,0) [0|5] "V" Vector__XXX
+
+BO_ 1194 DeFcuV2: 8 FCU_LHRH
+ SG_ UpStckAvgVltMSB : 8|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ UpStckAvgVltLSB : 20|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ KeyIG : 14|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FuelTrgtPrs : 48|8@1+ (1,30) [30|280] "kPa_a" Vector__XXX
+ SG_ FsvPwmDty : 56|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ FpvOnOff : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FpvHtrOnOff : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FP11Prs : 32|8@1+ (1,30) [30|280] "kPa_a" Vector__XXX
+ SG_ FP10Prs : 24|8@1+ (1,30) [30|280] "kPa_a" Vector__XXX
+ SG_ FdvOnOff : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FdvHtrOnOff : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FcuWku : 17|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ FcFuelPrs : 40|8@1+ (1,30) [30|280] "kPa_a" Vector__XXX
+ SG_ FbvOnOff : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 902 DeWhlSpd11C2: 8 FCU_LHRH
+ SG_ WhlSpdRR : 48|14@1+ (0.03125,0) [0|511.96875] "km/h" Vector__XXX
+ SG_ WhlSpdRL : 32|14@1+ (0.03125,0) [0|511.96875] "km/h" Vector__XXX
+
+BO_ 1478 DeBpcu4: 1 BPCU
+ SG_ BpcSvcLmp : 0|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+
+BO_ 1213 DeFcuV1: 8 FCU_LHRH
+ SG_ VehStCnt : 40|24@1+ (1,0) [0|16777215] "" Vector__XXX
+ SG_ HvMainMRlyOn : 14|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ HvMainPRlyOn : 13|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ CodHtr1Rly : 11|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ SnsPwrRly : 9|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ FcRly : 8|1@1+ (1,0) [0|1] "flg" Vector__XXX
+ SG_ AF10FlwRat : 0|8@1+ (2.5,0) [0|560] "kg/h"  VDMS
+
+BO_ 1217 DeSvm2: 8 SVM
+ SG_ SvmM5100 : 41|1@1+ (1,0) [0|1] ""  FCU_LHRH
+ SG_ SvmIsoRVlu : 48|16@1+ (1,0) [0|65535] "kOhm"  FCU_LHRH
+ SG_ SvmGfdOn : 40|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ SvmMxCelNum : 32|8@1+ (1,0) [0|255] "enum"  FCU_LHRH
+ SG_ SvmMxcv : 24|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ Svm3rdMncvIn4CelCh : 16|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ Svm2ndMncvIn4CelCh : 8|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ Svm2ndMncvIn2CelCh : 0|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+
+BO_ 1216 DeSvm1: 8 SVM
+ SG_ SvmFltSts : 56|8@1+ (1,0) [0|255] "enum"  FCU_LHRH
+ SG_ SvmMnCelNumIn4CelCh : 48|8@1+ (1,0) [0|116] "enum"  FCU_LHRH
+ SG_ SvmMnCelNumIn2CelCh : 40|8@1+ (1,0) [0|116] "enum"  FCU_LHRH
+ SG_ SvmMncvIn4CelCh : 32|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ SvmMncvIn2CelCh : 24|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ SvmCelAvgVlt : 16|8@1+ (0.01,-1.2) [-1.2|1.35] "V"  FCU_LHRH
+ SG_ SvmVltSum : 0|16@1+ (1,-500) [-500|500] "V"  FCU_LHRH
+
+BO_ 1200 DeFcu16: 3 FCU_LHRH
+ SG_ FcCur : 8|16@1+ (0.1,0) [0|500] "A"  VDMS
+ SG_ SvmGfdRunCmd : 0|1@1+ (1,0) [0|1] "flg"  SVM
+
+BO_ 1282 DeFcu10: 5 FCU_LHRH
+ SG_ WhlBsVehSpd : 8|8@1+ (1,0) [0|255] "km/h"  BPCU
+
+BO_ 1215 DeBpcu2: 6 BPCU
+ SG_ BpcAcpCtrlSte : 0|4@1+ (1,0) [0|15] "enum"  FCU_LHRH
+ SG_ BpcAcpMotTmp : 16|8@1+ (1,-50) [-50|205] "˚C"  FCU_LHRH
+
+BO_ 1303 DeCbv1: 2 CBV
+ SG_ CbvMotErr : 4|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CbvAngFb : 8|8@1+ (1,0) [0|96] "˚"  FCU_LHRH
+ SG_ CbvFcClzFb : 2|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+
+BO_ 1300 DeCtv1: 4 CTV
+ SG_ CtvAngFb : 16|8@1+ (1,0) [0|106] "˚"  FCU_LHRH
+ SG_ CtvMotErr : 2|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+
+BO_ 1285 DeFcu4: 7 FCU_LHRH
+ SG_ CbvAngCmd : 48|8@1+ (1,0) [5|95] "˚"  CBV
+ SG_ CbvFcClz : 42|1@1+ (1,0) [0|1] "flg"  CBV
+ SG_ CbvMnlMde : 41|1@1+ (1,0) [0|1] "flg"  CBV
+ SG_ CbvSdCmd : 40|1@1+ (1,0) [0|1] "flg"  CBV
+ SG_ CtvAngCmd : 32|8@1+ (1,0) [5|105] "˚"  CTV
+ SG_ FcInClntTrgtTmp : 24|8@1+ (1,0) [0|255] "˚C"  CTV
+ SG_ FcInClntTmp : 8|16@1- (0.1,0) [-40|100] "˚C"  CTV
+ SG_ CtvMnlMde : 1|1@1+ (1,0) [0|1] "flg"  CTV
+ SG_ CtvFiltBypsClz : 0|1@1+ (1,0) [0|1] "flg"  CTV
+
+BO_ 1218 DeFcu22: 3 FCU_LHRH
+ SG_ CspRpmCmd : 8|16@1+ (1,0) [0|10000] "r/min"  CSP
+ SG_ CspOprEn : 0|1@1+ (1,0) [0|1] "flg"  CSP
+
+BO_ 1143 DeAcv1: 3 ACV
+ SG_ AcvCurErr : 3|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ AcvVltErr : 0|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ AcvSnsErr : 2|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ AcvCanErr : 1|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ AcvAngFb : 8|16@1+ (0.1,0) [0|90] "˚"  FCU_LHRH
+
+BO_ 1142 DeApc1: 3 APC
+ SG_ ApcAngFb : 8|16@1+ (0.1,0) [0|90] "˚"  FCU_LHRH
+ SG_ ApcSnsErr : 2|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ ApcCanErr : 1|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+
+BO_ 150 DeFcu1: 7 FCU_LHRH
+ SG_ AcpRpmCmd : 16|16@1+ (2,0) [0|110000] "r/min"  BPCU
+ SG_ AcpRgnEn : 10|1@1+ (1,0) [0|1] "flg"  BPCU
+ SG_ AcpOprEn : 9|1@1+ (1,0) [0|1] "flg"  BPCU
+ SG_ BpcPwrEn : 8|1@1+ (1,0) [0|1] "flg"  BPCU
+ SG_ AcpRgnCurLim : 0|8@1+ (0.2,0) [0|51] "A"  BPCU
+ SG_ AcvAngCmd : 40|8@1+ (0.5,0) [0|45] "˚"  APC,ACV
+ SG_ ApcEn : 33|1@1+ (1,0) [0|1] "flg"  APC,ACV
+ SG_ ApcAngCmd : 48|8@1+ (0.5,0) [0|90] "˚"  ACV,APC
+ SG_ AcvEn : 32|1@1+ (1,0) [0|1] "flg"  ACV,APC
+
+BO_ 1288 DeCsp1: 8 CSP
+ SG_ CspHsCur : 32|8@1+ (0.05,0) [0|12.75] "Adc"  FCU_LHRH
+ SG_ CspInvOtPrtct : 63|1@1+ (1,0) [0|1] "Flg"  FCU_LHRH
+ SG_ CspHsHvPrtct : 62|1@1+ (1,0) [0|1] "Flg"  FCU_LHRH
+ SG_ CspHsLvPrtct : 61|1@1+ (1,0) [0|1] "Flg"  FCU_LHRH
+ SG_ CspOvrPwrPrtct : 60|1@1+ (1,0) [0|1] "Flg"  FCU_LHRH
+ SG_ CspHsVlt : 24|8@1+ (2,0) [0|510] "V"  FCU_LHRH
+ SG_ CspRpmFb : 8|16@1+ (1,0) [0|7000] "r/min"  FCU_LHRH
+ SG_ CspCanFlt : 7|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspCtrb : 6|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspItk : 5|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspNoClntWrn : 3|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspPrtctSts : 2|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspFltSts : 1|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ CspRdy : 0|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+
+BO_ 560 DeBpcu1: 5 BPCU
+ SG_ BpcAcpRpm : 0|16@1+ (2,0) [0|110000] "r/min"  FCU_LHRH
+ SG_ BpcHvItkReq : 38|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpCanFlt : 39|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpDrteSts : 37|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpCtrb : 36|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpSnlsCtrlSts : 35|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpFlt : 34|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpWrn : 33|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcAcpRdy : 32|1@1+ (1,0) [0|1] "flg"  FCU_LHRH
+ SG_ BpcHsVlt : 24|8@1+ (2,0) [0|510] "V"  FCU_LHRH
+ SG_ BpcAcpCur : 16|8@1- (0.5,0) [-64|63.5] "A"  FCU_LHRH
+
+BO_ 1283 DeFcu7: 5 FCU_LHRH
+ SG_ ProjectInfo : 11|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ RomVer : 0|11@1+ (1,0) [0|2047] "" Vector__XXX
+ SG_ VehRdyLmp : 24|1@1+ (1,0) [0|1] "flg"  CSP
+ SG_ VehWu : 23|1@1+ (1,0) [0|1] "flg"  SVM,BPCU
+ SG_ VehSt : 22|1@1+ (1,0) [0|1] "flg"  SVM,BPCU
+
+
+
+CM_ SG_ 1199 WtrContents "Effective watercontents in stack";
+CM_ SG_ 1199 AnCncH2 "Anode H2 Concentration";
+CM_ SG_ 1199 LdCtly "Catalyst Loading Value";
+CM_ SG_ 1199 FcStStpSte "FC Start Stop State";
+CM_ SG_ 1199 VehLdHr "Vehicle Load Hour";
+CM_ SG_ 1198 FcOutClntTmp "Fuel Cell Outlet Coolent Temperature(CT20)";
+CM_ SG_ 1198 UpStckDvVlt "Upper Stack DV Voltage";
+CM_ SG_ 1198 AirSrRat "Air SR Ratio";
+CM_ SG_ 1198 FcCurReq "Fuel Cell Current Request";
+CM_ SG_ 1198 FcMxCurLim "Fuel Cell Maximum Current Limit";
+CM_ SG_ 1198 VehRecCde2 "Vehicle REC Code 2";
+CM_ SG_ 1198 VehRecCde1 "Vehicle REC Code 1";
+CM_ SG_ 1197 VehRecCde0 "Vehicle REC Code 0";
+CM_ SG_ 1197 CanRecCde3 "CAN REC Code 3";
+CM_ SG_ 1197 CanRecCde2 "CAN REC Code 2";
+CM_ SG_ 1197 CanRecCde1 "CAN REC Code 1";
+CM_ SG_ 1197 CanRecCde0 "CAN REC Code 0";
+CM_ SG_ 1197 StckRecCde2 "Stack REC Code 2";
+CM_ SG_ 1197 StckRecCde1 "Stack REC Code 1";
+CM_ SG_ 1197 StckRecCde0 "Stack REC Code 0";
+CM_ SG_ 1196 TmsRecCde2 "TMS REC Code 2";
+CM_ SG_ 1196 TmsRecCde1 "TMS REC Code 1";
+CM_ SG_ 1196 TmsRecCde0 "TMS REC Code 0";
+CM_ SG_ 1196 FpsRecCde2 "FPS REC Code 2";
+CM_ SG_ 1196 FpsRecCde1 "FPS REC Code 1";
+CM_ SG_ 1196 FpsRecCde0 "FPS REC Code 0";
+CM_ SG_ 1196 ApsRecCde2 "APS REC Code 2";
+CM_ SG_ 1196 ApsRecCde1 "APS REC Code 1";
+CM_ SG_ 1195 ApsRecCde0 "APS REC Code 0";
+CM_ SG_ 1195 H2SnsStack "Hydrogen Safety Sensor around Stack";
+CM_ SG_ 1195 AmbAirPrs "Ambient Air Pressure Sensor";
+CM_ SG_ 1195 AP10PrsEst "Air Pressure Sensor (AP10) Estimation Value";
+CM_ SG_ 1195 H2SnsFPS "Hydrogen Safety Sensor around FPS";
+CM_ SG_ 1195 FL20Lvl "Water Trap Water Level Sensor";
+CM_ SG_ 1195 FdvPos "Fuel Drain Valve Position";
+CM_ SG_ 1195 FpvPos "Fuel Purge Valve Position";
+CM_ SG_ 1194 UpStckAvgVltMSB "Upper Stack Average Voltage (MSB)";
+CM_ SG_ 1194 UpStckAvgVltLSB "Upper Stack Average Voltage (LSB)";
+CM_ SG_ 1194 KeyIG "Key Position - IG";
+CM_ SG_ 1194 FuelTrgtPrs "Fuel Target Pressure";
+CM_ SG_ 1194 FsvPwmDty "Fuel Supply Valve PWM Duty";
+CM_ SG_ 1194 FpvOnOff "Fuel Purge Valve On/Off";
+CM_ SG_ 1194 FpvHtrOnOff "Fuel Purge Valve Heater On/Off";
+CM_ SG_ 1194 FP11Prs "Fuel Pressure Sensor (FP11)";
+CM_ SG_ 1194 FP10Prs "Fuel Pressure Sensor (FP10)";
+CM_ SG_ 1194 FdvOnOff "Fuel Drain Valve On/Off";
+CM_ SG_ 1194 FdvHtrOnOff "Fuel Drain Valve Heater On/Off";
+CM_ SG_ 1194 FcuWku "FCU Wake up flag";
+CM_ SG_ 1194 FcFuelPrs "Fuel Pressure Sensor Average Value";
+CM_ SG_ 1194 FbvOnOff "Fuel Block Valve On/Off";
+CM_ SG_ 902 WhlSpdRR "Wheel speed (high reolution), rear, right-hand";
+CM_ SG_ 902 WhlSpdRL "Wheel speed (high reolution), rear, left-hand";
+CM_ SG_ 1478 BpcSvcLmp "Service Lamp request";
+CM_ SG_ 1213 VehStCnt "Vehicle Start Count";
+CM_ SG_ 1213 HvMainMRlyOn "H/V Junction Box (-) Relay";
+CM_ SG_ 1213 HvMainPRlyOn "H/V Junction Box (+) Relay";
+CM_ SG_ 1213 CodHtr1Rly "Cold Start Up Heater1 Relya";
+CM_ SG_ 1213 SnsPwrRly "Sensor Power Relay";
+CM_ SG_ 1213 FcRly "FC Relay (HMU,FPV,FDV Power Supply)";
+CM_ SG_ 1213 AF10FlwRat "Air Flow Sensor";
+CM_ SG_ 1217 SvmM5100 "SVM Part Number";
+CM_ SG_ 1217 Svm3rdMncvIn4CelCh "3rd Mncv4c";
+CM_ SG_ 1217 Svm2ndMncvIn4CelCh "2nd Mncv4c";
+CM_ SG_ 1217 Svm2ndMncvIn2CelCh "2nd Mncv2c";
+CM_ SG_ 1216 SvmFltSts "Fault Status of SVM(단순 모니터링 변수)";
+CM_ SG_ 1216 SvmMnCelNumIn4CelCh "Number of Mncv4c Channel";
+CM_ SG_ 1216 SvmMnCelNumIn2CelCh "Number of Mncv2c Channel";
+CM_ SG_ 1216 SvmMncvIn4CelCh "Minimum Cell Voltage in 4cells group";
+CM_ SG_ 1216 SvmMncvIn2CelCh "Minimum Cell Voltage in 2cells group";
+CM_ SG_ 1216 SvmCelAvgVlt "Average Cell Voltage";
+CM_ SG_ 1216 SvmVltSum "stack total voltage summation";
+CM_ SG_ 1200 FcCur "Fuel Cell Current";
+CM_ SG_ 1200 SvmGfdRunCmd "1: SVM GFD RUN CMD 0: SVM GFD STOP CMD";
+CM_ SG_ 1215 BpcAcpCtrlSte "Air Blower Controller State";
+CM_ SG_ 1215 BpcAcpMotTmp "Air Comprossor Motor TempAir Compressor Motor Temp";
+CM_ SG_ 1303 CbvMotErr "0:정상 장동  1:에러 발생";
+CM_ SG_ 1303 CbvAngFb "CBV 시험용 ONLY";
+CM_ SG_ 1303 CbvFcClzFb "0:지령 미완료 F/B  1:Fuel cell_close F/B";
+CM_ SG_ 1300 CtvMotErr "0:정상 작동  1:에러 발생";
+CM_ SG_ 1285 CbvAngCmd "CBV Angle Command";
+CM_ SG_ 1285 CbvFcClz "CBV Fuel cell Close";
+CM_ SG_ 1285 CbvMnlMde "CBV Mannual Mode";
+CM_ SG_ 1285 CbvSdCmd "CBV Shut down Command";
+CM_ SG_ 1285 CtvAngCmd "Angle Command";
+CM_ SG_ 1285 FcInClntTrgtTmp "Fuel Cell Target Temperature";
+CM_ SG_ 1285 FcInClntTmp "Fuel Cell Inlet Coolant Temperature";
+CM_ SG_ 1285 CtvMnlMde "CTV Mannual Mode";
+CM_ SG_ 1285 CtvFiltBypsClz "CTV Filter Bypass Close";
+CM_ SG_ 1218 CspRpmCmd "Coolant Stack Pump Rpm Command";
+CM_ SG_ 1218 CspOprEn "Coolant Stack Pump Operation Enable";
+CM_ SG_ 1143 AcvCurErr "과전류 발생 여부 체크  1 : 비정상상태 0 : 정상일 때";
+CM_ SG_ 1143 AcvVltErr "입력전압 저전압/과전압 체크 1 : 7.5V이하 or 17.5V 이상일 때 0 : 그외 정상일 때";
+CM_ SG_ 1143 AcvSnsErr "위치센서 상태 체크 1 : 비정상상태 0 : 정상일 때";
+CM_ SG_ 1143 AcvCanErr "CANBUS의 상태를 체크 1 : 비정상상태 0 : 정상일 때";
+CM_ SG_ 1143 AcvAngFb "ACV angle feedback";
+CM_ SG_ 1142 ApcAngFb "APC angle feedback";
+CM_ SG_ 1142 ApcSnsErr "위치센서 상태 체크 1: 비정상상태 0: 정상일 때";
+CM_ SG_ 1142 ApcCanErr "CANBUS의 상태를 체크 1: 비정상상태 0: 정상일 때";
+CM_ SG_ 150 AcpRpmCmd "Air Blower Rpm Command";
+CM_ SG_ 150 AcpRgnEn "Air Blower Regen Enable";
+CM_ SG_ 150 AcpOprEn "Air Blower Reset";
+CM_ SG_ 150 BpcPwrEn "BPCU SU SD command";
+CM_ SG_ 150 AcpRgnCurLim "Regen Current Limit";
+CM_ SG_ 150 AcvAngCmd "ACV Angle CommandAPC Angle Command";
+CM_ SG_ 150 ApcEn "APC Ready Enable";
+CM_ SG_ 150 ApcAngCmd "APC Angle Command";
+CM_ SG_ 150 AcvEn "ACV Ready Enable";
+CM_ SG_ 1288 CspHsCur "CSP High Side Current";
+CM_ SG_ 1288 CspInvOtPrtct "Protection Mode: CSP Inverter Over Temperature";
+CM_ SG_ 1288 CspHsHvPrtct "Protection Mode: CSP High Side Voltage is too High";
+CM_ SG_ 1288 CspHsLvPrtct "Protection Mode: CSP High Side Voltage is too Low";
+CM_ SG_ 1288 CspOvrPwrPrtct "Protection Mode: CSP Over Power";
+CM_ SG_ 1288 CspHsVlt "CSP High Side Voltage";
+CM_ SG_ 1288 CspRpmFb "CSP RPM Feedback";
+CM_ SG_ 1288 CspCanFlt "Fault: CSP CAN Communication";
+CM_ SG_ 1288 CspCtrb "CSP Controllable Status";
+CM_ SG_ 1288 CspItk "Interlock Status: CSP HV Connector";
+CM_ SG_ 1288 CspNoClntWrn "Warning: No Coolant in Stack Cooling Loop";
+CM_ SG_ 1288 CspPrtctSts "CSP Protection Mode Status";
+CM_ SG_ 1288 CspFltSts "CSP Fault Status";
+CM_ SG_ 1288 CspRdy "CSP Ready Status";
+CM_ SG_ 560 BpcAcpRpm "Air Blower RPM";
+CM_ SG_ 560 BpcHvItkReq "High Voltage Interlock Reaction Request";
+CM_ SG_ 560 BpcAcpCanFlt "Air Blower CAN Fault";
+CM_ SG_ 560 BpcAcpDrteSts "Air Blower Derating Mode On/Off Status";
+CM_ SG_ 560 BpcAcpCtrb "Air Blower Controllable Status";
+CM_ SG_ 560 BpcAcpSnlsCtrlSts "Air Blower Sensorless Control Status";
+CM_ SG_ 560 BpcAcpFlt "Air Blower Fault Status";
+CM_ SG_ 560 BpcAcpWrn "Air Blower Warning Status";
+CM_ SG_ 560 BpcAcpRdy "Air Blower Ready Status";
+CM_ SG_ 560 BpcHsVlt "BPCU High Side Voltage";
+CM_ SG_ 560 BpcAcpCur "Air Blower Current";
+CM_ SG_ 1283 ProjectInfo "FCU Project Information";
+CM_ SG_ 1283 RomVer "FCU ROM Version";
+CM_ SG_ 1283 VehRdyLmp "Ready Lamp On";
+CM_ SG_ 1283 VehWu "Vehicle Warm Up State";
+CM_ SG_ 1283 VehSt "Vehicle Start";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ BO_  "Message_CAR_Version" ENUM  "0","1";
+BA_DEF_ SG_  "Spec_Name" STRING ;
+BA_DEF_  "Excel_Version" STRING ;
+BA_DEF_  "DB_Version" STRING ;
+BA_DEF_ SG_  "SwName" STRING ;
+BA_DEF_ SG_  "SwDataType" ENUM  "Nodefine","Boolean","UInt8","Int8","UInt16","Int16","UInt32","Int32","Float";
+BA_DEF_ BO_  "CANBuffer" INT 0 64;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "Message_CAR_Version" "0";
+BA_DEF_DEF_  "Spec_Name" "";
+BA_DEF_DEF_  "Excel_Version" "Can_Spec_20110101";
+BA_DEF_DEF_  "DB_Version" "CanDB_V010";
+BA_DEF_DEF_  "SwName" "C2o_Variable_VF";
+BA_DEF_DEF_  "SwDataType" "Boolean";
+BA_DEF_DEF_  "CANBuffer" 64;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_ "Excel_Version" "";
+BA_ "DB_Version" "";
+BA_ "DBName" "CAN2_500kbps_L1";
+BA_ "GenMsgCycleTime" BO_ 1199 100;
+BA_ "GenMsgSendType" BO_ 1199 0;
+BA_ "GenMsgCycleTime" BO_ 1198 100;
+BA_ "GenMsgSendType" BO_ 1198 0;
+BA_ "GenMsgCycleTime" BO_ 1197 100;
+BA_ "GenMsgSendType" BO_ 1197 0;
+BA_ "GenMsgCycleTime" BO_ 1196 100;
+BA_ "GenMsgSendType" BO_ 1196 0;
+BA_ "GenMsgCycleTime" BO_ 1195 100;
+BA_ "GenMsgSendType" BO_ 1195 0;
+BA_ "GenMsgCycleTime" BO_ 1194 100;
+BA_ "GenMsgSendType" BO_ 1194 0;
+BA_ "GenMsgCycleTime" BO_ 902 20;
+BA_ "GenMsgSendType" BO_ 902 0;
+BA_ "GenMsgCycleTime" BO_ 1478 1000;
+BA_ "GenMsgSendType" BO_ 1478 0;
+BA_ "GenMsgSendType" BO_ 1213 0;
+BA_ "GenMsgCycleTime" BO_ 1213 100;
+BA_ "GenMsgSendType" BO_ 1217 0;
+BA_ "GenMsgCycleTime" BO_ 1217 50;
+BA_ "GenMsgSendType" BO_ 1216 0;
+BA_ "GenMsgCycleTime" BO_ 1216 50;
+BA_ "GenMsgCycleTime" BO_ 1200 100;
+BA_ "GenMsgSendType" BO_ 1200 0;
+BA_ "GenMsgCycleTime" BO_ 1282 100;
+BA_ "GenMsgSendType" BO_ 1282 0;
+BA_ "GenMsgCycleTime" BO_ 1215 100;
+BA_ "GenMsgSendType" BO_ 1215 0;
+BA_ "GenMsgCycleTime" BO_ 1303 100;
+BA_ "GenMsgSendType" BO_ 1303 0;
+BA_ "GenMsgCycleTime" BO_ 1300 100;
+BA_ "GenMsgSendType" BO_ 1300 0;
+BA_ "GenMsgCycleTime" BO_ 1285 100;
+BA_ "GenMsgSendType" BO_ 1285 0;
+BA_ "GenMsgCycleTime" BO_ 1218 100;
+BA_ "GenMsgSendType" BO_ 1218 0;
+BA_ "CANBuffer" BO_ 1143 24;
+BA_ "GenMsgSendType" BO_ 1143 0;
+BA_ "GenMsgCycleTime" BO_ 1143 100;
+BA_ "CANBuffer" BO_ 1142 19;
+BA_ "GenMsgSendType" BO_ 1142 0;
+BA_ "GenMsgCycleTime" BO_ 1142 10;
+BA_ "CANBuffer" BO_ 150 49;
+BA_ "GenMsgSendType" BO_ 150 0;
+BA_ "GenMsgCycleTime" BO_ 150 10;
+BA_ "GenMsgSendType" BO_ 1288 0;
+BA_ "GenMsgCycleTime" BO_ 1288 100;
+BA_ "CANBuffer" BO_ 1288 8;
+BA_ "GenMsgSendType" BO_ 560 0;
+BA_ "GenMsgCycleTime" BO_ 560 10;
+BA_ "CANBuffer" BO_ 560 6;
+BA_ "GenMsgCycleTime" BO_ 1283 100;
+BA_ "GenMsgSendType" BO_ 1283 0;
+BA_ "CANBuffer" BO_ 1283 32;
+BA_ "GenSigStartValue" SG_ 1199 WtrContents 0;
+BA_ "Spec_Name" SG_ 1199 WtrContents "CR_Fcu_WtrContents";
+BA_ "SwName" SG_ 1199 WtrContents "WtrContents_VSF";
+BA_ "SwDataType" SG_ 1199 WtrContents 8;
+BA_ "GenSigStartValue" SG_ 1199 AnCncH2 0;
+BA_ "Spec_Name" SG_ 1199 AnCncH2 "CR_Fcu_AnCncH2";
+BA_ "SwName" SG_ 1199 AnCncH2 "AnCncH2_VSF";
+BA_ "SwDataType" SG_ 1199 AnCncH2 8;
+BA_ "GenSigStartValue" SG_ 1199 LdCtly 0;
+BA_ "Spec_Name" SG_ 1199 LdCtly "CR_Fcu_LdCtly";
+BA_ "SwName" SG_ 1199 LdCtly "LdCtly_VSF";
+BA_ "SwDataType" SG_ 1199 LdCtly 8;
+BA_ "GenSigStartValue" SG_ 1199 FcStStpSte 0;
+BA_ "Spec_Name" SG_ 1199 FcStStpSte "CR_Fcu_FcStStpSte";
+BA_ "SwName" SG_ 1199 FcStStpSte "FcStStpSte_VUB";
+BA_ "SwDataType" SG_ 1199 FcStStpSte 2;
+BA_ "Spec_Name" SG_ 1199 VehLdHr "CR_Fcu_VehLdHr";
+BA_ "SwName" SG_ 1199 VehLdHr "VehLdHr_VUW";
+BA_ "SwDataType" SG_ 1199 VehLdHr 4;
+BA_ "Spec_Name" SG_ 1198 FcOutClntTmp "CR_Fcu_FcOutClntTmp";
+BA_ "SwName" SG_ 1198 FcOutClntTmp "FcOutClntTmp_VSW";
+BA_ "SwDataType" SG_ 1198 FcOutClntTmp 5;
+BA_ "GenSigStartValue" SG_ 1198 FcOutClntTmp 0;
+BA_ "GenSigStartValue" SG_ 1198 UpStckDvVlt 0;
+BA_ "Spec_Name" SG_ 1198 UpStckDvVlt "CR_Fcu_UpStckDvVlt";
+BA_ "SwName" SG_ 1198 UpStckDvVlt "UpStckDvVlt_VSF";
+BA_ "SwDataType" SG_ 1198 UpStckDvVlt 8;
+BA_ "GenSigStartValue" SG_ 1198 AirSrRat 0;
+BA_ "Spec_Name" SG_ 1198 AirSrRat "CR_Fcu_AirSrRat";
+BA_ "SwName" SG_ 1198 AirSrRat "AirSrRat_VSF";
+BA_ "SwDataType" SG_ 1198 AirSrRat 8;
+BA_ "GenSigStartValue" SG_ 1198 FcCurReq 0;
+BA_ "Spec_Name" SG_ 1198 FcCurReq "CR_Fcu_FcCurReq";
+BA_ "SwName" SG_ 1198 FcCurReq "FcCurReq_VSF";
+BA_ "SwDataType" SG_ 1198 FcCurReq 8;
+BA_ "Spec_Name" SG_ 1198 FcMxCurLim "CR_Fcu_FcMxCurLim";
+BA_ "SwName" SG_ 1198 FcMxCurLim "FcMxCurLim_VUW";
+BA_ "SwDataType" SG_ 1198 FcMxCurLim 4;
+BA_ "GenSigStartValue" SG_ 1198 VehRecCde2 0;
+BA_ "Spec_Name" SG_ 1198 VehRecCde2 "CR_Fcu_VehRecCde2";
+BA_ "SwName" SG_ 1198 VehRecCde2 "VehRecCde2_VUB";
+BA_ "SwDataType" SG_ 1198 VehRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1198 VehRecCde1 0;
+BA_ "Spec_Name" SG_ 1198 VehRecCde1 "CR_Fcu_VehRecCde1";
+BA_ "SwName" SG_ 1198 VehRecCde1 "VehRecCde1_VUB";
+BA_ "SwDataType" SG_ 1198 VehRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1197 VehRecCde0 0;
+BA_ "Spec_Name" SG_ 1197 VehRecCde0 "CR_Fcu_VehRecCde0";
+BA_ "SwName" SG_ 1197 VehRecCde0 "VehRecCde0_VUB";
+BA_ "SwDataType" SG_ 1197 VehRecCde0 2;
+BA_ "GenSigStartValue" SG_ 1197 CanRecCde3 0;
+BA_ "Spec_Name" SG_ 1197 CanRecCde3 "CR_Fcu_CanRecCde3";
+BA_ "SwName" SG_ 1197 CanRecCde3 "CanRecCde3_VUB";
+BA_ "SwDataType" SG_ 1197 CanRecCde3 2;
+BA_ "GenSigStartValue" SG_ 1197 CanRecCde2 0;
+BA_ "Spec_Name" SG_ 1197 CanRecCde2 "CR_Fcu_CanRecCde2";
+BA_ "SwName" SG_ 1197 CanRecCde2 "CanRecCde2_VUB";
+BA_ "SwDataType" SG_ 1197 CanRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1197 CanRecCde1 0;
+BA_ "Spec_Name" SG_ 1197 CanRecCde1 "CR_Fcu_CanRecCde1";
+BA_ "SwName" SG_ 1197 CanRecCde1 "CanRecCde1_VUB";
+BA_ "SwDataType" SG_ 1197 CanRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1197 CanRecCde0 0;
+BA_ "Spec_Name" SG_ 1197 CanRecCde0 "CR_Fcu_CanRecCde0";
+BA_ "SwName" SG_ 1197 CanRecCde0 "CanRecCde0_VUB";
+BA_ "SwDataType" SG_ 1197 CanRecCde0 2;
+BA_ "GenSigStartValue" SG_ 1197 StckRecCde2 0;
+BA_ "Spec_Name" SG_ 1197 StckRecCde2 "CR_Fcu_StckRecCde2";
+BA_ "SwName" SG_ 1197 StckRecCde2 "StckRecCde2_VUB";
+BA_ "SwDataType" SG_ 1197 StckRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1197 StckRecCde1 0;
+BA_ "Spec_Name" SG_ 1197 StckRecCde1 "CR_Fcu_StckRecCde1";
+BA_ "SwName" SG_ 1197 StckRecCde1 "StckRecCde1_VUB";
+BA_ "SwDataType" SG_ 1197 StckRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1197 StckRecCde0 0;
+BA_ "Spec_Name" SG_ 1197 StckRecCde0 "CR_Fcu_StckRecCde0";
+BA_ "SwName" SG_ 1197 StckRecCde0 "StckRecCde0_VUB";
+BA_ "SwDataType" SG_ 1197 StckRecCde0 2;
+BA_ "GenSigStartValue" SG_ 1196 TmsRecCde2 0;
+BA_ "Spec_Name" SG_ 1196 TmsRecCde2 "CR_Fcu_TmsRecCde2";
+BA_ "SwName" SG_ 1196 TmsRecCde2 "TmsRecCde2_VUB";
+BA_ "SwDataType" SG_ 1196 TmsRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1196 TmsRecCde1 0;
+BA_ "Spec_Name" SG_ 1196 TmsRecCde1 "CR_Fcu_TmsRecCde1";
+BA_ "SwName" SG_ 1196 TmsRecCde1 "TmsRecCde1_VUB";
+BA_ "SwDataType" SG_ 1196 TmsRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1196 TmsRecCde0 0;
+BA_ "Spec_Name" SG_ 1196 TmsRecCde0 "CR_Fcu_TmsRecCde0";
+BA_ "SwName" SG_ 1196 TmsRecCde0 "TmsRecCde0_VUB";
+BA_ "SwDataType" SG_ 1196 TmsRecCde0 2;
+BA_ "GenSigStartValue" SG_ 1196 FpsRecCde2 0;
+BA_ "Spec_Name" SG_ 1196 FpsRecCde2 "CR_Fcu_FpsRecCde2";
+BA_ "SwName" SG_ 1196 FpsRecCde2 "FpsRecCde2_VUB";
+BA_ "SwDataType" SG_ 1196 FpsRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1196 FpsRecCde1 0;
+BA_ "Spec_Name" SG_ 1196 FpsRecCde1 "CR_Fcu_FpsRecCde1";
+BA_ "SwName" SG_ 1196 FpsRecCde1 "FpsRecCde1_VUB";
+BA_ "SwDataType" SG_ 1196 FpsRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1196 FpsRecCde0 0;
+BA_ "Spec_Name" SG_ 1196 FpsRecCde0 "CR_Fcu_FpsRecCde0";
+BA_ "SwName" SG_ 1196 FpsRecCde0 "FpsRecCde0_VUB";
+BA_ "SwDataType" SG_ 1196 FpsRecCde0 2;
+BA_ "GenSigStartValue" SG_ 1196 ApsRecCde2 0;
+BA_ "Spec_Name" SG_ 1196 ApsRecCde2 "CR_Fcu_ApsRecCde2";
+BA_ "SwName" SG_ 1196 ApsRecCde2 "ApsRecCde2_VUB";
+BA_ "SwDataType" SG_ 1196 ApsRecCde2 2;
+BA_ "GenSigStartValue" SG_ 1196 ApsRecCde1 0;
+BA_ "Spec_Name" SG_ 1196 ApsRecCde1 "CR_Fcu_ApsRecCde1";
+BA_ "SwName" SG_ 1196 ApsRecCde1 "ApsRecCde1_VUB";
+BA_ "SwDataType" SG_ 1196 ApsRecCde1 2;
+BA_ "GenSigStartValue" SG_ 1195 ApsRecCde0 0;
+BA_ "Spec_Name" SG_ 1195 ApsRecCde0 "CR_Fcu_ApsRecCde0";
+BA_ "SwName" SG_ 1195 ApsRecCde0 "ApsRecCde0_VUB";
+BA_ "SwDataType" SG_ 1195 ApsRecCde0 2;
+BA_ "Spec_Name" SG_ 1195 H2SnsStack "CR_Fcu_H2SnsStack";
+BA_ "SwName" SG_ 1195 H2SnsStack "H2SnsStack_VSF";
+BA_ "SwDataType" SG_ 1195 H2SnsStack 8;
+BA_ "GenSigStartValue" SG_ 1195 H2SnsStack 0;
+BA_ "Spec_Name" SG_ 1195 AmbAirPrs "CR_Fcu_AmbAirPrs";
+BA_ "SwName" SG_ 1195 AmbAirPrs "AmbAirPrs_VUB";
+BA_ "SwDataType" SG_ 1195 AmbAirPrs 2;
+BA_ "GenSigStartValue" SG_ 1195 AmbAirPrs 40;
+BA_ "Spec_Name" SG_ 1195 AP10PrsEst "CR_Fcu_AP10PrsEst";
+BA_ "SwName" SG_ 1195 AP10PrsEst "AP10PrsEst_VSF";
+BA_ "SwDataType" SG_ 1195 AP10PrsEst 8;
+BA_ "Spec_Name" SG_ 1195 H2SnsFPS "CR_Fcu_H2SnsFPS";
+BA_ "SwName" SG_ 1195 H2SnsFPS "H2SnsFPS_VSF";
+BA_ "SwDataType" SG_ 1195 H2SnsFPS 8;
+BA_ "Spec_Name" SG_ 1195 FL20Lvl "CR_Fcu_FL20Lvl";
+BA_ "SwName" SG_ 1195 FL20Lvl "FL20Lvl_VSF";
+BA_ "SwDataType" SG_ 1195 FL20Lvl 8;
+BA_ "Spec_Name" SG_ 1195 FdvPos "CR_Fcu_FdvPos";
+BA_ "SwName" SG_ 1195 FdvPos "FdvPos_VSF";
+BA_ "SwDataType" SG_ 1195 FdvPos 8;
+BA_ "Spec_Name" SG_ 1195 FpvPos "CR_Fcu_FpvPos";
+BA_ "SwName" SG_ 1195 FpvPos "FpvPos_VSF";
+BA_ "SwDataType" SG_ 1195 FpvPos 8;
+BA_ "Spec_Name" SG_ 1194 UpStckAvgVltMSB "CR_Fcu_UpStckAvgVlt_MSB";
+BA_ "SwName" SG_ 1194 UpStckAvgVltMSB "UpStckAvgVltMSB_VUB";
+BA_ "SwDataType" SG_ 1194 UpStckAvgVltMSB 2;
+BA_ "Spec_Name" SG_ 1194 UpStckAvgVltLSB "CR_Fcu_UpStckAvgVlt_LSB";
+BA_ "SwName" SG_ 1194 UpStckAvgVltLSB "UpStckAvgVltLSB_VUB";
+BA_ "SwDataType" SG_ 1194 UpStckAvgVltLSB 2;
+BA_ "Spec_Name" SG_ 1194 KeyIG "CF_Fcu_KeyIG";
+BA_ "SwName" SG_ 1194 KeyIG "KeyIG_VF";
+BA_ "Spec_Name" SG_ 1194 FuelTrgtPrs "CR_Fcu_FuelTrgtPrs";
+BA_ "SwName" SG_ 1194 FuelTrgtPrs "FuelTrgtPrs_VUW";
+BA_ "SwDataType" SG_ 1194 FuelTrgtPrs 4;
+BA_ "Spec_Name" SG_ 1194 FsvPwmDty "CR_Fcu_FsvPwmDty";
+BA_ "SwName" SG_ 1194 FsvPwmDty "FsvPwmDty_VUB";
+BA_ "SwDataType" SG_ 1194 FsvPwmDty 2;
+BA_ "Spec_Name" SG_ 1194 FpvOnOff "CF_Fcu_FpvOnOff";
+BA_ "SwName" SG_ 1194 FpvOnOff "FpvOnOff_VF";
+BA_ "Spec_Name" SG_ 1194 FpvHtrOnOff "CF_Fcu_FpvHtrOnOff";
+BA_ "SwName" SG_ 1194 FpvHtrOnOff "FpvHtrOnOff_VF";
+BA_ "Spec_Name" SG_ 1194 FP11Prs "CR_Fcu_FP11Prs";
+BA_ "SwName" SG_ 1194 FP11Prs "FP11Prs_VUW";
+BA_ "SwDataType" SG_ 1194 FP11Prs 4;
+BA_ "Spec_Name" SG_ 1194 FP10Prs "CR_Fcu_FP10Prs";
+BA_ "SwName" SG_ 1194 FP10Prs "FP10Prs_VUW";
+BA_ "SwDataType" SG_ 1194 FP10Prs 4;
+BA_ "Spec_Name" SG_ 1194 FdvOnOff "CF_Fcu_FdvOnOff";
+BA_ "SwName" SG_ 1194 FdvOnOff "FdvOnOff_VF";
+BA_ "Spec_Name" SG_ 1194 FdvHtrOnOff "CF_Fcu_FdvHtrOnOff";
+BA_ "SwName" SG_ 1194 FdvHtrOnOff "FdvHtrOnOff_VF";
+BA_ "Spec_Name" SG_ 1194 FcuWku "CF_Fcu_FcuWku";
+BA_ "SwName" SG_ 1194 FcuWku "FcuWku_VF";
+BA_ "Spec_Name" SG_ 1194 FcFuelPrs "CR_Fcu_FcFuelPrs";
+BA_ "SwName" SG_ 1194 FcFuelPrs "FcFuelPrs_VUW";
+BA_ "SwDataType" SG_ 1194 FcFuelPrs 4;
+BA_ "Spec_Name" SG_ 1194 FbvOnOff "CF_Fcu_FbvOnOff";
+BA_ "SwName" SG_ 1194 FbvOnOff "FbvOnOff_VF";
+BA_ "GenSigStartValue" SG_ 902 WhlSpdRR 0;
+BA_ "Spec_Name" SG_ 902 WhlSpdRR "WHL_SPD_RR";
+BA_ "SwName" SG_ 902 WhlSpdRR "WhlSpdRR_VSF";
+BA_ "SwDataType" SG_ 902 WhlSpdRR 8;
+BA_ "Spec_Name" SG_ 902 WhlSpdRL "WHL_SPD_RL";
+BA_ "SwName" SG_ 902 WhlSpdRL "WhlSpdRL_VSF";
+BA_ "SwDataType" SG_ 902 WhlSpdRL 8;
+BA_ "GenSigStartValue" SG_ 902 WhlSpdRL 0;
+BA_ "Spec_Name" SG_ 1478 BpcSvcLmp "CF_Bpc_SvcLmp";
+BA_ "SwName" SG_ 1478 BpcSvcLmp "BpcSvcLmp_VF";
+BA_ "SwDataType" SG_ 1478 BpcSvcLmp 1;
+BA_ "SwDataType" SG_ 1213 VehStCnt 8;
+BA_ "SwName" SG_ 1213 VehStCnt "VehStCnt_VSF";
+BA_ "Spec_Name" SG_ 1213 VehStCnt "CR_Fcu_VehStCnt";
+BA_ "SwName" SG_ 1213 HvMainMRlyOn "HvMainMRlyOn_VF";
+BA_ "Spec_Name" SG_ 1213 HvMainMRlyOn "CR_Fcu_HvMainPRlyOn";
+BA_ "SwName" SG_ 1213 HvMainPRlyOn "HvMainPRlyOn_VF";
+BA_ "Spec_Name" SG_ 1213 HvMainPRlyOn "CR_Fcu_HvMainPRlyOn";
+BA_ "SwName" SG_ 1213 CodHtr1Rly "CodHtr1Rly_VF";
+BA_ "Spec_Name" SG_ 1213 CodHtr1Rly "CR_Fcu_CodHty1Rly";
+BA_ "SwName" SG_ 1213 SnsPwrRly "SnsPwrRly_VF";
+BA_ "Spec_Name" SG_ 1213 SnsPwrRly "CR_Fcu_SnsPwrRly";
+BA_ "SwName" SG_ 1213 FcRly "FcRly_VF";
+BA_ "Spec_Name" SG_ 1213 FcRly "CR_Fcu_FcRly";
+BA_ "SwDataType" SG_ 1213 AF10FlwRat 4;
+BA_ "SwName" SG_ 1213 AF10FlwRat "AF10FlwRat_VUW";
+BA_ "Spec_Name" SG_ 1213 AF10FlwRat "CR_Fcu_AF10FlwRat";
+BA_ "Spec_Name" SG_ 1217 SvmM5100 "CF_Svm_M5100";
+BA_ "SwName" SG_ 1217 SvmM5100 "SvmM5100_VF";
+BA_ "SwDataType" SG_ 1217 SvmIsoRVlu 4;
+BA_ "SwName" SG_ 1217 SvmIsoRVlu "SvmIsoRVlu_VUW";
+BA_ "Spec_Name" SG_ 1217 SvmIsoRVlu "CR_Svm_IsoRVlu";
+BA_ "SwName" SG_ 1217 SvmGfdOn "SvmGfdOn_VF";
+BA_ "Spec_Name" SG_ 1217 SvmGfdOn "CF_Svm_GfdOn";
+BA_ "SwDataType" SG_ 1217 SvmMxCelNum 2;
+BA_ "SwName" SG_ 1217 SvmMxCelNum "SvmMxCelNum_VUB";
+BA_ "Spec_Name" SG_ 1217 SvmMxCelNum "CR_Svm_MxCelNum";
+BA_ "SwDataType" SG_ 1217 SvmMxcv 8;
+BA_ "SwName" SG_ 1217 SvmMxcv "SvmMxcv_VSF";
+BA_ "Spec_Name" SG_ 1217 SvmMxcv "CR_Svm_Mxcv";
+BA_ "SwDataType" SG_ 1217 Svm3rdMncvIn4CelCh 8;
+BA_ "SwName" SG_ 1217 Svm3rdMncvIn4CelCh "Svm3rdMncvIn4CelCh_VSF";
+BA_ "Spec_Name" SG_ 1217 Svm3rdMncvIn4CelCh "CR_Svm_Mncv4c3rd";
+BA_ "SwDataType" SG_ 1217 Svm2ndMncvIn4CelCh 8;
+BA_ "SwName" SG_ 1217 Svm2ndMncvIn4CelCh "Svm2ndMncvIn4CelCh_VSF";
+BA_ "Spec_Name" SG_ 1217 Svm2ndMncvIn4CelCh "CR_Svm_Mncv4c2nd";
+BA_ "SwDataType" SG_ 1217 Svm2ndMncvIn2CelCh 8;
+BA_ "SwName" SG_ 1217 Svm2ndMncvIn2CelCh "Svm2ndMncvIn2CelCh_VSF";
+BA_ "Spec_Name" SG_ 1217 Svm2ndMncvIn2CelCh "CR_Svm_Mncv2c2nd";
+BA_ "SwDataType" SG_ 1216 SvmFltSts 2;
+BA_ "SwName" SG_ 1216 SvmFltSts "SvmFltSts_VUB";
+BA_ "Spec_Name" SG_ 1216 SvmFltSts "CR_Svm_FltSts";
+BA_ "SwDataType" SG_ 1216 SvmMnCelNumIn4CelCh 2;
+BA_ "SwName" SG_ 1216 SvmMnCelNumIn4CelCh "SvmMnCelNumIn4CelCh_VUB";
+BA_ "Spec_Name" SG_ 1216 SvmMnCelNumIn4CelCh "CR_Svm_MnCelNum4c";
+BA_ "SwDataType" SG_ 1216 SvmMnCelNumIn2CelCh 2;
+BA_ "SwName" SG_ 1216 SvmMnCelNumIn2CelCh "SvmMnCelNumIn2CelCh_VUB";
+BA_ "Spec_Name" SG_ 1216 SvmMnCelNumIn2CelCh "CR_Svm_MnCelNum2c";
+BA_ "SwDataType" SG_ 1216 SvmMncvIn4CelCh 8;
+BA_ "SwName" SG_ 1216 SvmMncvIn4CelCh "SvmMncvIn4CelCh_VSF";
+BA_ "Spec_Name" SG_ 1216 SvmMncvIn4CelCh "CR_Svm_Mncv4c";
+BA_ "SwDataType" SG_ 1216 SvmMncvIn2CelCh 8;
+BA_ "SwName" SG_ 1216 SvmMncvIn2CelCh "SvmMncvIn2CelCh_VSF";
+BA_ "Spec_Name" SG_ 1216 SvmMncvIn2CelCh "CR_Svm_Mncv2c";
+BA_ "SwDataType" SG_ 1216 SvmCelAvgVlt 8;
+BA_ "SwName" SG_ 1216 SvmCelAvgVlt "SvmCelAvgVlt_VSF";
+BA_ "Spec_Name" SG_ 1216 SvmCelAvgVlt "CR_Svm_CellVavg";
+BA_ "SwDataType" SG_ 1216 SvmVltSum 8;
+BA_ "SwName" SG_ 1216 SvmVltSum "SvmVltSum_VSF";
+BA_ "Spec_Name" SG_ 1216 SvmVltSum "CR_Svm_VltSum";
+BA_ "GenSigStartValue" SG_ 1200 FcCur 0;
+BA_ "Spec_Name" SG_ 1200 FcCur "CF_Fcu_FcCur";
+BA_ "SwName" SG_ 1200 FcCur "FcCur_VSF";
+BA_ "SwDataType" SG_ 1200 FcCur 8;
+BA_ "Spec_Name" SG_ 1200 SvmGfdRunCmd "CF_Fcu_SvmGfdRunCmd";
+BA_ "SwName" SG_ 1200 SvmGfdRunCmd "SvmGfdRunCmd_VF";
+BA_ "SwDataType" SG_ 1282 WhlBsVehSpd 8;
+BA_ "SwName" SG_ 1282 WhlBsVehSpd "WheBsVehSpd_VSF";
+BA_ "Spec_Name" SG_ 1282 WhlBsVehSpd "CR_Fcu_WhlBsVehSpd";
+BA_ "SwDataType" SG_ 1215 BpcAcpCtrlSte 2;
+BA_ "SwName" SG_ 1215 BpcAcpCtrlSte "BpcAcpCtrlSte_VUB";
+BA_ "Spec_Name" SG_ 1215 BpcAcpCtrlSte "CF_Bpc_AcpCtrlSte";
+BA_ "GenSigStartValue" SG_ 1215 BpcAcpCtrlSte 0;
+BA_ "Spec_Name" SG_ 1215 BpcAcpMotTmp "CR_Bpc_AcpMotTmp";
+BA_ "SwName" SG_ 1215 BpcAcpMotTmp "BpcAcpMotTmp_VSW";
+BA_ "SwDataType" SG_ 1215 BpcAcpMotTmp 5;
+BA_ "SwName" SG_ 1303 CbvMotErr "CbvMotErr_VF";
+BA_ "Spec_Name" SG_ 1303 CbvMotErr "CF_Cbv_MotErr";
+BA_ "Spec_Name" SG_ 1303 CbvAngFb "CR_Cbv_AngFb";
+BA_ "SwName" SG_ 1303 CbvAngFb "CbvAngFb_VUB";
+BA_ "SwDataType" SG_ 1303 CbvAngFb 2;
+BA_ "Spec_Name" SG_ 1303 CbvFcClzFb "CF_Cbv_FcClzFb";
+BA_ "SwName" SG_ 1303 CbvFcClzFb "CbvFcClzFb_VF";
+BA_ "Spec_Name" SG_ 1300 CtvAngFb "CR_Ctv_AngFb";
+BA_ "SwName" SG_ 1300 CtvAngFb "CtvAngFb_VUB";
+BA_ "SwDataType" SG_ 1300 CtvAngFb 2;
+BA_ "Spec_Name" SG_ 1300 CtvMotErr "CF_Ctv_MotErr";
+BA_ "SwName" SG_ 1300 CtvMotErr "CtvMotErr_VF";
+BA_ "GenSigStartValue" SG_ 1285 CbvAngCmd 5;
+BA_ "Spec_Name" SG_ 1285 CbvAngCmd "CR_Fcu_CbvAngCmd";
+BA_ "SwName" SG_ 1285 CbvAngCmd "CbvAngCmd_VUB";
+BA_ "SwDataType" SG_ 1285 CbvAngCmd 2;
+BA_ "Spec_Name" SG_ 1285 CbvFcClz "CF_Fcu_CbvFcClz";
+BA_ "SwName" SG_ 1285 CbvFcClz "CbvFcClz_VF";
+BA_ "Spec_Name" SG_ 1285 CbvMnlMde "CF_Fcu_CbvMnlMde";
+BA_ "SwName" SG_ 1285 CbvMnlMde "CbvMnlMde_VF";
+BA_ "Spec_Name" SG_ 1285 CbvSdCmd "CF_Fcu_CbvSdCmd";
+BA_ "SwName" SG_ 1285 CbvSdCmd "CbvSdCmd_VF";
+BA_ "GenSigStartValue" SG_ 1285 CtvAngCmd 5;
+BA_ "Spec_Name" SG_ 1285 CtvAngCmd "CR_Fcu_CtvAngCmd";
+BA_ "SwName" SG_ 1285 CtvAngCmd "CtvAngCmd_VUB";
+BA_ "SwDataType" SG_ 1285 CtvAngCmd 2;
+BA_ "Spec_Name" SG_ 1285 FcInClntTrgtTmp "CR_Fcu_FcInClntTrgtTmp";
+BA_ "SwName" SG_ 1285 FcInClntTrgtTmp "FcInClntTrgtTmp_VUB";
+BA_ "SwDataType" SG_ 1285 FcInClntTrgtTmp 2;
+BA_ "Spec_Name" SG_ 1285 FcInClntTmp "CR_Fcu_FcInClntTmp";
+BA_ "SwName" SG_ 1285 FcInClntTmp "FcInClntTmp_VSF";
+BA_ "SwDataType" SG_ 1285 FcInClntTmp 8;
+BA_ "Spec_Name" SG_ 1285 CtvMnlMde "CF_Fcu_CtvMnlMde";
+BA_ "SwName" SG_ 1285 CtvMnlMde "CtvMnlMde_VF";
+BA_ "Spec_Name" SG_ 1285 CtvFiltBypsClz "CF_Fcu_CtvFiltBypsClz";
+BA_ "SwName" SG_ 1285 CtvFiltBypsClz "CtvFiltBypsClz_VF";
+BA_ "SwDataType" SG_ 1218 CspRpmCmd 4;
+BA_ "SwName" SG_ 1218 CspRpmCmd "CspRpmCmd_VUW";
+BA_ "Spec_Name" SG_ 1218 CspRpmCmd "CR_Fcu_CspRpmCmd";
+BA_ "Spec_Name" SG_ 1218 CspOprEn "CF_Fcu_CspOprEn";
+BA_ "SwName" SG_ 1218 CspOprEn "CspOprEn_VF";
+BA_ "Spec_Name" SG_ 1143 AcvCurErr "CF_Acv_CurErr";
+BA_ "SwName" SG_ 1143 AcvCurErr "AcvCurErr_VF";
+BA_ "SwDataType" SG_ 1143 AcvCurErr 1;
+BA_ "Spec_Name" SG_ 1143 AcvVltErr "CF_Acv_VltErr";
+BA_ "SwName" SG_ 1143 AcvVltErr "AcvVltErr_VF";
+BA_ "SwDataType" SG_ 1143 AcvVltErr 1;
+BA_ "Spec_Name" SG_ 1143 AcvSnsErr "CF_Acv_SnsErr";
+BA_ "SwDataType" SG_ 1143 AcvSnsErr 1;
+BA_ "SwName" SG_ 1143 AcvSnsErr "AcvSnsErr_VF";
+BA_ "Spec_Name" SG_ 1143 AcvCanErr "CF_Acv_CanErr";
+BA_ "SwName" SG_ 1143 AcvCanErr "AcvCanErr_VF";
+BA_ "SwDataType" SG_ 1143 AcvCanErr 1;
+BA_ "Spec_Name" SG_ 1143 AcvAngFb "CR_Acv_AngFb";
+BA_ "SwDataType" SG_ 1143 AcvAngFb 8;
+BA_ "SwName" SG_ 1143 AcvAngFb "AcvAngFb_VSF";
+BA_ "Spec_Name" SG_ 1142 ApcAngFb "CR_Apc_AngFb";
+BA_ "SwDataType" SG_ 1142 ApcAngFb 8;
+BA_ "SwName" SG_ 1142 ApcAngFb "ApcAngFb_VSF";
+BA_ "Spec_Name" SG_ 1142 ApcSnsErr "CF_Apc_SnsErr";
+BA_ "SwDataType" SG_ 1142 ApcSnsErr 1;
+BA_ "SwName" SG_ 1142 ApcSnsErr "ApcSnsErr_VF";
+BA_ "Spec_Name" SG_ 1142 ApcCanErr "CF_Apc_CanErr";
+BA_ "SwName" SG_ 1142 ApcCanErr "ApcCanErr_VF";
+BA_ "Spec_Name" SG_ 150 AcpRpmCmd "CR_Fcu_AcpRpmCmd";
+BA_ "SwDataType" SG_ 150 AcpRpmCmd 6;
+BA_ "SwName" SG_ 150 AcpRpmCmd "AcpRpmCmd_VUL";
+BA_ "Spec_Name" SG_ 150 AcpRgnEn "CF_Fcu_AcpRgnEn";
+BA_ "SwName" SG_ 150 AcpRgnEn "AcpRgnEn_VF";
+BA_ "Spec_Name" SG_ 150 AcpOprEn "CF_Fcu_AcpOprEn";
+BA_ "SwDataType" SG_ 150 AcpOprEn 1;
+BA_ "SwName" SG_ 150 AcpOprEn "AcpOprEn_VF";
+BA_ "Spec_Name" SG_ 150 BpcPwrEn "CF_Fcu_BpcPwrEn";
+BA_ "SwDataType" SG_ 150 BpcPwrEn 1;
+BA_ "SwName" SG_ 150 BpcPwrEn "BpcPwrEn_VF";
+BA_ "Spec_Name" SG_ 150 AcpRgnCurLim "CR_Fcu_AcpRgnCurLim";
+BA_ "SwName" SG_ 150 AcpRgnCurLim "AcpRgnCurLim_VSF";
+BA_ "SwDataType" SG_ 150 AcpRgnCurLim 8;
+BA_ "Spec_Name" SG_ 150 AcvAngCmd "CR_Fcu_AcvAngCmd";
+BA_ "SwName" SG_ 150 AcvAngCmd "AcvAngCmd_VSF";
+BA_ "SwDataType" SG_ 150 AcvAngCmd 8;
+BA_ "Spec_Name" SG_ 150 ApcEn "CF_Fcu_ApcEn";
+BA_ "SwName" SG_ 150 ApcEn "ApcEn_VF";
+BA_ "SwDataType" SG_ 150 ApcAngCmd 8;
+BA_ "Spec_Name" SG_ 150 ApcAngCmd "CR_Fcu_ApcAngCmd";
+BA_ "SwName" SG_ 150 ApcAngCmd "ApcAngCmd_VSF";
+BA_ "Spec_Name" SG_ 150 AcvEn "CF_Fcu_AcvEn";
+BA_ "SwName" SG_ 150 AcvEn "AcvEn_VF";
+BA_ "SwDataType" SG_ 1288 CspHsCur 8;
+BA_ "SwName" SG_ 1288 CspHsCur "CspHsCur_VSF";
+BA_ "Spec_Name" SG_ 1288 CspHsCur "CR_Csp_HsCur";
+BA_ "SwName" SG_ 1288 CspInvOtPrtct "CspInvOtPrtct_VF";
+BA_ "Spec_Name" SG_ 1288 CspInvOtPrtct "CF_Csp_InvOtPrtct";
+BA_ "SwName" SG_ 1288 CspHsHvPrtct "CspHsHvPrtct_VF";
+BA_ "Spec_Name" SG_ 1288 CspHsHvPrtct "CF_Csp_HsHvPrtct";
+BA_ "SwName" SG_ 1288 CspHsLvPrtct "CspHsLvPrtct_VF";
+BA_ "Spec_Name" SG_ 1288 CspHsLvPrtct "CF_Csp_HsLvPrtct";
+BA_ "SwName" SG_ 1288 CspOvrPwrPrtct "CspOvrPwrPrtct_VF";
+BA_ "Spec_Name" SG_ 1288 CspOvrPwrPrtct "CF_Csp_OvrPwrPrtct";
+BA_ "Spec_Name" SG_ 1288 CspHsVlt "CR_Csp_HsVlt";
+BA_ "SwDataType" SG_ 1288 CspHsVlt 4;
+BA_ "SwName" SG_ 1288 CspHsVlt "CspHsVlt_VUW";
+BA_ "Spec_Name" SG_ 1288 CspRpmFb "CR_Csp_RpmFb";
+BA_ "SwDataType" SG_ 1288 CspRpmFb 4;
+BA_ "SwName" SG_ 1288 CspRpmFb "CspRpmFb_VUW";
+BA_ "Spec_Name" SG_ 1288 CspCanFlt "CF_Csp_CanFlt";
+BA_ "SwDataType" SG_ 1288 CspCanFlt 1;
+BA_ "SwName" SG_ 1288 CspCanFlt "CspCanFlt_VF";
+BA_ "Spec_Name" SG_ 1288 CspCtrb "CF_Csp_Ctrb";
+BA_ "SwDataType" SG_ 1288 CspCtrb 1;
+BA_ "SwName" SG_ 1288 CspCtrb "CspCtrb_VF";
+BA_ "Spec_Name" SG_ 1288 CspItk "CF_Csp_Itk";
+BA_ "SwDataType" SG_ 1288 CspItk 1;
+BA_ "SwName" SG_ 1288 CspItk "CspItk_VF";
+BA_ "Spec_Name" SG_ 1288 CspNoClntWrn "CF_Csp_NoClntWrn";
+BA_ "SwDataType" SG_ 1288 CspNoClntWrn 1;
+BA_ "SwName" SG_ 1288 CspNoClntWrn "CspNoClntWrn_VF";
+BA_ "Spec_Name" SG_ 1288 CspPrtctSts "CF_Csp_PrtctSts";
+BA_ "SwDataType" SG_ 1288 CspPrtctSts 1;
+BA_ "SwName" SG_ 1288 CspPrtctSts "CspPrtctSts_VF";
+BA_ "Spec_Name" SG_ 1288 CspFltSts "CF_Csp_FltSts";
+BA_ "SwDataType" SG_ 1288 CspFltSts 1;
+BA_ "SwName" SG_ 1288 CspFltSts "CspFltSts_VF";
+BA_ "Spec_Name" SG_ 1288 CspRdy "CF_Csp_Rdy";
+BA_ "SwDataType" SG_ 1288 CspRdy 1;
+BA_ "SwName" SG_ 1288 CspRdy "CspRdy_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpRpm "CR_Bpc_AcpRpm";
+BA_ "SwDataType" SG_ 560 BpcAcpRpm 6;
+BA_ "SwName" SG_ 560 BpcAcpRpm "BpcAcpRpm_VUL";
+BA_ "Spec_Name" SG_ 560 BpcHvItkReq "CF_Bpc_HvItkReq";
+BA_ "SwName" SG_ 560 BpcHvItkReq "BpcHvItkReq_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpCanFlt "CF_Bpc_AcpCanFlt";
+BA_ "SwDataType" SG_ 560 BpcAcpCanFlt 1;
+BA_ "SwName" SG_ 560 BpcAcpCanFlt "BpcAcpCanFlt_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpDrteSts "CF_Bpc_AcpDrteSts";
+BA_ "SwDataType" SG_ 560 BpcAcpDrteSts 1;
+BA_ "SwName" SG_ 560 BpcAcpDrteSts "BpcAcpDrteSts_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpCtrb "CF_Bpc_AcpCtrb";
+BA_ "SwDataType" SG_ 560 BpcAcpCtrb 1;
+BA_ "SwName" SG_ 560 BpcAcpCtrb "BpcAcpCtrb_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpSnlsCtrlSts "CF_Bpc_AcpSnlsCtrlSts";
+BA_ "SwDataType" SG_ 560 BpcAcpSnlsCtrlSts 1;
+BA_ "SwName" SG_ 560 BpcAcpSnlsCtrlSts "BpcAcpSnlsCtrlSts_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpFlt "CF_Bpc_AcpFlt";
+BA_ "SwDataType" SG_ 560 BpcAcpFlt 1;
+BA_ "SwName" SG_ 560 BpcAcpFlt "BpcAcpFlt_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpWrn "CF_Bpc_AcpWrn";
+BA_ "SwDataType" SG_ 560 BpcAcpWrn 1;
+BA_ "SwName" SG_ 560 BpcAcpWrn "BpcAcpWrn_VF";
+BA_ "Spec_Name" SG_ 560 BpcAcpRdy "CF_Bpc_AcpRdy";
+BA_ "SwDataType" SG_ 560 BpcAcpRdy 1;
+BA_ "SwName" SG_ 560 BpcAcpRdy "BpcAcpRdy_VF";
+BA_ "Spec_Name" SG_ 560 BpcHsVlt "CR_Bpc_HsVlt";
+BA_ "SwDataType" SG_ 560 BpcHsVlt 4;
+BA_ "SwName" SG_ 560 BpcHsVlt "BpcHsVlt_VUW";
+BA_ "Spec_Name" SG_ 560 BpcAcpCur "CR_Bpc_AcpCur";
+BA_ "SwDataType" SG_ 560 BpcAcpCur 8;
+BA_ "SwName" SG_ 560 BpcAcpCur "BpcAcpCur_VSF";
+BA_ "SwDataType" SG_ 1283 ProjectInfo 2;
+BA_ "SwName" SG_ 1283 ProjectInfo "ProjectInfo_VUB";
+BA_ "Spec_Name" SG_ 1283 ProjectInfo "CR_Fcu_ProjectInfo";
+BA_ "GenSigStartValue" SG_ 1283 RomVer 0;
+BA_ "SwDataType" SG_ 1283 RomVer 4;
+BA_ "SwName" SG_ 1283 RomVer "RomVer_VUW";
+BA_ "Spec_Name" SG_ 1283 RomVer "CR_Fcu_RomVer";
+BA_ "Spec_Name" SG_ 1283 VehRdyLmp "CF_Fcu_VehRdyLmp";
+BA_ "SwName" SG_ 1283 VehRdyLmp "VehRdyLmp_VF";
+BA_ "Spec_Name" SG_ 1283 VehWu "CF_Fcu_VehWu";
+BA_ "SwName" SG_ 1283 VehWu "VehWu_VF";
+BA_ "Spec_Name" SG_ 1283 VehSt "CF_Fcu_VehSt";
+BA_ "SwName" SG_ 1283 VehSt "VehSt_VF";
+SIG_GROUP_ 1143 AcvErrSts 1 : AcvCurErr AcvSnsErr AcvCanErr AcvVltErr;
+SIG_GROUP_ 1142 ApcErrSts 1 : ApcSnsErr ApcCanErr;
+SIG_GROUP_ 1288 CspSts 1 : CspCanFlt CspCtrb CspRdy;
+SIG_GROUP_ 560 BpcAcpSts 1 : BpcAcpCanFlt BpcAcpDrteSts BpcAcpCtrb BpcAcpSnlsCtrlSts BpcAcpFlt BpcAcpWrn BpcAcpRdy;
+

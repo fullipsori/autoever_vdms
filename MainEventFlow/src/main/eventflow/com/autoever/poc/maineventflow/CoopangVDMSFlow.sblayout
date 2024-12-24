@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ControlStream">
+        <param name="gui:x" value="-835"/>
+        <param name="gui:y" value="-320"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="-650"/>
+        <param name="gui:y" value="-414"/>
+    </component>
+    <component name="CoopangVMDSParser">
+        <param name="gui:x" value="-493"/>
+        <param name="gui:y" value="-442"/>
+        <param name="gui:height" value="65"/>
+        <param name="gui:bends:1" value="-567,-478;-553,-422"/>
+        <param name="gui:bends:2" value="-548,-384;-546,-397"/>
+    </component>
+    <component name="DBCTable">
+        <param name="gui:x" value="-660"/>
+        <param name="gui:y" value="-176"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="LatestValueTable">
+        <param name="gui:x" value="-503"/>
+        <param name="gui:y" value="-141"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DeleteAll">
+        <param name="gui:x" value="-650"/>
+        <param name="gui:y" value="-320"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-730"/>
+        <param name="gui:y" value="-320"/>
+    </component>
+    <component name="GetSignals">
+        <param name="gui:x" value="-650"/>
+        <param name="gui:y" value="-508"/>
+    </component>
+    <component name="InitLoad">
+        <param name="gui:x" value="-835"/>
+        <param name="gui:y" value="-508"/>
+    </component>
+    <component name="toTuple">
+        <param name="gui:x" value="-730"/>
+        <param name="gui:y" value="-508"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="-301"/>
+        <param name="gui:y" value="-521"/>
+        <param name="gui:bends:1" value="-361,-422;-345,-491"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="-301"/>
+        <param name="gui:y" value="-427"/>
+        <param name="gui:bends:1" value="-367,-410;-365,-397"/>
+    </component>
+    <component name="OutputVarStream">
+        <param name="gui:x" value="-301"/>
+        <param name="gui:y" value="-333"/>
+        <param name="gui:bends:1" value="-377,-397;-355,-303"/>
+    </component>
+</application-layout>

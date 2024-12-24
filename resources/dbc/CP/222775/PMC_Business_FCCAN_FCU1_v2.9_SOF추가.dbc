@@ -1,0 +1,1524 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: INCA GST BHDC FDC VCU FCU
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ GstFcu2DiagResSig8 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig7 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig6 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig5 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig4 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig3 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig2 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagResSig1 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig8 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig7 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig6 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig5 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig4 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig3 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig2 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ GstFcu2DiagReq2Sig1 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig8 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig7 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig6 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig5 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig4 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig3 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig2 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ResSig1 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig8 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig7 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig6 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig5 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig4 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig3 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig2 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ CCPFcu2ReqSig1 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566854604 DeVcu_Fcu4: 8 VCU
+ SG_ VcuH2Sof : 40|8@1+ (0.5,0) [0|126.5] "%" Vector__XXX
+ SG_ VcuHsMxPrmPwrLmtFc2 : 25|12@1+ (0.1,0) [0|255] "kW"  FCU
+ SG_ VcuHsMxPrmPwrLmtFc1 : 13|12@1+ (0.1,0) [0|255] "kW"  FCU
+
+BO_ 1712 DeCCPFcuRes: 8 FCU
+ SG_ CCPFcu1ResSig8 : 56|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig7 : 48|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig6 : 40|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig5 : 32|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig4 : 24|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig3 : 16|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig2 : 8|8@1+ (1,0) [0|0] ""  INCA
+ SG_ CCPFcu1ResSig1 : 0|8@1+ (1,0) [0|0] ""  INCA
+
+BO_ 1713 DeCCPFcuReq: 8 INCA
+ SG_ CCPFcu1ReqSig8 : 56|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig7 : 48|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig6 : 40|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig5 : 32|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig4 : 24|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig3 : 16|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig2 : 8|8@1+ (1,0) [0|0] ""  FCU
+ SG_ CCPFcu1ReqSig1 : 0|8@1+ (1,0) [0|0] ""  FCU
+
+BO_ 2025 DeGstFcuDiagRes: 8 FCU
+ SG_ GstFcu1DiagResSig8 : 56|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig7 : 48|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig6 : 40|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig5 : 32|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig4 : 24|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig3 : 16|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig2 : 8|8@1+ (1,0) [0|0] ""  GST
+ SG_ GstFcu1DiagResSig1 : 0|8@1+ (1,0) [0|0] ""  GST
+
+BO_ 2017 DeGstFcuDiagReq2: 8 GST
+ SG_ GstFcu1DiagReq2Sig8 : 56|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig7 : 48|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig6 : 40|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig5 : 32|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig4 : 24|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig3 : 16|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig2 : 8|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcu1DiagReq2Sig1 : 0|8@1+ (1,0) [0|0] ""  FCU
+
+BO_ 2015 DeGstFcuDiagReq1: 8 GST
+ SG_ GstFcuDiagReq1Sig8 : 56|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig7 : 48|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig6 : 40|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig5 : 32|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig4 : 24|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig3 : 16|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig2 : 8|8@1+ (1,0) [0|0] ""  FCU
+ SG_ GstFcuDiagReq1Sig1 : 0|8@1+ (1,0) [0|0] ""  FCU
+
+BO_ 933 DeBhdc2_Bdc2: 8 BHDC
+ SG_ Bhdc2BDCULSactred : 39|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc2BDCUHSactred : 43|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc2BDCTmax : 31|8@0+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Bhdc2BDCTIndex : 11|4@0+ (1,0) [0|15] ""  FCU
+ SG_ Bhdc2BDCT : 23|8@0+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Bhdc2BDCILSavailable : 7|12@0+ (0.25,0) [0|1023.75] "A"  FCU
+
+BO_ 551 DeBhdc2_Bdc1: 8 BHDC
+ SG_ Bhdc2BDCWarning : 10|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCULSminLim : 3|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCULSmaxLim : 2|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCULSact : 47|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc2BDCUHSminLim : 7|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCUHSmaxLim : 6|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCUHSact : 51|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc2BDCRunning : 9|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCReady : 8|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCILSminLim : 1|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCILSmaxLim : 0|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCILSact : 23|12@0+ (0.25,-512) [-512|511.75] "A"  FCU
+ SG_ Bhdc2BDCIHSminLim : 5|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCIHSmaxLim : 4|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc2BDCIHSact : 27|12@0+ (0.25,-512) [-512|511.75] "A"  FCU
+ SG_ Bhdc2BDCError : 11|1@0+ (1,0) [0|1] ""  FCU
+
+BO_ 932 DeBhdc1_Bdc2: 8 BHDC
+ SG_ Bhdc1BDCUHSactred : 43|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc1BDCULSactred : 39|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc1BDCTmax : 31|8@0+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Bhdc1BDCT : 23|8@0+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Bhdc1BDCTIndex : 11|4@0+ (1,0) [0|15] ""  FCU
+ SG_ Bhdc1BDCILSavailable : 7|12@0+ (0.25,0) [0|1023.75] "A"  FCU
+
+BO_ 550 DeBhdc1_Bdc1: 8 BHDC
+ SG_ Bhdc1BDCUHSact : 51|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc1BDCULSact : 47|12@0+ (0.25,0) [0|1023.75] "V"  FCU
+ SG_ Bhdc1BDCIHSact : 27|12@0+ (0.25,-512) [-512|511.75] "A"  FCU
+ SG_ Bhdc1BDCILSact : 23|12@0+ (0.25,-512) [-512|511.75] "A"  FCU
+ SG_ Bhdc1BDCReady : 8|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCRunning : 9|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCWarning : 10|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCError : 11|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCILSmaxLim : 0|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCILSminLim : 1|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCULSmaxLim : 2|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCULSminLim : 3|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCIHSmaxLim : 4|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCIHSminLim : 5|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCUHSmaxLim : 6|1@0+ (1,0) [0|1] ""  FCU
+ SG_ Bhdc1BDCUHSminLim : 7|1@0+ (1,0) [0|1] ""  FCU
+
+BO_ 549 DeFcu2_SG_3: 8 FCU
+ SG_ SgUHSMinFc2 : 55|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgUHSMaxFc2 : 39|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgIHSMinFc2 : 23|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+ SG_ SgIHSMaxFc2 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+
+BO_ 548 DeFcu2_SG_2: 8 FCU
+ SG_ SgULSMinFc2 : 55|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgULSMaxFc2 : 39|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgILSMinFc2 : 23|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+ SG_ SgILSMaxFc2 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+
+BO_ 547 DeFcu2_SG_1: 8 FCU
+ SG_ SGSollwertFc2 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "V/A"  BHDC
+ SG_ SGHRModeChkFc2 : 18|2@0+ (1,0) [0|3] ""  BHDC
+ SG_ SGDigOutActFc2 : 19|1@0+ (1,0) [0|1] "flag"  BHDC
+ SG_ SGActFc2 : 16|1@0+ (1,0) [0|1] "flag"  BHDC
+
+BO_ 546 DeFcu1_SG_3: 8 FCU
+ SG_ SgUHSMinFc1 : 55|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgUHSMaxFc1 : 39|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgIHSMinFc1 : 23|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+ SG_ SgIHSMaxFc1 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+
+BO_ 545 DeFcu1_SG_2: 8 FCU
+ SG_ SgULSMinFc1 : 55|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgULSMaxFc1 : 39|16@0+ (0.03125,0) [0|2047.96875] "V"  BHDC
+ SG_ SgILSMinFc1 : 23|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+ SG_ SgILSMaxFc1 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "A"  BHDC
+
+BO_ 544 DeFcu1_SG_1: 8 FCU
+ SG_ SGActFc1 : 16|1@0+ (1,0) [0|1] "flag"  BHDC
+ SG_ SGHRModeChkFc1 : 18|2@0+ (1,0) [0|3] ""  BHDC
+ SG_ SGDigOutActFc1 : 19|1@0+ (1,0) [0|1] "flag"  BHDC
+ SG_ SGSollwertFc1 : 7|16@0+ (0.03125,-1024) [-1024|1023.96875] "V/A"  BHDC
+
+BO_ 2566859212 DeVcu_FcuC1: 8 VCU
+ SG_ VcuDrvCyc : 32|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuH2MidPrs : 24|8@1+ (20,0) [0|5100] "kPa"  FCU
+ SG_ VcuOdoInfo : 0|24@1+ (1,0) [0|15999999] "km"  FCU
+
+BO_ 2565603265 TPDT_FCU: 8 FCU
+ SG_ SequenceNumber : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ PacketizedData : 8|56@1+ (1,0) [0|7.20575940379279E+016] "" Vector__XXX
+
+BO_ 2565668801 TPCM_FCU: 8 FCU
+ SG_ TotalNumberOfPacket : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ TotalMessageSize : 8|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ PGNumber : 40|24@1+ (1,0) [0|16777215] "" Vector__XXX
+ SG_ ControlByte : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2566834881 DM1_Fcu: 18 FCU
+ SG_ DTC4_FCU1_B : 112|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ DTC3_FCU1_B : 80|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ DTC2_FCU1_B : 48|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ DTC1_FCU1_B : 16|32@1+ (1,0) [0|4294967295] "" Vector__XXX
+ SG_ FlashRSLSte_FCU1_B : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ FlashMILSts_FCU1_B : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ FlashAWL_FCU1_B : 10|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ FlashPL_FCU1_B : 8|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ MILSts_FCU1_B : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ RSLSte_FCU1_B : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AWLSts_FCU1_B : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PLSts_FCU1_B : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2365531852 DeVcu_Fcu1: 8 VCU
+ SG_ VcuStckCoolOprMdeEnFc1 : 63|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuHvFltEmgSdReqFc1 : 17|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuTnkClzEmgSdReqFc1 : 34|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcPwrMnCmdFc1 : 4|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuIsoRestDtecReqFc1 : 3|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcPwrReqFc1 : 5|12@1+ (0.1,0) [0|255] "kW"  FCU
+ SG_ VcuFcRunCmdFc1 : 0|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcStpCmdFc1 : 2|1@1+ (1,0) [0|1] "flag"  FCU
+
+BO_ 2365532108 DeVcu_Fcu2: 8 VCU
+ SG_ VcuStckCoolOprMdeEnFc2 : 63|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuTnkClzEmgSdReqFc2 : 34|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuIsoRestDtecReqFc2 : 3|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuHvFltEmgSdReqFc2 : 17|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcStpCmdFc2 : 2|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcRunCmdFc2 : 0|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuFcPwrReqFc2 : 5|12@1+ (0.1,0) [0|255] "kW"  FCU
+ SG_ VcuFcPwrMnCmdFc2 : 4|1@1+ (1,0) [0|1] "flag"  FCU
+
+BO_ 2566858956 DeVcu_Fcu3: 8 VCU
+ SG_ VcuStckPinHoleDtecRspnFc2 : 58|2@1+ (1,0) [0|3] ""  FCU
+ SG_ VcuGdsCspRunRspnFc2 : 62|2@1+ (1,0) [0|3] ""  FCU
+ SG_ VcuGdsCspRunRspnFc1 : 56|2@1+ (1,0) [0|3] ""  FCU
+ SG_ VcuStckPinHoleDtecRspnFc1 : 52|2@1+ (1,0) [0|3] ""  FCU
+ SG_ VcuHvBatDchLim : 44|8@1+ (2000,0) [0|500000] "W"  FCU
+ SG_ VcuHvBatSoc : 28|8@1+ (0.5,0) [0|100] "%"  FCU
+ SG_ VcuFcClntLvlLo : 27|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuRdy : 0|1@1+ (1,0) [0|1] "flag"  FCU
+ SG_ VcuWhlBsVehSpd : 11|16@1+ (0.00390625,0) [0|255.99609375] "km/h"  FDC,FCU
+ SG_ VcuAmbTmp : 3|8@1+ (1,-40) [-40|215] "℃"  FCU
+ SG_ VcuVehRdy : 2|1@1+ (1,0) [0|1] "flag"  FCU
+
+BO_ 2566848722 DeFdc1_1: 8 FDC
+ SG_ Fdc1CRC11 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc1AliveCnt11 : 52|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc1Wrn : 51|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1Flt : 50|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1Ctrb : 49|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1HvItkReq : 48|1@1+ (1,0) [0|1] "flg"  VCU,FCU
+ SG_ Fdc1LsCur : 32|16@1- (0.1,0) [-500|500] "A"  FCU
+ SG_ Fdc1HsVlt : 16|16@1+ (0.1,0) [0|1000] "V"  FCU
+ SG_ Fdc1LsVlt : 0|16@1+ (0.1,0) [0|1000] "V"  FCU
+
+BO_ 2566848978 DeFdc1_2: 8 FDC
+ SG_ Fdc1RlyOffReq : 34|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1CRC12 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc1AliveCnt12 : 52|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc1RSDReq : 35|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1Rdy : 33|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1FcItkReq : 32|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc1ClntTmp : 24|8@1+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Fdc1SiCModuleTmp : 16|8@1+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Fdc1LsCurLim : 0|16@1+ (0.1,0) [0|500] "A"  FCU
+
+BO_ 2566849234 DeFdc1_3: 8 FDC
+ SG_ Fdc1CRC13 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc1AliveCnt13 : 52|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc1SCSte : 20|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc1PCSte : 16|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc1ChkID : 8|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc1ChkGroup : 0|3@1+ (1,0) [0|7] ""  FCU
+
+BO_ 2566848723 DeFdc2_1: 8 FDC
+ SG_ Fdc2Wrn : 51|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2LsVlt : 0|16@1+ (0.1,0) [0|1000] "V"  FCU
+ SG_ Fdc2LsCur : 32|16@1- (0.1,0) [-500|500] "A"  FCU
+ SG_ Fdc2HvItkReq : 48|1@1+ (1,0) [0|1] "flg"  VCU,FCU
+ SG_ Fdc2HsVlt : 16|16@1+ (0.1,0) [0|1000] "V"  FCU
+ SG_ Fdc2Flt : 50|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2Ctrb : 49|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2CRC11 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc2AliveCnt11 : 52|4@1+ (1,0) [0|15] ""  FCU
+
+BO_ 2566848979 DeFdc2_2: 8 FDC
+ SG_ Fdc2RlyOffReq : 34|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2SiCModuleTmp : 16|8@1+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Fdc2RSDReq : 35|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2Rdy : 33|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2LsCurLim : 0|16@1+ (0.1,0) [0|500] "A"  FCU
+ SG_ Fdc2FcItkReq : 32|1@1+ (1,0) [0|1] "flg"  FCU
+ SG_ Fdc2CRC12 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc2ClntTmp : 24|8@1+ (1,-40) [-40|200] "℃"  FCU
+ SG_ Fdc2AliveCnt12 : 52|4@1+ (1,0) [0|15] ""  FCU
+
+BO_ 2566849235 DeFdc2_3: 8 FDC
+ SG_ Fdc2SCSte : 20|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc2PCSte : 16|4@1+ (1,0) [0|15] ""  FCU
+ SG_ Fdc2CRC13 : 56|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc2ChkID : 8|8@1+ (1,0) [0|255] ""  FCU
+ SG_ Fdc2ChkGroup : 0|3@1+ (1,0) [0|7] ""  FCU
+ SG_ Fdc2AliveCnt13 : 52|4@1+ (1,0) [0|15] ""  FCU
+
+BO_ 2566858434 DeFcu2_9: 8 FCU
+ SG_ H2SnsOutFc2 : 56|8@1+ (0.02,0) [0|5.1] "%"  VCU
+ SG_ H2SnsInFc2 : 48|8@1+ (0.02,0) [0|5.1] "%"  VCU
+ SG_ GdsCspRunReqFc2 : 44|2@1+ (1,0) [0|3] ""  VCU
+ SG_ StckPinHoleDtecReqFc2 : 40|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FanOprReqFc2 : 24|16@1+ (1,0) [0|100] "%"  VCU
+
+BO_ 2566858178 DeFcu2_8: 8 FCU
+ SG_ FcInClntTmpFc2 : 56|8@1- (1,0) [-40|125] "℃"  VCU
+ SG_ FcOutClntTmpFc2 : 48|8@1- (1,0) [-40|125] "℃"  VCU
+ SG_ FuelCsmptFc2 : 32|16@1+ (0.01,0) [0|655.35] "mg"  VCU
+ SG_ H2LkLmpFc2 : 2|2@1+ (1,0) [0|3] ""  VCU
+ SG_ SvcLmpFc2 : 1|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2566857922 DeFcu2_7: 8 FCU
+ SG_ IsoRestVluFc2 : 40|16@1+ (1,0) [0|65535] "kohm"  VCU
+ SG_ FcStpSteFc2 : 16|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FcStpImpsFc2 : 3|2@1+ (1,0) [0|3] ""  VCU
+ SG_ IsoRestDtecStsFc2 : 2|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2365530818 DeFcu2_5: 8 FCU
+ SG_ FcuRdyFc2 : 23|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcSuFc2 : 24|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FcSdFc2 : 27|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FcLdPrmFc2 : 26|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcFltFc2 : 29|1@1+ (1,0) [0|1] ""  VCU
+ SG_ H2FltLmpFc2 : 22|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcClntSplChkFc2 : 19|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcClntFiltChkFc2 : 20|1@1+ (1,0) [0|1] ""  VCU
+ SG_ H2TnkVlvEmgClzFc2 : 18|1@1+ (1,0) [0|1] ""  VCU
+ SG_ LsBusVltFc2 : 8|8@1+ (2,0) [0|510] "V"  VCU
+ SG_ AuxBatVltFc2 : 0|8@1+ (0.1,0) [0|25.5] "V"  VCU
+
+BO_ 2365530562 DeFcu2_4: 8 FCU
+ SG_ BpcHsVltFc2 : 56|8@1+ (2,0) [0|510] "V"  VCU
+ SG_ BpcAcpCurFc2 : 48|8@1- (0.5,0) [-64|63.5] "A"  VCU
+ SG_ FcNetPwrFc2 : 16|16@1+ (0.1,0) [0|255] "kW"  VCU
+ SG_ FcNetMxPwrLimFc2 : 0|16@1+ (0.1,0) [0|255] "kW"  VCU
+
+BO_ 2365530306 DeFcu2_3: 8 FCU
+ SG_ HvItkReactReqFc2 : 45|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcVltSumFc2 : 32|13@1+ (0.1,0) [0|500] "V"  VCU
+ SG_ FcCurFc2 : 16|16@1+ (0.01,0) [0|500] "A"  VCU
+
+BO_ 2566858710 DeFcu2_2: 8 FCU
+ SG_ CRC22Fc2 : 32|8@1+ (1,0) [0|255] ""  FDC
+ SG_ AliveCnt22Fc2 : 28|4@1+ (1,0) [0|15] ""  FDC
+ SG_ StckVltFc2 : 8|16@1+ (0.1,0) [0|500] "V"  FDC
+ SG_ VehWuFc2 : 1|1@1+ (1,0) [0|1] "flg"  FDC
+ SG_ VehStFc2 : 0|1@1+ (1,0) [0|1] "flg"  FDC
+
+BO_ 2365532374 DeFcu2_1: 8 FCU
+ SG_ CRC21Fc2 : 48|8@1+ (1,0) [0|255] ""  FDC
+ SG_ AliveCnt21Fc2 : 44|4@1+ (1,0) [0|15] ""  FDC
+ SG_ Fdc2LsNetMxCurLimBstFc2 : 24|16@1+ (1,0) [0|400] "A"  FDC
+ SG_ Fdc2LsRefVltFc2 : 8|16@1+ (0.5,0) [150|410] "V"  FDC
+ SG_ MainRlyStsFc2 : 1|1@1+ (1,0) [0|1] "flg"  FDC
+ SG_ Fdc2RunCmdFc2 : 0|1@1+ (1,0) [0|1] "flg"  FDC
+
+BO_ 2365528277 DeFcu1_1: 8 FCU
+ SG_ CRC11Fc1 : 48|8@1+ (1,0) [0|255] ""  FDC
+ SG_ AliveCnt11Fc1 : 44|4@1+ (1,0) [0|15] ""  FDC
+ SG_ Fdc1LsNetMxCurLimBstFc1 : 24|16@1+ (1,0) [0|400] "A"  FDC
+ SG_ Fdc1LsRefVltFc1 : 8|16@1+ (0.5,0) [150|410] "V"  FDC
+ SG_ MainRlyStsFc1 : 1|1@1+ (1,0) [0|1] "flg"  FDC
+ SG_ Fdc1RunCmdFc1 : 0|1@1+ (1,0) [0|1] "flg"  FDC
+
+BO_ 2566854613 DeFcu1_2: 8 FCU
+ SG_ VehWuFc1 : 1|1@1+ (1,0) [0|1] "flg"  FDC
+ SG_ VehStFc1 : 0|1@1+ (1,0) [0|1] "flg"  FDC
+ SG_ StckVltFc1 : 8|16@1+ (0.1,0) [0|500] "V"  FDC
+ SG_ CRC12Fc1 : 32|8@1+ (1,0) [0|255] ""  FDC
+ SG_ AliveCnt12Fc1 : 28|4@1+ (1,0) [0|15] ""  FDC
+
+BO_ 2365526465 DeFcu1_4: 8 FCU
+ SG_ BpcHsVltFc1 : 56|8@1+ (2,0) [0|510] "V"  VCU
+ SG_ BpcAcpCurFc1 : 48|8@1- (0.5,0) [-64|63.5] "A"  VCU
+ SG_ FcNetPwrFc1 : 16|16@1+ (0.1,0) [0|255] "kW"  VCU
+ SG_ FcNetMxPwrLimFc1 : 0|16@1+ (0.1,0) [0|255] "kW"  VCU
+
+BO_ 2566854337 DeFcu1_9: 8 FCU
+ SG_ H2SnsOutFc1 : 56|8@1+ (0.02,0) [0|5.1] "%"  VCU
+ SG_ H2SnsInFc1 : 48|8@1+ (0.02,0) [0|5.1] "%"  VCU
+ SG_ StckPinHoleDtecReqFc1 : 40|2@1+ (1,0) [0|3] ""  VCU
+ SG_ GdsCspRunReqFc1 : 44|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FanOprReqFc1 : 24|16@1+ (1,0) [0|100] "%"  VCU
+
+BO_ 2566854081 DeFcu1_8: 8 FCU
+ SG_ FcInClntTmpFc1 : 56|8@1- (1,0) [-40|125] "℃"  VCU
+ SG_ FcOutClntTmpFc1 : 48|8@1- (1,0) [-40|125] "℃"  VCU
+ SG_ FuelCsmptFc1 : 32|16@1+ (0.01,0) [0|655.35] "mg"  VCU
+ SG_ H2LkLmpFc1 : 2|2@1+ (1,0) [0|3] ""  VCU
+ SG_ SvcLmpFc1 : 1|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2566853825 DeFcu1_7: 8 FCU
+ SG_ FcStpSteFc1 : 16|2@1+ (1,0) [0|3] ""  VCU
+ SG_ IsoRestVluFc1 : 40|16@1+ (1,0) [0|65535] "kohm"  VCU
+ SG_ FcStpImpsFc1 : 3|2@1+ (1,0) [0|3] ""  VCU
+ SG_ IsoRestDtecStsFc1 : 2|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2365526721 DeFcu1_5: 8 FCU
+ SG_ FcFltFc1 : 29|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcSdFc1 : 27|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FcLdPrmFc1 : 26|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcSuFc1 : 24|2@1+ (1,0) [0|3] ""  VCU
+ SG_ FcuRdyFc1 : 23|1@1+ (1,0) [0|1] ""  VCU
+ SG_ H2TnkVlvEmgClzFc1 : 18|1@1+ (1,0) [0|1] ""  VCU
+ SG_ H2FltLmpFc1 : 22|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcClntFiltChkFc1 : 20|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcClntSplChkFc1 : 19|1@1+ (1,0) [0|1] ""  VCU
+ SG_ LsBusVltFc1 : 8|8@1+ (2,0) [0|510] "V"  VCU
+ SG_ AuxBatVltFc1 : 0|8@1+ (0.1,0) [0|25.5] "V"  VCU
+
+BO_ 2365526209 DeFcu1_3: 8 FCU
+ SG_ HvItkReactReqFc1 : 45|1@1+ (1,0) [0|1] ""  VCU
+ SG_ FcVltSumFc1 : 32|13@1+ (0.1,0) [0|500] "V"  VCU
+ SG_ FcCurFc1 : 16|16@1+ (0.01,0) [0|500] "A"  VCU
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 GstFcu2DiagResSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagResSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 GstFcu2DiagReq2Sig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ResSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 3221225472 CCPFcu2ReqSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2566854604 VcuHsMxPrmPwrLmtFc2 "VCU_HighsideMaxPermissionPowerLimit_Fuelcell2";
+CM_ SG_ 2566854604 VcuHsMxPrmPwrLmtFc1 "VCU_HighsideMaxPermissionPowerLimit_Fuelcell1";
+CM_ SG_ 1712 CCPFcu1ResSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1712 CCPFcu1ResSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 1713 CCPFcu1ReqSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2025 GstFcu1DiagResSig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2017 GstFcu1DiagReq2Sig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig8 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig7 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig6 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig5 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig4 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig3 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig2 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 2015 GstFcuDiagReq1Sig1 "Virtual Signal for Diagnosis Session";
+CM_ SG_ 933 Bhdc2BDCULSactred "Redundant low side voltage value";
+CM_ SG_ 933 Bhdc2BDCUHSactred "Redundant High side voltage value";
+CM_ SG_ 933 Bhdc2BDCTmax "Max measured temperature";
+CM_ SG_ 933 Bhdc2BDCTIndex "Measured temperature count(index)";
+CM_ SG_ 933 Bhdc2BDCT "Measured temperature at this index";
+CM_ SG_ 933 Bhdc2BDCILSavailable "Max low side current due to derating";
+CM_ SG_ 551 Bhdc2BDCWarning "BDC Warning";
+CM_ SG_ 551 Bhdc2BDCULSminLim "Min low side voltage limiter active";
+CM_ SG_ 551 Bhdc2BDCULSmaxLim "Max low side voltage limiter active";
+CM_ SG_ 551 Bhdc2BDCULSact "Low side voltage value";
+CM_ SG_ 551 Bhdc2BDCUHSminLim "Min high side voltage limiter actvie";
+CM_ SG_ 551 Bhdc2BDCUHSmaxLim "Max high side voltage limiter actvie";
+CM_ SG_ 551 Bhdc2BDCUHSact "High side voltage value";
+CM_ SG_ 551 Bhdc2BDCRunning "BDC Running";
+CM_ SG_ 551 Bhdc2BDCReady "BDC Ready";
+CM_ SG_ 551 Bhdc2BDCILSminLim "Min low side current limiter active";
+CM_ SG_ 551 Bhdc2BDCILSmaxLim "Max low side current limiter active";
+CM_ SG_ 551 Bhdc2BDCILSact "Low side current value";
+CM_ SG_ 551 Bhdc2BDCIHSminLim "Min high side current limiter actvie";
+CM_ SG_ 551 Bhdc2BDCIHSmaxLim "Max high side current limiter actvie";
+CM_ SG_ 551 Bhdc2BDCIHSact "High side current value";
+CM_ SG_ 551 Bhdc2BDCError "BDC Error";
+CM_ SG_ 932 Bhdc1BDCUHSactred "Redundant High side voltage value";
+CM_ SG_ 932 Bhdc1BDCULSactred "Redundant low side voltage value";
+CM_ SG_ 932 Bhdc1BDCTmax "Max measured temperature";
+CM_ SG_ 932 Bhdc1BDCT "Measured temperature at this index";
+CM_ SG_ 932 Bhdc1BDCTIndex "Measured temperature count(index)";
+CM_ SG_ 932 Bhdc1BDCILSavailable "Max low side current due to derating";
+CM_ SG_ 550 Bhdc1BDCUHSact "High side voltage value";
+CM_ SG_ 550 Bhdc1BDCULSact "Low side voltage value";
+CM_ SG_ 550 Bhdc1BDCIHSact "High side current value";
+CM_ SG_ 550 Bhdc1BDCILSact "Low side current value";
+CM_ SG_ 550 Bhdc1BDCReady "BDC Ready";
+CM_ SG_ 550 Bhdc1BDCRunning "BDC Running";
+CM_ SG_ 550 Bhdc1BDCWarning "BDC Warning";
+CM_ SG_ 550 Bhdc1BDCError "BDC Error";
+CM_ SG_ 550 Bhdc1BDCILSmaxLim "Max low side current limiter active";
+CM_ SG_ 550 Bhdc1BDCILSminLim "Min low side current limiter active";
+CM_ SG_ 550 Bhdc1BDCULSmaxLim "Max low side voltage limiter active";
+CM_ SG_ 550 Bhdc1BDCULSminLim "Min low side voltage limiter active";
+CM_ SG_ 550 Bhdc1BDCIHSmaxLim "Max high side current limiter actvie";
+CM_ SG_ 550 Bhdc1BDCIHSminLim "Min high side current limiter actvie";
+CM_ SG_ 550 Bhdc1BDCUHSmaxLim "Max high side voltage limiter actvie";
+CM_ SG_ 550 Bhdc1BDCUHSminLim "Min high side voltage limiter actvie";
+CM_ SG_ 549 SgUHSMinFc2 "Min UHS limiter value(High side voltage minimum limiter value)";
+CM_ SG_ 549 SgUHSMaxFc2 "Max UHS limiter value(High side voltage maximum limiter value)";
+CM_ SG_ 549 SgIHSMinFc2 "Min HIS limiter value(High side current minimum limiter value)";
+CM_ SG_ 549 SgIHSMaxFc2 "Max HIS limiter value(High side current minimum limiter value)";
+CM_ SG_ 548 SgULSMinFc2 "Min ULS limiter value(Low side voltage minimum limtiter value)";
+CM_ SG_ 548 SgULSMaxFc2 "Max ULS limiter value(Low side voltage maximum limtiter value)";
+CM_ SG_ 548 SgILSMinFc2 "Min ILS limiter value(Low side current minimum limtiter value)";
+CM_ SG_ 548 SgILSMaxFc2 "Max ILS limiter value(Low side current maximum limtiter value)";
+CM_ SG_ 547 SGSollwertFc2 "Main controller set value";
+CM_ SG_ 547 SGHRModeChkFc2 "Main controller mode";
+CM_ SG_ 547 SGDigOutActFc2 "activates the digital output of the BDC (only possible if the output has been configured correctly)";
+CM_ SG_ 547 SGActFc2 "BDC activation";
+CM_ SG_ 546 SgUHSMinFc1 "Min UHS limiter value(High side voltage minimum limiter value)";
+CM_ SG_ 546 SgUHSMaxFc1 "Max UHS limiter value(High side voltage maximum limiter value)";
+CM_ SG_ 546 SgIHSMinFc1 "Min HIS limiter value(High side current minimum limiter value)";
+CM_ SG_ 546 SgIHSMaxFc1 "Max HIS limiter value(High side current minimum limiter value)";
+CM_ SG_ 545 SgULSMinFc1 "Min ULS limiter value(Low side voltage minimum limtiter value)";
+CM_ SG_ 545 SgULSMaxFc1 "Max ULS limiter value(Low side voltage maximum limtiter value)";
+CM_ SG_ 545 SgILSMinFc1 "Min ILS limiter value(Low side current minimum limtiter value)";
+CM_ SG_ 545 SgILSMaxFc1 "Max ILS limiter value(Low side current maximum limtiter value)";
+CM_ SG_ 544 SGActFc1 "BDC activation";
+CM_ SG_ 544 SGHRModeChkFc1 "Main controller mode";
+CM_ SG_ 544 SGDigOutActFc1 "activates the digital output of the BDC (only possible if the output has been configured correctly)";
+CM_ SG_ 544 SGSollwertFc1 "Main controller set value";
+CM_ SG_ 2566859212 VcuDrvCyc "VCU_DrivingCycle(DC)";
+CM_ SG_ 2566859212 VcuH2MidPrs "H2 Regulated Line Pressure";
+CM_ SG_ 2566859212 VcuOdoInfo "Odometer - Mileage information
+(PH) = (HEX) X 1.0 km
+ 
+? km사양: 0 ...15,999,999km
+              = 0x0 ... 0xF423FF
+? mile사양: 0 ...16,093,733km
+             = 0x0 ... 0xF59225";
+CM_ SG_ 2565603265 SequenceNumber "TP_DT(Transport Protocol_Data Transfer) - Package Identification";
+CM_ SG_ 2565603265 PacketizedData "TP_DT message Data";
+CM_ SG_ 2565668801 TotalNumberOfPacket "TotalNumberOfPacket";
+CM_ SG_ 2565668801 TotalMessageSize "TotalMessageSize";
+CM_ SG_ 2565668801 PGNumber "Prameter Group Number
+FCU ; FECA(Hex)";
+CM_ SG_ 2565668801 ControlByte "Control byte; connection mode
+(Broad cast announce message reserved value : 0x32)";
+CM_ SG_ 2566834881 DTC4_FCU1_B "DTC4_FCU1_B";
+CM_ SG_ 2566834881 DTC3_FCU1_B "DTC3_FCU1_B";
+CM_ SG_ 2566834881 DTC2_FCU1_B "DTC2_FCU1_B";
+CM_ SG_ 2566834881 DTC1_FCU1_B "DTC1_FCU1_B";
+CM_ SG_ 2566834881 FlashRSLSte_FCU1_B "FlashMalfuncIndicatorLamp_FCU1_B
+MIL : Malfunction Indicator Lamp(고장지시등)";
+CM_ SG_ 2566834881 FlashMILSts_FCU1_B "FlashRedStopLamp_FCU1_B
+RSL: Red Stop Lamp(적색등)";
+CM_ SG_ 2566834881 FlashAWL_FCU1_B "FlashAmberWarningLamp_FCU1_B
+AWL : Amber Warning Lamp(호박등)";
+CM_ SG_ 2566834881 FlashPL_FCU1_B "FlashProtectLamp_FCU1_B
+PL : Protect Lamp(보호등)";
+CM_ SG_ 2566834881 MILSts_FCU1_B "MalfunctionIndicatorLampStatus_FCU1_B
+MIL : Malfunction Indicator Lamp(고장지시등)";
+CM_ SG_ 2566834881 RSLSte_FCU1_B "RedStopLampState_FCU1_B
+RSL: Red Stop Lamp(적색등)";
+CM_ SG_ 2566834881 AWLSts_FCU1_B "AmberWarningLampStatus_FCU1_B
+AWL : Amber Warning Lamp(호박등)";
+CM_ SG_ 2566834881 PLSts_FCU1_B "ProtectLampStatus_FCU1_B
+PL : Protect Lamp(보호등)";
+CM_ SG_ 2365531852 VcuStckCoolOprMdeEnFc1 "Fuel Cell Stack Cooling Operation Mode Enable(for PMC test)
+(연료전지시스템 스택 강제 냉각 모드 enable(PMC 내구 시험용))";
+CM_ SG_ 2365531852 VcuHvFltEmgSdReqFc1 "FC shutdown immediately(High Voltage fault)
+(연료전지 시스템 즉시 정지 명령 신호(고전압 고장 상황 등))";
+CM_ SG_ 2365531852 VcuTnkClzEmgSdReqFc1 "Fuel Cell Emergency Shutdown Request(Tank Close Imediately)
+(연료전지 시스템 즉시 정지 명령 신호(수소탱크 Close 상황 등))";
+CM_ SG_ 2365531852 VcuFcPwrMnCmdFc1 "FC power minimization command
+(연료전지 시스템 발전량 최소화 요구 명령)";
+CM_ SG_ 2365531852 VcuIsoRestDtecReqFc1 "Electrical Isolation resistance detection request
+(연료전지 시스템 절연저항 측정 요청)";
+CM_ SG_ 2365531852 VcuFcPwrReqFc1 "FC power request(kW) (demand request)
+(연료전지 시스템 발전 요구량 요청)";
+CM_ SG_ 2365531852 VcuFcRunCmdFc1 "Fuel Cell Run/Stop command signal
+(연료전지 시스템 시동 및 시동 정지 명령 신호)";
+CM_ SG_ 2365531852 VcuFcStpCmdFc1 "Fuel Cell Idle Stop(FC Stop) command signal
+(연료전지 시스템 Idle Stop(FC Stop) 명령 신호)";
+CM_ SG_ 2365532108 VcuStckCoolOprMdeEnFc2 "Fuel Cell Stack Cooling Operation Mode Enable(for PMC test)
+(연료전지시스템 스택 강제 냉각 모드 enable(PMC 내구 시험용))";
+CM_ SG_ 2365532108 VcuTnkClzEmgSdReqFc2 "Fuel Cell Emergency Shutdown Request(Tank Close Imediately)
+(연료전지 시스템 즉시 정지 명령 신호(수소탱크 Close 상황 등))";
+CM_ SG_ 2365532108 VcuIsoRestDtecReqFc2 "Electrical Isolation resistance detection request
+(연료전지 시스템 절연저항 측정 요청)";
+CM_ SG_ 2365532108 VcuHvFltEmgSdReqFc2 "FC shutdown immediately(High Voltage fault)
+(연료전지 시스템 즉시 정지 명령 신호(고전압 고장 상황 등))";
+CM_ SG_ 2365532108 VcuFcStpCmdFc2 "Fuel Cell Idle Stop(FC Stop) command signal
+(연료전지 시스템 Idle Stop(FC Stop) 명령 신호)";
+CM_ SG_ 2365532108 VcuFcRunCmdFc2 "Fuel Cell Run/Stop command signal
+(연료전지 시스템 시동 및 시동 정지 명령 신호)";
+CM_ SG_ 2365532108 VcuFcPwrReqFc2 "FC power request(kW) (demand request)
+(연료전지 시스템 발전 요구량 요청)";
+CM_ SG_ 2365532108 VcuFcPwrMnCmdFc2 "FC power minimization command
+(연료전지 시스템 발전량 최소화 요구 명령)";
+CM_ SG_ 2566858956 VcuStckPinHoleDtecRspnFc2 "Fc2 Stack Pin-Hole detection response by GDS 
+(연료전지 스택2 핀홀 진단 강제구동 협조제어 응답 신호)";
+CM_ SG_ 2566858956 VcuGdsCspRunRspnFc2 "Fc2 Coolant stack pump run response by GDS
+(연료전지 스택2 냉각수 펌프 강제구동 협조제어 응답 신호)";
+CM_ SG_ 2566858956 VcuGdsCspRunRspnFc1 "Fc1 Coolant stack pump run response by GDS
+(연료전지 스택1 냉각수 펌프 강제구동 협조제어 응답 신호)";
+CM_ SG_ 2566858956 VcuStckPinHoleDtecRspnFc1 "Fc1 Stack Pin-Hole detection response by GDS 
+(연료전지 스택1 핀홀 진단 강제구동 협조제어 응답 신호)";
+CM_ SG_ 2566858956 VcuHvBatDchLim "High voltage battery discharge limit
+(배터리 방전 Limit)";
+CM_ SG_ 2566858956 VcuHvBatSoc "High voltage battery SOC
+(고전압 배터리 리얼 SOC)";
+CM_ SG_ 2566858956 VcuFcClntLvlLo "FC Coolant lower level
+(연료전지 냉각수 부족(냉각수 부족시: 1  /  냉각수 정상: 0))";
+CM_ SG_ 2566858956 VcuRdy "VCU CPU ready status
+(VCU 제어기 ready 상태)";
+CM_ SG_ 2566858956 VcuWhlBsVehSpd "Wheel based vehicle speed
+(Wheel Based 차속 신호)";
+CM_ SG_ 2566858956 VcuAmbTmp "Ambient temperature sensor value
+(외기온 센서 값)";
+CM_ SG_ 2566858956 VcuVehRdy "Vehicle ready status
+(차량 주행 가능 알림 신호 (클러스터 Ready Lamp 신호와 동일))";
+CM_ SG_ 2566848722 Fdc1CRC11 "Cyclic Redundancy Check";
+CM_ SG_ 2566848722 Fdc1AliveCnt11 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566848722 Fdc1Wrn "FDC Warning Flag";
+CM_ SG_ 2566848722 Fdc1Flt "FDC Fault Flag";
+CM_ SG_ 2566848722 Fdc1Ctrb "FDC Controllable Flag";
+CM_ SG_ 2566848722 Fdc1HvItkReq "FDC1 High Voltage Interlock Request";
+CM_ SG_ 2566848722 Fdc1LsCur "FDC Low Side (input) Current (Boost : +, Buck : -)";
+CM_ SG_ 2566848722 Fdc1HsVlt "FDC1 High Side Voltage";
+CM_ SG_ 2566848722 Fdc1LsVlt "FDC1 Low Side Voltage";
+CM_ SG_ 2566848978 Fdc1RlyOffReq "Main Relay Cut off Request from FDC1";
+CM_ SG_ 2566848978 Fdc1CRC12 "Cyclic Redundancy Check";
+CM_ SG_ 2566848978 Fdc1AliveCnt12 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566848978 Fdc1RSDReq "FCU RSD on Request from FDC1";
+CM_ SG_ 2566848978 Fdc1Rdy "FDC1 Ready Flag";
+CM_ SG_ 2566848978 Fdc1FcItkReq "FDC1 Fuel Cell Interlock Request";
+CM_ SG_ 2566848978 Fdc1ClntTmp "FDC1 Coolant Temperature";
+CM_ SG_ 2566848978 Fdc1SiCModuleTmp "FDC1 SiC Module Temperature";
+CM_ SG_ 2566848978 Fdc1LsCurLim "FDC1 Low Side Current Capability";
+CM_ SG_ 2566849234 Fdc1CRC13 "Cyclic Redundancy Check";
+CM_ SG_ 2566849234 Fdc1AliveCnt13 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566849234 Fdc1SCSte "FDC1 Status Signal";
+CM_ SG_ 2566849234 Fdc1PCSte "FDC1 converting mode signal";
+CM_ SG_ 2566849234 Fdc1ChkID "FDC1 Failsafe ID check";
+CM_ SG_ 2566849234 Fdc1ChkGroup "FDC1 Failsafe group check";
+CM_ SG_ 2566848723 Fdc2Wrn "FDC Warning Flag";
+CM_ SG_ 2566848723 Fdc2LsVlt "FDC2 Low Side Voltage";
+CM_ SG_ 2566848723 Fdc2LsCur "FDC Low Side (input) Current (Boost : +, Buck : -)";
+CM_ SG_ 2566848723 Fdc2HvItkReq "FDC2 High Voltage Interlock Request";
+CM_ SG_ 2566848723 Fdc2HsVlt "FDC2 High Side Voltage";
+CM_ SG_ 2566848723 Fdc2Flt "FDC Fault Flag";
+CM_ SG_ 2566848723 Fdc2Ctrb "FDC Controllable Flag";
+CM_ SG_ 2566848723 Fdc2CRC11 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566848723 Fdc2AliveCnt11 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566848979 Fdc2RlyOffReq "Main Relay Cut off Request from FDC2";
+CM_ SG_ 2566848979 Fdc2SiCModuleTmp "FDC2 SiC Module Temperature";
+CM_ SG_ 2566848979 Fdc2RSDReq "FCU RSD on Request from FDC2";
+CM_ SG_ 2566848979 Fdc2Rdy "FDC2 Ready Flag";
+CM_ SG_ 2566848979 Fdc2LsCurLim "FDC2 Low Side Current Capability";
+CM_ SG_ 2566848979 Fdc2FcItkReq "FDC2 Fuel Cell Interlock Request";
+CM_ SG_ 2566848979 Fdc2CRC12 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566848979 Fdc2ClntTmp "FDC2 Coolant Temperature";
+CM_ SG_ 2566848979 Fdc2AliveCnt12 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566849235 Fdc2SCSte "FDC1 Status Signal";
+CM_ SG_ 2566849235 Fdc2PCSte "FDC1 converting mode signal";
+CM_ SG_ 2566849235 Fdc2CRC13 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566849235 Fdc2ChkID "FDC1 Failsafe ID check";
+CM_ SG_ 2566849235 Fdc2ChkGroup "FDC1 Failsafe group check";
+CM_ SG_ 2566849235 Fdc2AliveCnt13 "Alive count
+Toggled in every 10msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566858434 H2SnsOutFc2 "Hydrogen concentration sensor value inside the enclosure";
+CM_ SG_ 2566858434 H2SnsInFc2 "Hydrogen concentration sensor value inside the enclosure";
+CM_ SG_ 2566858434 GdsCspRunReqFc2 "Coolant stack pump run response by GDS
+(연료전지 스택 냉각수 펌프 강제구동 협조제어 요청 신호)";
+CM_ SG_ 2566858434 StckPinHoleDtecReqFc2 "Stack Pin-Hole detection request
+(연료전지 스택 핀홀 진단 강제구동 협조제어 요청 신호)";
+CM_ SG_ 2566858434 FanOprReqFc2 "Radiator FAN Operation Request
+(라디에이터 FAN 구동 요구량)";
+CM_ SG_ 2566858178 FcInClntTmpFc2 "Fuel Cell Inlet Coolant Temperature";
+CM_ SG_ 2566858178 FcOutClntTmpFc2 "Fuel Cell Outlet Coolent Temperature(CT20)";
+CM_ SG_ 2566858178 FuelCsmptFc2 "Hydrogen fuel consumption
+(수소 연료 소모량)";
+CM_ SG_ 2566858178 H2LkLmpFc2 "Hydrogen leak detection lamp on signal
+(연료전지 시스템 수소 누출 경고등)";
+CM_ SG_ 2566858178 SvcLmpFc2 "Service lamp on signal
+(서비스램프 점등 신호)";
+CM_ SG_ 2566857922 IsoRestVluFc2 "SVM Electrical Isolation resistance value
+(절연저항 값 (SVM 측정 값))";
+CM_ SG_ 2566857922 FcStpSteFc2 "Fuel cell system stop state";
+CM_ SG_ 2566857922 FcStpImpsFc2 "FC stop impossible
+(연료전지 시스템 FC stop(Idle Stop) 불가)";
+CM_ SG_ 2566857922 IsoRestDtecStsFc2 "SVM Electrical Isolation resistance detecting status 
+(SVM 절연저항 측정 여부 판단 신호)";
+CM_ SG_ 2365530818 FcuRdyFc2 "FCU controller ready status";
+CM_ SG_ 2365530818 FcSuFc2 "Fuel cell system start up sequence status";
+CM_ SG_ 2365530818 FcSdFc2 "Fuel cell system shut down sequence status";
+CM_ SG_ 2365530818 FcLdPrmFc2 "Fuel cell system status of power supply(Fc Load Permmit)";
+CM_ SG_ 2365530818 FcFltFc2 "Fuel cell system Fault status";
+CM_ SG_ 2365530818 H2FltLmpFc2 "H2 detection sensor fault warning lamp on
+(연료전지 시스템 수소 감지 센서 고장 경고등)";
+CM_ SG_ 2365530818 FcClntSplChkFc2 "FC stack coolant lower level check warning
+(연료전지 스택 냉각수 부족 경고)";
+CM_ SG_ 2365530818 FcClntFiltChkFc2 "FC stack coolant & Ion filter exchange notification
+(연료전지 스택 냉각수 이온 필터 교환 필요 알림)";
+CM_ SG_ 2365530818 H2TnkVlvEmgClzFc2 "H2 Tank valve emergency close request
+(연료전지 시스템 관련 고장 발생시 수소 탱크 밸브 긴급 차단 요청 신호)";
+CM_ SG_ 2365530818 LsBusVltFc2 "Fuel cell System side high voltage sensor value
+(연료전지 시스템 side 고전압 센싱 값)";
+CM_ SG_ 2365530818 AuxBatVltFc2 "FCU B+ voltage sensor value
+(연료전지 시스템 FCU 제어기 B+ 전압 센싱값)";
+CM_ SG_ 2365530562 BpcHsVltFc2 "BPCU High Side Voltage";
+CM_ SG_ 2365530562 BpcAcpCurFc2 "Air Blower Current";
+CM_ SG_ 2365530562 FcNetPwrFc2 "FC stack Net Power value
+(연료전지 시스템 가용 출력값)";
+CM_ SG_ 2365530562 FcNetMxPwrLimFc2 "FC Net Power maximum limit
+(연료전지 시스템 가용 출력 Limit )";
+CM_ SG_ 2365530306 HvItkReactReqFc2 "High voltage Interlock Reaction Request";
+CM_ SG_ 2365530306 FcVltSumFc2 "FC stack voltage sensor value 
+(연료전지 스택 전압 센싱값)";
+CM_ SG_ 2365530306 FcCurFc2 "FC stack current sensor value
+(연료전지 스택 출력 전류 센싱값)";
+CM_ SG_ 2566858710 CRC22Fc2 "Cyclic Redundancy Check";
+CM_ SG_ 2566858710 AliveCnt22Fc2 "Alive count
+Toggled in every 100msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2566858710 StckVltFc2 "Fc Stack Voltage";
+CM_ SG_ 2566858710 VehWuFc2 "Vehicle Warm Up State(WC)";
+CM_ SG_ 2566858710 VehStFc2 "Vehicle Start(DC)";
+CM_ SG_ 2365532374 CRC21Fc2 "Cyclic Redundancy Check";
+CM_ SG_ 2365532374 AliveCnt21Fc2 "Alive count
+Toggled in every 100msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2365532374 Fdc2LsNetMxCurLimBstFc2 "Low Side Current Upper Limit - Boost mode";
+CM_ SG_ 2365532374 Fdc2LsRefVltFc2 "FDC1 Low Side Target Voltage Reference";
+CM_ SG_ 2365532374 MainRlyStsFc2 "FCU1 Main Relay Status";
+CM_ SG_ 2365532374 Fdc2RunCmdFc2 "FDC1 Run Command";
+CM_ SG_ 2365528277 CRC11Fc1 "Cyclic Redundancy Check";
+CM_ SG_ 2365528277 AliveCnt11Fc1 "Alive count
+Toggled in every 100msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2365528277 Fdc1LsNetMxCurLimBstFc1 "Low Side Current Upper Limit - Boost mode";
+CM_ SG_ 2365528277 Fdc1LsRefVltFc1 "FDC1 Low Side Target Voltage Reference";
+CM_ SG_ 2365528277 MainRlyStsFc1 "FCU1 Main Relay Status";
+CM_ SG_ 2365528277 Fdc1RunCmdFc1 "FDC1 Run Command";
+CM_ SG_ 2566854613 VehWuFc1 "Vehicle Warm Up State(WC)";
+CM_ SG_ 2566854613 VehStFc1 "Vehicle Start(DC)";
+CM_ SG_ 2566854613 StckVltFc1 "Fc Stack Voltage";
+CM_ SG_ 2566854613 CRC12Fc1 "Cyclic Redundancy Check";
+CM_ SG_ 2566854613 AliveCnt12Fc1 "Alive count
+Toggled in every 100msec, 0 -> 1 -> .. -> 14 ->0 -> …";
+CM_ SG_ 2365526465 BpcHsVltFc1 "BPCU High Side Voltage";
+CM_ SG_ 2365526465 BpcAcpCurFc1 "Air Blower Current";
+CM_ SG_ 2365526465 FcNetPwrFc1 "FC stack Net Power value
+(연료전지 시스템 가용 출력값)";
+CM_ SG_ 2365526465 FcNetMxPwrLimFc1 "FC Net Power maximum limit
+(연료전지 시스템 가용 출력 Limit )";
+CM_ SG_ 2566854337 H2SnsOutFc1 "Hydrogen concentration sensor value inside the enclosure";
+CM_ SG_ 2566854337 H2SnsInFc1 "Hydrogen concentration sensor value inside the enclosure";
+CM_ SG_ 2566854337 StckPinHoleDtecReqFc1 "Stack Pin-Hole detection request
+(연료전지 스택 핀홀 진단 강제구동 협조제어 요청 신호)";
+CM_ SG_ 2566854337 GdsCspRunReqFc1 "Coolant stack pump run response by GDS
+(연료전지 스택 냉각수 펌프 강제구동 협조제어 요청 신호)";
+CM_ SG_ 2566854337 FanOprReqFc1 "Radiator FAN Operation Request
+(라디에이터 FAN 구동 요구량)";
+CM_ SG_ 2566854081 FcInClntTmpFc1 "Fuel Cell Inlet Coolant Temperature";
+CM_ SG_ 2566854081 FcOutClntTmpFc1 "Fuel Cell Outlet Coolent Temperature(CT20)";
+CM_ SG_ 2566854081 FuelCsmptFc1 "Hydrogen fuel consumption
+(수소 연료 소모량)";
+CM_ SG_ 2566854081 H2LkLmpFc1 "Hydrogen leak detection lamp on signal
+(연료전지 시스템 수소 누출 경고등)";
+CM_ SG_ 2566854081 SvcLmpFc1 "Service lamp on signal
+(서비스램프 점등 신호)";
+CM_ SG_ 2566853825 FcStpSteFc1 "Fuel cell system stop state";
+CM_ SG_ 2566853825 IsoRestVluFc1 "SVM Electrical Isolation resistance value
+(절연저항 값 (SVM 측정 값))";
+CM_ SG_ 2566853825 FcStpImpsFc1 "FC stop impossible
+(연료전지 시스템 FC stop(Idle Stop) 불가)";
+CM_ SG_ 2566853825 IsoRestDtecStsFc1 "SVM Electrical Isolation resistance detecting status 
+(SVM 절연저항 측정 여부 판단 신호)";
+CM_ SG_ 2365526721 FcFltFc1 "Fuel cell system Fault status";
+CM_ SG_ 2365526721 FcSdFc1 "Fuel cell system shut down sequence status";
+CM_ SG_ 2365526721 FcLdPrmFc1 "Fuel cell system status of power supply(Fc Load Permmit)";
+CM_ SG_ 2365526721 FcSuFc1 "Fuel cell system start up sequence status";
+CM_ SG_ 2365526721 FcuRdyFc1 "FCU controller ready status";
+CM_ SG_ 2365526721 H2TnkVlvEmgClzFc1 "H2 Tank valve emergency close request
+(연료전지 시스템 관련 고장 발생시 수소 탱크 밸브 긴급 차단 요청 신호)";
+CM_ SG_ 2365526721 H2FltLmpFc1 "H2 detection sensor fault warning lamp on
+(연료전지 시스템 수소 감지 센서 고장 경고등)";
+CM_ SG_ 2365526721 FcClntFiltChkFc1 "FC stack coolant & Ion filter exchange notification
+(연료전지 스택 냉각수 이온 필터 교환 필요 알림)";
+CM_ SG_ 2365526721 FcClntSplChkFc1 "FC stack coolant lower level check warning
+(연료전지 스택 냉각수 부족 경고)";
+CM_ SG_ 2365526721 LsBusVltFc1 "Fuel cell System side high voltage sensor value
+(연료전지 시스템 side 고전압 센싱 값)";
+CM_ SG_ 2365526721 AuxBatVltFc1 "FCU B+ voltage sensor value
+(연료전지 시스템 FCU 제어기 B+ 전압 센싱값)";
+CM_ SG_ 2365526209 HvItkReactReqFc1 "High voltage Interlock Reaction Request";
+CM_ SG_ 2365526209 FcVltSumFc1 "FC stack voltage sensor value 
+(연료전지 스택 전압 센싱값)";
+CM_ SG_ 2365526209 FcCurFc1 "FC stack current sensor value
+(연료전지 스택 출력 전류 센싱값)";
+BA_DEF_ BO_  "TpJ1939VarDlc" ENUM  "No","Yes";
+BA_DEF_ SG_  "SigType" ENUM  "Default","Range","RangeSigned","ASCII","Discrete","Control","ReferencePGN","DTC","StringDelimiter","StringLength","StringLengthControl";
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ SG_  "GenSigILSupport" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 3600000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 1000000;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 2147483647;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "NmJ1939SystemInstance" INT 0 15;
+BA_DEF_ BU_  "NmJ1939System" INT 0 127;
+BA_DEF_ BU_  "NmJ1939ManufacturerCode" INT 0 2047;
+BA_DEF_ BU_  "NmJ1939IndustryGroup" INT 0 7;
+BA_DEF_ BU_  "NmJ1939IdentityNumber" INT 0 2097151;
+BA_DEF_ BU_  "NmJ1939FunctionInstance" INT 0 7;
+BA_DEF_ BU_  "NmJ1939Function" INT 0 255;
+BA_DEF_ BU_  "NmJ1939ECUInstance" INT 0 3;
+BA_DEF_ BU_  "NmJ1939AAC" INT 0 1;
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","NotUsed","IfActive","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","noMsgSendType";
+BA_DEF_ BO_  "GenMsgRequestable" INT 0 1;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "ProtocolType" STRING ;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_DEF_  "TpJ1939VarDlc" "No";
+BA_DEF_DEF_  "SigType" "Default";
+BA_DEF_DEF_  "GenSigEVName" "Env@Nodename_@Signame";
+BA_DEF_DEF_  "GenSigILSupport" "Yes";
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "NmJ1939SystemInstance" 0;
+BA_DEF_DEF_  "NmJ1939System" 0;
+BA_DEF_DEF_  "NmJ1939ManufacturerCode" 0;
+BA_DEF_DEF_  "NmJ1939IndustryGroup" 0;
+BA_DEF_DEF_  "NmJ1939IdentityNumber" 0;
+BA_DEF_DEF_  "NmJ1939FunctionInstance" 0;
+BA_DEF_DEF_  "NmJ1939Function" 0;
+BA_DEF_DEF_  "NmJ1939ECUInstance" 0;
+BA_DEF_DEF_  "NmJ1939AAC" 0;
+BA_DEF_DEF_  "NmStationAddress" 254;
+BA_DEF_DEF_  "GenMsgSendType" "noMsgSendType";
+BA_DEF_DEF_  "GenMsgRequestable" 1;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "ProtocolType" "J1939";
+BA_DEF_DEF_  "VFrameFormat" "J1939PG";
+BA_ "DBName" "CAN1_500kbps_L1";
+BA_ "NmStationAddress" BU_ INCA 0;
+BA_ "NmStationAddress" BU_ GST 0;
+BA_ "NmStationAddress" BU_ BHDC 0;
+BA_ "NmStationAddress" BU_ FDC 0;
+BA_ "NmStationAddress" BU_ VCU 0;
+BA_ "NmStationAddress" BU_ FCU 0;
+BA_ "GenMsgCycleTime" BO_ 2566854604 100;
+BA_ "GenMsgStartDelayTime" BO_ 2566854604 0;
+BA_ "GenMsgSendType" BO_ 2566854604 0;
+BA_ "VFrameFormat" BO_ 2566854604 3;
+BA_ "VFrameFormat" BO_ 1712 0;
+BA_ "GenMsgSendType" BO_ 1712 2;
+BA_ "VFrameFormat" BO_ 1713 0;
+BA_ "GenMsgSendType" BO_ 1713 2;
+BA_ "VFrameFormat" BO_ 2025 0;
+BA_ "GenMsgSendType" BO_ 2025 2;
+BA_ "VFrameFormat" BO_ 2017 0;
+BA_ "GenMsgSendType" BO_ 2017 2;
+BA_ "VFrameFormat" BO_ 2015 0;
+BA_ "GenMsgSendType" BO_ 2015 2;
+BA_ "VFrameFormat" BO_ 933 0;
+BA_ "GenMsgSendType" BO_ 933 0;
+BA_ "GenMsgCycleTime" BO_ 933 100;
+BA_ "VFrameFormat" BO_ 551 0;
+BA_ "GenMsgSendType" BO_ 551 0;
+BA_ "GenMsgCycleTime" BO_ 551 10;
+BA_ "VFrameFormat" BO_ 932 0;
+BA_ "GenMsgSendType" BO_ 932 0;
+BA_ "GenMsgCycleTime" BO_ 932 100;
+BA_ "VFrameFormat" BO_ 550 0;
+BA_ "GenMsgSendType" BO_ 550 0;
+BA_ "GenMsgCycleTime" BO_ 550 10;
+BA_ "VFrameFormat" BO_ 549 0;
+BA_ "VFrameFormat" BO_ 548 0;
+BA_ "VFrameFormat" BO_ 547 0;
+BA_ "VFrameFormat" BO_ 546 0;
+BA_ "VFrameFormat" BO_ 545 0;
+BA_ "VFrameFormat" BO_ 544 0;
+BA_ "GenMsgCycleTime" BO_ 2566859212 100;
+BA_ "GenMsgSendType" BO_ 2566859212 0;
+BA_ "VFrameFormat" BO_ 2566859212 3;
+BA_ "VFrameFormat" BO_ 2565603265 3;
+BA_ "VFrameFormat" BO_ 2565668801 3;
+BA_ "VFrameFormat" BO_ 2566834881 3;
+BA_ "GenMsgCycleTime" BO_ 2365531852 10;
+BA_ "GenMsgSendType" BO_ 2365531852 0;
+BA_ "VFrameFormat" BO_ 2365531852 3;
+BA_ "GenMsgCycleTime" BO_ 2365532108 10;
+BA_ "GenMsgSendType" BO_ 2365532108 0;
+BA_ "VFrameFormat" BO_ 2365532108 3;
+BA_ "GenMsgCycleTime" BO_ 2566858956 100;
+BA_ "GenMsgSendType" BO_ 2566858956 0;
+BA_ "VFrameFormat" BO_ 2566858956 3;
+BA_ "GenMsgSendType" BO_ 2566848722 0;
+BA_ "GenMsgCycleTime" BO_ 2566848722 10;
+BA_ "VFrameFormat" BO_ 2566848722 3;
+BA_ "GenMsgSendType" BO_ 2566848978 0;
+BA_ "GenMsgCycleTime" BO_ 2566848978 10;
+BA_ "VFrameFormat" BO_ 2566848978 3;
+BA_ "GenMsgSendType" BO_ 2566849234 0;
+BA_ "GenMsgCycleTime" BO_ 2566849234 100;
+BA_ "VFrameFormat" BO_ 2566849234 3;
+BA_ "GenMsgSendType" BO_ 2566848723 0;
+BA_ "GenMsgCycleTime" BO_ 2566848723 10;
+BA_ "VFrameFormat" BO_ 2566848723 3;
+BA_ "GenMsgSendType" BO_ 2566848979 0;
+BA_ "GenMsgCycleTime" BO_ 2566848979 10;
+BA_ "VFrameFormat" BO_ 2566848979 3;
+BA_ "GenMsgSendType" BO_ 2566849235 0;
+BA_ "GenMsgCycleTime" BO_ 2566849235 100;
+BA_ "VFrameFormat" BO_ 2566849235 3;
+BA_ "VFrameFormat" BO_ 2566858434 3;
+BA_ "VFrameFormat" BO_ 2566858178 3;
+BA_ "VFrameFormat" BO_ 2566857922 3;
+BA_ "VFrameFormat" BO_ 2365530818 3;
+BA_ "VFrameFormat" BO_ 2365530562 3;
+BA_ "VFrameFormat" BO_ 2365530306 3;
+BA_ "VFrameFormat" BO_ 2566858710 3;
+BA_ "VFrameFormat" BO_ 2365532374 3;
+BA_ "VFrameFormat" BO_ 2365528277 3;
+BA_ "VFrameFormat" BO_ 2566854613 3;
+BA_ "VFrameFormat" BO_ 2365526465 3;
+BA_ "VFrameFormat" BO_ 2566854337 3;
+BA_ "VFrameFormat" BO_ 2566854081 3;
+BA_ "VFrameFormat" BO_ 2566853825 3;
+BA_ "VFrameFormat" BO_ 2365526721 3;
+BA_ "VFrameFormat" BO_ 2365526209 3;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig8 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig7 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig6 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig5 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig4 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig3 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig2 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagResSig1 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig8 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig7 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig6 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig5 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig4 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig3 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig2 5;
+BA_ "GenSigSendType" SG_ 3221225472 GstFcu2DiagReq2Sig1 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig8 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig7 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig6 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig5 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig4 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig3 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig2 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ResSig1 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig8 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig7 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig6 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig5 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig4 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig3 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig2 5;
+BA_ "GenSigSendType" SG_ 3221225472 CCPFcu2ReqSig1 5;
+BA_ "GenSigSendType" SG_ 2566854604 VcuH2Sof 0;
+BA_ "GenSigSendType" SG_ 2566854604 VcuHsMxPrmPwrLmtFc2 0;
+BA_ "GenSigSendType" SG_ 2566854604 VcuHsMxPrmPwrLmtFc1 0;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig8 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig7 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig6 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig5 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig4 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig3 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig2 5;
+BA_ "GenSigSendType" SG_ 1712 CCPFcu1ResSig1 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig8 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig7 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig6 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig5 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig4 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig3 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig2 5;
+BA_ "GenSigSendType" SG_ 1713 CCPFcu1ReqSig1 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig8 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig7 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig6 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig5 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig4 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig3 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig2 5;
+BA_ "GenSigSendType" SG_ 2025 GstFcu1DiagResSig1 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig8 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig7 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig6 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig5 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig4 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig3 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig2 5;
+BA_ "GenSigSendType" SG_ 2017 GstFcu1DiagReq2Sig1 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig8 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig7 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig6 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig5 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig4 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig3 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig2 5;
+BA_ "GenSigSendType" SG_ 2015 GstFcuDiagReq1Sig1 5;
+BA_ "SigType" SG_ 933 Bhdc2BDCULSactred 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCULSactred 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCULSactred 0;
+BA_ "SigType" SG_ 933 Bhdc2BDCUHSactred 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCUHSactred 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCUHSactred 0;
+BA_ "SigType" SG_ 933 Bhdc2BDCTmax 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCTmax 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCTmax 0;
+BA_ "SigType" SG_ 933 Bhdc2BDCTIndex 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCTIndex 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCTIndex 0;
+BA_ "SigType" SG_ 933 Bhdc2BDCT 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCT 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCT 0;
+BA_ "SigType" SG_ 933 Bhdc2BDCILSavailable 0;
+BA_ "GenSigSendType" SG_ 933 Bhdc2BDCILSavailable 0;
+BA_ "GenSigStartValue" SG_ 933 Bhdc2BDCILSavailable 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCWarning 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCWarning 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCWarning 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCULSminLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCULSminLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCULSminLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCULSmaxLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCULSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCULSmaxLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCULSact 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCULSact 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCULSact 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCUHSminLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCUHSminLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCUHSminLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCUHSmaxLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCUHSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCUHSmaxLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCUHSact 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCUHSact 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCUHSact 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCRunning 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCRunning 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCRunning 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCReady 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCReady 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCReady 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCILSminLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCILSminLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCILSminLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCILSmaxLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCILSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCILSmaxLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCILSact 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCILSact 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCILSact 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCIHSminLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCIHSminLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCIHSminLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCIHSmaxLim 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCIHSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCIHSmaxLim 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCIHSact 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCIHSact 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCIHSact 0;
+BA_ "SigType" SG_ 551 Bhdc2BDCError 0;
+BA_ "GenSigSendType" SG_ 551 Bhdc2BDCError 0;
+BA_ "GenSigStartValue" SG_ 551 Bhdc2BDCError 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCUHSactred 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCUHSactred 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCUHSactred 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCULSactred 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCULSactred 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCULSactred 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCTmax 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCTmax 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCTmax 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCT 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCT 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCT 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCTIndex 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCTIndex 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCTIndex 0;
+BA_ "SigType" SG_ 932 Bhdc1BDCILSavailable 0;
+BA_ "GenSigSendType" SG_ 932 Bhdc1BDCILSavailable 0;
+BA_ "GenSigStartValue" SG_ 932 Bhdc1BDCILSavailable 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCUHSact 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCUHSact 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCUHSact 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCULSact 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCULSact 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCULSact 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCIHSact 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCIHSact 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCIHSact 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCILSact 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCILSact 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCILSact 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCReady 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCReady 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCReady 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCRunning 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCRunning 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCRunning 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCWarning 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCWarning 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCWarning 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCError 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCError 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCError 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCILSmaxLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCILSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCILSmaxLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCILSminLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCILSminLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCILSminLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCULSmaxLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCULSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCULSmaxLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCULSminLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCULSminLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCULSminLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCIHSmaxLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCIHSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCIHSmaxLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCIHSminLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCIHSminLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCIHSminLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCUHSmaxLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCUHSmaxLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCUHSmaxLim 0;
+BA_ "SigType" SG_ 550 Bhdc1BDCUHSminLim 0;
+BA_ "GenSigSendType" SG_ 550 Bhdc1BDCUHSminLim 0;
+BA_ "GenSigStartValue" SG_ 550 Bhdc1BDCUHSminLim 0;
+BA_ "SigType" SG_ 549 SgUHSMinFc2 0;
+BA_ "GenSigSendType" SG_ 549 SgUHSMinFc2 2;
+BA_ "SigType" SG_ 549 SgUHSMaxFc2 0;
+BA_ "GenSigSendType" SG_ 549 SgUHSMaxFc2 2;
+BA_ "SigType" SG_ 549 SgIHSMinFc2 0;
+BA_ "GenSigSendType" SG_ 549 SgIHSMinFc2 2;
+BA_ "SigType" SG_ 549 SgIHSMaxFc2 0;
+BA_ "GenSigSendType" SG_ 549 SgIHSMaxFc2 2;
+BA_ "SigType" SG_ 548 SgULSMinFc2 0;
+BA_ "GenSigSendType" SG_ 548 SgULSMinFc2 2;
+BA_ "SigType" SG_ 548 SgULSMaxFc2 0;
+BA_ "GenSigSendType" SG_ 548 SgULSMaxFc2 2;
+BA_ "SigType" SG_ 548 SgILSMinFc2 0;
+BA_ "GenSigSendType" SG_ 548 SgILSMinFc2 2;
+BA_ "SigType" SG_ 548 SgILSMaxFc2 0;
+BA_ "GenSigSendType" SG_ 548 SgILSMaxFc2 2;
+BA_ "SigType" SG_ 547 SGSollwertFc2 0;
+BA_ "GenSigSendType" SG_ 547 SGSollwertFc2 2;
+BA_ "SigType" SG_ 547 SGHRModeChkFc2 0;
+BA_ "GenSigSendType" SG_ 547 SGHRModeChkFc2 2;
+BA_ "GenSigStartValue" SG_ 547 SGHRModeChkFc2 0;
+BA_ "SigType" SG_ 547 SGDigOutActFc2 0;
+BA_ "GenSigSendType" SG_ 547 SGDigOutActFc2 2;
+BA_ "GenSigStartValue" SG_ 547 SGDigOutActFc2 0;
+BA_ "SigType" SG_ 547 SGActFc2 0;
+BA_ "GenSigSendType" SG_ 547 SGActFc2 2;
+BA_ "GenSigStartValue" SG_ 547 SGActFc2 0;
+BA_ "SigType" SG_ 546 SgUHSMinFc1 0;
+BA_ "GenSigSendType" SG_ 546 SgUHSMinFc1 2;
+BA_ "SigType" SG_ 546 SgUHSMaxFc1 0;
+BA_ "GenSigSendType" SG_ 546 SgUHSMaxFc1 2;
+BA_ "SigType" SG_ 546 SgIHSMinFc1 0;
+BA_ "GenSigSendType" SG_ 546 SgIHSMinFc1 2;
+BA_ "SigType" SG_ 546 SgIHSMaxFc1 0;
+BA_ "GenSigSendType" SG_ 546 SgIHSMaxFc1 2;
+BA_ "SigType" SG_ 545 SgULSMinFc1 0;
+BA_ "GenSigSendType" SG_ 545 SgULSMinFc1 2;
+BA_ "SigType" SG_ 545 SgULSMaxFc1 0;
+BA_ "GenSigSendType" SG_ 545 SgULSMaxFc1 2;
+BA_ "SigType" SG_ 545 SgILSMinFc1 0;
+BA_ "GenSigSendType" SG_ 545 SgILSMinFc1 2;
+BA_ "SigType" SG_ 545 SgILSMaxFc1 0;
+BA_ "GenSigSendType" SG_ 545 SgILSMaxFc1 2;
+BA_ "GenSigStartValue" SG_ 544 SGActFc1 0;
+BA_ "GenSigSendType" SG_ 544 SGActFc1 2;
+BA_ "SigType" SG_ 544 SGActFc1 0;
+BA_ "GenSigStartValue" SG_ 544 SGHRModeChkFc1 0;
+BA_ "GenSigSendType" SG_ 544 SGHRModeChkFc1 2;
+BA_ "SigType" SG_ 544 SGHRModeChkFc1 0;
+BA_ "GenSigStartValue" SG_ 544 SGDigOutActFc1 0;
+BA_ "GenSigSendType" SG_ 544 SGDigOutActFc1 2;
+BA_ "SigType" SG_ 544 SGDigOutActFc1 0;
+BA_ "SigType" SG_ 544 SGSollwertFc1 0;
+BA_ "GenSigSendType" SG_ 544 SGSollwertFc1 2;
+BA_ "GenSigSendType" SG_ 2566859212 VcuDrvCyc 0;
+BA_ "GenSigSendType" SG_ 2566859212 VcuH2MidPrs 0;
+BA_ "GenSigSendType" SG_ 2566859212 VcuOdoInfo 0;
+BA_ "SigType" SG_ 2565603265 SequenceNumber 0;
+BA_ "GenSigEVName" SG_ 2565603265 SequenceNumber "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565603265 SequenceNumber 2;
+BA_ "SigType" SG_ 2565603265 PacketizedData 0;
+BA_ "GenSigEVName" SG_ 2565603265 PacketizedData "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565603265 PacketizedData 2;
+BA_ "SigType" SG_ 2565668801 TotalNumberOfPacket 0;
+BA_ "GenSigEVName" SG_ 2565668801 TotalNumberOfPacket "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565668801 TotalNumberOfPacket 2;
+BA_ "SigType" SG_ 2565668801 TotalMessageSize 0;
+BA_ "GenSigEVName" SG_ 2565668801 TotalMessageSize "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565668801 TotalMessageSize 2;
+BA_ "SigType" SG_ 2565668801 PGNumber 0;
+BA_ "GenSigEVName" SG_ 2565668801 PGNumber "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565668801 PGNumber 2;
+BA_ "SigType" SG_ 2565668801 ControlByte 0;
+BA_ "GenSigEVName" SG_ 2565668801 ControlByte "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2565668801 ControlByte 2;
+BA_ "SigType" SG_ 2566834881 DTC4_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 DTC4_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 DTC4_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 DTC3_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 DTC3_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 DTC3_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 DTC2_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 DTC2_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 DTC2_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 DTC1_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 DTC1_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 DTC1_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 FlashRSLSte_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 FlashRSLSte_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 FlashRSLSte_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 FlashMILSts_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 FlashMILSts_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 FlashMILSts_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 FlashAWL_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 FlashAWL_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 FlashAWL_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 FlashPL_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 FlashPL_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 FlashPL_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 MILSts_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 MILSts_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 MILSts_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 RSLSte_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 RSLSte_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 RSLSte_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 AWLSts_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 AWLSts_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 AWLSts_FCU1_B 2;
+BA_ "SigType" SG_ 2566834881 PLSts_FCU1_B 0;
+BA_ "GenSigEVName" SG_ 2566834881 PLSts_FCU1_B "Env@Nodename_@Signame";
+BA_ "GenSigSendType" SG_ 2566834881 PLSts_FCU1_B 2;
+BA_ "GenSigSendType" SG_ 2365531852 VcuStckCoolOprMdeEnFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuHvFltEmgSdReqFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuTnkClzEmgSdReqFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuFcPwrMnCmdFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuIsoRestDtecReqFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuFcPwrReqFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuFcRunCmdFc1 0;
+BA_ "GenSigSendType" SG_ 2365531852 VcuFcStpCmdFc1 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuStckCoolOprMdeEnFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuTnkClzEmgSdReqFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuIsoRestDtecReqFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuHvFltEmgSdReqFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuFcStpCmdFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuFcRunCmdFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuFcPwrReqFc2 0;
+BA_ "GenSigSendType" SG_ 2365532108 VcuFcPwrMnCmdFc2 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuStckPinHoleDtecRspnFc2 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuGdsCspRunRspnFc2 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuGdsCspRunRspnFc1 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuStckPinHoleDtecRspnFc1 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuHvBatDchLim 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuHvBatSoc 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuFcClntLvlLo 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuRdy 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuWhlBsVehSpd 0;
+BA_ "GenSigSendType" SG_ 2566858956 VcuAmbTmp 0;
+BA_ "GenSigStartValue" SG_ 2566858956 VcuAmbTmp 40;
+BA_ "GenSigSendType" SG_ 2566858956 VcuVehRdy 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1CRC11 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1AliveCnt11 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1Wrn 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1Flt 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1Ctrb 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1HvItkReq 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1LsCur 0;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1HsVlt 0;
+BA_ "GenSigStartValue" SG_ 2566848722 Fdc1LsVlt 300;
+BA_ "GenSigSendType" SG_ 2566848722 Fdc1LsVlt 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1RlyOffReq 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1CRC12 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1AliveCnt12 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1RSDReq 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1Rdy 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1FcItkReq 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1ClntTmp 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1SiCModuleTmp 0;
+BA_ "GenSigSendType" SG_ 2566848978 Fdc1LsCurLim 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1CRC13 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1AliveCnt13 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1SCSte 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1PCSte 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1ChkID 0;
+BA_ "GenSigSendType" SG_ 2566849234 Fdc1ChkGroup 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2Wrn 0;
+BA_ "GenSigStartValue" SG_ 2566848723 Fdc2LsVlt 300;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2LsVlt 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2LsCur 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2HvItkReq 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2HsVlt 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2Flt 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2Ctrb 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2CRC11 0;
+BA_ "GenSigSendType" SG_ 2566848723 Fdc2AliveCnt11 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2RlyOffReq 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2SiCModuleTmp 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2RSDReq 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2Rdy 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2LsCurLim 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2FcItkReq 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2CRC12 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2ClntTmp 0;
+BA_ "GenSigSendType" SG_ 2566848979 Fdc2AliveCnt12 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2SCSte 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2PCSte 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2CRC13 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2ChkID 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2ChkGroup 0;
+BA_ "GenSigSendType" SG_ 2566849235 Fdc2AliveCnt13 0;
+BA_ "GenSigSendType" SG_ 2566858434 H2SnsOutFc2 2;
+BA_ "GenSigEVName" SG_ 2566858434 H2SnsOutFc2 "Env@Nodename_@Signame";
+BA_ "SigType" SG_ 2566858434 H2SnsOutFc2 0;
+BA_ "GenSigSendType" SG_ 2566858434 H2SnsInFc2 2;
+BA_ "GenSigEVName" SG_ 2566858434 H2SnsInFc2 "Env@Nodename_@Signame";
+BA_ "SigType" SG_ 2566858434 H2SnsInFc2 0;
+BA_ "GenSigSendType" SG_ 2566858434 GdsCspRunReqFc2 2;
+BA_ "GenSigSendType" SG_ 2566858434 StckPinHoleDtecReqFc2 2;
+BA_ "GenSigSendType" SG_ 2566858434 FanOprReqFc2 2;
+BA_ "GenSigSendType" SG_ 2566858178 FcInClntTmpFc2 2;
+BA_ "GenSigSendType" SG_ 2566858178 FcOutClntTmpFc2 2;
+BA_ "GenSigStartValue" SG_ 2566858178 FcOutClntTmpFc2 0;
+BA_ "GenSigSendType" SG_ 2566858178 FuelCsmptFc2 2;
+BA_ "GenSigSendType" SG_ 2566858178 H2LkLmpFc2 2;
+BA_ "GenSigSendType" SG_ 2566858178 SvcLmpFc2 2;
+BA_ "GenSigSendType" SG_ 2566857922 IsoRestVluFc2 2;
+BA_ "GenSigSendType" SG_ 2566857922 FcStpSteFc2 2;
+BA_ "GenSigSendType" SG_ 2566857922 FcStpImpsFc2 2;
+BA_ "GenSigSendType" SG_ 2566857922 IsoRestDtecStsFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcuRdyFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcSuFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcSdFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcLdPrmFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcFltFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 H2FltLmpFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcClntSplChkFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 FcClntFiltChkFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 H2TnkVlvEmgClzFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 LsBusVltFc2 2;
+BA_ "GenSigSendType" SG_ 2365530818 AuxBatVltFc2 2;
+BA_ "GenSigSendType" SG_ 2365530562 BpcHsVltFc2 2;
+BA_ "GenSigSendType" SG_ 2365530562 BpcAcpCurFc2 2;
+BA_ "GenSigSendType" SG_ 2365530562 FcNetPwrFc2 2;
+BA_ "GenSigSendType" SG_ 2365530562 FcNetMxPwrLimFc2 2;
+BA_ "GenSigSendType" SG_ 2365530306 HvItkReactReqFc2 2;
+BA_ "GenSigSendType" SG_ 2365530306 FcVltSumFc2 2;
+BA_ "GenSigSendType" SG_ 2365530306 FcCurFc2 2;
+BA_ "GenSigSendType" SG_ 2566858710 CRC22Fc2 2;
+BA_ "GenSigSendType" SG_ 2566858710 AliveCnt22Fc2 2;
+BA_ "GenSigSendType" SG_ 2566858710 StckVltFc2 2;
+BA_ "GenSigSendType" SG_ 2566858710 VehWuFc2 5;
+BA_ "GenSigSendType" SG_ 2566858710 VehStFc2 5;
+BA_ "GenSigSendType" SG_ 2365532374 CRC21Fc2 2;
+BA_ "GenSigSendType" SG_ 2365532374 AliveCnt21Fc2 2;
+BA_ "GenSigSendType" SG_ 2365532374 Fdc2LsNetMxCurLimBstFc2 2;
+BA_ "GenSigStartValue" SG_ 2365532374 Fdc2LsRefVltFc2 300;
+BA_ "GenSigSendType" SG_ 2365532374 Fdc2LsRefVltFc2 2;
+BA_ "GenSigSendType" SG_ 2365532374 MainRlyStsFc2 2;
+BA_ "GenSigSendType" SG_ 2365532374 Fdc2RunCmdFc2 2;
+BA_ "GenSigSendType" SG_ 2365528277 CRC11Fc1 2;
+BA_ "GenSigSendType" SG_ 2365528277 AliveCnt11Fc1 2;
+BA_ "GenSigSendType" SG_ 2365528277 Fdc1LsNetMxCurLimBstFc1 2;
+BA_ "GenSigStartValue" SG_ 2365528277 Fdc1LsRefVltFc1 300;
+BA_ "GenSigSendType" SG_ 2365528277 Fdc1LsRefVltFc1 2;
+BA_ "GenSigSendType" SG_ 2365528277 MainRlyStsFc1 2;
+BA_ "GenSigSendType" SG_ 2365528277 Fdc1RunCmdFc1 2;
+BA_ "GenSigSendType" SG_ 2566854613 VehWuFc1 5;
+BA_ "GenSigSendType" SG_ 2566854613 VehStFc1 5;
+BA_ "GenSigSendType" SG_ 2566854613 StckVltFc1 2;
+BA_ "GenSigSendType" SG_ 2566854613 CRC12Fc1 2;
+BA_ "GenSigSendType" SG_ 2566854613 AliveCnt12Fc1 2;
+BA_ "GenSigSendType" SG_ 2365526465 BpcHsVltFc1 2;
+BA_ "GenSigSendType" SG_ 2365526465 BpcAcpCurFc1 2;
+BA_ "GenSigSendType" SG_ 2365526465 FcNetPwrFc1 2;
+BA_ "GenSigSendType" SG_ 2365526465 FcNetMxPwrLimFc1 2;
+BA_ "GenSigSendType" SG_ 2566854337 H2SnsOutFc1 2;
+BA_ "GenSigEVName" SG_ 2566854337 H2SnsOutFc1 "Env@Nodename_@Signame";
+BA_ "SigType" SG_ 2566854337 H2SnsOutFc1 0;
+BA_ "GenSigSendType" SG_ 2566854337 H2SnsInFc1 2;
+BA_ "GenSigEVName" SG_ 2566854337 H2SnsInFc1 "Env@Nodename_@Signame";
+BA_ "SigType" SG_ 2566854337 H2SnsInFc1 0;
+BA_ "GenSigSendType" SG_ 2566854337 StckPinHoleDtecReqFc1 2;
+BA_ "GenSigSendType" SG_ 2566854337 GdsCspRunReqFc1 2;
+BA_ "GenSigSendType" SG_ 2566854337 FanOprReqFc1 2;
+BA_ "GenSigSendType" SG_ 2566854081 FcInClntTmpFc1 2;
+BA_ "GenSigSendType" SG_ 2566854081 FcOutClntTmpFc1 2;
+BA_ "GenSigSendType" SG_ 2566854081 FuelCsmptFc1 2;
+BA_ "GenSigSendType" SG_ 2566854081 H2LkLmpFc1 2;
+BA_ "GenSigSendType" SG_ 2566854081 SvcLmpFc1 2;
+BA_ "GenSigSendType" SG_ 2566853825 FcStpSteFc1 2;
+BA_ "GenSigSendType" SG_ 2566853825 IsoRestVluFc1 2;
+BA_ "GenSigSendType" SG_ 2566853825 FcStpImpsFc1 2;
+BA_ "GenSigSendType" SG_ 2566853825 IsoRestDtecStsFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcFltFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcSdFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcLdPrmFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcSuFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcuRdyFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 H2TnkVlvEmgClzFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 H2FltLmpFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcClntFiltChkFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 FcClntSplChkFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 LsBusVltFc1 2;
+BA_ "GenSigSendType" SG_ 2365526721 AuxBatVltFc1 2;
+BA_ "GenSigSendType" SG_ 2365526209 HvItkReactReqFc1 2;
+BA_ "GenSigSendType" SG_ 2365526209 FcVltSumFc1 2;
+BA_ "GenSigSendType" SG_ 2365526209 FcCurFc1 2;
+

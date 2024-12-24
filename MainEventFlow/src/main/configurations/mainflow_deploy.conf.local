@@ -15,7 +15,7 @@ configuration = {
 				moduleParameterSettings = {
 					parameters = {
 						OP_MODE = "user"
-						KAFKA_BROKER = "10.12.109.204:6667;10.12.109.157:6667;10.12.109.232:6667"
+						KAFKA_BROKER = "10.5.131.186:9092;10.5.131.136:9092;10.5.131.146:9092;10.5.131.123:9092"
 						KAFKA_GROUP_ID = "autoever_vdms_local_dev"
 						KAFKA_TOPIC = "AutoSubmitReq"
 						FILE_TEMP_FOLDER = "d:/Projects/vdms/temp"
@@ -46,6 +46,17 @@ configuration = {
 					}
 				}
 			}
+            sbwcvdmsflow= {
+                moduleName = "com.autoever.poc.maineventflow.SBWCVDMSFlow"
+                moduleParameterSettings = {
+                    parameters = {
+                        PYTHON_EXECUTABLE = "d:/Projects/vdms/tools/Python/Python311/python.exe"
+                        RESOURCE_ROOT = "d:/Projects/vdms/resources"
+                        LV_SERVER_URI = "lv://localhost:11080"
+                        MODE = "REAL"
+                    }
+                }
+            }
 			diagflow = {
 				moduleName="com.autoever.poc.maineventflow.DIAGFlow"
 				moduleParameterSettings = {
@@ -86,6 +97,14 @@ configuration = {
 					}
 				}
 			}
+			notificationflow = {
+                moduleName = "com.autoever.poc.maineventflow.NotificationFlow"
+                moduleParameterSettings = {
+                    parameters = {
+                        LV_SERVER_URI = "lv://localhost:11080"
+                    }
+                }
+            }
 		}
 	}
 }

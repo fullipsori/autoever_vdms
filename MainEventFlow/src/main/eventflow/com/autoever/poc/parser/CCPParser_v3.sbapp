@@ -10,8 +10,8 @@
         </type-metadata>
         <memory-model-settings/>
         <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
-        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
-        <import from="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <import alias="TRIGDATA" from="com.autoever.poc.maineventflow.canSignalSchemas" item="TRIGDATA"/>
+        <import alias="KafkaVDMSDataSchema" from="com.autoever.poc.maineventflow.kafkaSchemas" item="KafkaVDMSDataSchema"/>
         <named-schemas>
             <schema name="FieldType">
                 <field name="fieldName" type="string"/>
@@ -39,11 +39,11 @@
         </parameter-definitions>
         <dynamic-variables>
             <dynamic-variable initial-expression="long(100)" name="T_CELLDIFF" setter-expression="coalesce(i_cellDiff, T_CELLDIFF)" setter-stream="ControlStream"/>
-            <dynamic-variable initial-expression="double(1.2)" name="T_DELTATB" setter-expression="coalesce(i_deltaTB, T_DELTATB)" setter-stream="ControlStream"/>
+            <dynamic-variable initial-expression="double(15)" name="T_DELTATB" setter-expression="coalesce(i_deltaTB, T_DELTATB)" setter-stream="ControlStream"/>
             <dynamic-variable initial-expression="long(150)" name="T_DELTAVOL" setter-expression="coalesce(i_deltaVol, T_DELTAVOL)" setter-stream="ControlStream"/>
             <dynamic-variable initial-expression="long(1500)" name="T_ISOL" setter-expression="coalesce(i_ISOL, T_ISOL)" setter-stream="ControlStream"/>
-            <dynamic-variable initial-expression="long(4)" name="T_MAXCDIFFVAL" setter-expression="coalesce(i_maxCDiffVal, T_MAXCDIFFVAL)" setter-stream="ControlStream"/>
-            <dynamic-variable initial-expression="double(32.0)" name="T_MAXTB" setter-expression="coalesce(i_maxTB, T_MAXTB)" setter-stream="ControlStream"/>
+            <dynamic-variable initial-expression="long(35)" name="T_MAXCDIFFVAL" setter-expression="coalesce(i_maxCDiffVal, T_MAXCDIFFVAL)" setter-stream="ControlStream"/>
+            <dynamic-variable initial-expression="double(45.0)" name="T_MAXTB" setter-expression="coalesce(i_maxTB, T_MAXTB)" setter-stream="ControlStream"/>
             <dynamic-variable initial-expression="double(50.0)" name="T_SOC" setter-expression="coalesce(i_SOC, T_SOC)" setter-stream="ControlStream"/>
         </dynamic-variables>
         <table-schemas>
@@ -69,21 +69,21 @@
                 </primary-index>
             </table-schema>
         </table-schemas>
-        <data connection="candbcflow.LatestValueTable" name="CanLatestValueTable" shared="false" source="connection" type="querytable">
-            <param name="storage-method" value="transactional_memory"/>
+        <data connection="cpvdmsflow.LatestValueTable" name="CanLatestValueTable" shared="false" source="connection" type="querytable">
+            <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
             <table-schema>
                 <schema>
                     <field name="vehicleKeyID" type="long"/>
                     <field name="modTime" type="long"/>
-                    <field name="rootCount" type="long"/>
+                    <field name="rootCount" type="int"/>
                     <field name="realTime" type="long"/>
-                    <field name="fieldName" type="string"/>
-                    <field name="fieldValue" type="string"/>
+                    <field name="signals" type="list">
+                        <element-type type="tuple" value="TRIGDATA"/>
+                    </field>
                 </schema>
                 <primary-index type="btree">
                     <field name="vehicleKeyID"/>
-                    <field name="fieldName"/>
                     <field name="modTime"/>
                 </primary-index>
                 <index type="btree">
@@ -91,16 +91,12 @@
                     <field name="rootCount"/>
                     <field name="realTime"/>
                 </index>
-                <index type="btree">
-                    <field name="vehicleKeyID"/>
-                    <field name="rootCount"/>
-                </index>
             </table-schema>
             <param name="truncate" value="false"/>
             <preload format="csv" mode="empty"/>
         </data>
         <data name="CCPParamsTable" shared="false" source="input" type="querytable">
-            <param name="storage-method" value="transactional_memory"/>
+            <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
             <param name="table-schema" value="CCPParamsSchema"/>
             <param name="truncate" value="false"/>
@@ -149,23 +145,6 @@
                 <item name="input" selection="all"/>
             </target-list>
         </box>
-        <box name="Map" type="map">
-            <input port="1" stream="ControlStream"/>
-            <output port="1" stream="UpdateVarStream"/>
-            <target-list>
-                <item name="input" selection="none"/>
-                <expressions>
-                    <include field="T_SOC">T_SOC</include>
-                    <include field="T_CELLDIFF">T_CELLDIFF</include>
-                    <include field="T_DELTAVOL">T_DELTAVOL</include>
-                    <include field="T_DELTATB">T_DELTATB</include>
-                    <include field="T_MAXCDIFFVAL">T_MAXCDIFFVAL</include>
-                    <include field="T_MAXTB">T_MAXTB</include>
-                    <include field="T_ISOL">T_ISOL</include>
-                </expressions>
-            </target-list>
-        </box>
-        <output-stream name="UpdateVarStream"/>
         <box name="Split2" type="split">
             <input port="1" stream="out:GetPrevDatas_1"/>
             <output port="1" stream="out:Split2_1"/>
@@ -298,7 +277,7 @@
                     <include field="RESs">emptylist(double())</include>
                     <include field="deltaTB">getCCPDeltaValue(RawParsed.rawMsrTBData)</include>
                     <include field="maxTB">getCCPMaxFieldValue(RawParsed.rawMsrTBData)</include>
-                    <include field="cellDiffs">if(!isnull(matchedTuple)) then maplist(function(f1 FieldType, f2 FieldType){f2.fieldValue-f1.fieldValue}, RawParsed.rawCellData , matchedTuple.rawCellData) else emptylist(long(null))</include>
+                    <include field="cellDiffs">if(!isnull(matchedTuple) &amp;&amp; !isnull(matchedTuple.rawCellData) &amp;&amp; (length(RawParsed.rawCellData)==length(matchedTuple.rawCellData)))  then maplist(function(f1 FieldType, f2 FieldType){f2.fieldValue-f1.fieldValue}, RawParsed.rawCellData , matchedTuple.rawCellData) else emptylist(long(null))</include>
                 </expressions>
             </target-list>
         </box>
@@ -331,7 +310,7 @@
             <output port="1" stream="out:gen_seq_id_1"/>
             <param name="output-field" value="seq_id"/>
             <param name="sequence-id" value="sequenceid"/>
-            <param name="update-expression" value="sequenceid + 1"/>
+            <param name="update-expression" value="if(sequenceid&lt;100000000) then sequenceid + 1 else 0"/>
         </box>
         <box name="addSeqId" type="map">
             <input port="1" stream="out:gen_seq_id_1"/>
@@ -377,7 +356,7 @@
                     <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
                     <include field="baseTime">kafkaMessage.BaseTime</include>
                     <include field="deltaTime">RawHeader.DeltaTime</include>
-                    <include field="realTime">long(GetLocalTime(kafkaMessage.BaseTime + long(RawHeader.DeltaTime), ''))</include>
+                    <include field="realTime">long(GetLocalTimeString(long((kafkaMessage.BaseTime + RawHeader.DeltaTime)*1000), ''))</include>
                     <include field="rootCount">kafkaMessage.RootCount</include>
                     <replace field="RESs">"NA"</replace>
                     <include field="cellData">joinCCPCellTuples(RawParsed.rawCellData)</include>
@@ -481,7 +460,7 @@
             <dataref id="querytable" name="CanLatestValueTable"/>
             <param name="operation" value="read"/>
             <param name="where" value="secondary-key"/>
-            <param name="limit" value="70"/>
+            <param name="limit" value="1"/>
             <param name="key-field.0" value="vehicleKeyID"/>
             <param name="key-lowerbound-value.0" value="input.vehicleKeyID"/>
             <param name="key-lowerbound-operation.0" value="eq"/>
@@ -491,7 +470,7 @@
             <param name="key-lowerbound-operation.1" value="eq"/>
             <param name="key-upperbound-operation.1" value="none"/>
             <param name="key-field.2" value="realTime"/>
-            <param name="key-lowerbound-value.2" value="input.realTime-200"/>
+            <param name="key-lowerbound-value.2" value="0"/>
             <param name="key-lowerbound-operation.2" value="ge"/>
             <param name="key-upperbound-value.2" value="input.realTime"/>
             <param name="key-upperbound-operation.2" value="le"/>
@@ -508,7 +487,7 @@
                 <item name="old" selection="none"/>
                 <item name="new" selection="none"/>
                 <expressions>
-                    <include field="fieldDatas">UniqueDatas(tuple(fieldName as name, fieldValue as value), true)</include>
+                    <include field="canSignals">current.signals</include>
                 </expressions>
             </target-list>
             <target-list name="insert">
@@ -519,24 +498,6 @@
             </target-list>
             <target-list name="no-match">
                 <item name="input" selection="all"/>
-            </target-list>
-        </box>
-        <box name="AssignFields" type="map">
-            <input port="1" stream="out:readDatas_1"/>
-            <output port="1" stream="out:AssignFields_1"/>
-            <target-list>
-                <item name="input" selection="all">
-                    <remove field="fieldDatas"/>
-                </item>
-                <expressions>
-                    <include field="CF_Clu_Odometer">GetValueInFieldList(fieldDatas, 'CF_Clu_Odometer')</include>
-                    <include field="CF_Vcu_GarSelDisp">GetValueInFieldList(fieldDatas, 'CF_Vcu_GarSelDisp')</include>
-                    <include field="CR_Mcu_VehSpdDec_Kph">GetValueInFieldList(fieldDatas, 'CR_Mcu_VehSpdDec_Kph')</include>
-                    <include field="CR_Mcu_VehSpd_Kph">GetValueInFieldList(fieldDatas, 'CR_Mcu_VehSpd_Kph')</include>
-                    <include field="CF_OBC_DCChargingStat">GetValueInFieldList(fieldDatas, 'CF_OBC_DCChargingStat')</include>
-                    <include field="CF_Bms_ChgSts">GetValueInFieldList(fieldDatas, 'CF_Bms_ChgSts')</include>
-                    <include field="CR_Datc_OutTempC">GetValueInFieldList(fieldDatas, 'CR_Datc_OutTempC')</include>
-                </expressions>
             </target-list>
         </box>
         <box name="MapCellDiff" type="map">
@@ -600,10 +561,54 @@
             </target-list>
         </box>
         <box name="Split3" type="split">
-            <input port="1" stream="out:AssignFields_1"/>
+            <input port="1" stream="out:readDatas_1"/>
             <output port="1" stream="out:Split3_1"/>
             <output port="2" stream="out:Split3_2"/>
-            <param name="output-count" value="2"/>
+            <output port="3" stream="out:Split3_3"/>
+            <param name="output-count" value="3"/>
+        </box>
+        <box name="JoinCan_2" type="map">
+            <input port="1" stream="out:Split3_3"/>
+            <output port="1" stream="out:JoinCan_2_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="deltaTB"/>
+                    <include field="maxTB"/>
+                    <include field="messageID"/>
+                    <include field="mgmtNO"/>
+                    <include field="msrTBData"/>
+                    <include field="realTime"/>
+                    <include field="rootCount"/>
+                    <include field="vehicleKeyID"/>
+                </item>
+                <expressions>
+                    <include field="CR_Datc_OutTempC">string(GetEventValueFromTrigList(canSignals, 'CR_Datc_OutTempC'))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="JoinCan_3" type="map">
+            <input port="1" stream="out:Split3_1"/>
+            <output port="1" stream="out:JoinCan_3_1"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="chargingNow"/>
+                    <include field="deltaVol"/>
+                    <include field="ISOL"/>
+                    <include field="messageID"/>
+                    <include field="mgmtNO"/>
+                    <include field="realTime"/>
+                    <include field="rootCount"/>
+                    <include field="SOC"/>
+                    <include field="vehicleKeyID"/>
+                    <include field="maxDVolVal"/>
+                    <include field="nvmAccChaAh"/>
+                    <include field="nvmAccDhaAh"/>
+                </item>
+                <expressions>
+                    <include field="CF_Clu_Odometer">string(GetEventValueFromTrigList(canSignals,'CF_Clu_Odometer'))</include>
+                    <include field="CR_Mcu_VehSpdDec_Kph">string(GetEventValueFromTrigList(canSignals,'CR_Mcu_VehSpdDec_Kph'))</include>
+                </expressions>
+            </target-list>
         </box>
         <box name="Union2" type="union">
             <input port="1" stream="out:MapCellDiff_1"/>
@@ -615,47 +620,17 @@
             <output port="1" stream="out:Union2_1"/>
             <param name="strict" value="false"/>
         </box>
-        <box name="MapToCCP" type="map">
-            <input port="1" stream="out:Split3_1"/>
-            <output port="1" stream="out:MapToCCP_1"/>
-            <target-list>
-                <item name="input" selection="none">
-                    <include field="baseTime"/>
-                    <include field="cellData"/>
-                    <include field="cellDiffData"/>
-                    <include field="chargingNow"/>
-                    <include field="deltaTB"/>
-                    <include field="deltaTime"/>
-                    <include field="deltaVol"/>
-                    <include field="dVol"/>
-                    <include field="IBM"/>
-                    <include field="ISOL"/>
-                    <include field="maxTB"/>
-                    <include field="messageID"/>
-                    <include field="mgmtNO"/>
-                    <include field="msrTBData"/>
-                    <include field="realTime"/>
-                    <include field="RESs"/>
-                    <include field="rootCount"/>
-                    <include field="SOC"/>
-                    <include field="terminalID"/>
-                    <include field="vehicleKeyID"/>
-                    <include field="maxDVolCells"/>
-                    <include field="maxDVolVal"/>
-                    <include field="maxCDiffCells"/>
-                    <include field="maxCDiffVal"/>
-                    <include field="CF_Bms_ChgSts"/>
-                    <include field="CF_Clu_Odometer"/>
-                    <include field="CF_OBC_DCChargingStat"/>
-                    <include field="CF_Vcu_GarSelDisp"/>
-                    <include field="CR_Mcu_VehSpd_Kph"/>
-                    <include field="CR_Mcu_VehSpdDec_Kph"/>
-                    <include field="faultCode"/>
-                    <include field="CR_Datc_OutTempC"/>
-                    <include field="nvmAccChaAh"/>
-                    <include field="nvmAccDhaAh"/>
-                </item>
-            </target-list>
+        <box name="Union3" type="union">
+            <input port="1" stream="out:Split3_2"/>
+            <input port="2" stream="out:RemoveUnused_1"/>
+            <output port="1" stream="out:Union3_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:Union3_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="vehicleKeyID == 219054"/>
         </box>
         <box name="MapToCCPTrig" type="map">
             <input port="1" stream="out:Union2_1"/>
@@ -685,11 +660,57 @@
                 </item>
             </target-list>
         </box>
-        <box name="Union3" type="union">
-            <input port="1" stream="out:Split3_2"/>
-            <input port="2" stream="out:RemoveUnused_1"/>
-            <output port="1" stream="out:Union3_1"/>
-            <param name="strict" value="false"/>
+        <box name="PublishCP" type="outputadapter">
+            <input port="1" stream="out:JoinCan_3_1"/>
+            <output port="1" stream="out:PublishCP_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="1024"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="250"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="CP_DataTable3"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value="true"/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
+        </box>
+        <box name="PublishCP2" type="outputadapter">
+            <input port="1" stream="out:JoinCan_2_1"/>
+            <output port="1" stream="out:PublishCP2_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
+            <param name="ackPeriod" value="0"/>
+            <param name="adHoc" value="false"/>
+            <param name="bufferSize" value="1024"/>
+            <param name="connectInline" value="false"/>
+            <param name="connectionKey" value=""/>
+            <param name="deleteField" value=""/>
+            <param name="dynamicTableName" value="false"/>
+            <param name="enableCompressedConnection" value="false"/>
+            <param name="encapsulatingLV" value="false"/>
+            <param name="flushInterval" value="250"/>
+            <param name="logLevel" value="INFO"/>
+            <param name="lvTableName" value="CP_DataTable2"/>
+            <param name="pubName" value=""/>
+            <param name="reliablePub" value="false"/>
+            <param name="seqField" value=""/>
+            <param name="shareConnection" value=""/>
+            <param name="strictSchema" value="false"/>
+            <param name="throughPort" value="false"/>
+            <param name="uri" value="${LV_SERVER_URI}"/>
+            <param name="useRuntimeURI" value="false"/>
         </box>
         <box name="PublishCCPTrig" type="outputadapter">
             <input port="1" stream="out:MapToCCPTrig_1"/>
@@ -717,40 +738,13 @@
             <param name="uri" value="${LV_SERVER_URI}"/>
             <param name="useRuntimeURI" value="false"/>
         </box>
-        <box name="PublishCP" type="outputadapter">
-            <input port="1" stream="out:MapToCCP_1"/>
-            <output port="1" stream="out:PublishCP_1"/>
-            <param name="start:state" value="true"/>
-            <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
-            <param name="ackPeriod" value="0"/>
-            <param name="adHoc" value="false"/>
-            <param name="bufferSize" value="1024"/>
-            <param name="connectInline" value="false"/>
-            <param name="connectionKey" value=""/>
-            <param name="deleteField" value=""/>
-            <param name="dynamicTableName" value="false"/>
-            <param name="enableCompressedConnection" value="false"/>
-            <param name="encapsulatingLV" value="false"/>
-            <param name="flushInterval" value="250"/>
-            <param name="logLevel" value="INFO"/>
-            <param name="lvTableName" value="CP_DataTable"/>
-            <param name="pubName" value=""/>
-            <param name="reliablePub" value="false"/>
-            <param name="seqField" value=""/>
-            <param name="shareConnection" value="true"/>
-            <param name="strictSchema" value="false"/>
-            <param name="throughPort" value="false"/>
-            <param name="uri" value="${LV_SERVER_URI}"/>
-            <param name="useRuntimeURI" value="false"/>
-        </box>
         <box name="RemoveFields" type="map">
-            <input port="1" stream="out:Union3_1"/>
+            <input port="1" stream="out:Filter_1"/>
             <output port="1" stream="ToNNFlow"/>
             <target-list>
                 <item name="input" selection="none">
                     <include field="baseTime"/>
                     <include field="cellData"/>
-                    <include field="CF_OBC_DCChargingStat"/>
                     <include field="chargingNow"/>
                     <include field="deltaTime"/>
                     <include field="messageID"/>
@@ -763,6 +757,9 @@
                     <include field="IsEnded"/>
                     <include field="IsStarted"/>
                 </item>
+                <expressions>
+                    <include field="CF_OBC_DCChargingStat">GetEventValueFromTrigList(canSignals, 'CF_OBC_DCChargingStat')</include>
+                </expressions>
             </target-list>
         </box>
         <output-stream name="ToNNFlow">
@@ -772,6 +769,7 @@
             <input port="1" stream="out:PublishPerf_1"/>
             <input port="2" stream="out:PublishCP_1"/>
             <input port="3" stream="out:PublishCCPTrig_1"/>
+            <input port="4" stream="out:PublishCP2_1"/>
             <output port="1" stream="OutputParserStream"/>
             <param name="strict" value="false"/>
         </box>

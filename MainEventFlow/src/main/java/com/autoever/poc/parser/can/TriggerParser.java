@@ -156,7 +156,7 @@ public class TriggerParser implements DataSavable {
 		rawvalue = rawvalue & (((long)1<< siglength) - 1);
 		if("signed".equals(sigtype)) {
 			if((rawvalue & (((long)1)<<(siglength - 1))) != 0)
-				rawvalue = (-(((~rawvalue) & (((long)1)<<siglength - 1)) + 1));
+				rawvalue = (-(((~rawvalue) & ((((long)1)<<siglength) - 1)) + 1));
 		}
 
 		return rawvalue*sigfactor + sigoffset;

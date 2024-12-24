@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.SBWCVDMSFlow"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <import alias="MainOutputDBCSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputDBCSchema"/>
+        <import from="com.autoever.poc.maineventflow.DBCSchema"/>
+        <import alias="SBWCSignalSchema" from="com.autoever.poc.maineventflow.canSignalSchemas" item="SBWCSignalSchema"/>
+        <constant expr="[&#13;&#10;    tuple(&quot;LDC 상태 모니터링&quot;, [&quot;LDC_SysFltSta&quot;,&quot;ALDC_SysFltSta&quot;]),&#13;&#10;    tuple(&quot;IGN 상태 모니터링&quot;, [&quot;SFA_IgnitionStatus&quot;,&quot;RWA_IgnitionStatus&quot;,&quot;SFA_R2_IgnitionStatus&quot;,&quot;RWA_R2_IgnitionStatus&quot;]),&#13;&#10;    tuple(&quot;클러스터 경고등 표출&quot;, [&quot;SFA_CluWarningLamp&quot;,&quot;SFA_R2_CluWarningLamp&quot;]),&#13;&#10;    tuple(&quot;SbW 제어기별 경고등 상태&quot;, [&quot;SFA_WarningLamp&quot;,&quot;RWA_WarningLamp&quot;,&quot;SFA_R2_WarningLamp&quot;,&quot;RWA_R2_WarningLamp&quot;]),&#13;&#10;    tuple(&quot;SbW 제어기별 컨트롤 모드&quot;, [&quot;SFA_ControlMode&quot;,&quot;RWA_ControlMode&quot;,&quot;SFA_R2_ControlMode&quot;,&quot;RWA_R2_ControlMode&quot;]),&#13;&#10;    tuple(&quot;SbW 제어기별 Role 모드&quot;, [&quot;SFA_EcuRole&quot;,&quot;RWA_EcuRole&quot;,&quot;SFA_R2_EcuRole&quot;,&quot;RWA_R2_EcuRole&quot;]),&#13;&#10;    tuple(&quot;SFA1에서 판단하는 제어기별 상태&quot;, [&quot;SFA_SFA1EcuStatus&quot;,&quot;SFA_SFA2EcuStatus&quot;,&quot;SFA_RWA1EcuStatus&quot;,&quot;SFA_RWA2EcuStatus&quot;]),&#13;&#10;    tuple(&quot;RWA1에서 판단하는 제어기별 상태&quot;, [&quot;RWA_SFA1EcuStatus&quot;,&quot;RWA_SFA2EcuStatus&quot;,&quot;RWA_RWA1EcuStatus&quot;,&quot;RWA_RWA2EcuStatus&quot;]),&#13;&#10;    tuple(&quot;SFA2에서 판단하는 제어기별 상태&quot;, [&quot;SFA_R2_SFA1EcuStatus&quot;,&quot;SFA_R2_SFA2EcuStatus&quot;,&quot;SFA_R2_RWA1EcuStatus&quot;,&quot;SFA_R2_RWA2EcuStatus&quot;]),&#13;&#10;    tuple(&quot;RWA2에서 판단하는 제어기별 상태&quot;, [&quot;RWA_R2_SFA1EcuStatus&quot;,&quot;RWA_R2_SFA2EcuStatus&quot;,&quot;RWA_R2_RWA1EcuStatus&quot;,&quot;RWA_R2_RWA2EcuStatus&quot;]),&#13;&#10;    tuple(&quot;SbW 정렬 상태 종합&quot;, [&quot;SbW_CenteringStatus&quot;,&quot;SbW_R2_CenteringStatus&quot;]),&#13;&#10;    tuple(&quot;개별 제어기별 정렬 상태&quot;, [&quot;SFA_CenteringStatus&quot;,&quot;RWA_CenteringStatus&quot;,&quot;SFA_R2_CenteringStatus&quot;,&quot;RWA_R2_CenteringStatus&quot;]),&#13;&#10;    tuple(&quot;차속 제한 요청 상태&quot;, [&quot;SFA_CreepReqActSta&quot;, &quot;RWA_CreepReqActSta&quot;, &quot;SFA_R2_CreepReqActSta&quot;, &quot;RWA_R2_CreepReqActSta&quot;]),&#13;&#10;    tuple(&quot;SFO 요청 상태&quot;, [&quot;SFA_FailoverActvSta&quot;,&quot;SFA_R2_FailoverActvSta&quot;]),&#13;&#10;    tuple(&quot;OHP 상태&quot;, [&quot;SFA_OHP_Status&quot;,&quot;RWA_OHP_Status&quot;,&quot;SFA_R2_OHP_Status&quot;,&quot;RWA_R2_OHP_Status&quot;]),&#13;&#10;    tuple(&quot;OLP 상태&quot;, [&quot;RWA_OLP&quot;,&quot;RWA_R2_OLP&quot;]),&#13;&#10;    tuple(&quot;SbW 제어기별 차량 입력 전압&quot;, [&quot;SFA1_BatteryVoltage&quot;, &quot;RWA1_BatteryVoltage&quot;, &quot;SFA2_BatteryVoltage&quot;, &quot;RWA2_BatteryVoltage&quot;]),&#13;&#10;    tuple(&quot;차량 EV READY 상태&quot;, [&quot;VCU_EvDrvRdySta&quot;]),&#13;&#10;    tuple(&quot;차량 Gear 포지션 상태&quot;, [&quot;VCU_GearPosSta&quot;]),&#13;&#10;    tuple(&quot;차량 Wheel Speed 정보&quot;, [&quot;WHL_SpdFLVal&quot;, &quot;WHL_SpdFRVal&quot;, &quot;WHL_SpdRLVal&quot;, &quot;WHL_SpdRRVal&quot;])&#13;&#10;]" name="sbwSigCategory"/>
+        <parameter-definitions>
+            <parameter default="d:/Projects/vdms/tools/Python/Python311/python.exe" name="PYTHON_EXECUTABLE"/>
+            <parameter default="D:/Projects/vdms/resources" name="RESOURCE_ROOT"/>
+            <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
+            <parameter default="REAL" name="MODE"/>
+        </parameter-definitions>
+        <dynamic-variables/>
+        <data name="DBCTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <param name="table-schema" value="DBCTableSchema"/>
+            <param name="truncate" value="false"/>
+            <preload format="csv" mode="empty"/>
+            <table-partitioning>
+                <param name="data-distribution-policy-name" value="vdms-dynamic-data-distribution-policy"/>
+                <param name="data-mapper-type" value="round-robin"/>
+            </table-partitioning>
+        </data>
+        <stream name="ControlStream">
+            <schema>
+                <field name="command" type="string"/>
+            </schema>
+        </stream>
+        <stream name="InputStream" schema="MainOutputDBCSchema"/>
+        <box name="InputAdapter" type="inputadapter">
+            <output port="1" stream="out:InputAdapter_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="ControlStream"/>
+            <output port="1" stream="out:Filter_1"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="command=='RELOAD'"/>
+        </box>
+        <box name="toTuple" type="map">
+            <input port="1" stream="out:InputAdapter_1"/>
+            <output port="1" stream="out:toTuple_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="*">SBWCSignalSchema().*</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="DeleteAll" type="query">
+            <input port="1" stream="out:Filter_1"/>
+            <dataref id="querytable" name="DBCTable"/>
+            <param name="operation" value="delete"/>
+            <param name="where" value="all-rows"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-nothing"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <item name="old" selection="none"/>
+                <item name="new" selection="none"/>
+                <item name="current" selection="none"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list goal-schema="DBCDataSchema" name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <box name="GetSignals" type="map">
+            <input port="1" stream="out:toTuple_1"/>
+            <output port="1" stream="out:GetSignals_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="signalList">GetTupleKeys(input1)</include>
+                    <include field="signalCategory">sbwSigCategory</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="SimulMode" type="filter">
+            <input port="1" stream="out:GetSignals_1"/>
+            <output port="1" stream="out:SimulMode_1"/>
+            <output port="2" stream="out:SimulMode_2"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="'${MODE}'=='SIM'"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <module-reference name="SBWCVDMSParser">
+            <input dispatch="broadcast" name="InitialStream" port="1" stream="out:SimulMode_2"/>
+            <input dispatch="numerical" key="int(kafkaMessage.VehicleKeyID)" name="InputStream" port="2" stream="InputStream"/>
+            <output name="OutputParserStream" port="1" stream="out:SBWCVDMSParser_1"/>
+            <output name="OutputRawDataStream" port="2" stream="OutputRawDataStream"/>
+            <output name="UpdateSignalVariable" port="3" stream="OutputVarStream"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-max-outstanding-tuples" value="5"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <multiplicity number="5" type="concrete"/>
+            <param name="file" value="com.autoever.poc.parser.SBWCVDMSParser"/>
+            <input-dataref name="DBCTable" table="DBCTable"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+                <binding name="RESOURCE_ROOT" value="${RESOURCE_ROOT}"/>
+                <binding name="PYTHON_EXECUTABLE" value="${PYTHON_EXECUTABLE}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="Split" type="split">
+            <input port="1" stream="out:SimulMode_1"/>
+            <output port="1" stream="out:Split_1"/>
+            <output port="2" stream="out:Split_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <output-stream name="OutputRawDataStream"/>
+        <output-stream name="OutputVarStream"/>
+        <box name="startSim" type="map">
+            <input port="1" stream="out:Split_2"/>
+            <output port="1" stream="out:startSim_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="command">"start"</include>
+                    <include field="value">0</include>
+                </expressions>
+            </target-list>
+        </box>
+        <module-reference name="SimModule">
+            <input name="controlFeed" port="1" stream="out:startSim_1"/>
+            <input name="InitialStream" port="2" stream="out:Split_1"/>
+            <output name="OutputParserStream" port="1" stream="out:SimModule_1"/>
+            <param name="file" value="com.autoever.poc.maineventflow.SBWCSim"/>
+        </module-reference>
+        <box name="Union" type="union">
+            <input port="1" stream="out:SimModule_1"/>
+            <input port="2" stream="out:SBWCVDMSParser_1"/>
+            <output port="1" stream="OutputParserStream"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="OutputParserStream"/>
+    </add>
+</modify>

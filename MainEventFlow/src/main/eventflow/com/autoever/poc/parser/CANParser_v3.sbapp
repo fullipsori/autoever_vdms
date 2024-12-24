@@ -10,21 +10,12 @@
         </type-metadata>
         <memory-model-settings/>
         <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
-        <import from="com.autoever.poc.maineventflow.LiveViewTable"/>
-        <import from="com.autoever.poc.maineventflow.kafkaSchemas"/>
+        <import alias="TRIGDATA" from="com.autoever.poc.maineventflow.canSignalSchemas" item="TRIGDATA"/>
+        <import alias="KafkaVDMSDataSchema" from="com.autoever.poc.maineventflow.kafkaSchemas" item="KafkaVDMSDataSchema"/>
         <named-schemas>
             <schema name="ControlCANSchema">
                 <field name="nameFilter" type="string"/>
-                <field name="baseValue" type="string"/>
-            </schema>
-            <schema name="TRIGDATA">
-                <field name="preTime" type="double"/>
-                <field name="postTime" type="double"/>
-                <field name="deltaTime" type="double"/>
-                <field name="eventName" type="string"/>
-                <field name="category" type="string"/>
-                <field name="status" type="string"/>
-                <field name="value" type="string"/>
+                <field name="baseValue" type="double"/>
             </schema>
         </named-schemas>
         <parameter-definitions>
@@ -33,14 +24,14 @@
         </parameter-definitions>
         <dynamic-variables>
             <dynamic-variable initial-expression="string(null)" name="compEvent" setter-expression="if !isempty(input.eventName) then input.eventName else compEvent" setter-stream="UpdateVarStream"/>
-            <dynamic-variable initial-expression="string(null)" name="compValue" setter-expression="input.eventValue" setter-stream="UpdateVarStream"/>
+            <dynamic-variable initial-expression="double(null)" name="compValue" setter-expression="input.eventValue" setter-stream="UpdateVarStream"/>
         </dynamic-variables>
         <table-schemas>
             <table-schema name="CanParamsSchema">
                 <schema>
                     <field description="kafka terminalID" name="terminalID" type="string"/>
                     <field description="값의 변경을 모니터링 하고자 하는 Event Name" name="eventName" type="string"/>
-                    <field description="Event Name 의 가장 최신값" name="eventValue" type="string"/>
+                    <field description="Event Name 의 가장 최신값" name="eventValue" type="double"/>
                     <field description="파싱중에 변경된 파라미터 정보들" name="prevData" type="tuple">
                         <schema>
                             <field name="params" type="string"/>
@@ -53,7 +44,7 @@
             </table-schema>
         </table-schemas>
         <data name="CanParamsTable" shared="false" source="input" type="querytable">
-            <param name="storage-method" value="transactional_memory"/>
+            <param name="storage-method" value="heap"/>
             <param name="replicated" value="false"/>
             <param name="table-schema" value="CanParamsSchema"/>
             <param name="truncate" value="false"/>
@@ -131,6 +122,9 @@
                     <remove field="eventValue"/>
                     <remove field="terminalID"/>
                 </item>
+                <expressions>
+                    <replace field="perfData.t2_time">to_milliseconds(now())</replace>
+                </expressions>
             </target-list>
         </box>
         <box name="GenCANs" type="java">
@@ -184,7 +178,7 @@
                     <include field="kafkaMessage"/>
                 </item>
                 <expressions>
-                    <replace field="perfData.t3_time">to_milliseconds(now())</replace>
+                    <replace field="perfData.t4_time">to_milliseconds(now())</replace>
                 </expressions>
             </target-list>
         </box>
@@ -199,7 +193,7 @@
                     <include field="MSGIdx"/>
                 </item>
                 <expressions>
-                    <replace field="perfData.t2_time">to_milliseconds(now())</replace>
+                    <replace field="perfData.t3_time">to_milliseconds(now())</replace>
                 </expressions>
             </target-list>
         </box>
@@ -232,8 +226,8 @@
             <target-list>
                 <expressions>
                     <include field="*">lastval(*)</include>
-                    <replace field="perfData.t2_time">firstval(perfData.t2_time)</replace>
-                    <replace field="perfData.t3_time">lastval(perfData.t3_time)</replace>
+                    <replace field="perfData.t3_time">firstval(perfData.t3_time)</replace>
+                    <replace field="perfData.t4_time">lastval(perfData.t4_time)</replace>
                 </expressions>
             </target-list>
         </box>
@@ -263,7 +257,7 @@
                     <include field="*">each.element.*</include>
                     <include field="baseTime">kafkaMessage.BaseTime</include>
                     <include field="messageID">messageID</include>
-                    <include field="realTime">long(GetLocalTime(kafkaMessage.BaseTime + long(each.element.deltaTime), ''))</include>
+                    <include field="realTime">long(GetLocalTimeString(long((kafkaMessage.BaseTime + each.element.deltaTime)*1000), ''))</include>
                     <include field="rootCount">kafkaMessage.RootCount</include>
                     <include field="terminalID">kafkaMessage.TerminalID</include>
                     <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
@@ -332,7 +326,7 @@
             <input port="1" stream="out:Split_status_2"/>
             <output port="1" stream="out:FilterChangedEvent_disabled_1"/>
             <param name="autogen-nomatch-port" value="false"/>
-            <param name="expression.0" value="false &amp;&amp; (!isempty(value) &amp;&amp; (eventName == compEvent) &amp;&amp; (isempty(compValue) || value !=compValue))"/>
+            <param name="expression.0" value="false &amp;&amp; (!isnull(value) &amp;&amp; (eventName == compEvent) &amp;&amp; (isnull(compValue) || value !=compValue))"/>
         </box>
         <module-reference name="PublishPerf">
             <input name="InputStream" port="1" stream="out:EndedCanProc_1"/>
@@ -349,7 +343,7 @@
             <output port="1" stream="out:Sequence_1"/>
             <param name="output-field" value="sequence_id"/>
             <param name="sequence-id" value="sequenceid"/>
-            <param name="update-expression" value="sequenceid + 1"/>
+            <param name="update-expression" value="if(sequenceid&lt;100000000) then sequenceid + 1 else 0"/>
         </box>
         <box name="Split2" type="split">
             <input port="1" stream="out:FilterChangedEvent_disabled_1"/>

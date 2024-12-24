@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="11.0.1_9ac66cf38631f8473e37c39091c4b798f01bbf41">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.autoever.poc.maineventflow.canSignalSchemas"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="CPSignalSchema">
+            <field name="CF_Clu_Odometer" type="double"/>
+            <field name="CF_Vcu_GarSelDisp" type="double"/>
+            <field name="CR_Mcu_VehSpdDec_Kph" type="double"/>
+            <field name="CR_Mcu_VehSpd_Kph" type="double"/>
+            <field name="CF_OBC_DCChargingStat" type="double"/>
+            <field name="CF_Bms_ChgSts" type="double"/>
+            <field name="CR_Datc_OutTempC" type="double"/>
+            <field name="VcuAmbTmp" type="double"/>
+            <field name="SvmVltSum" type="double"/>
+            <field name="FcCur" type="double"/>
+            <field name="FcNetPwrFc1" type="double"/>
+            <field name="FcNetPwrFc2" type="double"/>
+            <field name="VcuHvBatSoc" type="double"/>
+            <field name="FcFltFc1" type="double"/>
+            <field name="FcFltFc2" type="double"/>
+            <field name="H2LkLmpFc1" type="double"/>
+            <field name="H2LkLmpFc2" type="double"/>
+            <field name="FcInClntTmp" type="double"/>
+            <field name="VcuOdoInfo" type="double"/>
+            <field name="VcuH2Sof" type="double"/>
+        </schema>
+        <schema name="EVChargeSignalSchema">
+            <field name="xEV_SocDis" type="double"/>
+            <field name="VCMS_PlugConnect" type="double"/>
+            <field name="CCM_EvseTargetActivePwr" type="double"/>
+            <field name="VCMS_TrgtPowerProfile" type="double"/>
+            <field name="OBC_AcL1CurrVal" type="double"/>
+            <field name="OBC_AcVoltVal" type="double"/>
+            <field name="OBC_AC_OUT_KW" type="double"/>
+            <field name="OBC_OpModeSta" type="double"/>
+            <field name="VCMS_ChgInletTmpMax" type="double"/>
+            <field name="CR_HU_DepartSet1_Hour" type="double"/>
+            <field name="CR_HU_DepartSet1_Min" type="double"/>
+            <field name="CHRG_ScChgTargetSOCSync" type="double"/>
+            <field name="VCMS_ChgTransferType" type="double"/>
+        </schema>
+        <schema name="SBWCSignalSchema">
+            <field description="LDC(메인전원)고장여부" name="LDC_SysFltSta" type="int"/>
+            <field description="ALDC (리던던시전원) 고장 여부" name="ALDC_SysFltSta" type="int"/>
+            <field description="SFA1 Ignition Status" name="SFA_IgnitionStatus" type="int"/>
+            <field description="RWA1 Ignition Status" name="RWA_IgnitionStatus" type="int"/>
+            <field description="SFA2 Ignition Status" name="SFA_R2_IgnitionStatus" type="int"/>
+            <field description="RWA2 Ignition Status" name="RWA_R2_IgnitionStatus" type="int"/>
+            <field description="클러스터 Warning Lamp 점등 상태" name="SFA_CluWarningLamp" type="int"/>
+            <field description="클러스터 Warning Lamp 점등 상태" name="SFA_R2_CluWarningLamp" type="int"/>
+            <field description="SFA1 Warning Lamp Flag" name="SFA_WarningLamp" type="int"/>
+            <field description="RWA1 Warning Lamp Flag" name="RWA_WarningLamp" type="int"/>
+            <field description="SFA2 Warning Lamp Flag" name="SFA_R2_WarningLamp" type="int"/>
+            <field description="RWA2 Warning Lamp Flag" name="RWA_R2_WarningLamp" type="int"/>
+            <field description="SFA1 컨트롤 모드" name="SFA_ControlMode" type="int"/>
+            <field description="RWA1 컨트롤 모드" name="RWA_ControlMode" type="int"/>
+            <field description="SFA2 컨트롤 모드" name="SFA_R2_ControlMode" type="int"/>
+            <field description="RWA2 컨트롤 모드" name="RWA_R2_ControlMode" type="int"/>
+            <field description="SFA1 Ecu Role" name="SFA_EcuRole" type="int"/>
+            <field description="RWA1 Ecu Role" name="RWA_EcuRole" type="int"/>
+            <field description="SFA2 Ecu Role" name="SFA_R2_EcuRole" type="int"/>
+            <field description="RWA2 Ecu Role" name="RWA_R2_EcuRole" type="int"/>
+            <field description="SFA1에서 송출하는 SFA1 ECU Status (본인)" name="SFA_SFA1EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 SFA2 ECU Status" name="SFA_SFA2EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 RWA1 ECU Status" name="SFA_RWA1EcuStatus" type="int"/>
+            <field description="SFA1에서 송출하는 RWA2 ECU Status" name="SFA_RWA2EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 SFA1 ECU Status" name="RWA_SFA1EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 SFA2 ECU Status" name="RWA_SFA2EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 RWA1 ECU Status (본인)" name="RWA_RWA1EcuStatus" type="int"/>
+            <field description="RWA1에서 송출하는 RWA2 ECU Status" name="RWA_RWA2EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 SFA1 ECU Status" name="SFA_R2_SFA1EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 SFA2 ECU Status (본인)" name="SFA_R2_SFA2EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 RWA1 ECU Status" name="SFA_R2_RWA1EcuStatus" type="int"/>
+            <field description="SFA2에서 송출하는 RWA2 ECU Status" name="SFA_R2_RWA2EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 SFA1 ECU Status" name="RWA_R2_SFA1EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 SFA2 ECU Status" name="RWA_R2_SFA2EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 RWA1 ECU Status" name="RWA_R2_RWA1EcuStatus" type="int"/>
+            <field description="RWA2에서 송출하는 RWA2 ECU Status (본인)" name="RWA_R2_RWA2EcuStatus" type="int"/>
+            <field description="SbW Centering Status" name="SbW_CenteringStatus" type="int"/>
+            <field description="SbW Centering Status" name="SbW_R2_CenteringStatus" type="int"/>
+            <field description="SFA1 Centering Status" name="SFA_CenteringStatus" type="int"/>
+            <field description="RWA1 Centering and Alignment Status" name="RWA_CenteringStatus" type="int"/>
+            <field description="SFA2 Centering Status" name="SFA_R2_CenteringStatus" type="int"/>
+            <field description="RWA2 Centering and Alignment Status" name="RWA_R2_CenteringStatus" type="int"/>
+            <field description="SFA1 Vehicle Speed Limit Control Request Signal" name="SFA_CreepReqActSta" type="int"/>
+            <field description="RWA1 Vehicle Speed Limit Control Request Signal" name="RWA_CreepReqActSta" type="int"/>
+            <field description="SFA2 Vehicle Speed Limit Control Request Signal" name="SFA_R2_CreepReqActSta" type="int"/>
+            <field description="RWA2 Vehicle Speed Limit Control Request Signal" name="RWA_R2_CreepReqActSta" type="int"/>
+            <field description="SFA1 Failover Active Status" name="SFA_FailoverActvSta" type="int"/>
+            <field description="SFA2 Failover Active Status" name="SFA_R2_FailoverActvSta" type="int"/>
+            <field description="SFA1 OHP Status" name="SFA_OHP_Status" type="int"/>
+            <field description="RWA1 OHP Status" name="RWA_OHP_Status" type="int"/>
+            <field description="SFA2 OHP Status" name="SFA_R2_OHP_Status" type="int"/>
+            <field description="RWA2 OHP Status" name="RWA_R2_OHP_Status" type="int"/>
+            <field description="RWA1 OLP Status" name="RWA_OLP" type="int"/>
+            <field description="RWA2 OLP Status" name="RWA_R2_OLP" type="int"/>
+            <field description="SFA1 Battery Voltage" name="SFA1_BatteryVoltage" type="double"/>
+            <field description="RWA1 Battery Voltage" name="RWA1_BatteryVoltage" type="double"/>
+            <field description="SFA2 Battery Voltage" name="SFA2_BatteryVoltage" type="double"/>
+            <field description="RWA2 Battery Voltage" name="RWA2_BatteryVoltage" type="double"/>
+            <field description="EV READY Status" name="VCU_EvDrvRdySta" type="int"/>
+            <field description="Gear Position Status" name="VCU_GearPosSta" type="int"/>
+            <field description="WHL Speed Front Left" name="WHL_SpdFLVal" type="double"/>
+            <field description="WHL Speed Front Right" name="WHL_SpdFRVal" type="double"/>
+            <field description="WHL Speed Rear Left" name="WHL_SpdRLVal" type="double"/>
+            <field description="WHL Speed Rear Right" name="WHL_SpdRRVal" type="double"/>
+        </schema>
+        <schema name="TRIGDATA">
+            <field name="preTime" type="double"/>
+            <field name="postTime" type="double"/>
+            <field name="deltaTime" type="double"/>
+            <field name="eventName" type="string"/>
+            <field name="category" type="string"/>
+            <field name="status" type="string"/>
+            <field name="value" type="double"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+</application>

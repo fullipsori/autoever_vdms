@@ -171,6 +171,7 @@ public class ODTParser implements Parseable, DataSavable {
 		if(ccpRawEndCmd > CCPPreProcessor.ccpEndCmd) ccpRawEndCmd = CCPPreProcessor.ccpEndCmd;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void printODTMap() {
 		odt_map.stream().forEach(e -> {
 			System.out.printf("%s,%d,%s\n", String.join(",", (ArrayList<String>)e[0]), e[1], e[2]);

@@ -10,23 +10,83 @@
         </type-metadata>
         <memory-model-settings/>
         <import alias="MainOutputSchema" from="com.autoever.poc.maineventflow.AutoVDMSFlow_v2" item="MainOutputSchema"/>
+        <import alias="GPSDataTableSchema" from="com.autoever.poc.maineventflow.LiveViewTable" item="GPSDataTableSchema"/>
         <parameter-definitions>
             <parameter default="d:/projects/vdms/resources" name="RESOURCE_ROOT"/>
             <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
         </parameter-definitions>
         <dynamic-variables/>
-        <stream name="ConstrolStream">
-            <schema>
-                <field name="newModValue" type="int"/>
-            </schema>
-        </stream>
         <stream name="InputStream" schema="MainOutputSchema"/>
+        <box name="InputAdapter" type="inputadapter">
+            <output port="1" stream="out:InputAdapter_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.once.Once"/>
+            <param name="OutputField" value="time"/>
+        </box>
+        <box name="addFolder" type="map">
+            <input port="1" stream="out:InputAdapter_1"/>
+            <output port="1" stream="out:addFolder_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="inputVars.resourceFolder">"${RESOURCE_ROOT}/GIS"</include>
+                    <include field="inputVars.time">time</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="LoadSHP" type="java">
+            <input port="1" stream="out:addFolder_1"/>
+            <output port="1" stream="out:LoadSHP_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="true"/>
+            <param name="GlobalInstanceId" value="python_global_instance"/>
+            <param name="InstanceType" value="Global"/>
+            <param name="LocalInstanceId" value="python_gis_instance"/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;address&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;string&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;    &lt;field name=&quot;time&quot; type=&quot;timestamp&quot;/&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value=""/>
+            <param name="ScriptFile" value="gps_gis_load.py"/>
+            <param name="ScriptSource" value="File"/>
+            <param name="amsRequiredOnStartup" value="false"/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <box name="CheckInitialTime" type="map">
+            <input port="1" stream="out:LoadSHP_1"/>
+            <output port="1" stream="out:CheckInitialTime_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="elapsed">now()-outputVars.time</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split" type="split">
+            <input port="1" stream="out:CheckInitialTime_1"/>
+            <output port="1" stream="OutputInitialLoadStream"/>
+            <output port="2" stream="out:Split_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <output-stream name="OutputInitialLoadStream"/>
+        <box name="SetLoaded" type="map">
+            <input port="1" stream="out:Split_2"/>
+            <output port="1" stream="out:SetLoaded_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="command">'Loaded'</include>
+                </expressions>
+            </target-list>
+        </box>
         <module-reference name="GPSParser">
-            <input dispatch="round_robin" name="InputStream" port="1" stream="InputStream"/>
-            <input dispatch="broadcast" name="ControlStream" port="2" stream="ConstrolStream"/>
+            <input dispatch="numerical" key="int(kafkaMessage.VehicleKeyID)" name="InputStream" port="1" stream="InputStream"/>
+            <input dispatch="broadcast" name="ControlGISStream" port="2" stream="out:SetLoaded_1"/>
             <output name="OutputParserStream" port="1" stream="OutputParserStream"/>
             <output name="OutputRawDataStream" port="2" stream="OutputRawDataStream"/>
             <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-max-outstanding-tuples" value="5"/>
             <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
             <multiplicity number="10" type="concrete"/>
             <param name="file" value="com.autoever.poc.parser.GPSParser_v2"/>

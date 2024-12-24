@@ -19,11 +19,12 @@
             <parameter default="lv://localhost:11080" name="LV_SERVER_URI"/>
         </parameter-definitions>
         <dynamic-variables>
-            <dynamic-variable initial-expression="4" name="modValue" setter-expression="newModValue" setter-stream="ControlStream"/>
+            <dynamic-variable initial-expression="false" name="gisLoaded" setter-expression="command=='Loaded'" setter-stream="ControlGISStream"/>
+            <dynamic-variable initial-expression="emptylist(GPSDataTableSchema())" name="vehicleSignalStatus" setter-expression="UpdateVehicleSignalStatus(vehicleSignalStatus, input)" setter-stream="UpdateVehicleStatusStream"/>
         </dynamic-variables>
-        <stream name="ControlStream">
+        <stream name="ControlGISStream">
             <schema>
-                <field name="newModValue" type="int"/>
+                <field name="command" type="string"/>
             </schema>
         </stream>
         <stream name="InputStream" schema="MainOutputSchema"/>
@@ -58,6 +59,17 @@
             <param name="expression.1" value="IsEnded"/>
             <param name="expression.2" value="true"/>
         </box>
+        <box name="AddPrev" type="map">
+            <input port="1" stream="out:FilterMarker_3"/>
+            <output port="1" stream="out:AddPrev_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="refVehicleStatus">GetVehicleSignalStatus(vehicleSignalStatus, kafkaMessage.VehicleKeyID)</include>
+                    <include field="realTime">GetTimestamp(long((kafkaMessage.BaseTime + RawHeader.DeltaTime)*1000))</include>
+                </expressions>
+            </target-list>
+        </box>
         <box name="MarkerEnded" type="map">
             <input port="1" stream="out:FilterMarker_2"/>
             <output port="1" stream="out:MarkerEnded_1"/>
@@ -88,18 +100,13 @@
                 </expressions>
             </target-list>
         </box>
-        <box name="Sequence" type="seqnum">
-            <input port="1" stream="out:FilterMarker_3"/>
-            <output port="1" stream="out:Sequence_1"/>
-            <param name="output-field" value="sequenceId"/>
-            <param name="sequence-id" value="sequenceid"/>
-            <param name="update-expression" value="sequenceid + 1"/>
-        </box>
         <box name="LVFilter" type="filter">
-            <input port="1" stream="out:Sequence_1"/>
+            <input port="1" stream="out:AddPrev_1"/>
             <output port="1" stream="out:LVFilter_1"/>
+            <output port="2" stream="out:LVFilter_2"/>
             <param name="autogen-nomatch-port" value="false"/>
-            <param name="expression.0" value="modValue != 0 &amp;&amp; (sequenceId % modValue == 0)"/>
+            <param name="expression.0" value="isnull(refVehicleStatus) ||  floor(RawParsed.Latitude*10000)!=floor(refVehicleStatus.Latitude*10000) || floor(RawParsed.Longitude*10000)!=floor(refVehicleStatus.Longitude*10000)"/>
+            <param name="expression.1" value="!startswith(refVehicleStatus.messageID, messageID)"/>
         </box>
         <box name="MarkerUnion" type="union">
             <input port="1" stream="out:MarkerStarted_1"/>
@@ -121,29 +128,16 @@
                 <expressions>
                     <include field="*">lastval(*)</include>
                     <replace field="perfData.t2_time">firstval(perfData.t2_time)</replace>
-                    <replace field="perfData.t3_time">lastval(perfData.t3_time)</replace>
+                    <replace field="perfData.t3_time">firstval(perfData.t3_time)</replace>
+                    <replace field="perfData.t4_time">lastval(perfData.t4_time)</replace>
                 </expressions>
             </target-list>
         </box>
-        <box name="MapForGPSTable" type="map">
+        <box name="Union3" type="union">
             <input port="1" stream="out:LVFilter_1"/>
-            <output port="1" stream="out:MapForGPSTable_1"/>
-            <target-list>
-                <item name="input" selection="none">
-                    <include field="messageID"/>
-                    <include field="mgmtNO"/>
-                </item>
-                <expressions>
-                    <replace field="messageID">input1.messageID + '_' + string(input1.sequenceId)</replace>
-                    <include field="baseTime">kafkaMessage.BaseTime</include>
-                    <include field="deltaTime">RawHeader.DeltaTime</include>
-                    <include field="realTime">long(GetLocalTime(kafkaMessage.BaseTime + long(RawHeader.DeltaTime), ''))</include>
-                    <include field="rootCount">kafkaMessage.RootCount</include>
-                    <include field="terminalID">kafkaMessage.TerminalID</include>
-                    <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
-                    <include field="*">RawParsed.*</include>
-                </expressions>
-            </target-list>
+            <input port="2" stream="out:LVFilter_2"/>
+            <output port="1" stream="out:Union3_1"/>
+            <param name="strict" value="false"/>
         </box>
         <box name="EndedCanProc" type="map">
             <input port="1" stream="out:AGGToHCP_1"/>
@@ -157,8 +151,125 @@
                 </expressions>
             </target-list>
         </box>
-        <box name="PublishGPS" type="outputadapter">
+        <box name="GISFilter" type="filter">
+            <input port="1" stream="out:Union3_1"/>
+            <output port="1" stream="out:GISFilter_1"/>
+            <output port="2" stream="out:GISFilter_2"/>
+            <param name="autogen-nomatch-port" value="true"/>
+            <param name="expression.0" value="gisLoaded &amp;&amp; (RawParsed.Latitude&gt;=33 &amp;&amp; RawParsed.Latitude&lt;=39) &amp;&amp; (RawParsed.Longitude&gt;=125 &amp;&amp; RawParsed.Longitude&lt;=132)"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="addParams" type="map">
+            <input port="1" stream="out:GISFilter_1"/>
+            <output port="1" stream="out:addParams_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="inputVars.latitude">RawParsed.Latitude</include>
+                    <include field="inputVars.longitude">RawParsed.Longitude</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="clearAddr" type="map">
+            <input port="1" stream="out:GISFilter_2"/>
+            <output port="1" stream="out:clearAddr_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="addrDo">''</include>
+                    <include field="addrGu">''</include>
+                    <include field="addrDong">''</include>
+                    <include field="addrRoad">''</include>
+                </expressions>
+            </target-list>
+        </box>
+        <module-reference name="PublishPerf">
+            <input name="InputStream" port="1" stream="out:EndedCanProc_1"/>
+            <output name="OutputStream" port="1" stream="out:PublishPerf_1"/>
+            <param name="parallel" value="true"/>
+            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
+            <param name="file" value="com.autoever.poc.maineventflow.PerfFlow"/>
+            <parameter-bindings>
+                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
+            </parameter-bindings>
+        </module-reference>
+        <box name="GetAddress" type="java">
+            <input port="1" stream="out:addParams_1"/>
+            <output port="1" stream="out:GetAddress_1"/>
+            <param name="start:state" value="true"/>
+            <param name="javaclass" value="com.streambase.sb.adapter.python.PythonAdapter"/>
+            <param name="Asynchronous" value="false"/>
+            <param name="GlobalInstanceId" value="python_global_instance"/>
+            <param name="InstanceType" value="Global"/>
+            <param name="LocalInstanceId" value=""/>
+            <param name="LogLevel" value="INFO"/>
+            <param name="OutputVarsSchema" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;schema&gt;&#13;&#10;    &lt;field name=&quot;address&quot; type=&quot;list&quot;&gt;&#13;&#10;        &lt;element-type type=&quot;blob&quot;/&gt;&#13;&#10;    &lt;/field&gt;&#13;&#10;&lt;/schema&gt;&#13;&#10;"/>
+            <param name="Script" value="address = get_address(latitude, longitude)"/>
+            <param name="ScriptFile" value=""/>
+            <param name="ScriptSource" value="Script text"/>
+            <param name="amsRequiredOnStartup" value=""/>
+            <param name="artifactName" value=""/>
+            <param name="artifactVersion" value=""/>
+            <param name="enableControlPort" value="false"/>
+        </box>
+        <box name="addAddr" type="map">
+            <input port="1" stream="out:GetAddress_1"/>
+            <output port="1" stream="out:addAddr_1"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="outputVars"/>
+                </item>
+                <expressions>
+                    <include field="addrDo">if (!isnull(outputVars.address[0])) then string(outputVars.address[0]) else null</include>
+                    <include field="addrGu">if (!isnull(outputVars.address[1])) then string(outputVars.address[1]) else null</include>
+                    <include field="addrDong">if (!isnull(outputVars.address[2])) then string(outputVars.address[2]) else null</include>
+                    <include field="addrRoad">if (!isnull(outputVars.address[3])) then string(outputVars.address[3]) else null</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Union2" type="union">
+            <input port="1" stream="out:addAddr_1"/>
+            <input port="2" stream="out:clearAddr_1"/>
+            <output port="1" stream="out:Union2_1"/>
+            <param name="strict" value="false"/>
+        </box>
+        <box name="Sequence" type="seqnum">
+            <input port="1" stream="out:Union2_1"/>
+            <output port="1" stream="out:Sequence_1"/>
+            <param name="output-field" value="sequenceId"/>
+            <param name="sequence-id" value="sequenceid"/>
+            <param name="update-expression" value="if(sequenceid&lt;100000000) then sequenceid + 1 else 0"/>
+        </box>
+        <box name="MapForGPSTable" type="map">
+            <input port="1" stream="out:Sequence_1"/>
+            <output port="1" stream="out:MapForGPSTable_1"/>
+            <target-list>
+                <item name="input" selection="none"/>
+                <expressions>
+                    <include field="messageID">input1.messageID + '_' + string(input1.sequenceId)</include>
+                    <include field="terminalID">kafkaMessage.TerminalID</include>
+                    <include field="vehicleKeyID">kafkaMessage.VehicleKeyID</include>
+                    <include field="mgmtNO">mgmtNO</include>
+                    <include field="rootCount">kafkaMessage.RootCount</include>
+                    <include field="baseTime">kafkaMessage.BaseTime</include>
+                    <include field="realTime">realTime</include>
+                    <include field="*">RawParsed.*</include>
+                    <include field="addrDo">addrDo</include>
+                    <include field="addrGu">addrGu</include>
+                    <include field="addrDong">addrDong</include>
+                    <include field="addrRoad">addrRoad</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split2" type="split">
             <input port="1" stream="out:MapForGPSTable_1"/>
+            <output port="1" stream="UpdateVehicleStatusStream"/>
+            <output port="2" stream="out:Split2_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <output-stream name="UpdateVehicleStatusStream"/>
+        <box name="PublishGPS" type="outputadapter">
+            <input port="1" stream="out:Split2_2"/>
             <output port="1" stream="out:PublishGPS_1"/>
             <param name="start:state" value="true"/>
             <param name="javaclass" value="com.streambase.sb.adapter.liveview.LiveViewPublish"/>
@@ -183,16 +294,6 @@
             <param name="uri" value="${LV_SERVER_URI}"/>
             <param name="useRuntimeURI" value="false"/>
         </box>
-        <module-reference name="PublishPerf">
-            <input name="InputStream" port="1" stream="out:EndedCanProc_1"/>
-            <output name="OutputStream" port="1" stream="out:PublishPerf_1"/>
-            <param name="parallel" value="true"/>
-            <param name="parallel-region-queue-wait-strategy" value="BLOCKING"/>
-            <param name="file" value="com.autoever.poc.maineventflow.PerfFlow"/>
-            <parameter-bindings>
-                <binding name="LV_SERVER_URI" value="${LV_SERVER_URI}"/>
-            </parameter-bindings>
-        </module-reference>
         <box name="Union" type="union">
             <input port="1" stream="out:PublishPerf_1"/>
             <input port="2" stream="out:PublishGPS_1"/>

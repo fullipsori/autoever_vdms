@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ControlStream">
+        <param name="gui:x" value="-159"/>
+        <param name="gui:y" value="-105"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="26"/>
+        <param name="gui:y" value="-199"/>
+    </component>
+    <component name="EVChargeVMDSParser">
+        <param name="gui:x" value="178"/>
+        <param name="gui:y" value="-240"/>
+        <param name="gui:height" value="78"/>
+        <param name="gui:bends:1" value="112,-263;122,-220"/>
+        <param name="gui:bends:2" value="129,-169;131,-182"/>
+    </component>
+    <component name="DBCTable">
+        <param name="gui:x" value="135"/>
+        <param name="gui:y" value="-79"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DeleteAll">
+        <param name="gui:x" value="26"/>
+        <param name="gui:y" value="-105"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-54"/>
+        <param name="gui:y" value="-105"/>
+    </component>
+    <component name="GetSignals">
+        <param name="gui:x" value="26"/>
+        <param name="gui:y" value="-293"/>
+    </component>
+    <component name="InitLoad">
+        <param name="gui:x" value="-159"/>
+        <param name="gui:y" value="-293"/>
+    </component>
+    <component name="toTuple">
+        <param name="gui:x" value="-54"/>
+        <param name="gui:y" value="-293"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="363"/>
+        <param name="gui:y" value="-312"/>
+        <param name="gui:bends:1" value="305,-220;319,-282"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="363"/>
+        <param name="gui:y" value="-218"/>
+        <param name="gui:bends:1" value="298,-201;300,-188"/>
+    </component>
+    <component name="OutputVarStream">
+        <param name="gui:x" value="363"/>
+        <param name="gui:y" value="-124"/>
+        <param name="gui:bends:1" value="288,-182;310,-94"/>
+    </component>
+</application-layout>

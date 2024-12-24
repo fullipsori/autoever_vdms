@@ -28,6 +28,7 @@
                     <declare field="t2_time">perfData.t2_time-perfData.t1_time</declare>
                     <declare field="t3_time">perfData.t3_time-perfData.t2_time</declare>
                     <declare field="t4_time">perfData.t4_time-perfData.t3_time</declare>
+                    <declare field="t5_time">perfData.t5_time-perfData.t4_time</declare>
                     <declare field="end_time">to_milliseconds(now())-perfData.start_time</declare>
                 </item>
                 <expressions>
@@ -36,6 +37,7 @@
                     <replace field="perfData.t2_time">t2_time</replace>
                     <replace field="perfData.t3_time">t3_time</replace>
                     <replace field="perfData.t4_time">if (t4_time &gt; 0) then t4_time else 0</replace>
+                    <replace field="perfData.t5_time">if(t5_time&gt;0) then t5_time else 0</replace>
                     <replace field="perfData.end_time">end_time</replace>
                 </expressions>
             </target-list>

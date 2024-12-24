@@ -2,11 +2,13 @@ package com.autoever.poc.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.autoever.poc.common.RawDataField;
 import com.autoever.poc.parser.can.PolicyParser;
 import com.autoever.poc.parser.can.PolicyRepository;
+import com.autoever.poc.parser.can.TrigData;
 import com.autoever.poc.parser.can.TriggerParser;
 import com.autoever.poc.parser.ccp.ODTParser;
 import com.autoever.poc.parser.ccp.ODTRepository;
@@ -39,7 +41,7 @@ public class ParseUtil {
 	}
 
 	public static CompleteDataType GetTrigDataCustomFunctionResolver0(CompleteDataType policy, CompleteDataType message) {
-		return CompleteDataType.forList(CompleteDataType.forTuple(PolicyRepository.trigDataSchema));
+		return CompleteDataType.forList(CompleteDataType.forTuple(TrigData.trigDataSchema));
 	}
 	
 	public static boolean InitPolicyRepository(String dirPath) {
@@ -118,14 +120,16 @@ public class ParseUtil {
 				.filter(p -> p != null)
 				.map(p -> {
 					try {
-						Tuple tuple = PolicyRepository.trigDataSchema.createTuple();
+						Tuple tuple = TrigData.trigDataSchema.createTuple();
 						tuple.setDouble(0, 0.0);
 						tuple.setDouble(1, 0.0);
 						tuple.setDouble(2, (double)deltaTime);
-						tuple.setString(3, p.first); //event
+						tuple.setString(3, p.first); //event - sig_name
 						tuple.setString(4, ""); //category
 						tuple.setString(5, ""); //status
-						tuple.setString(6, String.format("%.3f",p.second)); //value
+						//double 
+						tuple.setDouble(6, p.second); //value
+//						tuple.setString(6, String.format("%.3f",p.second)); //value
 						return tuple;
 					}catch(Exception e) {
 						return null;
@@ -138,9 +142,45 @@ public class ParseUtil {
 	}
 	
 	public static CompleteDataType GetMatchedSignalCustomFunctionResolver0(CompleteDataType message, CompleteDataType dbcTuples) {
-		return CompleteDataType.forList(CompleteDataType.forTuple(PolicyRepository.trigDataSchema));
+		return CompleteDataType.forList(CompleteDataType.forTuple(TrigData.trigDataSchema));
 	}
 	
+	
+	@CustomFunctionResolver("GetTupleKeysCustomFunctionResolver0")
+	public static List<String> GetTupleKeys(Tuple tuple) {
+		Map<String,Object> fieldMap = tuple.toMapView();
+		return fieldMap.keySet().stream().collect(Collectors.toList());
+	}
+	
+	public static CompleteDataType GetTupleKeysCustomFunctionResolver0(CompleteDataType tuple) {
+		return CompleteDataType.forStringList();
+	}
+
+	@CustomFunctionResolver("CompareTupleDataCustomFunctionResolver0")
+	public static boolean CompareTupleData(Tuple tupleOne, Tuple tupleRef, List<String> tupleKeys) {
+		if(tupleRef==null) {
+			return false;
+		}
+
+		for(int i=0; i<tupleKeys.size();i++) {
+			try {
+				String key = tupleKeys.get(i);
+				Double valueOne = tupleOne.isNull(key)? null : tupleOne.getDouble(key);
+				Double valueRef = tupleRef.isNull(key)? null : tupleRef.getDouble(key);
+				if(valueOne != valueRef) {
+					return false;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
+	public static CompleteDataType CompareTupleDataCustomFunctionResolver0(CompleteDataType tupleOne, CompleteDataType tupleSec, CompleteDataType tupleKeys) {
+		return CompleteDataType.forBoolean();
+	}
+
 	public static Schema fieldStringSchema = new Schema(
 			null,
 			new Schema.Field("fieldName", CompleteDataType.forString()),
@@ -205,4 +245,5 @@ public class ParseUtil {
 	public static CompleteDataType GetValueInFieldListCustomFunctionResolver0(CompleteDataType fieldList, CompleteDataType fieldName) {
 		return CompleteDataType.forString();
 	}
+
 }

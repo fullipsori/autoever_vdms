@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="ControlStream">
+        <param name="gui:x" value="-711"/>
+        <param name="gui:y" value="-14"/>
+    </component>
+    <component name="InputStream">
+        <param name="gui:x" value="-442"/>
+        <param name="gui:y" value="-14"/>
+    </component>
+    <component name="SBWCVDMSParser">
+        <param name="gui:x" value="-286"/>
+        <param name="gui:y" value="-55"/>
+        <param name="gui:height" value="78"/>
+        <param name="gui:bends:1" value="-353,-116;-333,-35"/>
+        <param name="gui:bends:2" value="-344,16;-342,3"/>
+    </component>
+    <component name="SimModule">
+        <param name="gui:x" value="26"/>
+        <param name="gui:y" value="-145"/>
+        <param name="gui:bends:1" value="-21,-112;-19,-125"/>
+        <param name="gui:bends:2" value="-12,-146;-2,-105"/>
+    </component>
+    <component name="DBCTable">
+        <param name="gui:x" value="-452"/>
+        <param name="gui:y" value="95"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="DeleteAll">
+        <param name="gui:x" value="-521"/>
+        <param name="gui:y" value="-14"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-601"/>
+        <param name="gui:y" value="-14"/>
+    </component>
+    <component name="GetSignals">
+        <param name="gui:x" value="-521"/>
+        <param name="gui:y" value="-156"/>
+    </component>
+    <component name="InputAdapter">
+        <param name="gui:x" value="-711"/>
+        <param name="gui:y" value="-156"/>
+    </component>
+    <component name="SimulMode">
+        <param name="gui:x" value="-442"/>
+        <param name="gui:y" value="-156"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-286"/>
+        <param name="gui:y" value="-166"/>
+    </component>
+    <component name="Union">
+        <param name="gui:x" value="180"/>
+        <param name="gui:y" value="-95"/>
+        <param name="gui:bends:1" value="124,-115;134,-75"/>
+        <param name="gui:bends:2" value="30,-35;34,-55"/>
+    </component>
+    <component name="startSim">
+        <param name="gui:x" value="-105"/>
+        <param name="gui:y" value="-142"/>
+        <param name="gui:bends:1" value="-170,-126;-168,-112"/>
+    </component>
+    <component name="toTuple">
+        <param name="gui:x" value="-601"/>
+        <param name="gui:y" value="-156"/>
+    </component>
+    <component name="OutputParserStream">
+        <param name="gui:x" value="274"/>
+        <param name="gui:y" value="-95"/>
+    </component>
+    <component name="OutputRawDataStream">
+        <param name="gui:x" value="-105"/>
+        <param name="gui:y" value="-33"/>
+        <param name="gui:bends:1" value="-170,-16;-168,-3"/>
+    </component>
+    <component name="OutputVarStream">
+        <param name="gui:x" value="-105"/>
+        <param name="gui:y" value="61"/>
+        <param name="gui:bends:1" value="-180,3;-158,91"/>
+    </component>
+</application-layout>
